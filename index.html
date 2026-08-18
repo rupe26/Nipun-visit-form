@@ -52,6 +52,8 @@
   main{padding:12px;max-width:760px;margin:0 auto;}
   .view{display:none;}
   .view.active{display:block;}
+  .subview{display:none;}
+  .subview.active{display:block;}
 
   details.section{
     background:#fff; border:1px solid var(--border); border-radius:10px;
@@ -146,8 +148,7 @@
 
 <div class="tabbar">
   <button class="tab-btn active" data-view="formView">➕ नवीन नोंद</button>
-  <button class="tab-btn" data-view="listView">📋 जतन केलेल्या नोंदी</button>
-  <button class="tab-btn" data-view="settingsView">⚙️ सेटिंग्ज</button>
+  <button class="tab-btn" data-view="adminView">🔒 केंद्रप्रमुख</button>
 </div>
 
 <main>
@@ -241,17 +242,29 @@
   </details>
 
   <details class="section">
-    <summary>५. '5D' वर्ग अध्यापन निरीक्षण तक्ता व रुब्रिक</summary>
+    <summary>५. स्वच्छता व वर्ग अध्यापन निरीक्षण</summary>
     <div class="section-body">
+      <div class="subhead">स्वच्छता</div>
+      <label>आ. शालेय परिसर (स्वच्छ / अस्वच्छ / सुशोभनाची आवश्यकता)</label>
+      <textarea id="suchchhataParisar"></textarea>
+      <label>ब. विद्यार्थी वैयक्तिक स्वच्छता (गणवेश व शारीरिक स्वच्छता)</label>
+      <textarea id="suchchhataVaiyaktik"></textarea>
+
+      <div class="subhead" style="margin-top:16px;">वर्ग अध्यापन निरीक्षण (किमान १ वर्ग १ तासिका)</div>
       <div class="row3">
-        <div><label>शिक्षकाचे नाव</label><input type="text" id="d5Shikshak"></div>
-        <div><label>इयत्ता</label><input type="text" id="d5Iyatta"></div>
-        <div><label>विषय</label><input type="text" id="d5Vishay"></div>
+        <div><label>इयत्ता</label><input type="text" id="vniIyatta"></div>
+        <div><label>तुकडी</label><input type="text" id="vniTukadi"></div>
+        <div><label>शिक्षकाचे नाव</label><input type="text" id="vniShikshak"></div>
       </div>
-      <label>घटक / उपघटक</label>
-      <input type="text" id="d5Ghatak">
-      <p class="hint">रुब्रिक (परिशिष्ट-२) नुसार प्रत्येक निर्देशांकास १, २ किंवा ३ गुण द्या.</p>
-      <div id="d5ScoreWrap"></div>
+      <div class="row2">
+        <div><label>विषय</label><input type="text" id="vniVishay"></div>
+        <div><label>घटक / उपघटक</label><input type="text" id="vniGhatak"></div>
+      </div>
+      <p class="hint">अभिप्राय (विषयाची मांडणी, साहित्य वापर, उदाहरणे/दाखले वापर, प्रश्नोत्तरे/विद्यार्थी प्रतिसाद इ.)</p>
+      <table class="mini" id="vniTable">
+        <thead><tr><th>तपशील</th><th>अभिप्राय</th></tr></thead>
+        <tbody></tbody>
+      </table>
     </div>
   </details>
 
@@ -388,62 +401,110 @@
   <p class="small-note">* आवश्यक फील्ड. सर्व माहिती तुमच्या मोबाईल/ब्राउझरमध्येच सुरक्षित साठवली जाते — इंटरनेटशिवायही "जतन करा" काम करते.</p>
 </div>
 
-<!-- ===================== LIST VIEW ===================== -->
-<div class="view" id="listView">
-  <div style="display:flex; gap:8px; margin-bottom:10px;">
-    <input type="text" id="searchBox" placeholder="🔍 शाळेचे नाव / UDISE शोधा" style="flex:1;">
+<!-- ===================== ADMIN (केंद्रप्रमुख) VIEW ===================== -->
+<div class="view" id="adminView">
+
+  <!-- Lock screen: PIN setup (first run) or PIN login -->
+  <div id="adminLock">
+    <div class="rec-card" id="pinSetupCard" style="display:none;">
+      <h3>🔑 केंद्रप्रमुख PIN सेट करा</h3>
+      <p class="small-note">हा PIN फक्त केंद्रप्रमुखांना माहीत असावा. नोंदी पाहणे/संपादन/सेटिंग्ज यासाठी हा PIN लागेल.</p>
+      <label>नवीन PIN (४-६ अंकी)</label>
+      <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" id="setupPin1" placeholder="नवीन PIN">
+      <label>PIN पुन्हा टाका</label>
+      <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" id="setupPin2" placeholder="PIN पुन्हा टाका">
+      <button class="btn-primary btn-block" id="setupPinBtn" style="margin-top:12px;">PIN सेट करा</button>
+    </div>
+
+    <div class="rec-card" id="pinLoginCard" style="display:none;">
+      <h3>🔒 केंद्रप्रमुख प्रवेश</h3>
+      <p class="small-note">जतन केलेल्या नोंदी, संपादन व सेटिंग्ज पाहण्यासाठी PIN टाका.</p>
+      <label>PIN</label>
+      <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" id="loginPinInput" placeholder="PIN टाका">
+      <button class="btn-primary btn-block" id="loginPinBtn" style="margin-top:12px;">प्रवेश करा</button>
+      <p class="small-note" id="pinError" style="color:#c0392b; display:none;">❌ चुकीचा PIN. पुन्हा प्रयत्न करा.</p>
+    </div>
   </div>
-  <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
-    <button class="btn-secondary btn-sm" id="syncAllBtn">☁️ सर्व प्रलंबित सिंक करा</button>
-    <button class="btn-secondary btn-sm" id="exportCsvBtn">⬇️ CSV एक्सपोर्ट</button>
-    <button class="btn-secondary btn-sm" id="exportJsonBtn">⬇️ बॅकअप (JSON)</button>
-    <button class="btn-secondary btn-sm" id="importJsonBtn">⬆️ बॅकअप आयात</button>
-    <input type="file" id="importFile" accept="application/json" style="display:none;">
+
+  <!-- Unlocked admin content -->
+  <div id="adminContent" style="display:none;">
+    <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
+      <button class="tab-btn active" data-subview="listView" style="border:1px solid var(--border); border-radius:8px; flex:1;">📋 नोंदी</button>
+      <button class="tab-btn" data-subview="settingsView" style="border:1px solid var(--border); border-radius:8px; flex:1;">⚙️ सेटिंग्ज</button>
+      <button class="tab-btn" data-subview="pinView" style="border:1px solid var(--border); border-radius:8px; flex:1;">🔑 PIN बदला</button>
+      <button class="btn-secondary btn-sm" id="adminLogoutBtn">🔓 लॉगआऊट</button>
+    </div>
+
+    <div class="subview active" id="listView">
+      <div style="display:flex; gap:8px; margin-bottom:10px;">
+        <input type="text" id="searchBox" placeholder="🔍 शाळेचे नाव / UDISE शोधा" style="flex:1;">
+      </div>
+      <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+        <button class="btn-secondary btn-sm" id="syncAllBtn">☁️ सर्व प्रलंबित सिंक करा</button>
+        <button class="btn-secondary btn-sm" id="exportCsvBtn">⬇️ CSV एक्सपोर्ट</button>
+        <button class="btn-secondary btn-sm" id="exportJsonBtn">⬇️ बॅकअप (JSON)</button>
+        <button class="btn-secondary btn-sm" id="importJsonBtn">⬆️ बॅकअप आयात</button>
+        <input type="file" id="importFile" accept="application/json" style="display:none;">
+      </div>
+      <div id="recordsWrap"></div>
+    </div>
+
+    <div class="subview" id="settingsView">
+      <details class="section" open>
+        <summary>Google Sheet सिंक सेटअप</summary>
+        <div class="section-body">
+          <p class="small-note">
+            प्रत्येक नोंद आपोआप / मॅन्युअली Google Sheet मध्ये पाठवण्यासाठी, खाली दिलेल्या सूचनांनुसार एक <b>Google Apps Script वेब अ‍ॅप</b> तयार करून त्याची URL इथे टाका.
+          </p>
+          <label>Apps Script वेब अ‍ॅप URL</label>
+          <input type="text" id="gsUrl" placeholder="https://script.google.com/macros/s/XXXXX/exec">
+          <label>पर्यवेक्षकाचे नाव (डीफॉल्ट — दरवेळी नवीन फॉर्ममध्ये आपोआप भरले जाईल)</label>
+          <input type="text" id="defaultParyavekshak">
+          <button class="btn-primary btn-block" id="saveSettingsBtn" style="margin-top:12px;">सेटिंग्ज जतन करा</button>
+
+          <div class="subhead" style="margin-top:18px;">सेटअप सूचना</div>
+          <ol class="small-note" style="padding-right:0;padding-left:18px;">
+            <li>नवीन Google Sheet उघडा → <b>Extensions → Apps Script</b>.</li>
+            <li>डीफॉल्ट कोड डिलीट करून खालील कोड पेस्ट करा (कॉपी बटण वापरा).</li>
+            <li>वरती <b>Deploy → New deployment</b> → Type: <b>Web app</b>.
+              Execute as: <b>Me</b>, Who has access: <b>Anyone</b>.</li>
+            <li><b>Deploy</b> दाबा, दिलेली URL कॉपी करून वर पेस्ट करा व "सेटिंग्ज जतन करा" दाबा.</li>
+          </ol>
+          <button class="btn-secondary btn-sm" id="copyScriptBtn">📋 Apps Script कोड कॉपी करा</button>
+          <textarea id="scriptCode" readonly style="min-height:160px; font-family:monospace; font-size:11px; margin-top:8px;"></textarea>
+          <p class="small-note">टीप: <code>no-cors</code> पद्धतीने डेटा पाठवला जातो, त्यामुळे पाठवल्यानंतर लगेच खात्री (confirmation) मिळत नाही — पण डेटा व्यवस्थित पोहोचतो. Google Sheet उघडून एकदा तपासून घ्या.</p>
+        </div>
+      </details>
+
+      <details class="section">
+        <summary>शाळांची यादी (स्थानिक)</summary>
+        <div class="section-body">
+          <p class="small-note">यादीत नसलेली शाळा फॉर्ममध्ये "इतर (यादीत नाही)" निवडून टाईप करता येते. सध्या <b id="schoolCount">0</b> शाळा यादीत आहेत — केंद्र रविवार पेठ, ता. अंबाजोगाई, जि. बीड.</p>
+        </div>
+      </details>
+
+      <details class="section">
+        <summary>अ‍ॅपबद्दल</summary>
+        <div class="section-body small-note">
+          हे फॉर्म पूर्णपणे ऑफलाइन काम करते — नोंदी तुमच्या डिव्हाइसवरच (ब्राउझर लोकल स्टोरेज) साठवल्या जातात. इंटरनेट उपलब्ध झाल्यावर "सर्व प्रलंबित सिंक करा" बटणाने Google Sheet ला पाठवा. सुरक्षिततेसाठी वेळोवेळी "बॅकअप (JSON)" डाउनलोड करत राहा.
+        </div>
+      </details>
+    </div>
+
+    <div class="subview" id="pinView">
+      <div class="rec-card">
+        <h3>🔑 केंद्रप्रमुख PIN बदला</h3>
+        <label>सध्याचा PIN</label>
+        <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" id="oldPinInput">
+        <label>नवीन PIN (४-६ अंकी)</label>
+        <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" id="newPinInput1">
+        <label>नवीन PIN पुन्हा टाका</label>
+        <input type="password" inputmode="numeric" pattern="[0-9]*" maxlength="6" id="newPinInput2">
+        <button class="btn-primary btn-block" id="changePinBtn" style="margin-top:12px;">PIN बदला</button>
+        <p class="small-note" style="margin-top:10px;">टीप: हा PIN फक्त या डिव्हाइस/ब्राउझरपुरता मर्यादित आहे — तो सुरक्षिततेसाठी उपयुक्त आहे, पण गोपनीय/संवेदनशील डेटा साठवण्याइतका सुरक्षित नाही.</p>
+      </div>
+    </div>
   </div>
-  <div id="recordsWrap"></div>
-</div>
-
-<!-- ===================== SETTINGS VIEW ===================== -->
-<div class="view" id="settingsView">
-  <details class="section" open>
-    <summary>Google Sheet सिंक सेटअप</summary>
-    <div class="section-body">
-      <p class="small-note">
-        प्रत्येक नोंद आपोआप / मॅन्युअली Google Sheet मध्ये पाठवण्यासाठी, खाली दिलेल्या सूचनांनुसार एक <b>Google Apps Script वेब अ‍ॅप</b> तयार करून त्याची URL इथे टाका.
-      </p>
-      <label>Apps Script वेब अ‍ॅप URL</label>
-      <input type="text" id="gsUrl" placeholder="https://script.google.com/macros/s/XXXXX/exec">
-      <label>पर्यवेक्षकाचे नाव (डीफॉल्ट — दरवेळी नवीन फॉर्ममध्ये आपोआप भरले जाईल)</label>
-      <input type="text" id="defaultParyavekshak">
-      <button class="btn-primary btn-block" id="saveSettingsBtn" style="margin-top:12px;">सेटिंग्ज जतन करा</button>
-
-      <div class="subhead" style="margin-top:18px;">सेटअप सूचना</div>
-      <ol class="small-note" style="padding-right:0;padding-left:18px;">
-        <li>नवीन Google Sheet उघडा → <b>Extensions → Apps Script</b>.</li>
-        <li>डीफॉल्ट कोड डिलीट करून खालील कोड पेस्ट करा (कॉपी बटण वापरा).</li>
-        <li>वरती <b>Deploy → New deployment</b> → Type: <b>Web app</b>.
-          Execute as: <b>Me</b>, Who has access: <b>Anyone</b>.</li>
-        <li><b>Deploy</b> दाबा, दिलेली URL कॉपी करून वर पेस्ट करा व "सेटिंग्ज जतन करा" दाबा.</li>
-      </ol>
-      <button class="btn-secondary btn-sm" id="copyScriptBtn">📋 Apps Script कोड कॉपी करा</button>
-      <textarea id="scriptCode" readonly style="min-height:160px; font-family:monospace; font-size:11px; margin-top:8px;"></textarea>
-      <p class="small-note">टीप: <code>no-cors</code> पद्धतीने डेटा पाठवला जातो, त्यामुळे पाठवल्यानंतर लगेच खात्री (confirmation) मिळत नाही — पण डेटा व्यवस्थित पोहोचतो. Google Sheet उघडून एकदा तपासून घ्या.</p>
-    </div>
-  </details>
-
-  <details class="section">
-    <summary>शाळांची यादी (स्थानिक)</summary>
-    <div class="section-body">
-      <p class="small-note">यादीत नसलेली शाळा फॉर्ममध्ये "इतर (यादीत नाही)" निवडून टाईप करता येते. सध्या <b id="schoolCount">0</b> शाळा यादीत आहेत — केंद्र रविवार पेठ, ता. अंबाजोगाई, जि. बीड.</p>
-    </div>
-  </details>
-
-  <details class="section">
-    <summary>अ‍ॅपबद्दल</summary>
-    <div class="section-body small-note">
-      हे फॉर्म पूर्णपणे ऑफलाइन काम करते — नोंदी तुमच्या डिव्हाइसवरच (ब्राउझर लोकल स्टोरेज) साठवल्या जातात. इंटरनेट उपलब्ध झाल्यावर "सर्व प्रलंबित सिंक करा" बटणाने Google Sheet ला पाठवा. सुरक्षिततेसाठी वेळोवेळी "बॅकअप (JSON)" डाउनलोड करत राहा.
-    </div>
-  </details>
 </div>
 
 </main>
@@ -502,13 +563,7 @@ const SOP_ITEMS = [
 ];
 const SPARDHA_ITEMS = ["शिष्यवृत्ती परीक्षा इ. ४ थी","शिष्यवृत्ती परीक्षा इ. ७ वी","NMMS","जवाहर नवोदय प्रवेश परीक्षा","सैनिकी शाळा / इतर"];
 const SAHITYA_ITEMS = ["शिक्षक निर्मित साहित्य","तयार शैक्षणिक साहित्य","ग्रंथालय / संगणक कक्ष","विज्ञान प्रयोगशाळा / भाषा पेटी","गणित पेटी / FLN किट / टिंकरिंग लॅब"];
-const D5_GROUPS = [
-  {title:"शिकण्याचे उद्दिष्ट SMART", idx:["1.1","1.2"]},
-  {title:"विद्यार्थी सहभाग", idx:["2.1","2.2","2.3"]},
-  {title:"अध्यापनशास्त्र", idx:["3.1","3.2","3.3"]},
-  {title:"वर्गातील वातावरण व संस्कृती", idx:["4.1","4.2","4.3"]},
-  {title:"विद्यार्थी मूल्यमापन", idx:["5.1","5.2"]},
-];
+const VNI_ITEMS = ["विषयाची मांडणी","साहित्य वापर","उदाहरणे/दाखले वापर","प्रश्नोत्तरे / विद्यार्थी प्रतिसाद","सर्वसाधारण अभिप्राय"];
 
 const LS_RECORDS = "shalaBhet_records_v1";
 const LS_CONFIG = "shalaBhet_config_v1";
@@ -577,21 +632,21 @@ function buildSopWrap(){
   });
 }
 
-function buildD5Scores(){
-  const wrap = document.getElementById('d5ScoreWrap');
-  wrap.innerHTML = '';
-  D5_GROUPS.forEach(g=>{
-    const div = document.createElement('div');
-    div.className = 'score-group';
-    let rows = '';
-    g.idx.forEach(ix=>{
-      const id = 'd5_score_' + ix.replace('.','_');
-      rows += `<div class="score-row"><span class="idx">${ix}</span>
-        <select id="${id}"><option value="">--</option><option value="1">१</option><option value="2">२</option><option value="3">३</option></select></div>`;
-    });
-    div.innerHTML = `<div class="grp-title">${g.title}</div>${rows}`;
-    wrap.appendChild(div);
+function buildVniTable(){
+  const tbody = document.querySelector('#vniTable tbody');
+  tbody.innerHTML = '';
+  VNI_ITEMS.forEach((name,i)=>{
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="lbl">${name}</td>
+      <td><input type="text" id="vni_abhipray_${i}"></td>`;
+    tbody.appendChild(tr);
   });
+  const trExtra = document.createElement('tr');
+  trExtra.innerHTML = `
+    <td><input type="text" id="vni_extra_label" placeholder="इतर तपशील"></td>
+    <td><input type="text" id="vni_extra_abhipray"></td>`;
+  tbody.appendChild(trExtra);
 }
 
 function buildSpardhaTable(){
@@ -632,14 +687,26 @@ function bindPct(patId,upId,outId){
 /* ============================================================
    TABS
    ============================================================ */
-document.querySelectorAll('.tab-btn').forEach(btn=>{
+document.querySelectorAll('.tabbar > .tab-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
-    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    document.querySelectorAll('.tabbar > .tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('main > .view').forEach(v=>v.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(btn.dataset.view).classList.add('active');
     document.getElementById('formToolbar').style.display = (btn.dataset.view === 'formView') ? 'flex' : 'none';
-    if(btn.dataset.view === 'listView') renderRecords();
+    if(btn.dataset.view === 'adminView') refreshAdminGate();
+  });
+});
+
+/* Admin sub-tabs (नोंदी / सेटिंग्ज / PIN बदला) */
+document.querySelectorAll('#adminContent .tab-btn[data-subview]').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('#adminContent .tab-btn[data-subview]').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.subview').forEach(v=>v.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.subview).classList.add('active');
+    if(btn.dataset.subview === 'listView') renderRecords();
+    if(btn.dataset.subview === 'settingsView') loadSettingsIntoForm();
   });
 });
 
@@ -710,10 +777,13 @@ function collectForm(){
     "प्रथम_भाषा_अभिप्राय": val('prathamAbhipray'),
     "द्वितीय_भाषा_अभिप्राय": val('dwitiyaAbhipray'),
     "गणित_अभिप्राय": val('ganitAbhipray'),
-    "D5_शिक्षक": val('d5Shikshak'),
-    "D5_इयत्ता": val('d5Iyatta'),
-    "D5_विषय": val('d5Vishay'),
-    "D5_घटक": val('d5Ghatak'),
+    "वर्गनिरीक्षण_शिक्षक": val('vniShikshak'),
+    "वर्गनिरीक्षण_इयत्ता": val('vniIyatta'),
+    "वर्गनिरीक्षण_विषय": val('vniVishay'),
+    "वर्गनिरीक्षण_घटक": val('vniGhatak'),
+    "स्वच्छता_परिसर": val('suchchhataParisar'),
+    "स्वच्छता_वैयक्तिक": val('suchchhataVaiyaktik'),
+    "वर्गनिरीक्षण_तुकडी": val('vniTukadi'),
     "नारळीकर_नोंदणी": val('narlikarNondani'),
     "नारळीकर_वापर": val('narlikarVapar'),
     "नारळीकर_प्राविण्य": val('narlikarPraviny'),
@@ -755,12 +825,11 @@ function collectForm(){
     rec["SOP"+(i+1)+"_स्थिती"] = val('sop_sthiti_'+i);
     rec["SOP"+(i+1)+"_सूचना"] = val('sop_margadarshan_'+i);
   });
-  D5_GROUPS.forEach(g=>{
-    g.idx.forEach(ix=>{
-      const id = 'd5_score_' + ix.replace('.','_');
-      rec["D5_"+ix] = val(id);
-    });
+  VNI_ITEMS.forEach((name,i)=>{
+    rec["वर्गनिरीक्षण_"+name] = val('vni_abhipray_'+i);
   });
+  rec["वर्गनिरीक्षण_इतर_तपशील"] = val('vni_extra_label');
+  rec["वर्गनिरीक्षण_इतर_अभिप्राय"] = val('vni_extra_abhipray');
   SPARDHA_ITEMS.forEach((name,i)=>{
     rec["स्पर्धा"+(i+1)+"_नियोजन"] = val('spardha_niyojan_'+i);
     rec["स्पर्धा"+(i+1)+"_मागील_वर्ष"] = val('spardha_magil_'+i);
@@ -785,7 +854,8 @@ function fillFormFromRecord(rec){
     vidPat:"विद्यार्थी_एकूण_पट", vidUpasthit:"विद्यार्थी_उपस्थित", vidPercent:"विद्यार्थी_टक्केवारी", vidGairhajar:"विद्यार्थी_गैरहजर_तपशील",
     shikPat:"शिक्षक_एकूण", shikUpasthit:"शिक्षक_उपस्थित", shikPercent:"शिक्षक_टक्केवारी", shikAnupasthit:"शिक्षक_अनुपस्थिती_तपशील",
     prathamAbhipray:"प्रथम_भाषा_अभिप्राय", dwitiyaAbhipray:"द्वितीय_भाषा_अभिप्राय", ganitAbhipray:"गणित_अभिप्राय",
-    d5Shikshak:"D5_शिक्षक", d5Iyatta:"D5_इयत्ता", d5Vishay:"D5_विषय", d5Ghatak:"D5_घटक",
+    vniShikshak:"वर्गनिरीक्षण_शिक्षक", vniIyatta:"वर्गनिरीक्षण_इयत्ता", vniVishay:"वर्गनिरीक्षण_विषय", vniGhatak:"वर्गनिरीक्षण_घटक",
+    vniTukadi:"वर्गनिरीक्षण_तुकडी", suchchhataParisar:"स्वच्छता_परिसर", suchchhataVaiyaktik:"स्वच्छता_वैयक्तिक",
     narlikarNondani:"नारळीकर_नोंदणी", narlikarVapar:"नारळीकर_वापर", narlikarPraviny:"नारळीकर_प्राविण्य",
     mulyaAyojan:"मूल्यवर्धन_आयोजन", mulyaAbhipray:"मूल्यवर्धन_अभिप्राय",
     marathiAmal:"मराठी_अंमलबजावणी", marathiPrashAvashyak:"मराठी_प्रशिक्षण_आवश्यक", marathiPrashZale:"मराठी_प्रशिक्षण_झाले", marathiAbhipray:"मराठी_अभिप्राय",
@@ -809,12 +879,11 @@ function fillFormFromRecord(rec){
     document.getElementById('sop_sthiti_'+i).value = rec["SOP"+(i+1)+"_स्थिती"] || '';
     document.getElementById('sop_margadarshan_'+i).value = rec["SOP"+(i+1)+"_सूचना"] || '';
   });
-  D5_GROUPS.forEach(g=>{
-    g.idx.forEach(ix=>{
-      const id = 'd5_score_' + ix.replace('.','_');
-      document.getElementById(id).value = rec["D5_"+ix] || '';
-    });
+  VNI_ITEMS.forEach((name,i)=>{
+    document.getElementById('vni_abhipray_'+i).value = rec["वर्गनिरीक्षण_"+name] || '';
   });
+  document.getElementById('vni_extra_label').value = rec["वर्गनिरीक्षण_इतर_तपशील"] || '';
+  document.getElementById('vni_extra_abhipray').value = rec["वर्गनिरीक्षण_इतर_अभिप्राय"] || '';
   SPARDHA_ITEMS.forEach((name,i)=>{
     document.getElementById('spardha_niyojan_'+i).value = rec["स्पर्धा"+(i+1)+"_नियोजन"] || '';
     document.getElementById('spardha_magil_'+i).value = rec["स्पर्धा"+(i+1)+"_मागील_वर्ष"] || '';
@@ -1010,14 +1079,18 @@ function viewPrint(id){
   ${SOP_ITEMS.map((it,i)=>`<tr><td>${escapeHtml(it.label)}</td><td>${escapeHtml(r["SOP"+(i+1)+"_स्थिती"])}</td><td>${escapeHtml(r["SOP"+(i+1)+"_सूचना"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">५. 'D5' वर्ग अध्यापन निरीक्षण</div>
+  <div class="sec-title">५. स्वच्छता व वर्ग अध्यापन निरीक्षण</div>
   <table>
-    ${fieldRow('शिक्षकाचे नाव', r["D5_शिक्षक"])}
-    ${fieldRow('इयत्ता / विषय', (r["D5_इयत्ता"]||'-')+' / '+(r["D5_विषय"]||'-'))}
-    ${fieldRow('घटक / उपघटक', r["D5_घटक"])}
+    ${fieldRow('आ. शालेय परिसर', r["स्वच्छता_परिसर"])}
+    ${fieldRow('ब. विद्यार्थी वैयक्तिक स्वच्छता', r["स्वच्छता_वैयक्तिक"])}
+    ${fieldRow('इयत्ता / तुकडी', (r["वर्गनिरीक्षण_इयत्ता"]||'-')+' / '+(r["वर्गनिरीक्षण_तुकडी"]||'-'))}
+    ${fieldRow('शिक्षकाचे नाव', r["वर्गनिरीक्षण_शिक्षक"])}
+    ${fieldRow('विषय', r["वर्गनिरीक्षण_विषय"])}
+    ${fieldRow('घटक / उपघटक', r["वर्गनिरीक्षण_घटक"])}
   </table>
-  <table><tr><th>निर्देशांक</th><th>गुण (1-3)</th></tr>
-  ${D5_GROUPS.flatMap(g=>g.idx).map(ix=>`<tr><td>${ix}</td><td>${escapeHtml(r["D5_"+ix])}</td></tr>`).join('')}
+  <table><tr><th>तपशील</th><th>अभिप्राय</th></tr>
+  ${VNI_ITEMS.map(name=>`<tr><td>${name}</td><td>${escapeHtml(r["वर्गनिरीक्षण_"+name])}</td></tr>`).join('')}
+  ${(r["वर्गनिरीक्षण_इतर_तपशील"]||r["वर्गनिरीक्षण_इतर_अभिप्राय"]) ? `<tr><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_तपशील"])}</td><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_अभिप्राय"])}</td></tr>` : ''}
   </table>
 
   <div class="sec-title">६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
@@ -1198,13 +1271,102 @@ document.getElementById('closePrintModal').addEventListener('click', ()=>{
 });
 
 /* ============================================================
+   ADMIN (केंद्रप्रमुख) PIN GATE
+   ============================================================ */
+const LS_PIN = "shalaBhet_admin_pin_v1";
+const SS_AUTH = "shalaBhet_admin_authed_v1";
+
+function hasPin(){ return !!localStorage.getItem(LS_PIN); }
+function getPin(){ return localStorage.getItem(LS_PIN) || ''; }
+function setPin(p){ localStorage.setItem(LS_PIN, p); }
+function isAdminAuthed(){ return sessionStorage.getItem(SS_AUTH) === '1'; }
+function setAdminAuthed(){ sessionStorage.setItem(SS_AUTH, '1'); }
+function clearAdminAuthed(){ sessionStorage.removeItem(SS_AUTH); }
+
+function validPinFormat(p){ return /^[0-9]{4,6}$/.test(p); }
+
+function refreshAdminGate(){
+  const lock = document.getElementById('adminLock');
+  const content = document.getElementById('adminContent');
+  const setupCard = document.getElementById('pinSetupCard');
+  const loginCard = document.getElementById('pinLoginCard');
+
+  if(isAdminAuthed()){
+    lock.style.display = 'none';
+    content.style.display = 'block';
+    renderRecords();
+    return;
+  }
+  content.style.display = 'none';
+  lock.style.display = 'block';
+  if(!hasPin()){
+    setupCard.style.display = 'block';
+    loginCard.style.display = 'none';
+  } else {
+    setupCard.style.display = 'none';
+    loginCard.style.display = 'block';
+    document.getElementById('loginPinInput').value = '';
+    document.getElementById('pinError').style.display = 'none';
+  }
+}
+
+document.getElementById('setupPinBtn').addEventListener('click', ()=>{
+  const p1 = document.getElementById('setupPin1').value.trim();
+  const p2 = document.getElementById('setupPin2').value.trim();
+  if(!validPinFormat(p1)){ showToast('PIN फक्त ४ ते ६ अंकी असावा.'); return; }
+  if(p1 !== p2){ showToast('दोन्ही PIN जुळत नाहीत.'); return; }
+  setPin(p1);
+  setAdminAuthed();
+  document.getElementById('setupPin1').value = '';
+  document.getElementById('setupPin2').value = '';
+  showToast('✅ PIN सेट झाला. केंद्रप्रमुख पॅनल उघडले.');
+  refreshAdminGate();
+});
+
+document.getElementById('loginPinBtn').addEventListener('click', attemptLogin);
+document.getElementById('loginPinInput').addEventListener('keydown', e=>{ if(e.key==='Enter') attemptLogin(); });
+function attemptLogin(){
+  const p = document.getElementById('loginPinInput').value.trim();
+  if(p && p === getPin()){
+    setAdminAuthed();
+    document.getElementById('pinError').style.display = 'none';
+    showToast('🔓 केंद्रप्रमुख पॅनल उघडले.');
+    refreshAdminGate();
+  } else {
+    document.getElementById('pinError').style.display = 'block';
+    document.getElementById('loginPinInput').value = '';
+  }
+}
+
+document.getElementById('adminLogoutBtn').addEventListener('click', ()=>{
+  clearAdminAuthed();
+  showToast('लॉगआऊट झाले.');
+  refreshAdminGate();
+  document.querySelector('.tab-btn[data-view="formView"]').click();
+});
+
+document.getElementById('changePinBtn').addEventListener('click', ()=>{
+  const old = document.getElementById('oldPinInput').value.trim();
+  const n1 = document.getElementById('newPinInput1').value.trim();
+  const n2 = document.getElementById('newPinInput2').value.trim();
+  if(old !== getPin()){ showToast('सध्याचा PIN चुकीचा आहे.'); return; }
+  if(!validPinFormat(n1)){ showToast('नवीन PIN फक्त ४ ते ६ अंकी असावा.'); return; }
+  if(n1 !== n2){ showToast('नवीन PIN जुळत नाहीत.'); return; }
+  setPin(n1);
+  document.getElementById('oldPinInput').value = '';
+  document.getElementById('newPinInput1').value = '';
+  document.getElementById('newPinInput2').value = '';
+  showToast('✅ PIN यशस्वीरित्या बदलला.');
+});
+
+/* ============================================================
    INIT
    ============================================================ */
 function init(){
   buildSchoolSelect();
   buildNipunTable();
   buildSopWrap();
-  buildD5Scores();
+  buildVniTable();
   buildSpardhaTable();
   buildSahityaTable();
   bindPct('vidPat','vidUpasthit','vidPercent');
@@ -1218,3 +1380,4 @@ init();
 </script>
 </body>
 </html>
+
