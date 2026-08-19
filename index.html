@@ -86,12 +86,21 @@
   table.mini td input, table.mini td select{padding:6px; font-size:12.5px; min-width:56px;}
   table.mini td.lbl{text-align:right; font-weight:600; background:#fafbff; min-width:120px;}
   .hint{font-size:11px; color:#7a8296; margin-top:4px;}
-  .score-group{border:1px solid var(--border); border-radius:8px; padding:8px 10px; margin-bottom:8px;}
-  .score-group .grp-title{font-weight:700; font-size:13px; color:var(--navy2); margin-bottom:6px;}
-  .score-row{display:flex; align-items:center; gap:8px; margin:4px 0; font-size:13px;}
-  .score-row .idx{width:36px; font-weight:700; color:var(--accent);}
-  .score-row select{width:90px;}
-  .pct-badge{display:inline-block; background:var(--accent-light); color:var(--navy2); font-weight:700; padding:2px 8px; border-radius:12px; font-size:12px; margin-left:6px;}
+
+  /* Classwise Custom Styles */
+  details.class-row { background:#fdfdfd; border:1px solid #e1e5f0; border-radius:8px; margin-bottom:8px; overflow:hidden; }
+  details.class-row > summary { list-style:none; padding:10px 12px; background:#f4f6fb; display:flex; align-items:center; cursor:pointer; }
+  details.class-row > summary::-webkit-details-marker { display:none; }
+  details.class-row[open] > summary { border-bottom:1px solid #e1e5f0; background:#eef1f8; }
+  .class-name-input { width:110px; padding:6px; font-size:13.5px; font-weight:bold; color:var(--navy); border:1px solid #dcdfe6; border-radius:6px; background:#fff; }
+  .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:12.5px; color:#444; }
+  .cat-group-title { font-size:12.5px; color:var(--accent); font-weight:700; margin:10px 0 6px; }
+  .cat-grid { display:grid; grid-template-columns:repeat(4, 1fr); gap:6px; }
+  .cat-box { border:1px solid #dcdfe6; border-radius:6px; padding:6px; text-align:center; background:#fff; }
+  .cat-box span { display:block; font-size:10px; color:#555; margin-bottom:4px; font-weight:600; }
+  .cat-box input { padding:4px; font-size:13px; text-align:center; background:#fafbff; }
+  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:1px solid #e8c78c; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#684a12; font-size:14px; }
+  @media (max-width:480px){ .cat-grid { grid-template-columns:repeat(3, 1fr); } }
 
   .toolbar{
     position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--border);
@@ -212,8 +221,22 @@
     </div>
   </details>
 
+  <!-- SECTION: वर्गनिहाय व प्रवर्गनिहाय विद्यार्थी संख्या -->
+  <details class="section" open>
+    <summary>२. वर्गनिहाय विद्यार्थी संख्या (कॅटेगरीनुसार)</summary>
+    <div class="section-body">
+      <div id="classListContainer"></div>
+      <button type="button" class="btn-secondary btn-sm" id="addClassBtn" style="margin-top:8px;">➕ नवीन इयत्ता जोडा</button>
+      
+      <div class="grand-total-box">
+        <div>एकूण (सर्व वर्ग) ▶</div>
+        <div id="grandTotalDisplay">मुले 0 · मुली 0 · एकूण 0</div>
+      </div>
+    </div>
+  </details>
+
   <details class="section">
-    <summary>२. स्वच्छता व वर्ग अध्यापन निरीक्षण</summary>
+    <summary>३. स्वच्छता व वर्ग अध्यापन निरीक्षण</summary>
     <div class="section-body">
       <div class="subhead">स्वच्छता</div>
       <label>आ. शालेय परिसर (स्वच्छ / अस्वच्छ / सुशोभनाची आवश्यकता)</label>
@@ -240,7 +263,7 @@
   </details>
 
   <details class="section">
-    <summary>३. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक (इयत्ता १ ते ५)</summary>
+    <summary>४. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक (इयत्ता १ ते ५)</summary>
     <div class="section-body">
       <table class="mini" id="nipunTable">
         <thead><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी संख्या</th><th>१००% निपुण होण्यासाठी प्रयत्न / उपक्रम</th></tr></thead>
@@ -252,7 +275,7 @@
   </details>
 
   <details class="section">
-    <summary>४. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</summary>
+    <summary>५. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</summary>
     <div class="section-body">
       <label>प्रथम भाषा (वाचन, अभिव्यक्ती) — अभिप्राय / शेरा</label>
       <textarea id="prathamAbhipray"></textarea>
@@ -264,7 +287,7 @@
   </details>
 
   <details class="section">
-    <summary>५. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
+    <summary>६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
     <div class="section-body">
       <label>विद्यार्थी नोंदणी प्रमाण</label><input type="text" id="narlikarNondani">
       <label>वापराचे प्रमाण</label><input type="text" id="narlikarVapar">
@@ -273,7 +296,7 @@
   </details>
 
   <details class="section">
-    <summary>६. विविध स्पर्धा परीक्षा</summary>
+    <summary>७. विविध स्पर्धा परीक्षा</summary>
     <div class="section-body">
       <table class="mini" id="spardhaTable">
         <thead><tr><th>परीक्षेचे नाव</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक संख्या</th></tr></thead>
@@ -283,7 +306,7 @@
   </details>
 
   <details class="section">
-    <summary>७. मूल्यवर्धन उपक्रम</summary>
+    <summary>८. मूल्यवर्धन उपक्रम</summary>
     <div class="section-body">
       <label>उपक्रमाचे आयोजन</label>
       <select id="mulyaAyojan"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -293,7 +316,7 @@
   </details>
 
   <details class="section">
-    <summary>८. मराठी भाषेचे अध्यापन सक्ती</summary>
+    <summary>९. मराठी भाषेचे अध्यापन सक्ती</summary>
     <div class="section-body">
       <label>अंमलबजावणी</label>
       <select id="marathiAmal"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -307,7 +330,7 @@
   </details>
 
   <details class="section">
-    <summary>९. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
+    <summary>१०. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
     <div class="section-body">
       <label>सखी सावित्री समिती</label><input type="text" id="surakshaSakhi">
       <label>तक्रार पेटी</label><input type="text" id="surakshaTakrar">
@@ -317,7 +340,7 @@
   </details>
 
   <details class="section">
-    <summary>१०. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</summary>
+    <summary>११. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</summary>
     <div class="section-body">
       <div class="subhead">आ. शैक्षणिक साहित्य</div>
       <label>i) शिक्षक निर्मित</label>
@@ -336,7 +359,7 @@
   </details>
 
   <details class="section">
-    <summary>११. आनंददायी शनिवार अंमलबजावणी</summary>
+    <summary>१२. आनंददायी शनिवार अंमलबजावणी</summary>
     <div class="section-body">
       <label>भेटीच्या आधीच्या शनिवारी घेतलेले उपक्रम</label>
       <textarea id="shanivarUpakram"></textarea>
@@ -344,7 +367,7 @@
   </details>
 
   <details class="section">
-    <summary>१२. PM POSHAN</summary>
+    <summary>१३. PM POSHAN</summary>
     <div class="section-body">
       <label>On-Line उपस्थिती</label>
       <select id="pmOnline"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -357,7 +380,7 @@
   </details>
 
   <details class="section">
-    <summary>१३. माजी विद्यार्थी संघ</summary>
+    <summary>१४. माजी विद्यार्थी संघ</summary>
     <div class="section-body">
       <label>स्थापना</label>
       <select id="majiSthapna"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -367,7 +390,7 @@
   </details>
 
   <details class="section">
-    <summary>१४. SMC मासिक सभा</summary>
+    <summary>१५. SMC मासिक सभा</summary>
     <div class="section-body">
       <label>सभा झाली का?</label>
       <select id="smcZali"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -377,7 +400,7 @@
   </details>
 
   <details class="section">
-    <summary>१५. खेळ व तयारी</summary>
+    <summary>१६. खेळ व तयारी</summary>
     <div class="section-body">
       <label>मैदानाची उपलब्धता</label><input type="text" id="khelMaidan">
       <label>सहभाग व यश</label><input type="text" id="khelYash">
@@ -385,7 +408,7 @@
   </details>
 
   <details class="section">
-    <summary>१६. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
+    <summary>१७. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
     <div class="section-body">
       <label>उल्लेखनीय बाबी, आढळलेल्या त्रुटी, सूचना</label>
       <textarea id="sarvaAbhipray" style="min-height:90px;"></textarea>
@@ -563,6 +586,11 @@ const SPARDHA_ITEMS = ["शिष्यवृत्ती परीक्षा 
 const SAHITYA_ITEMS = ["ग्रंथालय","संगणक कक्ष","विज्ञान प्रयोगशाळा","भाषा पेटी","गणित पेटी","FLN किट","अटल टिंकरिंग लॅब","नाविन्यपूर्ण विज्ञान केंद्र","अन्य"];
 const VNI_ITEMS = ["विषयाची मांडणी","साहित्य वापर","उदाहरणे/दाखले वापर","प्रश्नोत्तरे / विद्यार्थी प्रतिसाद","सर्वसाधारण अभिप्राय"];
 
+// CATEGORIES array for Class-wise breakdown
+const CATEGORIES = ["SC", "ST", "VJ(NT-A)", "NT(B)", "NT(C)/SBC", "OBC", "OPEN"];
+const STD_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी", "इ 6 वी", "इ 7 পক্ষের", "इ 8 वी"];
+let classCounterId = 0;
+
 const LS_RECORDS = "shalaBhet_records_v1";
 const LS_CONFIG = "shalaBhet_config_v1";
 
@@ -599,6 +627,88 @@ document.getElementById('schoolSelect').addEventListener('change', function(){
     udiseField.readOnly = true;
   }
 });
+
+/* ============================================================
+   CLASSWISE DYNAMIC FUNCTIONS (वर्गनिहाय विद्यार्थी संख्या)
+   ============================================================ */
+function addClassRow(className = "") {
+  classCounterId++;
+  const id = classCounterId;
+  const details = document.createElement('details');
+  details.className = 'class-row';
+  if(!className) details.open = true; // Open newly added row by default
+  
+  // Build options HTML for Select Dropdown
+  let optionsHtml = '<option value="">-- इयत्ता --</option>';
+  STD_CLASSES.forEach(opt => {
+    const selected = (opt === className) ? "selected" : "";
+    optionsHtml += `<option value="${opt}" ${selected}>${opt}</option>`;
+  });
+  // Handle older custom saved records gracefully
+  if (className && !STD_CLASSES.includes(className)) {
+     optionsHtml += `<option value="${className}" selected>${className}</option>`;
+  }
+
+  details.innerHTML = `
+    <summary>
+      <select class="class-name-input" onclick="event.stopPropagation()">
+        ${optionsHtml}
+      </select>
+      <span class="class-totals-text" id="class_total_text_${id}">मुले 0 · मुली 0 · एकूण 0</span>
+      <button type="button" class="btn-danger btn-sm" style="padding:5px 8px; font-size:11px;" onclick="event.stopPropagation(); removeClassRow(this)">🗑️ काढा</button>
+    </summary>
+    <div class="section-body" style="background:#fff; border-top:1px solid #e1e5f0; padding:12px;">
+      <div class="cat-group-title">मुले (कॅटेगरीनुसार)</div>
+      <div class="cat-grid">
+        ${CATEGORIES.map(c => `
+          <div class="cat-box">
+            <span>${c}</span>
+            <input type="number" min="0" value="0" class="boy-input" data-class-id="${id}" oninput="calcClassTotals()">
+          </div>
+        `).join('')}
+      </div>
+      <div class="cat-group-title" style="margin-top:16px;">मुली (कॅटेगरीनुसार)</div>
+      <div class="cat-grid">
+        ${CATEGORIES.map(c => `
+          <div class="cat-box">
+            <span>${c}</span>
+            <input type="number" min="0" value="0" class="girl-input" data-class-id="${id}" oninput="calcClassTotals()">
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('classListContainer').appendChild(details);
+}
+
+function removeClassRow(btn) {
+  if(confirm("ही इयत्ता काढायची आहे का?")) {
+    btn.closest('.class-row').remove();
+    calcClassTotals();
+  }
+}
+
+function calcClassTotals() {
+  let grandBoys = 0, grandGirls = 0;
+  
+  document.querySelectorAll('.class-row').forEach(row => {
+    let boys = 0, girls = 0;
+    row.querySelectorAll('.boy-input').forEach(inp => boys += parseInt(inp.value) || 0);
+    row.querySelectorAll('.girl-input').forEach(inp => girls += parseInt(inp.value) || 0);
+    let total = boys + girls;
+    
+    // Using dataset ID to safely target the correct text span
+    const id = row.querySelector('.boy-input').dataset.classId;
+    const txtSpan = document.getElementById(`class_total_text_${id}`);
+    if(txtSpan) txtSpan.innerText = `मुले ${boys} · मुली ${girls} · एकूण ${total}`;
+    
+    grandBoys += boys;
+    grandGirls += girls;
+  });
+  
+  document.getElementById('grandTotalDisplay').innerText = `मुले ${grandBoys} · मुली ${grandGirls} · एकूण ${grandBoys + grandGirls}`;
+}
+document.getElementById('addClassBtn').addEventListener('click', () => addClassRow());
 
 function buildNipunTable(){
   const tbody = document.querySelector('#nipunTable tbody');
@@ -801,16 +911,27 @@ function collectForm(){
     "साहित्य_वापर": val('sahityaVapar'),
   };
 
+  // Collect Nipun Table Data
   NIPUN_IYATTA.forEach((iy,i)=>{
     rec["निपुण_"+iy+"_पट"] = val('nipun_pat_'+i);
     rec["निपुण_"+iy+"_निपुण_संख्या"] = val('nipun_nipun_'+i);
     rec["निपुण_"+iy+"_प्रयत्न"] = val('nipun_prayatn_'+i);
   });
-  VNI_ITEMS.forEach((name,i)=>{
-    rec["वर्गनिरीक्षण_"+name] = val('vni_abhipray_'+i);
+  
+  // Collect Classwise Breakdown Data
+  const classData = [];
+  document.querySelectorAll('.class-row').forEach(row => {
+    const cName = row.querySelector('.class-name-input').value;
+    const bVals = Array.from(row.querySelectorAll('.boy-input')).map(inp => parseInt(inp.value) || 0);
+    const gVals = Array.from(row.querySelectorAll('.girl-input')).map(inp => parseInt(inp.value) || 0);
+    classData.push({ name: cName, boys: bVals, girls: gVals });
   });
+  rec["वर्गनिहाय_विद्यार्थी"] = classData; // Saves as Array, gets JSON stringified in Google Sheet
+
+  VNI_ITEMS.forEach((name,i)=>{ rec["वर्गनिरीक्षण_"+name] = val('vni_abhipray_'+i); });
   rec["वर्गनिरीक्षण_इतर_तपशील"] = val('vni_extra_label');
   rec["वर्गनिरीक्षण_इतर_अभिप्राय"] = val('vni_extra_abhipray');
+  
   SPARDHA_ITEMS.forEach((name,i)=>{
     rec["स्पर्धा"+(i+1)+"_नियोजन"] = val('spardha_niyojan_'+i);
     rec["स्पर्धा"+(i+1)+"_मागील_वर्ष"] = val('spardha_magil_'+i);
@@ -825,11 +946,13 @@ function collectForm(){
 }
 
 function fillFormFromRecord(rec){
-  resetForm(false);
+  resetForm(false, true); // true param skips adding default classes so we can populate from saved record
+  
   const idx = SCHOOLS.findIndex(s=>s.name===rec["शाळेचे_नाव"] && s.udise===rec["UDISE_कोड"]);
   if(idx>=0){ document.getElementById('schoolSelect').value = idx; document.getElementById('udise').value = rec["UDISE_कोड"]; }
   else { document.getElementById('schoolSelect').value = 'other'; document.getElementById('otherSchoolWrap').style.display='block';
     document.getElementById('otherSchoolName').value = rec["शाळेचे_नाव"]||''; document.getElementById('udise').value = rec["UDISE_कोड"]||''; document.getElementById('udise').readOnly=false; }
+  
   const map = {
     visitDateTime:"दिनांक_वेळ", talukaKendra:"तालुका_केंद्र", mukhyadhyapak:"मुख्याध्यापक", paryavekshak:"पर्यवेक्षक",
     vidPat:"विद्यार्थी_एकूण_पट", vidUpasthit:"विद्यार्थी_उपस्थित", vidPercent:"विद्यार्थी_टक्केवारी", vidGairhajar:"विद्यार्थी_गैरहजर_तपशील",
@@ -857,6 +980,26 @@ function fillFormFromRecord(rec){
     document.getElementById('nipun_nipun_'+i).value = rec["निपुण_"+iy+"_निपुण_संख्या"] || '';
     document.getElementById('nipun_prayatn_'+i).value = rec["निपुण_"+iy+"_प्रयत्न"] || '';
   });
+  
+  // Fill Classwise Data
+  document.getElementById('classListContainer').innerHTML = '';
+  if (rec["वर्गनिहाय_विद्यार्थी"] && Array.isArray(rec["वर्गनिहाय_विद्यार्थी"])) {
+    rec["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
+      addClassRow(cls.name);
+      const row = document.getElementById('classListContainer').lastElementChild;
+      row.open = false; // Collapse when loading records for neater look
+      const bInputs = row.querySelectorAll('.boy-input');
+      const gInputs = row.querySelectorAll('.girl-input');
+      cls.boys.forEach((v, i) => { if(bInputs[i]) bInputs[i].value = v; });
+      cls.girls.forEach((v, i) => { if(gInputs[i]) gInputs[i].value = v; });
+    });
+    calcClassTotals();
+  } else {
+    // Fallback if older record had no classes saved
+    STD_CLASSES.forEach(cls => addClassRow(cls));
+    calcClassTotals();
+  }
+
   VNI_ITEMS.forEach((name,i)=>{
     document.getElementById('vni_abhipray_'+i).value = rec["वर्गनिरीक्षण_"+name] || '';
   });
@@ -876,11 +1019,19 @@ function fillFormFromRecord(rec){
 /* ============================================================
    SAVE / RESET
    ============================================================ */
-function resetForm(showMsg){
+function resetForm(showMsg, skipClasses){
   document.querySelectorAll('#formView input[type=text], #formView input[type=number], #formView input[type=date], #formView input[type=time], #formView input[type=datetime-local], #formView textarea').forEach(el=>el.value='');
   document.querySelectorAll('#formView select').forEach(el=>el.selectedIndex=0);
   document.getElementById('otherSchoolWrap').style.display='none';
   document.getElementById('udise').readOnly = false;
+  
+  if(!skipClasses){
+    document.getElementById('classListContainer').innerHTML = '';
+    // Generate standard classes 1 to 8 by default
+    STD_CLASSES.forEach(cls => addClassRow(cls));
+    calcClassTotals();
+  }
+
   const cfg = loadConfig();
   if(cfg.defaultParyavekshak) document.getElementById('paryavekshak').value = cfg.defaultParyavekshak;
   const now = new Date();
@@ -981,8 +1132,6 @@ function renderRecords(filterText){
 }
 function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
-document.getElementById('searchBox').addEventListener('input', function(){ renderRecords(this.value); });
-
 function deleteRecord(id){
   if(!confirm('ही नोंद कायमची काढायची आहे का?')) return;
   let recs = loadRecords();
@@ -1012,6 +1161,46 @@ function viewPrint(id){
   const r = recs.find(x=>x._id===id);
   if(!r) return;
 
+  // Build the dynamic classwise table if data exists
+  let classHtml = '';
+  if(r["वर्गनिहाय_विद्यार्थी"] && r["वर्गनिहाय_विद्यार्थी"].length) {
+    classHtml = `<div class="sec-title">२. वर्गनिहाय व प्रवर्गनिहाय विद्यार्थी संख्या</div>
+    <table style="text-align:center;">
+      <tr>
+        <th rowspan="2" style="background:#eef1f8;">इयत्ता</th>
+        <th colspan="7" style="background:#eef1f8;">मुले</th>
+        <th rowspan="2" style="background:#d4e2fc;">एकूण मुले</th>
+        <th colspan="7" style="background:#eef1f8;">मुली</th>
+        <th rowspan="2" style="background:#fce2e2;">एकूण मुली</th>
+        <th rowspan="2" style="background:#eef1f8;">एकूण</th>
+      </tr>
+      <tr>
+        ${CATEGORIES.map(c=>`<th style="font-size:10px;">${c}</th>`).join('')}
+        ${CATEGORIES.map(c=>`<th style="font-size:10px;">${c}</th>`).join('')}
+      </tr>`;
+      
+    let grandBoys = 0, grandGirls = 0;
+    r["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
+      const tb = cls.boys.reduce((a,b)=>a+b, 0);
+      const tg = cls.girls.reduce((a,b)=>a+b, 0);
+      grandBoys += tb; grandGirls += tg;
+      classHtml += `<tr>
+        <td style="text-align:left;"><b>${escapeHtml(cls.name)}</b></td>
+        ${cls.boys.map(v=>`<td>${v||0}</td>`).join('')}
+        <td style="background:#f0f4fc;"><b>${tb}</b></td>
+        ${cls.girls.map(v=>`<td>${v||0}</td>`).join('')}
+        <td style="background:#fcf0f0;"><b>${tg}</b></td>
+        <td style="background:#f4f6fb;"><b>${tb+tg}</b></td>
+      </tr>`;
+    });
+    classHtml += `<tr style="background:#fae8c8; font-weight:bold;">
+      <td style="text-align:left;">एकूण (सर्व वर्ग)</td>
+      <td colspan="7"></td><td>${grandBoys}</td>
+      <td colspan="7"></td><td>${grandGirls}</td>
+      <td>${grandBoys+grandGirls}</td>
+    </tr></table>`;
+  }
+
   let html = `<html lang="mr"><head><meta charset="UTF-8"><title>शाळा भेट प्रपत्र - ${escapeHtml(r["शाळेचे_नाव"])}</title>
   <style>
     body{font-family:'Noto Sans Devanagari','Nirmala UI',sans-serif; padding:24px; color:#111; font-size:12.5px;}
@@ -1019,7 +1208,7 @@ function viewPrint(id){
     h2{font-size:12px; text-align:center; color:#333; font-weight:normal; margin-top:0;}
     .sec-title{background:#1c2b4a; color:#fff; padding:6px 10px; font-weight:bold; font-size:12.5px; margin-top:16px;}
     table{width:100%; border-collapse:collapse; margin-top:4px;}
-    td, th{border:1px solid #999; padding:5px 8px; font-size:11.5px; vertical-align:top;}
+    td, th{border:1px solid #999; padding:5px 8px; font-size:11.5px; vertical-align:middle;}
     .pf-lbl{width:38%; background:#f2f4f9; font-weight:600;}
     @media print{ .no-print{display:none;} }
   </style></head><body>
@@ -1040,7 +1229,9 @@ function viewPrint(id){
     ${fieldRow('अनधिकृत अनुपस्थिती / रजा', r["शिक्षक_अनुपस्थिती_तपशील"])}
   </table>
 
-  <div class="sec-title">२. स्वच्छता व वर्ग अध्यापन निरीक्षण</div>
+  ${classHtml}
+
+  <div class="sec-title">३. स्वच्छता व वर्ग अध्यापन निरीक्षण</div>
   <table>
     ${fieldRow('आ. शालेय परिसर', r["स्वच्छता_परिसर"])}
     ${fieldRow('ब. विद्यार्थी वैयक्तिक स्वच्छता', r["स्वच्छता_वैयक्तिक"])}
@@ -1054,31 +1245,31 @@ function viewPrint(id){
   ${(r["वर्गनिरीक्षण_इतर_तपशील"]||r["वर्गनिरीक्षण_इतर_अभिप्राय"]) ? `<tr><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_तपशील"])}</td><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_अभिप्राय"])}</td></tr>` : ''}
   </table>
 
-  <div class="sec-title">३. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक</div>
+  <div class="sec-title">४. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक</div>
   <table><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी</th><th>प्रयत्न / उपक्रम</th></tr>
   ${NIPUN_IYATTA.map(iy=>`<tr><td>${iy}</td><td>${escapeHtml(r["निपुण_"+iy+"_पट"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_निपुण_संख्या"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_प्रयत्न"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">४. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</div>
+  <div class="sec-title">५. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</div>
   <table>
     ${fieldRow('प्रथम भाषा', r["प्रथम_भाषा_अभिप्राय"])}
     ${fieldRow('द्वितीय भाषा', r["द्वितीय_भाषा_अभिप्राय"])}
     ${fieldRow('गणित', r["गणित_अभिप्राय"])}
   </table>
 
-  <div class="sec-title">५. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
+  <div class="sec-title">६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
   <table>
     ${fieldRow('विद्यार्थी नोंदणी प्रमाण', r["नारळीकर_नोंदणी"])}
     ${fieldRow('वापराचे प्रमाण', r["नारळीकर_वापर"])}
     ${fieldRow('प्राविण्य विद्यार्थी प्रमाण', r["नारळीकर_प्राविण्य"])}
   </table>
 
-  <div class="sec-title">६. विविध स्पर्धा परीक्षा</div>
+  <div class="sec-title">७. विविध स्पर्धा परीक्षा</div>
   <table><tr><th>परीक्षा</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक</th></tr>
   ${SPARDHA_ITEMS.map((n,i)=>`<tr><td>${n}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_नियोजन"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_मागील_वर्ष"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_शिष्यवृत्ती"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">७. मूल्यवर्धन उपक्रम / ८. मराठी भाषा अध्यापन सक्ती</div>
+  <div class="sec-title">८. मूल्यवर्धन उपक्रम / ९. मराठी भाषा अध्यापन सक्ती</div>
   <table>
     ${fieldRow('मूल्यवर्धन आयोजन', r["मूल्यवर्धन_आयोजन"])}
     ${fieldRow('मूल्यवर्धन अभिप्राय', r["मूल्यवर्धन_अभिप्राय"])}
@@ -1087,7 +1278,7 @@ function viewPrint(id){
     ${fieldRow('अभिप्राय', r["मराठी_अभिप्राय"])}
   </table>
 
-  <div class="sec-title">९. विद्यार्थी सुरक्षा उपाययोजना</div>
+  <div class="sec-title">१०. विद्यार्थी सुरक्षा उपाययोजना</div>
   <table>
     ${fieldRow('सखी सावित्री समिती', r["सुरक्षा_सखी_समिती"])}
     ${fieldRow('तक्रार पेटी', r["सुरक्षा_तक्रार_पेटी"])}
@@ -1095,7 +1286,7 @@ function viewPrint(id){
     ${fieldRow('CCTV / अन्य', r["सुरक्षा_CCTV"])}
   </table>
 
-  <div class="sec-title">१०. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
+  <div class="sec-title">११. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
   <table>
     ${fieldRow('आ.i) शिक्षक निर्मित', r["साहित्य_शिक्षक_निर्मित"])}
     ${fieldRow('आ.ii) तयार शैक्षणिक साहित्य', r["साहित्य_तयार_साहित्य"])}
@@ -1105,7 +1296,7 @@ function viewPrint(id){
   ${SAHITYA_ITEMS.map((n,i)=>`<tr><td>${n}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_उपलब्धता"])}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_अभिप्राय"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">११. आनंददायी शनिवार / १२. PM POSHAN</div>
+  <div class="sec-title">१२. आनंददायी शनिवार / १३. PM POSHAN</div>
   <table>
     ${fieldRow('शनिवार उपक्रम', r["शनिवार_उपक्रम"])}
     ${fieldRow('PM POSHAN Online उपस्थिती', r["PM_POSHAN_online"])}
@@ -1115,7 +1306,7 @@ function viewPrint(id){
     ${fieldRow('किचन शेड / स्वच्छता अभिप्राय', r["PM_POSHAN_किचन_अभिप्राय"])}
   </table>
 
-  <div class="sec-title">१३. माजी विद्यार्थी संघ / १४. SMC सभा / १५. खेळ</div>
+  <div class="sec-title">१४. माजी विद्यार्थी संघ / १५. SMC सभा / १६. खेळ</div>
   <table>
     ${fieldRow('स्थापना', r["माजी_विद्यार्थी_स्थापना"])}
     ${fieldRow('मेळावा / बैठक', r["माजी_विद्यार्थी_मेळावा"])}
@@ -1127,7 +1318,7 @@ function viewPrint(id){
     ${fieldRow('सहभाग व यश', r["खेळ_सहभाग_यश"])}
   </table>
 
-  <div class="sec-title">१६. सर्वसाधारण अभिप्राय</div>
+  <div class="sec-title">१७. सर्वसाधारण अभिप्राय</div>
   <table>${fieldRow('अभिप्राय', r["सर्वसाधारण_अभिप्राय"])}</table>
 
   <div class="sec-title">स्वाक्षरी</div>
@@ -1186,7 +1377,7 @@ document.getElementById('exportCsvBtn').addEventListener('click', ()=>{
   const recs = loadRecords();
   if(!recs.length){ showToast('कोणताही डेटा नाही.'); return; }
   const keys = Array.from(recs.reduce((set,r)=>{ Object.keys(r).forEach(k=>set.add(k)); return set; }, new Set()));
-  const esc = v => '"' + (v===undefined||v===null?'':String(v)).replace(/"/g,'""') + '"';
+  const esc = v => '"' + (v===undefined||v===null?'':(typeof v==='object'?JSON.stringify(v):String(v))).replace(/"/g,'""') + '"';
   const rows = [keys.map(esc).join(',')].concat(recs.map(r=> keys.map(k=>esc(r[k])).join(',')));
   downloadBlob('\uFEFF' + rows.join('\r\n'), 'shala_bhet_data_' + Date.now() + '.csv', 'text/csv;charset=utf-8');
 });
