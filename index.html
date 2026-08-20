@@ -21,7 +21,7 @@
   body{
     margin:0; padding:0;
     font-family:'Noto Sans Devanagari','Nirmala UI','Mangal',sans-serif, system-ui;
-    backgrouand:var(--bg);
+    background:var(--bg);
     color:var(--text);
     padding-bottom:100px;
   }
@@ -49,7 +49,7 @@
     color:#555; border-bottom:3px solid transparent; white-space:nowrap; cursor:pointer;
   }
   .tabbar button.active{ color:var(--navy); border-color:var(--accent); font-weight:700;}
-  main{padding:12px;max-width:900px;margin:0 auto;}
+  main{padding:12px;max-width:760px;margin:0 auto;}
   .view{display:none;}
   .view.active{display:block;}
   .subview{display:none;}
@@ -96,17 +96,6 @@
   .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:12.5px; color:#444; }
   .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:1px solid #e8c78c; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#684a12; font-size:14px; }
   .cat-entry select, .cat-entry input { border:1px solid #dcdfe6; border-radius:5px; }
-
-  /* Evaluation Table Styles */
-  table.eval-table { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: fixed; }
-  table.eval-table th, table.eval-table td { border: 1px solid var(--border); padding: 4px; text-align: center; vertical-align: middle; font-size:12px; }
-  table.eval-table th { background: var(--navy2); color: #fff; font-size: 11px; }
-  table.eval-table td select { width: 100%; padding: 4px; font-size: 11px; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
-  table.eval-table optgroup { font-weight: bold; color: var(--accent); background: #f2f2f2; }
-  .summary-section table { width: 100%; max-width: 500px; margin: 15px auto 0; border-collapse: collapse; font-size:12.5px; }
-  .summary-section th { background: var(--accent-light); color: var(--navy2); border: 1px solid var(--border); padding: 6px; }
-  .summary-section td { border: 1px solid var(--border); padding: 6px; text-align: center; }
-  .summary-section td:first-child { text-align: left; font-weight: 600; }
 
   .toolbar{
     position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--border);
@@ -292,80 +281,8 @@
     </div>
   </details>
 
-  <!-- NEW SECTION: विद्यार्थी मूल्यमापन तक्ता (स्तर निश्चिती) -->
-  <details class="section" open>
-    <summary>६. विद्यार्थी मूल्यमापन तक्ता (स्तर निश्चिती)</summary>
-    <div class="section-body">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:12px;">
-        <div>
-          <label style="display:inline-block; margin:0; margin-right:8px;">इयत्ता निवडा:</label>
-          <select id="evalClassSelect" style="width:auto; padding:6px; font-weight:bold;" onchange="updateEvalClass()">
-              <option value="std2">इयत्ता २ री</option>
-              <option value="std3to5">इयत्ता ३ री ते ५ वी</option>
-          </select>
-        </div>
-        <button type="button" class="btn-secondary btn-sm" onclick="addEvalRow()">➕ नवीन विद्यार्थी जोडा</button>
-      </div>
-
-      <div class="subhead" id="evalTableSubtitle" style="text-align:center;">इयत्ता २ री | विषय क्षेत्रेः वाचन, लेखन, संख्याज्ञान, गणितीय क्रिया</div>
-
-      <div style="overflow-x:auto;">
-        <table class="eval-table" id="evalTable">
-            <thead>
-                <tr>
-                    <th style="width: 50px;">अ.क्र.</th>
-                    <th style="width: 140px;">विद्यार्थ्याचे नाव</th>
-                    <th>वाचन गट (A/B/C)</th>
-                    <th>लेखन गट (A/B/C)</th>
-                    <th>संख्याज्ञान गट (A/B/C)</th>
-                    <th>गणितीय क्रिया (A/B/C)</th>
-                    <th style="width: 40px;">काढा</th>
-                </tr>
-            </thead>
-            <tbody id="evalTableBody">
-                <!-- Rows injected via JS -->
-            </tbody>
-        </table>
-      </div>
-
-      <!-- Auto-Calculating Summary Section -->
-      <div class="summary-section">
-          <div class="subhead" style="text-align:center; margin-top:20px;">वर्गनिहाय गोषवारा (Class-wise Summary)</div>
-          <table>
-              <thead>
-                  <tr>
-                      <th>विषय क्षेत्र</th>
-                      <th>गट A (प्रगत)</th>
-                      <th>गट B (मध्यम)</th>
-                      <th>गट C (आरंभिक)</th>
-                      <th>एकूण</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  <tr>
-                      <td>१. वाचन (Reading)</td>
-                      <td id="sum-r-a">0</td><td id="sum-r-b">0</td><td id="sum-r-c">0</td><td id="sum-r-t">0</td>
-                  </tr>
-                  <tr>
-                      <td>२. लेखन (Writing)</td>
-                      <td id="sum-w-a">0</td><td id="sum-w-b">0</td><td id="sum-w-c">0</td><td id="sum-w-t">0</td>
-                  </tr>
-                  <tr>
-                      <td>३. संख्याज्ञान (Numeracy)</td>
-                      <td id="sum-n-a">0</td><td id="sum-n-b">0</td><td id="sum-n-c">0</td><td id="sum-n-t">0</td>
-                  </tr>
-                  <tr>
-                      <td>४. गणितीय क्रिया (Operations)</td>
-                      <td id="sum-o-a">0</td><td id="sum-o-b">0</td><td id="sum-o-c">0</td><td id="sum-o-t">0</td>
-                  </tr>
-              </tbody>
-          </table>
-      </div>
-    </div>
-  </details>
-
   <details class="section">
-    <summary>७. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
+    <summary>६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
     <div class="section-body">
       <label>विद्यार्थी नोंदणी प्रमाण</label><input type="text" id="narlikarNondani">
       <label>वापराचे प्रमाण</label><input type="text" id="narlikarVapar">
@@ -374,7 +291,7 @@
   </details>
 
   <details class="section">
-    <summary>८. विविध स्पर्धा परीक्षा</summary>
+    <summary>७. विविध स्पर्धा परीक्षा</summary>
     <div class="section-body">
       <table class="mini" id="spardhaTable">
         <thead><tr><th>परीक्षेचे नाव</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक संख्या</th></tr></thead>
@@ -384,7 +301,7 @@
   </details>
 
   <details class="section">
-    <summary>९. मूल्यवर्धन उपक्रम</summary>
+    <summary>८. मूल्यवर्धन उपक्रम</summary>
     <div class="section-body">
       <label>उपक्रमाचे आयोजन</label>
       <select id="mulyaAyojan"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -394,7 +311,7 @@
   </details>
 
   <details class="section">
-    <summary>१०. मराठी भाषेचे अध्यापन सक्ती</summary>
+    <summary>९. मराठी भाषेचे अध्यापन सक्ती</summary>
     <div class="section-body">
       <label>अंमलबजावणी</label>
       <select id="marathiAmal"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -408,7 +325,7 @@
   </details>
 
   <details class="section">
-    <summary>११. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
+    <summary>१०. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
     <div class="section-body">
       <label>सखी सावित्री समिती</label><input type="text" id="surakshaSakhi">
       <label>तक्रार पेटी</label><input type="text" id="surakshaTakrar">
@@ -418,7 +335,7 @@
   </details>
 
   <details class="section">
-    <summary>१२. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</summary>
+    <summary>११. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</summary>
     <div class="section-body">
       <div class="subhead">आ. शैक्षणिक साहित्य</div>
       <label>i) शिक्षक निर्मित</label>
@@ -437,7 +354,7 @@
   </details>
 
   <details class="section">
-    <summary>१३. आनंददायी शनिवार अंमलबजावणी</summary>
+    <summary>१२. आनंददायी शनिवार अंमलबजावणी</summary>
     <div class="section-body">
       <label>भेटीच्या आधीच्या शनिवारी घेतलेले उपक्रम</label>
       <textarea id="shanivarUpakram"></textarea>
@@ -445,7 +362,7 @@
   </details>
 
   <details class="section">
-    <summary>१४. PM POSHAN</summary>
+    <summary>१३. PM POSHAN</summary>
     <div class="section-body">
       <label>On-Line उपस्थिती</label>
       <select id="pmOnline"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -458,7 +375,7 @@
   </details>
 
   <details class="section">
-    <summary>१५. माजी विद्यार्थी संघ</summary>
+    <summary>१४. माजी विद्यार्थी संघ</summary>
     <div class="section-body">
       <label>स्थापना</label>
       <select id="majiSthapna"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -468,7 +385,7 @@
   </details>
 
   <details class="section">
-    <summary>१۶. SMC मासिक सभा</summary>
+    <summary>१५. SMC मासिक सभा</summary>
     <div class="section-body">
       <label>सभा झाली का?</label>
       <select id="smcZali"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -478,7 +395,7 @@
   </details>
 
   <details class="section">
-    <summary>१७. खेळ व तयारी</summary>
+    <summary>१६. खेळ व तयारी</summary>
     <div class="section-body">
       <label>मैदानाची उपलब्धता</label><input type="text" id="khelMaidan">
       <label>सहभाग व यश</label><input type="text" id="khelYash">
@@ -486,7 +403,7 @@
   </details>
 
   <details class="section">
-    <summary>१८. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
+    <summary>१७. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
     <div class="section-body">
       <label>उल्लेखनीय बाबी, आढळलेल्या त्रुटी, सूचना</label>
       <textarea id="sarvaAbhipray" style="min-height:90px;"></textarea>
@@ -672,60 +589,9 @@ const STUDENT_CATEGORIES = [
 ];
 const STD_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी", "इ 6 वी", "इ 7 वी", "इ 8 वी"];
 let classCounterId = 0;
-let evalRowCount = 0;
 
 const LS_RECORDS = "shalaBhet_records_v1";
 const LS_CONFIG = "shalaBhet_config_v1";
-
-/* ============================================================
-   EVALUATION TABLE COMPETENCY DATA
-   ============================================================ */
-const competencyData = {
-    std2: {
-        reading: {
-            A: ["११. परिचित मजकूरातील ३-५ सोप्या शब्दांनी व तयार झालेली लहान वाक्ये अचूकपणे, विरामचिन्हांसह, आरोह अवरोहासह व योग्य गतीने वाचतो.", "१२. अपरिचित मजकूरातील ४-५ सोप्या शब्दांनी तयार झालेली लहान वाक्ये वाचतो.", "१३. अपरिचित मजकूरातील ४-५ सोप्या शब्दांनी तयार झालेली जोडाक्षरयुक्त लहान वाक्ये वाचतो.", "१४. अपरिचित मजकूरातील ४-५ सोप्या शब्दांनी तयार झालेली लहान वाक्ये अचूकपणे, विरामचिन्हांसह, आरोह अवरोहासह व योग्य गतीने वाचतो."],
-            B: ["५. मजकूरातील साध्या विरामचिन्हांची दखल घेतो.", "६. परिचित मजकूरातील २-३ सोप्या शब्दांनी तयार झालेली लहान वाक्ये वाचतो.", "७. परिचित मजकूरातील २-३ सोप्या शब्दांनी तयार झालेली जोडाक्षरयुक्त लहान वाक्ये वाचतो.", "८. परिचित मजकूरातील २-३ सोप्या शब्दांनी तयार झालेली लहान वाक्ये अचूकपणे, विरामचिन्हांसह वाचतो.", "९. परिचित मजकूरातील ३-५ सोप्या शब्दांनी तयार झालेली लहान वाक्ये वाचतो.", "१०. परिचित मजकूरातील ३-५ सोप्या शब्दांनी तयार झालेली जोडाक्षरयुक्त लहान वाक्ये वाचतो."],
-            C: ["१. वर्णमालेतील सर्व अक्षरे व त्याचे ध्वनी (उच्चार) ओळखत नाही.", "२. वर्णमालेतील सर्व अक्षरे व त्याचे ध्वनी (उच्चार) ओळखतो.", "३. सर्व अक्षरे आणि स्वरचिन्हे यांच्या मदतीने तयार होणारे दोन अक्षरी शब्द वाचतो.", "४. सर्व अक्षरे आणि स्वरचिन्हे यांच्या मदतीने तयार होणारे तीन ते चार अक्षरी शब्द वाचतो."]
-        },
-        writing: {
-            A: ["१२. २-३ सोप्या शब्दांची दोन ते तीन सोपी वाक्ये ऐकून योग्य गतीने लिहितो.", "१३. २-३ सोपे शब्द व सोपी जोडाक्षरे यांनी युक्त विरामचिन्हांसह तीन ते चार वाक्ये ऐकून लिहितो.", "१४. श्रुतलेखनाकरिता ४-५ शब्दांची एक ते दोन सोपी वाक्ये योग्य गतीने लिहितो.", "१५. ४-५ सोपे शब्द व सोपी जोडाक्षरे यांनी युक्त एक वाक्य विरामचिन्हांसह ऐकून लिहितो.", "१६. ४-५ सोपे शब्द व सोपी जोडाक्षरे यांनी युक्त २-३ वाक्ये विरामचिन्हांसह योग्य गतीने लिहितो."],
-            B: ["६. श्रुतलेखन करताना वर्णमालेतील सर्व अक्षरे व स्वरचिन्हे वापरून शब्द लिहितो.", "७. श्रुतलेखन करताना वर्णमालेतील सर्व अक्षरे, स्वरचिन्हेयुक्त व जोडाक्षरयुक्त शब्द लिहितो.", "८. २-३ शब्दांची व सोप्या जोडाक्षरांची एक ते दोन सोपी वाक्ये पाहून लिहितो.", "९. ४-५ सोपे शब्द व सोपी जोडाक्षरे असलेली दोन ते तीन वाक्ये पाहून लिहितो.", "१०. २-३ शब्दांची एक ते दोन सोपी वाक्ये ऐकून योग्य गतीने लिहितो.", "११. २-३ शब्द व जोडाक्षरयुक्त एक ते दोन वाक्ये ऐकून विरामचिन्हांसह योग्य गतीने लिहितो."],
-            C: ["१. वर्णमालेतील अक्षरे पाहून लिहू शकत नाही.", "२. वर्णमालेतील अक्षरे पाहून लिहितो.", "३. सोपे शब्द पाहून लिहितो.", "४. श्रुतलेखन करताना वर्णमालेतील सर्व अक्षरांच्या ध्वनीला ऐकून अक्षरे लिहितो.", "५. श्रुतलेखन करताना वर्णमालेतील काही अक्षरे व स्वरचिन्हे वापरून शब्द लिहितो."]
-        },
-        numeracy: {
-            A: ["९. २० पर्यंतच्या वस्तूंच्या समूहातून ठराविक संख्येएवढ्या वस्तू काढून दाखवितो.", "१०. १० ते २० पर्यंतच्या संख्या ओळखतो/वाचतो.", "११. १० ते २० पर्यंत संख्या लिहितो. (अंकी)"],
-            B: ["५. ० ते ९ पर्यंतच्या संख्या ओळखतो/वाचतो.", "६. ० ते ९ पर्यंत संख्या लिहितो. (अंकी)", "७. १० ते २० संख्यानामे क्रमाने म्हणतो.", "८. १० ते २० पर्यंतच्या वस्तू मोजतो."],
-            C: ["१. ० ते ९ संख्यानामे क्रमाने म्हणता येत नाहीत.", "२. ० ते ९ संख्यानामे क्रमाने म्हणतो.", "३. ० ते ९ पर्यंतच्या वस्तू मोजतो.", "४. ९ पर्यंतच्या वस्तूंच्या समूहातून ठराविक संख्येएवढ्या वस्तू काढून दाखवितो."]
-        },
-        operations: {
-            A: ["११. ० ते ९ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून वजाबाकी करतो.", "१२. ० ते ९ पर्यंतच्या संख्यांची वजाबाकीचे चिन्ह वापरून वजाबाकी करतो.", "१३. ० ते ९ पर्यंतच्या संख्यांचा वापर दैनंदिन परिस्थितीमध्ये करून वजाबाकीची शाब्दिक उदाहरणे सोडवितो."],
-            B: ["५. ० ते ९ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून बेरजेची उदाहरणे सोडवितो.", "६. ० ते ९ पर्यंतच्या संख्यांची बेरजेचे चिन्ह वापरून बेरीज करतो.", "७. ० ते ९ पर्यंतच्या संख्यांचा वापर करून बेरजेची शाब्दिक उदाहरणे सोडवितो.", "८. ० ते ४ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून वजाबाकीची उदाहरणे सोडवितो.", "९. ० ते ४ पर्यंतच्या संख्यांची वजाबाकीचे चिन्ह वापरून वजाबाकी करतो.", "१०. ० ते ४ पर्यंतच्या संख्यांचा वापर करून वजाबाकीची शाब्दिक उदाहरणे सोडवितो."],
-            C: ["१. ० ते ४ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून बेरीज करता येत नाही.", "२. ० ते ४ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून बेरीज करतो.", "३. ० ते ४ पर्यंतच्या संख्यांची बेरजेचे चिन्ह वापरून बेरीज करतो.", "४. ० ते ४ पर्यंतच्या संख्यांचा वापर करून बेरजेची शाब्दिक उदाहरणे सोडवितो."]
-        }
-    },
-    std3to5: {
-        reading: {
-            A: ["१२. अपरिचित मजकूरातील ४-५ सोप्या शब्दांनी व जोडाक्षरासह तयार झालेली लहान वाक्ये वाचतो.", "१३. अपरिचित मजकूरातील ४-५ सोप्या शब्दांनी तयार झालेली लहान वाक्ये अचूकपणे, विरामचिन्हांसह आकलनासह वाचतो.", "१४. अपरिचित मजकूरातील ६-८ सोप्या शब्दांनी व जोडाक्षरासह तयार झालेली लहान वाक्ये वाचतो.", "१५. अपरिचित मजकूरातील ६-८ सोप्या शब्दांनी व जोडाक्षरासह तयार झालेली लहान वाक्ये अचूकपणे, आकलनासह वाचतो."],
-            B: ["६. परिचित मजकूरातील २-३ सोप्या शब्दांनी तयार झालेली लहान वाक्ये वाचतो.", "७. परिचित मजकूरातील २-३ सोप्या शब्दांनी तयार झालेली व जोडाक्षरासह लहान वाक्ये वाचतो.", "८. परिचित मजकूरातील २-३ सोप्या शब्दांनी व जोडाक्षरासह लहान वाक्ये अचूकपणे, आकलनासह वाचतो.", "९. परिचित मजकूरातील ३-५ सोप्या शब्दांनी तयार झालेली लहान वाक्ये वाचतो.", "१०. परिचित मजकूरातील ३-५ सोप्या शब्दांनी तयार झालेली जोडाक्षर युक्त लहान वाक्ये वाचतो.", "११. परिचित मजकूरातील ३-५ सोप्या शब्दांनी व जोडाक्षरासह लहान वाक्ये अचूकपणे, आकलनासह वाचतो."],
-            C: ["१. वर्णमालेतील काही अक्षरे व संबंधित ध्वनी ओळखत नाही.", "२. वर्णमालेतील सर्व अक्षरे व त्याचे ध्वनी ओळखतो.", "३. सर्व अक्षरे आणि स्वरचिन्हे यांच्या मदतीने तयार होणारे दोन अक्षरी शब्द वाचतो.", "४. सर्व अक्षरे आणि स्वरचिन्हे यांच्या मदतीने तयार होणारे तीन ते चार अक्षरी शब्द वाचतो.", "५. मजकूरातील साध्या विरामचिन्हांची दखल घेतो."]
-        },
-        writing: {
-            A: ["१४. श्रुतलेखनाकरिता ४-५ शब्दांची एक ते दोन सोपी वाक्ये योग्य गतीने लिहितो.", "१५. ४-५ सोपे शब्द व सोपी जोडाक्षरे यांनी युक्त एक वाक्य विरामचिन्हांसह व आकलनासह ऐकून लिहितो.", "१६. ४-५ सोपे शब्द व सोपी जोडाक्षरे यांनी युक्त दोन ते तीन वाक्ये विरामचिन्हांसह ऐकून लिहितो.", "१७. ६-८ शब्दांची चार ते पाच सोपी वाक्ये ऐकून लिहितो.", "१८. श्रुतलेखनाकरिता ६-८ शब्द व जोडाक्षरे यांनी युक्त ४-५ वाक्ये विरामचिन्हांसह व आकलनासह लिहितो."],
-            B: ["८. २-३ शब्दांची व सोप्या जोडाक्षरांची एक ते दोन सोपी वाक्ये पाहून लिहितो.", "९. ४-५ सोपे शब्द व सोपी जोडाक्षरे असलेली दोन ते तीन वाक्ये आकलनासह पाहून लिहितो.", "१०. २-३ शब्दांची एक ते दोन सोपी वाक्ये ऐकून योग्य गतीने लिहितो.", "११. २-३ शब्द व जोडाक्षरयुक्त एक ते दोन वाक्य विरामचिन्हांसह व आकलनासह ऐकून लिहितो.", "१२. २-३ सोप्या शब्दांची दोन ते तीन सोपी वाक्ये ऐकून योग्य गतीने लिहितो.", "१३. २-३ सोपे शब्द व सोपी जोडाक्षरे यांनी युक्त विरामचिन्हांसह व आकलनासह ३-४ वाक्ये ऐकून लिहितो."],
-            C: ["१. वर्णमालेतील अक्षरे पाहून लिहू शकत नाही.", "२. वर्णमालेतील अक्षरे पाहून लिहितो.", "३. सोपे शब्द पाहून लिहितो.", "४. श्रुतलेखन करताना वर्णमालेतील सर्व अक्षरांच्या ध्वनीला ऐकून अक्षरे लिहितो.", "५. श्रुतलेखन करताना वर्णमालेतील काही अक्षरे व स्वरचिन्हे वापरून शब्द लिहितो.", "६. श्रुतलेखन करताना वर्णमालेतील सर्व अक्षरे व स्वरचिन्हे वापरून शब्द लिहितो.", "७. श्रुतलेखन करताना वर्णमालेतील सर्व अक्षरे, स्वरचिन्हयुक्त व जोडाक्षरयुक्त शब्द लिहितो."]
-        },
-        numeracy: {
-            A: ["१८. ० ते ९ संख्यानामे लिहितो. (अक्षरी)", "१९. ० ते २० संख्यानामे लिहितो. (अक्षरी)", "२०. ० ते ५० संख्यानामे लिहितो. (अक्षरी)"],
-            B: ["१०. १० ते २० पर्यंतच्या संख्या ओळखतो/वाचतो.", "११. १० ते २० पर्यंत संख्या लिहितो. (अंकी)", "१२. २१ ते ५० पर्यंतची संख्यानामे क्रमाने म्हणतो.", "१३. स्थानिक किंमत संकल्पना वापरून २१ ते ५० पर्यंतच्या संख्या ओळखतो/वाचतो.", "१४. २१ ते ५० पर्यंतच्या संख्या लिहितो. (अंकी)", "१५. ५१ ते ९९ पर्यंतची संख्यानामे क्रमाने म्हणतो.", "१६. स्थानिक किंमत संकल्पना वापरून ५१ ते ९९ पर्यंतच्या संख्या ओळखतो.", "१७. ५१ ते ९९ पर्यंतच्या संख्या लिहितो. (अंकी)"],
-            C: ["१. ० ते ९ संख्यानामे क्रमाने म्हणता येत नाहीत.", "२. ० ते ९ संख्यानामे क्रमाने म्हणतो.", "३. ० ते ९ पर्यंतच्या वस्तू मोजतो.", "४. ९ पर्यंतच्या वस्तूंच्या समूहातून ठराविक संख्येएवढ्या वस्तू काढून दाखवितो.", "५. ० ते ९ पर्यंतच्या संख्या ओळखतो/वाचतो.", "६. ० ते ९ पर्यंत संख्या लिहितो. (अंकी)", "७. १० ते २० संख्यानामे क्रमाने म्हणतो.", "८. १० ते २० पर्यंतच्या वस्तू मोजतो.", "९. २० पर्यंतच्या वस्तूच्या समूहातून ठराविक संख्येएवढ्या वस्तू काढून दाखवितो."]
-        },
-        operations: {
-            A: ["२४. स्थानिक किमत संकल्पना वापरून ० ते ९९ पर्यंतच्या संख्यांची बेरीज करतो. (बिनहातच्याची)", "२५. स्थानिक किमत संकल्पना वापरून ९९ पर्यंतच्या संख्यांची बेरीज करतो. (हातच्याची)", "२६. ० ते ९९ पर्यंतच्या संख्यांचा वापर करून बेरजेची शाब्दिक उदाहरणे सोडवितो.", "२७. स्थानिक किमत संकल्पना वापरून ९९ पर्यंतच्या संख्यांची वजाबाकी करतो. (बिनहातच्याची)", "२८. स्थानिक किमत संकल्पना वापरून ९९ पर्यंतच्या संख्यांची वजाबाकी करतो. (हातच्याची)", "२९. ९९ पर्यंतच्या संख्यांचा वापर करून वजाबाकीची शाब्दिक उदाहरणे सोडवितो."],
-            B: ["१४. ० ते २० पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून बेरीज करतो.", "१५. ० ते २० पर्यंतच्या संख्यांची बेरजेचे चिन्ह वापरून बेरीज करतो.", "१६. ० ते २० पर्यंतच्या संख्यांचा वापर करून बेरजेची शाब्दिक उदाहरणे सोडवितो.", "१७. ० ते २० पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून वजाबाकी करतो.", "१८. ० ते २० पर्यंतच्या संख्यांची वजाबाकीचे चिन्ह वापरून वजाबाकी करतो.", "१९. ० ते २० पर्यंतच्या संख्यांचा वापर करून वजाबाकीची शाब्दिक उदाहरणे सोडवितो.", "२०. ० ते ५० पर्यंतच्या संख्यांची बेरजेचे चिन्ह वापरून बेरीज करतो.", "२१. ० ते ५० पर्यंतच्या संख्यांचा वापर करून बेरजेची शाब्दिक उदाहरणे सोडवितो.", "२२. ० ते ५० पर्यंतच्या संख्यांची वजाबाकीचे चिन्ह वापरून वजाबाकी करतो.", "२३. ० ते ५० पर्यंतच्या संख्यांचा वापर करून वजाबाकीची शाब्दिक उदाहरणे सोडवितो."],
-            C: ["१. ० ते ४ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून बेरीज करता येत नाही.", "२. ० ते ४ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून बेरीज करतो.", "३. ० ते ४ पर्यंतच्या संख्यांची बेरजेचे चिन्ह वापरून बेरीज करतो.", "४. ० ते ४ पर्यंतच्या संख्यांचा वापर करून बेरजेची शाब्दिक उदाहरणे सोडवितो.", "५. ० ते ४ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून वजाबाकी करतो.", "६. ० ते ४ पर्यंतच्या संख्यांची वजाबाकीचे चिन्ह वापरून वजाबाकी करतो.", "७. ० ते ४ पर्यंतच्या संख्यांचा वापर करून वजाबाकीची शाब्दिक उदाहरणे सोडवितो.", "८. ० ते ९ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून बेरजेची उदाहरणे सोडवितो.", "९. ० ते ९ पर्यंतच्या संख्यांची बेरजेचे चिन्ह वापरून बेरीज करतो.", "१०. ० ते ९ पर्यंतच्या संख्यांचा वापर करून बेरजेची शाब्दिक उदाहरणे सोडवितो.", "११. ० ते ९ पर्यंतच्या संख्यांची मूर्त वस्तूंचा वापर करून वजाबाकी करतो.", "१२. ० ते ९ पर्यंतच्या संख्यांची वजाबाकीचे चिन्ह वापरून वजाबाकी करतो.", "१3. ० ते ९ पर्यंतच्या संख्यांचा वापर करून वजाबाकीची शाब्दिक उदाहरणे सोडवितो."]
-        }
-    }
-};
 
 /* ============================================================
    BUILD DYNAMIC FORM PARTS
@@ -859,130 +725,6 @@ document.getElementById('addClassBtn').addEventListener('click', () => {
   addCategoryEntry(id);
 });
 
-/* ============================================================
-   EVALUATION TABLE FUNCTIONS (मूल्यमापन तक्ता)
-   ============================================================ */
-function generateOptGroup(groupLabel, dataArray, prefix) {
-    let html = `<optgroup label="${groupLabel}">`;
-    dataArray.forEach(text => {
-        html += `<option value="${prefix} - ${text}" title="${prefix} - ${text}">${prefix} - ${text}</option>`;
-    });
-    html += `</optgroup>`;
-    return html;
-}
-
-function createEvalDropdown(subject, selectedVal = "") {
-    const selectedClass = document.getElementById('evalClassSelect').value;
-    const optionsData = competencyData[selectedClass][subject];
-    
-    let html = `<select onchange="calcEvalSummary()" title="क्षमता निवडण्यासाठी क्लिक करा">`;
-    html += `<option value="">-- क्षमता निवडा --</option>`;
-    
-    html += generateOptGroup("गट A (प्रगत स्तर)", optionsData.A, "A");
-    html += generateOptGroup("गट B (मध्यम स्तर)", optionsData.B, "B");
-    html += generateOptGroup("गट C (आरंभिक स्तर)", optionsData.C, "C");
-    
-    html += `</select>`;
-    
-    if(selectedVal) {
-        html = html.replace(`value="${selectedVal}"`, `value="${selectedVal}" selected`);
-    }
-    return html;
-}
-
-function updateEvalClass(skipDefaults) {
-    const selectedClass = document.getElementById('evalClassSelect').value;
-    let title = selectedClass === 'std2' ? 'इयत्ता २ री' : 'इयत्ता ३ री ते ५ वी';
-    document.getElementById('evalTableSubtitle').innerText = title + ' | विषय क्षेत्रेः वाचन, लेखन, संख्याज्ञान, गणितीय क्रिया';
-    
-    document.getElementById('evalTableBody').innerHTML = '';
-    evalRowCount = 0;
-    
-    if(!skipDefaults) {
-        for(let i=0; i<3; i++) addEvalRow();
-    }
-    calcEvalSummary();
-}
-
-function addEvalRow(name = "", readVal = "", writeVal = "", numVal = "", opVal = "") {
-    evalRowCount++;
-    const tbody = document.getElementById('evalTableBody');
-    const tr = document.createElement('tr');
-    tr.className = 'eval-row-tr';
-    
-    tr.innerHTML = `
-        <td style="text-align:center;" class="eval-row-num">${evalRowCount}</td>
-        <td><input type="text" placeholder="विद्यार्थ्याचे नाव" class="eval-name-inp" value="${name}"></td>
-        <td>${createEvalDropdown('reading', readVal)}</td>
-        <td>${createEvalDropdown('writing', writeVal)}</td>
-        <td>${createEvalDropdown('numeracy', numVal)}</td>
-        <td>${createEvalDropdown('operations', opVal)}</td>
-        <td><button type="button" class="btn-danger btn-sm" style="padding:4px 6px; font-size:10px;" onclick="removeEvalRow(this)">✕</button></td>
-    `;
-    tbody.appendChild(tr);
-    calcEvalSummary();
-}
-
-function removeEvalRow(btn) {
-    btn.closest('tr').remove();
-    evalRowCount = 0;
-    document.querySelectorAll('#evalTableBody tr').forEach(tr => {
-        evalRowCount++;
-        tr.querySelector('.eval-row-num').innerText = evalRowCount;
-    });
-    calcEvalSummary();
-}
-
-function calcEvalSummary() {
-    let counts = {
-        reading: { A: 0, B: 0, C: 0 },
-        writing: { A: 0, B: 0, C: 0 },
-        numeracy: { A: 0, B: 0, C: 0 },
-        operations: { A: 0, B: 0, C: 0 }
-    };
-
-    const tbody = document.getElementById('evalTableBody');
-    const rows = tbody.getElementsByTagName('tr');
-
-    for (let i = 0; i < rows.length; i++) {
-        const selects = rows[i].getElementsByTagName('select');
-        if (selects.length === 4) {
-            const rVal = selects[0].value.charAt(0);
-            const wVal = selects[1].value.charAt(0);
-            const nVal = selects[2].value.charAt(0);
-            const oVal = selects[3].value.charAt(0);
-
-            if (['A', 'B', 'C'].includes(rVal)) counts.reading[rVal]++;
-            if (['A', 'B', 'C'].includes(wVal)) counts.writing[wVal]++;
-            if (['A', 'B', 'C'].includes(nVal)) counts.numeracy[nVal]++;
-            if (['A', 'B', 'C'].includes(oVal)) counts.operations[oVal]++;
-        }
-    }
-
-    document.getElementById('sum-r-a').innerText = counts.reading.A;
-    document.getElementById('sum-r-b').innerText = counts.reading.B;
-    document.getElementById('sum-r-c').innerText = counts.reading.C;
-    document.getElementById('sum-r-t').innerText = counts.reading.A + counts.reading.B + counts.reading.C;
-
-    document.getElementById('sum-w-a').innerText = counts.writing.A;
-    document.getElementById('sum-w-b').innerText = counts.writing.B;
-    document.getElementById('sum-w-c').innerText = counts.writing.C;
-    document.getElementById('sum-w-t').innerText = counts.writing.A + counts.writing.B + counts.writing.C;
-
-    document.getElementById('sum-n-a').innerText = counts.numeracy.A;
-    document.getElementById('sum-n-b').innerText = counts.numeracy.B;
-    document.getElementById('sum-n-c').innerText = counts.numeracy.C;
-    document.getElementById('sum-n-t').innerText = counts.numeracy.A + counts.numeracy.B + counts.numeracy.C;
-
-    document.getElementById('sum-o-a').innerText = counts.operations.A;
-    document.getElementById('sum-o-b').innerText = counts.operations.B;
-    document.getElementById('sum-o-c').innerText = counts.operations.C;
-    document.getElementById('sum-o-t').innerText = counts.operations.A + counts.operations.B + counts.operations.C;
-}
-
-/* ============================================================
-   OTHER TABLES 
-   ============================================================ */
 function buildNipunTable(){
   const tbody = document.querySelector('#nipunTable tbody');
   tbody.innerHTML = '';
@@ -1190,7 +932,7 @@ function collectForm(){
     rec["निपुण_"+iy+"_प्रयत्न"] = val('nipun_prayatn_'+i);
   });
   
-  // Collect Classwise Breakdown Data
+  // Collect dynamic Classwise Breakdown Data
   const classData = [];
   document.querySelectorAll('.class-row').forEach(row => {
     const cName = row.querySelector('.class-name-input').value;
@@ -1207,24 +949,6 @@ function collectForm(){
     classData.push({ name: cName, data: catsData });
   });
   rec["वर्गनिहाय_विद्यार्थी"] = classData; 
-
-  // Collect EVALUATION TABLE data
-  const evalData = [];
-  document.querySelectorAll('#evalTableBody tr').forEach(tr => {
-      const inputs = tr.querySelectorAll('input, select');
-      if(inputs.length === 5) {
-          const n = inputs[0].value.trim();
-          const r = inputs[1].value;
-          const w = inputs[2].value;
-          const num = inputs[3].value;
-          const op = inputs[4].value;
-          if(n || r || w || num || op) {
-              evalData.push({ name: n, reading: r, writing: w, numeracy: num, operations: op });
-          }
-      }
-  });
-  rec["मूल्यमापन_इयत्ता"] = val('evalClassSelect');
-  rec["विद्यार्थी_मूल्यमापन"] = evalData;
 
   VNI_ITEMS.forEach((name,i)=>{ rec["वर्गनिरीक्षण_"+name] = val('vni_abhipray_'+i); });
   rec["वर्गनिरीक्षण_इतर_तपशील"] = val('vni_extra_label');
@@ -1244,7 +968,7 @@ function collectForm(){
 }
 
 function fillFormFromRecord(rec){
-  resetForm(false, true); 
+  resetForm(false, true); // true param skips default classes
   
   const idx = SCHOOLS.findIndex(s=>s.name===rec["शाळेचे_नाव"] && s.udise===rec["UDISE_कोड"]);
   if(idx>=0){ document.getElementById('schoolSelect').value = idx; document.getElementById('udise').value = rec["UDISE_कोड"]; }
@@ -1279,19 +1003,20 @@ function fillFormFromRecord(rec){
     document.getElementById('nipun_prayatn_'+i).value = rec["निपुण_"+iy+"_प्रयत्न"] || '';
   });
   
-  // Fill Classwise Data
+  // Fill Classwise Data (and migrate old format safely)
   document.getElementById('classListContainer').innerHTML = '';
   if (rec["वर्गनिहाय_विद्यार्थी"] && Array.isArray(rec["वर्गनिहाय_विद्यार्थी"])) {
     rec["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
       const id = addClassRow(cls.name);
       const listDiv = document.getElementById(`cat_list_${id}`);
-      listDiv.innerHTML = ''; 
+      listDiv.innerHTML = ''; // clear default
       const rowDetails = listDiv.closest('details');
-      rowDetails.open = false; 
+      rowDetails.open = false; // collapse loaded records
       
       if (cls.data && cls.data.length > 0) {
          cls.data.forEach(d => addCategoryEntry(id, d.category, d.boys, d.girls));
       } else if (cls.boys && Array.isArray(cls.boys)) {
+         // Auto-migrate from older grid format
          const OLD_CATEGORIES = ["SC", "ST", "VJ(NT-A)", "NT(B)", "NT(C)/SBC", "OBC", "OPEN"];
          let addedAny = false;
          OLD_CATEGORIES.forEach((oldCat, i) => {
@@ -1302,26 +1027,20 @@ function fillFormFromRecord(rec){
                addedAny = true;
             }
          });
-         if (!addedAny) addCategoryEntry(id);
+         if (!addedAny) addCategoryEntry(id); // default empty
       } else {
          addCategoryEntry(id);
       }
     });
     calcClassTotals();
   } else {
-    STD_CLASSES.forEach(cls => { const id = addClassRow(cls); addCategoryEntry(id); });
+    // Fresh defaults if nothing was saved
+    STD_CLASSES.forEach(cls => {
+       const id = addClassRow(cls);
+       addCategoryEntry(id);
+    });
     calcClassTotals();
   }
-
-  // Fill EVALUATION Table Data
-  document.getElementById('evalClassSelect').value = rec["मूल्यमापन_इयत्ता"] || 'std2';
-  updateEvalClass(true); // true = skip default rows
-  if (rec["विद्यार्थी_मूल्यमापन"] && Array.isArray(rec["विद्यार्थी_मूल्यमापन"])) {
-      rec["विद्यार्थी_मूल्यमापन"].forEach(d => addEvalRow(d.name, d.reading, d.writing, d.numeracy, d.operations));
-  } else {
-      for(let i=0; i<3; i++) addEvalRow();
-  }
-  calcEvalSummary();
 
   VNI_ITEMS.forEach((name,i)=>{
     document.getElementById('vni_abhipray_'+i).value = rec["वर्गनिरीक्षण_"+name] || '';
@@ -1355,9 +1074,6 @@ function resetForm(showMsg, skipClasses){
        addCategoryEntry(id);
     });
     calcClassTotals();
-    
-    document.getElementById('evalClassSelect').value = 'std2';
-    updateEvalClass(); // loads defaults
   }
 
   const cfg = loadConfig();
@@ -1492,13 +1208,14 @@ function viewPrint(id){
   // Build the SMART dynamic classwise table
   let classHtml = '';
   if(r["वर्गनिहाय_विद्यार्थी"] && r["वर्गनिहाय_विद्यार्थी"].length) {
+    // 1. Gather ONLY the categories that are actually used in this specific record
     const usedCats = new Set();
     r["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
        if(cls.data) {
            cls.data.forEach(d => {
                if ((parseInt(d.boys)>0 || parseInt(d.girls)>0) && d.category) usedCats.add(d.category);
            });
-       } else if (cls.boys) { 
+       } else if (cls.boys) { // Handle legacy format print gracefully
            const OLD_CATEGORIES = ["SC", "ST", "VJ(NT-A)", "NT(B)", "NT(C)/SBC", "OBC", "OPEN"];
            cls.boys.forEach((b, i) => { if(parseInt(b)>0 || parseInt(cls.girls[i])>0) usedCats.add(OLD_CATEGORIES[i]); });
        }
@@ -1521,42 +1238,52 @@ function viewPrint(id){
       </tr>` : ''}`;
       
     let grandBoys = 0, grandGirls = 0;
-    const catTotalsBoys = {}; const catTotalsGirls = {};
+    const catTotalsBoys = {};
+    const catTotalsGirls = {};
     catsArray.forEach(c => { catTotalsBoys[c]=0; catTotalsGirls[c]=0; });
 
     r["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
       let classBoys = 0, classGirls = 0;
       let clsDataMap = {};
+      
       if (cls.data) {
           cls.data.forEach(d => {
               clsDataMap[d.category] = { b: parseInt(d.boys)||0, g: parseInt(d.girls)||0 };
-              classBoys += parseInt(d.boys)||0; classGirls += parseInt(d.girls)||0;
+              classBoys += parseInt(d.boys)||0;
+              classGirls += parseInt(d.girls)||0;
           });
       } else if (cls.boys) {
           const OLD_CATEGORIES = ["SC", "ST", "VJ(NT-A)", "NT(B)", "NT(C)/SBC", "OBC", "OPEN"];
           cls.boys.forEach((b, i) => {
-             const bVal = parseInt(b)||0; const gVal = parseInt(cls.girls[i])||0;
+             const bVal = parseInt(b)||0;
+             const gVal = parseInt(cls.girls[i])||0;
              if(bVal>0 || gVal>0) clsDataMap[OLD_CATEGORIES[i]] = { b: bVal, g: gVal };
-             classBoys += bVal; classGirls += gVal;
+             classBoys += bVal;
+             classGirls += gVal;
           });
       }
-      grandBoys += classBoys; grandGirls += classGirls;
+
+      grandBoys += classBoys; 
+      grandGirls += classGirls;
 
       classHtml += `<tr>
         <td style="text-align:left;"><b>${escapeHtml(cls.name)}</b></td>
         ${catsArray.map(c => {
            const b = clsDataMap[c] ? clsDataMap[c].b : 0;
-           catTotalsBoys[c] += b; return `<td>${b||'-'}</td>`;
+           catTotalsBoys[c] += b;
+           return `<td>${b||'-'}</td>`;
         }).join('')}
         <td style="background:#f0f4fc;"><b>${classBoys}</b></td>
         ${catsArray.map(c => {
            const g = clsDataMap[c] ? clsDataMap[c].g : 0;
-           catTotalsGirls[c] += g; return `<td>${g||'-'}</td>`;
+           catTotalsGirls[c] += g;
+           return `<td>${g||'-'}</td>`;
         }).join('')}
         <td style="background:#fcf0f0;"><b>${classGirls}</b></td>
         <td style="background:#f4f6fb;"><b>${classBoys+classGirls}</b></td>
       </tr>`;
     });
+    
     classHtml += `<tr style="background:#fae8c8; font-weight:bold;">
       <td style="text-align:left;">एकूण (सर्व वर्ग)</td>
       ${catsArray.map(c => `<td>${catTotalsBoys[c]||'-'}</td>`).join('')}
@@ -1565,36 +1292,6 @@ function viewPrint(id){
       <td>${grandGirls}</td>
       <td>${grandBoys+grandGirls}</td>
     </tr></table>`;
-  }
-
-  // Build the EVALUATION Table Print - ONLY SUMMARY (Hidden student list)
-  let evalHtml = '';
-  if(r["विद्यार्थी_मूल्यमापन"] && r["विद्यार्थी_मूल्यमापन"].length) {
-      let cName = (r["मूल्यमापन_इयत्ता"] === 'std2') ? 'इयत्ता २ री' : 'इयत्ता ३ री ते ५ वी';
-      let sum = { r:{A:0,B:0,C:0}, w:{A:0,B:0,C:0}, n:{A:0,B:0,C:0}, o:{A:0,B:0,C:0} };
-
-      // Calculate totals from saved data
-      r["विद्यार्थी_मूल्यमापन"].forEach((d) => {
-          let getLvl = val => val ? val.charAt(0) : '-';
-          let rr = getLvl(d.reading); if(sum.r[rr] !== undefined) sum.r[rr]++;
-          let ww = getLvl(d.writing); if(sum.w[ww] !== undefined) sum.w[ww]++;
-          let nn = getLvl(d.numeracy); if(sum.n[nn] !== undefined) sum.n[nn]++;
-          let oo = getLvl(d.operations); if(sum.o[oo] !== undefined) sum.o[oo]++;
-      });
-
-      // ONLY print the summary
-      evalHtml = `<div class="sec-title" style="page-break-before:always;">६. विद्यार्थी मूल्यमापन वर्गनिहाय गोषवारा (${cName})</div>
-      <div style="width:80%; margin:15px auto 0;">
-          <table style="text-align:center;">
-              <tr style="background:#f2f2f2;">
-                  <th>विषय क्षेत्र</th><th>गट A (प्रगत)</th><th>गट B (मध्यम)</th><th>गट C (आरंभिक)</th><th>एकूण</th>
-              </tr>
-              <tr><td style="text-align:left;">१. वाचन (Reading)</td><td>${sum.r.A}</td><td>${sum.r.B}</td><td>${sum.r.C}</td><td>${sum.r.A+sum.r.B+sum.r.C}</td></tr>
-              <tr><td style="text-align:left;">२. लेखन (Writing)</td><td>${sum.w.A}</td><td>${sum.w.B}</td><td>${sum.w.C}</td><td>${sum.w.A+sum.w.B+sum.w.C}</td></tr>
-              <tr><td style="text-align:left;">३. संख्याज्ञान (Numeracy)</td><td>${sum.n.A}</td><td>${sum.n.B}</td><td>${sum.n.C}</td><td>${sum.n.A+sum.n.B+sum.n.C}</td></tr>
-              <tr><td style="text-align:left;">४. गणितीय क्रिया (Operations)</td><td>${sum.o.A}</td><td>${sum.o.B}</td><td>${sum.o.C}</td><td>${sum.o.A+sum.o.B+sum.o.C}</td></tr>
-          </table>
-      </div>`;
   }
 
   let html = `<html lang="mr"><head><meta charset="UTF-8"><title>शाळा भेट प्रपत्र - ${escapeHtml(r["शाळेचे_नाव"])}</title>
@@ -1653,21 +1350,19 @@ function viewPrint(id){
     ${fieldRow('गणित', r["गणित_अभिप्राय"])}
   </table>
 
-  ${evalHtml}
-
-  <div class="sec-title">७. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
+  <div class="sec-title">६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
   <table>
     ${fieldRow('विद्यार्थी नोंदणी प्रमाण', r["नारळीकर_नोंदणी"])}
     ${fieldRow('वापराचे प्रमाण', r["नारळीकर_वापर"])}
     ${fieldRow('प्राविण्य विद्यार्थी प्रमाण', r["नारळीकर_प्राविण्य"])}
   </table>
 
-  <div class="sec-title">८. विविध स्पर्धा परीक्षा</div>
+  <div class="sec-title">७. विविध स्पर्धा परीक्षा</div>
   <table><tr><th>परीक्षा</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक</th></tr>
   ${SPARDHA_ITEMS.map((n,i)=>`<tr><td>${n}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_नियोजन"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_मागील_वर्ष"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_शिष्यवृत्ती"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">९. मूल्यवर्धन उपक्रम / १०. मराठी भाषा अध्यापन सक्ती</div>
+  <div class="sec-title">८. मूल्यवर्धन उपक्रम / ९. मराठी भाषा अध्यापन सक्ती</div>
   <table>
     ${fieldRow('मूल्यवर्धन आयोजन', r["मूल्यवर्धन_आयोजन"])}
     ${fieldRow('मूल्यवर्धन अभिप्राय', r["मूल्यवर्धन_अभिप्राय"])}
@@ -1676,7 +1371,7 @@ function viewPrint(id){
     ${fieldRow('अभिप्राय', r["मराठी_अभिप्राय"])}
   </table>
 
-  <div class="sec-title">११. विद्यार्थी सुरक्षा उपाययोजना</div>
+  <div class="sec-title">१०. विद्यार्थी सुरक्षा उपाययोजना</div>
   <table>
     ${fieldRow('सखी सावित्री समिती', r["सुरक्षा_सखी_समिती"])}
     ${fieldRow('तक्रार पेटी', r["सुरक्षा_तक्रार_पेटी"])}
@@ -1684,7 +1379,7 @@ function viewPrint(id){
     ${fieldRow('CCTV / अन्य', r["सुरक्षा_CCTV"])}
   </table>
 
-  <div class="sec-title">१२. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
+  <div class="sec-title">११. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
   <table>
     ${fieldRow('आ.i) शिक्षक निर्मित', r["साहित्य_शिक्षक_निर्मित"])}
     ${fieldRow('आ.ii) तयार शैक्षणिक साहित्य', r["साहित्य_तयार_साहित्य"])}
@@ -1694,7 +1389,7 @@ function viewPrint(id){
   ${SAHITYA_ITEMS.map((n,i)=>`<tr><td>${n}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_उपलब्धता"])}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_अभिप्राय"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">१३. आनंददायी शनिवार / १४. PM POSHAN</div>
+  <div class="sec-title">१२. आनंददायी शनिवार / १३. PM POSHAN</div>
   <table>
     ${fieldRow('शनिवार उपक्रम', r["शनिवार_उपक्रम"])}
     ${fieldRow('PM POSHAN Online उपस्थिती', r["PM_POSHAN_online"])}
@@ -1704,7 +1399,7 @@ function viewPrint(id){
     ${fieldRow('किचन शेड / स्वच्छता अभिप्राय', r["PM_POSHAN_किचन_अभिप्राय"])}
   </table>
 
-  <div class="sec-title">१५. माजी विद्यार्थी संघ / १६. SMC सभा / १७. खेळ</div>
+  <div class="sec-title">१४. माजी विद्यार्थी संघ / १५. SMC सभा / १६. खेळ</div>
   <table>
     ${fieldRow('स्थापना', r["माजी_विद्यार्थी_स्थापना"])}
     ${fieldRow('मेळावा / बैठक', r["माजी_विद्यार्थी_मेळावा"])}
@@ -1716,7 +1411,7 @@ function viewPrint(id){
     ${fieldRow('सहभाग व यश', r["खेळ_सहभाग_यश"])}
   </table>
 
-  <div class="sec-title">१८. सर्वसाधारण अभिप्राय</div>
+  <div class="sec-title">१७. सर्वसाधारण अभिप्राय</div>
   <table>${fieldRow('अभिप्राय', r["सर्वसाधारण_अभिप्राय"])}</table>
 
   <div class="sec-title">स्वाक्षरी</div>
@@ -1946,4 +1641,3 @@ init();
 </script>
 </body>
 </html>
-
