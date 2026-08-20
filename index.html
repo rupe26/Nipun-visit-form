@@ -269,22 +269,61 @@
     </div>
   </details>
 
+  <!-- NEW REPLACED SECTION 5 -->
   <details class="section">
-    <summary>५. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</summary>
+    <summary>५. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</summary>
     <div class="section-body">
-      <label>प्रथम भाषा (वाचन, अभिव्यक्ती) — अभिप्राय / शेरा</label>
-      <textarea id="prathamAbhipray"></textarea>
-      <label>द्वितीय भाषा (वाचन, अभिव्यक्ती) — अभिप्राय / शेरा</label>
-      <textarea id="dwitiyaAbhipray"></textarea>
-      <label>गणित (संख्याज्ञान, क्रिया, शाब्दिक उदाहरणे) — अभिप्राय / शेरा</label>
-      <textarea id="ganitAbhipray"></textarea>
+      <div class="row3">
+        <div><label>इयत्ता</label><input type="text" id="samvadIyatta"></div>
+        <div><label>तुकडी</label><input type="text" id="samvadTukadi"></div>
+        <div><label>शिक्षकाचे नाव</label><input type="text" id="samvadShikshak"></div>
+      </div>
+
+      <div class="subhead" style="margin-top:16px;">I) प्रथम भाषा (वाचन, लेखन, अभिव्यक्ती याबाबत संपादणूक विद्यार्थी टक्केवारी)</div>
+      <table class="mini">
+        <thead><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">वाचन</td><td><input type="text" id="prathamVachanPct"></td><td><input type="text" id="prathamVachanAbhipray"></td></tr>
+          <tr><td class="lbl">लेखन</td><td><input type="text" id="prathamLekhanPct"></td><td><input type="text" id="prathamLekhanAbhipray"></td></tr>
+          <tr><td class="lbl">अभिव्यक्ती</td><td><input type="text" id="prathamAbhivyaktiPct"></td><td><input type="text" id="prathamAbhivyaktiAbhipray"></td></tr>
+        </tbody>
+      </table>
+
+      <div class="subhead">II) द्वितीय भाषा (वाचन, लेखन, अभिव्यक्ती याबाबत संपादणूक विद्यार्थी टक्केवारी)</div>
+      <table class="mini">
+        <thead><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">वाचन</td><td><input type="text" id="dwitiyaVachanPct"></td><td><input type="text" id="dwitiyaVachanAbhipray"></td></tr>
+          <tr><td class="lbl">लेखन</td><td><input type="text" id="dwitiyaLekhanPct"></td><td><input type="text" id="dwitiyaLekhanAbhipray"></td></tr>
+          <tr><td class="lbl">अभिव्यक्ती</td><td><input type="text" id="dwitiyaAbhivyaktiPct"></td><td><input type="text" id="dwitiyaAbhivyaktiAbhipray"></td></tr>
+        </tbody>
+      </table>
+
+      <div class="subhead">III) गणित (संख्याज्ञान, संख्यावरील क्रिया, शाब्दिक उदाहरणे यात संपादणूक टक्केवारी)</div>
+      <table class="mini">
+        <thead><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+        <tbody>
+          <tr><td class="lbl">संख्याज्ञान</td><td><input type="text" id="ganitSankhyaPct"></td><td><input type="text" id="ganitSankhyaAbhipray"></td></tr>
+          <tr><td class="lbl">संख्यावरील क्रिया</td><td><input type="text" id="ganitKriyaPct"></td><td><input type="text" id="ganitKriyaAbhipray"></td></tr>
+          <tr><td class="lbl">शाब्दिक उदाहरणे</td><td><input type="text" id="ganitShabdikPct"></td><td><input type="text" id="ganitShabdikAbhipray"></td></tr>
+        </tbody>
+      </table>
+
+      <div class="subhead">IV) विज्ञान (संकल्पना, तत्त्व)</div>
+      <textarea id="vidnyanAbhipray"></textarea>
+
+      <div class="subhead">V) सामाजिक शास्त्रे</div>
+      <textarea id="samajikAbhipray"></textarea>
+
+      <div class="subhead">VI) उपरोक्त I ते V मध्ये आवश्यक क्षमतेपेक्षा कमी क्षमता प्राप्त विद्यार्थ्यांसाठी उपक्रम / करावयाच्या उपाययोजना</div>
+      <textarea id="upayYojna"></textarea>
     </div>
   </details>
 
   <details class="section">
     <summary>६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
     <div class="section-body">
-      <label>विद्यार्थी नोंदणी प्रमाण</label><input type="text" id="narlikarNondani">
+      <label>विद्या विद्यार्थी नोंदणी प्रमाण</label><input type="text" id="narlikarNondani">
       <label>वापराचे प्रमाण</label><input type="text" id="narlikarVapar">
       <label>प्राविण्य विद्यार्थी प्रमाण</label><input type="text" id="narlikarPraviny">
     </div>
@@ -540,7 +579,7 @@
 
 <div class="modal-bg" id="printModalBg">
   <div class="modal">
-    <h2>PDF तयार होत आहे...</h2>
+    <h2>PDF तयार होत ভাগে...</h2>
     <p class="small-note">नवीन विंडो/टॅबमध्ये प्रिंट प्रीव्ह्यू उघडेल. तिथे "Save as PDF" / "PDF म्हणून जतन करा" पर्याय निवडा.</p>
     <button class="btn-secondary btn-block" id="closePrintModal">बंद करा</button>
   </div>
@@ -548,7 +587,7 @@
 
 <script>
 /* ============================================================
-   SCHOOL LIST — केंद्र रविवार पेठ, ता. अंबाजोगाई, जि. बीड
+   SCHOOL LIST
    ============================================================ */
 const SCHOOLS = [
   {name:"सी.पी.एस. रविवार पेठ", udise:"27270101612"},
@@ -581,12 +620,7 @@ const SPARDHA_ITEMS = ["शिष्यवृत्ती परीक्षा 
 const SAHITYA_ITEMS = ["ग्रंथालय","संगणक कक्ष","विज्ञान प्रयोगशाळा","भाषा पेटी","गणित पेटी","FLN किट","अटल टिंकरिंग लॅब","नाविन्यपूर्ण विज्ञान केंद्र","अन्य"];
 const VNI_ITEMS = ["विषयाची मांडणी","साहित्य वापर","उदाहरणे/दाखले वापर","प्रश्नोत्तरे / विद्यार्थी प्रतिसाद","सर्वसाधारण अभिप्राय"];
 
-// New dynamic STUDENT CATEGORIES
-const STUDENT_CATEGORIES = [
-  "अनुसूचित जाती", "अनुसूचित जमाती", "भ ज अ", "भ ज ब", 
-  "भ ज क", "भ ज ड", "VJNT", "SBC", "SEBC", "OBC", 
-  "General", "अल्पसंख्याक", "CWSN"
-];
+const STUDENT_CATEGORIES = ["अनुसूचित जाती", "अनुसूचित जमाती", "भ ज अ", "भ ज ब", "भ ज क", "भ ज ड", "VJNT", "SBC", "SEBC", "OBC", "General", "अल्पसंख्याक", "CWSN"];
 const STD_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी", "इ 6 वी", "इ 7 वी", "इ 8 वी"];
 let classCounterId = 0;
 
@@ -615,20 +649,17 @@ document.getElementById('schoolSelect').addEventListener('change', function(){
   const udiseField = document.getElementById('udise');
   if(v === 'other'){
     otherWrap.style.display = 'block';
-    udiseField.value = '';
-    udiseField.readOnly = false;
+    udiseField.value = ''; udiseField.readOnly = false;
   } else if(v === ''){
-    otherWrap.style.display = 'none';
-    udiseField.value = '';
+    otherWrap.style.display = 'none'; udiseField.value = '';
   } else {
     otherWrap.style.display = 'none';
-    udiseField.value = SCHOOLS[v].udise;
-    udiseField.readOnly = true;
+    udiseField.value = SCHOOLS[v].udise; udiseField.readOnly = true;
   }
 });
 
 /* ============================================================
-   CLASSWISE DYNAMIC FUNCTIONS (वर्गनिहाय विद्यार्थी संख्या)
+   CLASSWISE DYNAMIC FUNCTIONS
    ============================================================ */
 function addClassRow(className = "") {
   classCounterId++;
@@ -674,14 +705,10 @@ function addCategoryEntry(classId, catVal = "", bVal = "", gVal = "") {
      const sel = (c === catVal) ? 'selected' : '';
      catOptions += `<option value="${c}" ${sel}>${c}</option>`;
   });
-  if(catVal && !STUDENT_CATEGORIES.includes(catVal)) {
-     catOptions += `<option value="${catVal}" selected>${catVal}</option>`;
-  }
+  if(catVal && !STUDENT_CATEGORIES.includes(catVal)) catOptions += `<option value="${catVal}" selected>${catVal}</option>`;
 
   entryDiv.innerHTML = `
-    <select class="cat-select" style="flex:2; min-width:110px; padding:6px;" onchange="calcClassTotals()">
-      ${catOptions}
-    </select>
+    <select class="cat-select" style="flex:2; min-width:110px; padding:6px;" onchange="calcClassTotals()">${catOptions}</select>
     <div style="display:flex; flex:1; gap:4px; align-items:center; min-width:80px;">
       <label style="margin:0; font-size:11.5px; color:#555;">मुले</label>
       <input type="number" min="0" class="boy-input" style="flex:1; padding:6px; text-align:center;" value="${bVal}" oninput="calcClassTotals()">
@@ -695,95 +722,58 @@ function addCategoryEntry(classId, catVal = "", bVal = "", gVal = "") {
   container.appendChild(entryDiv);
 }
 
-function removeClassRow(btn) {
-  if(confirm("ही इयत्ता काढायची आहे का?")) {
-    btn.closest('.class-row').remove();
-    calcClassTotals();
-  }
-}
+function removeClassRow(btn) { if(confirm("ही इयत्ता काढायची आहे का?")) { btn.closest('.class-row').remove(); calcClassTotals(); } }
 
 function calcClassTotals() {
   let grandBoys = 0, grandGirls = 0;
-  
   document.querySelectorAll('.class-row').forEach(row => {
     let boys = 0, girls = 0;
     row.querySelectorAll('.boy-input').forEach(inp => boys += parseInt(inp.value) || 0);
     row.querySelectorAll('.girl-input').forEach(inp => girls += parseInt(inp.value) || 0);
-    let total = boys + girls;
-    
     const txtSpan = row.querySelector('.class-totals-text');
-    if(txtSpan) txtSpan.innerText = `मुले ${boys} · मुली ${girls} · एकूण ${total}`;
-    
-    grandBoys += boys;
-    grandGirls += girls;
+    if(txtSpan) txtSpan.innerText = `मुले ${boys} · मुली ${girls} · एकूण ${boys + girls}`;
+    grandBoys += boys; grandGirls += girls;
   });
-  
   document.getElementById('grandTotalDisplay').innerText = `मुले ${grandBoys} · मुली ${grandGirls} · एकूण ${grandBoys + grandGirls}`;
 }
-document.getElementById('addClassBtn').addEventListener('click', () => {
-  const id = addClassRow();
-  addCategoryEntry(id);
-});
+document.getElementById('addClassBtn').addEventListener('click', () => { const id = addClassRow(); addCategoryEntry(id); });
 
 function buildNipunTable(){
-  const tbody = document.querySelector('#nipunTable tbody');
-  tbody.innerHTML = '';
+  const tbody = document.querySelector('#nipunTable tbody'); tbody.innerHTML = '';
   NIPUN_IYATTA.forEach((iy,i)=>{
     const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="lbl">${iy}</td>
-      <td><input type="number" min="0" id="nipun_pat_${i}"></td>
-      <td><input type="number" min="0" id="nipun_nipun_${i}"></td>
-      <td><input type="text" id="nipun_prayatn_${i}" style="min-width:140px;"></td>`;
+    tr.innerHTML = `<td class="lbl">${iy}</td><td><input type="number" min="0" id="nipun_pat_${i}"></td><td><input type="number" min="0" id="nipun_nipun_${i}"></td><td><input type="text" id="nipun_prayatn_${i}" style="min-width:140px;"></td>`;
     tbody.appendChild(tr);
   });
 }
-
 function buildVniTable(){
-  const tbody = document.querySelector('#vniTable tbody');
-  tbody.innerHTML = '';
+  const tbody = document.querySelector('#vniTable tbody'); tbody.innerHTML = '';
   VNI_ITEMS.forEach((name,i)=>{
     const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="lbl">${name}</td>
-      <td><input type="text" id="vni_abhipray_${i}"></td>`;
+    tr.innerHTML = `<td class="lbl">${name}</td><td><input type="text" id="vni_abhipray_${i}"></td>`;
     tbody.appendChild(tr);
   });
   const trExtra = document.createElement('tr');
-  trExtra.innerHTML = `
-    <td><input type="text" id="vni_extra_label" placeholder="इतर तपशील"></td>
-    <td><input type="text" id="vni_extra_abhipray"></td>`;
+  trExtra.innerHTML = `<td><input type="text" id="vni_extra_label" placeholder="इतर तपशील"></td><td><input type="text" id="vni_extra_abhipray"></td>`;
   tbody.appendChild(trExtra);
 }
-
 function buildSpardhaTable(){
-  const tbody = document.querySelector('#spardhaTable tbody');
-  tbody.innerHTML = '';
+  const tbody = document.querySelector('#spardhaTable tbody'); tbody.innerHTML = '';
   SPARDHA_ITEMS.forEach((name,i)=>{
     const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="lbl">${name}</td>
-      <td><input type="text" id="spardha_niyojan_${i}"></td>
-      <td><input type="text" id="spardha_magil_${i}"></td>
-      <td><input type="text" id="spardha_shishy_${i}"></td>`;
+    tr.innerHTML = `<td class="lbl">${name}</td><td><input type="text" id="spardha_niyojan_${i}"></td><td><input type="text" id="spardha_magil_${i}"></td><td><input type="text" id="spardha_shishy_${i}"></td>`;
     tbody.appendChild(tr);
   });
 }
-
 function buildSahityaTable(){
-  const tbody = document.querySelector('#sahityaTable tbody');
-  tbody.innerHTML = '';
+  const tbody = document.querySelector('#sahityaTable tbody'); tbody.innerHTML = '';
   SAHITYA_ITEMS.forEach((name,i)=>{
     const tr = document.createElement('tr');
-    tr.innerHTML = `
-      <td class="lbl">${name}</td>
-      <td><select id="sahitya_upalabdhata_${i}"><option value=""> </option><option>होय</option><option>नाही</option></select></td>
-      <td><input type="text" id="sahitya_abhipray_${i}"></td>`;
+    tr.innerHTML = `<td class="lbl">${name}</td><td><select id="sahitya_upalabdhata_${i}"><option value=""> </option><option>होय</option><option>नाही</option></select></td><td><input type="text" id="sahitya_abhipray_${i}"></td>`;
     tbody.appendChild(tr);
   });
 }
 
-/* Percentage auto-calc */
 function pct(a,b){ a=parseFloat(a); b=parseFloat(b); if(!b) return ''; return Math.round((a/b)*1000)/10 + '%'; }
 function bindPct(patId,upId,outId){
   const recalc = ()=>{ document.getElementById(outId).value = pct(document.getElementById(upId).value, document.getElementById(patId).value); };
@@ -792,7 +782,7 @@ function bindPct(patId,upId,outId){
 }
 
 /* ============================================================
-   TABS
+   TABS & UTILS
    ============================================================ */
 document.querySelectorAll('.tabbar > .tab-btn').forEach(btn=>{
   btn.addEventListener('click', ()=>{
@@ -804,8 +794,6 @@ document.querySelectorAll('.tabbar > .tab-btn').forEach(btn=>{
     if(btn.dataset.view === 'adminView') refreshAdminGate();
   });
 });
-
-/* Admin sub-tabs (नोंदी / सेटिंग्ज / PIN बदला) */
 document.querySelectorAll('#adminContent .tab-btn[data-subview]').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     document.querySelectorAll('#adminContent .tab-btn[data-subview]').forEach(b=>b.classList.remove('active'));
@@ -817,9 +805,6 @@ document.querySelectorAll('#adminContent .tab-btn[data-subview]').forEach(btn=>{
   });
 });
 
-/* ============================================================
-   TOAST
-   ============================================================ */
 let toastTimer;
 function showToast(msg){
   const t = document.getElementById('toast');
@@ -828,34 +813,24 @@ function showToast(msg){
   toastTimer = setTimeout(()=>t.classList.remove('show'), 2600);
 }
 
-/* ============================================================
-   ONLINE STATUS
-   ============================================================ */
 function updateNetStatus(){
-  const dot = document.getElementById('netDot');
-  const txt = document.getElementById('netText');
+  const dot = document.getElementById('netDot'); const txt = document.getElementById('netText');
   if(navigator.onLine){ dot.className='dot on'; txt.textContent='ऑनलाइन'; }
   else { dot.className='dot off'; txt.textContent='ऑफलाइन'; }
 }
 window.addEventListener('online', ()=>{ updateNetStatus(); showToast('इंटरनेट उपलब्ध — प्रलंबित नोंदी सिंक करत आहे...'); syncAllPending(); });
 window.addEventListener('offline', updateNetStatus);
 
-/* ============================================================
-   STORAGE
-   ============================================================ */
 function loadRecords(){ try{ return JSON.parse(localStorage.getItem(LS_RECORDS)) || []; }catch(e){ return []; } }
 function saveRecords(recs){ localStorage.setItem(LS_RECORDS, JSON.stringify(recs)); updatePendingCount(); }
 function loadConfig(){ try{ return JSON.parse(localStorage.getItem(LS_CONFIG)) || {}; }catch(e){ return {}; } }
 function saveConfig(cfg){ localStorage.setItem(LS_CONFIG, JSON.stringify(cfg)); }
-
 function updatePendingCount(){
-  const recs = loadRecords();
-  const pending = recs.filter(r=>!r.synced).length;
-  document.getElementById('pendingCount').textContent = pending;
+  document.getElementById('pendingCount').textContent = loadRecords().filter(r=>!r.synced).length;
 }
 
 /* ============================================================
-   FORM -> RECORD OBJECT
+   FORM -> RECORD OBJECT (UPDATED SECTION 5)
    ============================================================ */
 function val(id){ const el = document.getElementById(id); return el ? el.value.trim() : ''; }
 
@@ -867,108 +842,73 @@ function collectForm(){
   else { schoolName = SCHOOLS[schoolSel].name; udise = SCHOOLS[schoolSel].udise; }
 
   const rec = {
-    "शाळेचे_नाव": schoolName,
-    "UDISE_कोड": udise,
-    "दिनांक_वेळ": val('visitDateTime'),
-    "तालुका_केंद्र": val('talukaKendra'),
-    "मुख्याध्यापक": val('mukhyadhyapak'),
-    "पर्यवेक्षक": val('paryavekshak'),
-    "विद्यार्थी_एकूण_पट": val('vidPat'),
-    "विद्यार्थी_उपस्थित": val('vidUpasthit'),
-    "विद्यार्थी_टक्केवारी": val('vidPercent'),
-    "विद्यार्थी_गैरहजर_तपशील": val('vidGairhajar'),
-    "शिक्षक_एकूण": val('shikPat'),
-    "शिक्षक_उपस्थित": val('shikUpasthit'),
-    "शिक्षक_टक्केवारी": val('shikPercent'),
-    "शिक्षक_अनुपस्थिती_तपशील": val('shikAnupasthit'),
-    "प्रथम_भाषा_अभिप्राय": val('prathamAbhipray'),
-    "द्वितीय_भाषा_अभिप्राय": val('dwitiyaAbhipray'),
-    "गणित_अभिप्राय": val('ganitAbhipray'),
-    "वर्गनिरीक्षण_शिक्षक": val('vniShikshak'),
-    "वर्गनिरीक्षण_इयत्ता": val('vniIyatta'),
-    "वर्गनिरीक्षण_विषय": val('vniVishay'),
-    "वर्गनिरीक्षण_घटक": val('vniGhatak'),
-    "स्वच्छता_परिसर": val('suchchhataParisar'),
-    "स्वच्छता_वैयक्तिक": val('suchchhataVaiyaktik'),
-    "वर्गनिरीक्षण_तुकडी": val('vniTukadi'),
-    "नारळीकर_नोंदणी": val('narlikarNondani'),
-    "नारळीकर_वापर": val('narlikarVapar'),
-    "नारळीकर_प्राविण्य": val('narlikarPraviny'),
-    "मूल्यवर्धन_आयोजन": val('mulyaAyojan'),
-    "मूल्यवर्धन_अभिप्राय": val('mulyaAbhipray'),
-    "मराठी_अंमलबजावणी": val('marathiAmal'),
-    "मराठी_प्रशिक्षण_आवश्यक": val('marathiPrashAvashyak'),
-    "मराठी_प्रशिक्षण_झाले": val('marathiPrashZale'),
-    "मराठी_अभिप्राय": val('marathiAbhipray'),
-    "सुरक्षा_सखी_समिती": val('surakshaSakhi'),
-    "सुरक्षा_तक्रार_पेटी": val('surakshaTakrar'),
-    "सुरक्षा_हेल्पलाइन": val('surakshaHelpline'),
-    "सुरक्षा_CCTV": val('surakshaCctv'),
+    "शाळेचे_नाव": schoolName, "UDISE_कोड": udise, "दिनांक_वेळ": val('visitDateTime'),
+    "तालुका_केंद्र": val('talukaKendra'), "मुख्याध्यापक": val('mukhyadhyapak'), "पर्यवेक्षक": val('paryavekshak'),
+    "विद्यार्थी_एकूण_पट": val('vidPat'), "विद्यार्थी_उपस्थित": val('vidUpasthit'), "विद्यार्थी_टक्केवारी": val('vidPercent'), "विद्यार्थी_गैरहजर_तपशील": val('vidGairhajar'),
+    "शिक्षक_एकूण": val('shikPat'), "शिक्षक_उपस्थित": val('shikUpasthit'), "शिक्षक_टक्केवारी": val('shikPercent'), "शिक्षक_अनुपस्थिती_तपशील": val('shikAnupasthit'),
+    
+    // NEW SECTION 5 FIELDS
+    "संवाद_इयत्ता": val('samvadIyatta'), "संवाद_तुकडी": val('samvadTukadi'), "संवाद_शिक्षक": val('samvadShikshak'),
+    "प्रथम_वाचन_टक्केवारी": val('prathamVachanPct'), "प्रथम_वाचन_अभिप्राय": val('prathamVachanAbhipray'),
+    "प्रथम_लेखन_टक्केवारी": val('prathamLekhanPct'), "प्रथम_लेखन_अभिप्राय": val('prathamLekhanAbhipray'),
+    "प्रथम_अभिव्यक्ती_टक्केवारी": val('prathamAbhivyaktiPct'), "प्रथम_अभिव्यक्ती_अभिप्राय": val('prathamAbhivyaktiAbhipray'),
+    "द्वितीय_वाचन_टक्केवारी": val('dwitiyaVachanPct'), "द्वितीय_वाचन_अभिप्राय": val('dwitiyaVachanAbhipray'),
+    "द्वितीय_लेखन_टक्केवारी": val('dwitiyaLekhanPct'), "द्वितीय_लेखन_अभिप्राय": val('dwitiyaLekhanAbhipray'),
+    "द्वितीय_अभिव्यक्ती_टक्केवारी": val('dwitiyaAbhivyaktiPct'), "द्वितीय_अभिव्यक्ती_अभिप्राय": val('dwitiyaAbhivyaktiAbhipray'),
+    "गणित_संख्याज्ञान_टक्केवारी": val('ganitSankhyaPct'), "गणित_संख्याज्ञान_अभिप्राय": val('ganitSankhyaAbhipray'),
+    "गणित_क्रिया_टक्केवारी": val('ganitKriyaPct'), "गणित_क्रिया_अभिप्राय": val('ganitKriyaAbhipray'),
+    "गणित_शाब्दिक_टक्केवारी": val('ganitShabdikPct'), "गणित_शाब्दिक_अभिप्राय": val('ganitShabdikAbhipray'),
+    "विज्ञान_अभिप्राय": val('vidnyanAbhipray'),
+    "सामाजिक_शास्त्रे_अभिप्राय": val('samajikAbhipray'),
+    "संवाद_उपाययोजना": val('upayYojna'),
+
+    "वर्गनिरीक्षण_शिक्षक": val('vniShikshak'), "वर्गनिरीक्षण_इयत्ता": val('vniIyatta'), "वर्गनिरीक्षण_विषय": val('vniVishay'), "वर्गनिरीक्षण_घटक": val('vniGhatak'),
+    "स्वच्छता_परिसर": val('suchchhataParisar'), "स्वच्छता_वैयक्तिक": val('suchchhataVaiyaktik'), "वर्गनिरीक्षण_तुकडी": val('vniTukadi'),
+    "नारळीकर_नोंदणी": val('narlikarNondani'), "नारळीकर_वापर": val('narlikarVapar'), "नारळीकर_प्राविण्य": val('narlikarPraviny'),
+    "मूल्यवर्धन_आयोजन": val('mulyaAyojan'), "मूल्यवर्धन_अभिप्राय": val('mulyaAbhipray'),
+    "मराठी_अंमलबजावणी": val('marathiAmal'), "मराठी_प्रशिक्षण_आवश्यक": val('marathiPrashAvashyak'), "मराठी_प्रशिक्षण_झाले": val('marathiPrashZale'), "मराठी_अभिप्राय": val('marathiAbhipray'),
+    "सुरक्षा_सखी_समिती": val('surakshaSakhi'), "सुरक्षा_तक्रार_पेटी": val('surakshaTakrar'), "सुरक्षा_हेल्पलाइन": val('surakshaHelpline'), "सुरक्षा_CCTV": val('surakshaCctv'),
     "शनिवार_उपक्रम": val('shanivarUpakram'),
-    "PM_POSHAN_online": val('pmOnline'),
-    "PM_POSHAN_मेनू": val('pmMenu'),
-    "PM_POSHAN_चव_रजिस्टर": val('pmChav'),
-    "PM_POSHAN_साठवणूक": val('pmSathvanuk'),
-    "PM_POSHAN_किचन_अभिप्राय": val('pmKitchen'),
-    "माजी_विद्यार्थी_स्थापना": val('majiSthapna'),
-    "माजी_विद्यार्थी_मेळावा": val('majiMelava'),
-    "माजी_विद्यार्थी_उपलब्धी": val('majiUpalabdhi'),
-    "SMC_सभा_झाली": val('smcZali'),
-    "SMC_सभेचा_दिनांक": val('smcDinank'),
-    "SMC_उपस्थित_सदस्य": val('smcUpasthit'),
-    "खेळ_मैदान": val('khelMaidan'),
-    "खेळ_सहभाग_यश": val('khelYash'),
-    "सर्वसाधारण_अभिप्राय": val('sarvaAbhipray'),
-    "स्वाक्षरी_मुख्याध्यापक": val('signMukhyadhyapak'),
-    "स्वाक्षरी_अधिकारी": val('signAdhikari'),
-    "साहित्य_शिक्षक_निर्मित": val('sahityaShikshakNirmit'),
-    "साहित्य_तयार_साहित्य": val('sahityaTayarSahitya'),
-    "साहित्य_वापर": val('sahityaVapar'),
+    "PM_POSHAN_online": val('pmOnline'), "PM_POSHAN_मेनू": val('pmMenu'), "PM_POSHAN_चव_रजिस्टर": val('pmChav'), "PM_POSHAN_साठवणूक": val('pmSathvanuk'), "PM_POSHAN_किचन_अभिप्राय": val('pmKitchen'),
+    "माजी_विद्यार्थी_स्थापना": val('majiSthapna'), "माजी_विद्यार्थी_मेळावा": val('majiMelava'), "माजी_विद्यार्थी_उपलब्धी": val('majiUpalabdhi'),
+    "SMC_सभा_झाली": val('smcZali'), "SMC_सभेचा_दिनांक": val('smcDinank'), "SMC_उपस्थित_सदस्य": val('smcUpasthit'),
+    "खेळ_मैदान": val('khelMaidan'), "खेळ_सहभाग_यश": val('khelYash'),
+    "सर्वसाधारण_अभिप्राय": val('sarvaAbhipray'), "स्वाक्षरी_मुख्याध्यापक": val('signMukhyadhyapak'), "स्वाक्षरी_अधिकारी": val('signAdhikari'),
+    "साहित्य_शिक्षक_निर्मित": val('sahityaShikshakNirmit'), "साहित्य_तयार_साहित्य": val('sahityaTayarSahitya'), "साहित्य_वापर": val('sahityaVapar'),
   };
 
   NIPUN_IYATTA.forEach((iy,i)=>{
-    rec["निपुण_"+iy+"_पट"] = val('nipun_pat_'+i);
-    rec["निपुण_"+iy+"_निपुण_संख्या"] = val('nipun_nipun_'+i);
-    rec["निपुण_"+iy+"_प्रयत्न"] = val('nipun_prayatn_'+i);
+    rec["निपुण_"+iy+"_पट"] = val('nipun_pat_'+i); rec["निपुण_"+iy+"_निपुण_संख्या"] = val('nipun_nipun_'+i); rec["निपुण_"+iy+"_प्रयत्न"] = val('nipun_prayatn_'+i);
   });
   
-  // Collect dynamic Classwise Breakdown Data
   const classData = [];
   document.querySelectorAll('.class-row').forEach(row => {
     const cName = row.querySelector('.class-name-input').value;
-    const catRows = row.querySelectorAll('.cat-entry');
     const catsData = [];
-    catRows.forEach(cr => {
+    row.querySelectorAll('.cat-entry').forEach(cr => {
        const cVal = cr.querySelector('.cat-select').value;
        const b = parseInt(cr.querySelector('.boy-input').value) || 0;
        const g = parseInt(cr.querySelector('.girl-input').value) || 0;
-       if(cVal || b || g) {
-          catsData.push({ category: cVal, boys: b, girls: g });
-       }
+       if(cVal || b || g) catsData.push({ category: cVal, boys: b, girls: g });
     });
     classData.push({ name: cName, data: catsData });
   });
   rec["वर्गनिहाय_विद्यार्थी"] = classData; 
 
   VNI_ITEMS.forEach((name,i)=>{ rec["वर्गनिरीक्षण_"+name] = val('vni_abhipray_'+i); });
-  rec["वर्गनिरीक्षण_इतर_तपशील"] = val('vni_extra_label');
-  rec["वर्गनिरीक्षण_इतर_अभिप्राय"] = val('vni_extra_abhipray');
+  rec["वर्गनिरीक्षण_इतर_तपशील"] = val('vni_extra_label'); rec["वर्गनिरीक्षण_इतर_अभिप्राय"] = val('vni_extra_abhipray');
   
   SPARDHA_ITEMS.forEach((name,i)=>{
-    rec["स्पर्धा"+(i+1)+"_नियोजन"] = val('spardha_niyojan_'+i);
-    rec["स्पर्धा"+(i+1)+"_मागील_वर्ष"] = val('spardha_magil_'+i);
-    rec["स्पर्धा"+(i+1)+"_शिष्यवृत्ती"] = val('spardha_shishy_'+i);
+    rec["स्पर्धा"+(i+1)+"_नियोजन"] = val('spardha_niyojan_'+i); rec["स्पर्धा"+(i+1)+"_मागील_वर्ष"] = val('spardha_magil_'+i); rec["स्पर्धा"+(i+1)+"_शिष्यवृत्ती"] = val('spardha_shishy_'+i);
   });
   SAHITYA_ITEMS.forEach((name,i)=>{
-    rec["साहित्य"+(i+1)+"_उपलब्धता"] = val('sahitya_upalabdhata_'+i);
-    rec["साहित्य"+(i+1)+"_अभिप्राय"] = val('sahitya_abhipray_'+i);
+    rec["साहित्य"+(i+1)+"_उपलब्धता"] = val('sahitya_upalabdhata_'+i); rec["साहित्य"+(i+1)+"_अभिप्राय"] = val('sahitya_abhipray_'+i);
   });
-
   return rec;
 }
 
 function fillFormFromRecord(rec){
-  resetForm(false, true); // true param skips default classes
+  resetForm(false, true);
   
   const idx = SCHOOLS.findIndex(s=>s.name===rec["शाळेचे_नाव"] && s.udise===rec["UDISE_कोड"]);
   if(idx>=0){ document.getElementById('schoolSelect').value = idx; document.getElementById('udise').value = rec["UDISE_कोड"]; }
@@ -979,7 +919,22 @@ function fillFormFromRecord(rec){
     visitDateTime:"दिनांक_वेळ", talukaKendra:"तालुका_केंद्र", mukhyadhyapak:"मुख्याध्यापक", paryavekshak:"पर्यवेक्षक",
     vidPat:"विद्यार्थी_एकूण_पट", vidUpasthit:"विद्यार्थी_उपस्थित", vidPercent:"विद्यार्थी_टक्केवारी", vidGairhajar:"विद्यार्थी_गैरहजर_तपशील",
     shikPat:"शिक्षक_एकूण", shikUpasthit:"शिक्षक_उपस्थित", shikPercent:"शिक्षक_टक्केवारी", shikAnupasthit:"शिक्षक_अनुपस्थिती_तपशील",
-    prathamAbhipray:"प्रथम_भाषा_अभिप्राय", dwitiyaAbhipray:"द्वितीय_भाषा_अभिप्राय", ganitAbhipray:"गणित_अभिप्राय",
+    
+    // NEW SECTION 5
+    samvadIyatta:"संवाद_इयत्ता", samvadTukadi:"संवाद_तुकडी", samvadShikshak:"संवाद_शिक्षक",
+    prathamVachanPct:"प्रथम_वाचन_टक्केवारी", prathamVachanAbhipray:"प्रथम_वाचन_अभिप्राय",
+    prathamLekhanPct:"प्रथम_लेखन_टक्केवारी", prathamLekhanAbhipray:"प्रथम_लेखन_अभिप्राय",
+    prathamAbhivyaktiPct:"प्रथम_अभिव्यक्ती_टक्केवारी", prathamAbhivyaktiAbhipray:"प्रथम_अभिव्यक्ती_अभिप्राय",
+    dwitiyaVachanPct:"द्वितीय_वाचन_टक्केवारी", dwitiyaVachanAbhipray:"द्वितीय_वाचन_अभिप्राय",
+    dwitiyaLekhanPct:"द्वितीय_लेखन_टक्केवारी", dwitiyaLekhanAbhipray:"द्वितीय_लेखन_अभिप्राय",
+    dwitiyaAbhivyaktiPct:"द्वितीय_अभिव्यक्ती_टक्केवारी", dwitiyaAbhivyaktiAbhipray:"द्वितीय_अभिव्यक्ती_अभिप्राय",
+    ganitSankhyaPct:"गणित_संख्याज्ञान_टक्केवारी", ganitSankhyaAbhipray:"गणित_संख्याज्ञान_अभिप्राय",
+    ganitKriyaPct:"गणित_क्रिया_टक्केवारी", ganitKriyaAbhipray:"गणित_क्रिया_अभिप्राय",
+    ganitShabdikPct:"गणित_शाब्दिक_टक्केवारी", ganitShabdikAbhipray:"गणित_शाब्दिक_अभिप्राय",
+    vidnyanAbhipray:"विज्ञान_अभिप्राय",
+    samajikAbhipray:"सामाजिक_शास्त्रे_अभिप्राय",
+    upayYojna:"संवाद_उपाययोजना",
+
     vniShikshak:"वर्गनिरीक्षण_शिक्षक", vniIyatta:"वर्गनिरीक्षण_इयत्ता", vniVishay:"वर्गनिरीक्षण_विषय", vniGhatak:"वर्गनिरीक्षण_घटक",
     vniTukadi:"वर्गनिरीक्षण_तुकडी", suchchhataParisar:"स्वच्छता_परिसर", suchchhataVaiyaktik:"स्वच्छता_वैयक्तिक",
     narlikarNondani:"नारळीकर_नोंदणी", narlikarVapar:"नारळीकर_वापर", narlikarPraviny:"नारळीकर_प्राविण्य",
@@ -991,8 +946,7 @@ function fillFormFromRecord(rec){
     majiSthapna:"माजी_विद्यार्थी_स्थापना", majiMelava:"माजी_विद्यार्थी_मेळावा", majiUpalabdhi:"माजी_विद्यार्थी_उपलब्धी",
     smcZali:"SMC_सभा_झाली", smcDinank:"SMC_सभेचा_दिनांक", smcUpasthit:"SMC_उपस्थित_सदस्य",
     khelMaidan:"खेळ_मैदान", khelYash:"खेळ_सहभाग_यश",
-    sarvaAbhipray:"सर्वसाधारण_अभिप्राय",
-    signMukhyadhyapak:"स्वाक्षरी_मुख्याध्यापक", signAdhikari:"स्वाक्षरी_अधिकारी",
+    sarvaAbhipray:"सर्वसाधारण_अभिप्राय", signMukhyadhyapak:"स्वाक्षरी_मुख्याध्यापक", signAdhikari:"स्वाक्षरी_अधिकारी",
     sahityaShikshakNirmit:"साहित्य_शिक्षक_निर्मित", sahityaTayarSahitya:"साहित्य_तयार_साहित्य", sahityaVapar:"साहित्य_वापर",
   };
   Object.keys(map).forEach(id=>{ const el=document.getElementById(id); if(el) el.value = rec[map[id]] || ''; });
@@ -1003,48 +957,32 @@ function fillFormFromRecord(rec){
     document.getElementById('nipun_prayatn_'+i).value = rec["निपुण_"+iy+"_प्रयत्न"] || '';
   });
   
-  // Fill Classwise Data (and migrate old format safely)
   document.getElementById('classListContainer').innerHTML = '';
   if (rec["वर्गनिहाय_विद्यार्थी"] && Array.isArray(rec["वर्गनिहाय_विद्यार्थी"])) {
     rec["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
       const id = addClassRow(cls.name);
-      const listDiv = document.getElementById(`cat_list_${id}`);
-      listDiv.innerHTML = ''; // clear default
-      const rowDetails = listDiv.closest('details');
-      rowDetails.open = false; // collapse loaded records
+      const listDiv = document.getElementById(`cat_list_${id}`); listDiv.innerHTML = ''; 
+      listDiv.closest('details').open = false; 
       
       if (cls.data && cls.data.length > 0) {
          cls.data.forEach(d => addCategoryEntry(id, d.category, d.boys, d.girls));
       } else if (cls.boys && Array.isArray(cls.boys)) {
-         // Auto-migrate from older grid format
          const OLD_CATEGORIES = ["SC", "ST", "VJ(NT-A)", "NT(B)", "NT(C)/SBC", "OBC", "OPEN"];
          let addedAny = false;
          OLD_CATEGORIES.forEach((oldCat, i) => {
-            const b = parseInt(cls.boys[i]) || 0;
-            const g = parseInt(cls.girls[i]) || 0;
-            if (b > 0 || g > 0) {
-               addCategoryEntry(id, oldCat, b, g);
-               addedAny = true;
-            }
+            const b = parseInt(cls.boys[i]) || 0; const g = parseInt(cls.girls[i]) || 0;
+            if (b > 0 || g > 0) { addCategoryEntry(id, oldCat, b, g); addedAny = true; }
          });
-         if (!addedAny) addCategoryEntry(id); // default empty
-      } else {
-         addCategoryEntry(id);
-      }
+         if (!addedAny) addCategoryEntry(id); 
+      } else { addCategoryEntry(id); }
     });
     calcClassTotals();
   } else {
-    // Fresh defaults if nothing was saved
-    STD_CLASSES.forEach(cls => {
-       const id = addClassRow(cls);
-       addCategoryEntry(id);
-    });
+    STD_CLASSES.forEach(cls => { const id = addClassRow(cls); addCategoryEntry(id); });
     calcClassTotals();
   }
 
-  VNI_ITEMS.forEach((name,i)=>{
-    document.getElementById('vni_abhipray_'+i).value = rec["वर्गनिरीक्षण_"+name] || '';
-  });
+  VNI_ITEMS.forEach((name,i)=>{ document.getElementById('vni_abhipray_'+i).value = rec["वर्गनिरीक्षण_"+name] || ''; });
   document.getElementById('vni_extra_label').value = rec["वर्गनिरीक्षण_इतर_तपशील"] || '';
   document.getElementById('vni_extra_abhipray').value = rec["वर्गनिरीक्षण_इतर_अभिप्राय"] || '';
   SPARDHA_ITEMS.forEach((name,i)=>{
@@ -1058,9 +996,6 @@ function fillFormFromRecord(rec){
   });
 }
 
-/* ============================================================
-   SAVE / RESET
-   ============================================================ */
 function resetForm(showMsg, skipClasses){
   document.querySelectorAll('#formView input[type=text], #formView input[type=number], #formView input[type=date], #formView input[type=time], #formView input[type=datetime-local], #formView textarea').forEach(el=>el.value='');
   document.querySelectorAll('#formView select').forEach(el=>el.selectedIndex=0);
@@ -1069,24 +1004,18 @@ function resetForm(showMsg, skipClasses){
   
   if(!skipClasses){
     document.getElementById('classListContainer').innerHTML = '';
-    STD_CLASSES.forEach(cls => {
-       const id = addClassRow(cls);
-       addCategoryEntry(id);
-    });
+    STD_CLASSES.forEach(cls => { const id = addClassRow(cls); addCategoryEntry(id); });
     calcClassTotals();
   }
 
   const cfg = loadConfig();
   if(cfg.defaultParyavekshak) document.getElementById('paryavekshak').value = cfg.defaultParyavekshak;
-  const now = new Date();
-  now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+  const now = new Date(); now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
   document.getElementById('visitDateTime').value = now.toISOString().slice(0,16);
   if(showMsg!==false) showToast('फॉर्म रिकामे केले.');
 }
 
-document.getElementById('resetBtn').addEventListener('click', ()=>{
-  if(confirm('संपूर्ण फॉर्म रिकामे करायचे आहे का?')) resetForm();
-});
+document.getElementById('resetBtn').addEventListener('click', ()=>{ if(confirm('संपूर्ण फॉर्म रिकामे करायचे आहे का?')) resetForm(); });
 
 document.getElementById('saveBtn').addEventListener('click', ()=>{
   const schoolSel = document.getElementById('schoolSelect').value;
@@ -1095,68 +1024,43 @@ document.getElementById('saveBtn').addEventListener('click', ()=>{
 
   const rec = collectForm();
   rec._id = 'r_' + Date.now() + '_' + Math.random().toString(36).slice(2,7);
-  rec._savedAt = new Date().toISOString();
-  rec.synced = false;
-  rec._syncAttemptedAt = null;
+  rec._savedAt = new Date().toISOString(); rec.synced = false; rec._syncAttemptedAt = null;
 
-  const recs = loadRecords();
-  recs.unshift(rec);
+  const recs = loadRecords(); recs.unshift(rec);
   saveRecords(recs);
   showToast('✅ नोंद ऑफलाइन जतन झाली.');
   resetForm(false);
-
   if(navigator.onLine){ syncRecord(rec._id); }
 });
 
 /* ============================================================
-   GOOGLE SHEET SYNC
+   GOOGLE SHEET SYNC & LIST
    ============================================================ */
 function syncRecord(id){
-  const cfg = loadConfig();
-  if(!cfg.gsUrl){ return; }
-  const recs = loadRecords();
-  const rec = recs.find(r=>r._id===id);
-  if(!rec) return;
-  const payload = Object.assign({}, rec);
-  fetch(cfg.gsUrl, {
-    method:'POST',
-    mode:'no-cors',
-    headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body: JSON.stringify(payload)
-  }).then(()=>{
-    rec.synced = true;
-    rec._syncAttemptedAt = new Date().toISOString();
-    saveRecords(recs);
-    renderRecords();
-    showToast('☁️ Google Sheet ला पाठवले: ' + (rec["शाळेचे_नाव"]||''));
+  const cfg = loadConfig(); if(!cfg.gsUrl) return;
+  const recs = loadRecords(); const rec = recs.find(r=>r._id===id); if(!rec) return;
+  fetch(cfg.gsUrl, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(rec) })
+  .then(()=>{
+    rec.synced = true; rec._syncAttemptedAt = new Date().toISOString();
+    saveRecords(recs); renderRecords(); showToast('☁️ Google Sheet ला पाठवले: ' + (rec["शाळेचे_नाव"]||''));
   }).catch(()=>{
-    rec._syncAttemptedAt = new Date().toISOString();
-    saveRecords(recs);
-    showToast('⚠️ सिंक अयशस्वी — नंतर पुन्हा प्रयत्न करा.');
+    rec._syncAttemptedAt = new Date().toISOString(); saveRecords(recs); showToast('⚠️ सिंक अयशस्वी — नंतर पुन्हा प्रयत्न करा.');
   });
 }
 
 function syncAllPending(){
-  const cfg = loadConfig();
-  if(!cfg.gsUrl){ showToast('आधी सेटिंग्जमध्ये Google Sheet URL टाका.'); return; }
-  const recs = loadRecords();
-  const pending = recs.filter(r=>!r.synced);
+  const cfg = loadConfig(); if(!cfg.gsUrl){ showToast('आधी सेटिंग्जमध्ये Google Sheet URL टाका.'); return; }
+  const pending = loadRecords().filter(r=>!r.synced);
   if(!pending.length){ showToast('सिंक करण्यासाठी काही प्रलंबित नाही.'); return; }
   showToast(pending.length + ' नोंदी सिंक करत आहे...');
   pending.forEach(r=> syncRecord(r._id));
 }
 document.getElementById('syncAllBtn').addEventListener('click', syncAllPending);
 
-/* ============================================================
-   RECORDS LIST VIEW
-   ============================================================ */
 function renderRecords(filterText){
   const wrap = document.getElementById('recordsWrap');
   let recs = loadRecords();
-  if(filterText){
-    const f = filterText.toLowerCase();
-    recs = recs.filter(r => (r["शाळेचे_नाव"]||'').toLowerCase().includes(f) || (r["UDISE_कोड"]||'').toLowerCase().includes(f));
-  }
+  if(filterText){ const f = filterText.toLowerCase(); recs = recs.filter(r => (r["शाळेचे_नाव"]||'').toLowerCase().includes(f) || (r["UDISE_कोड"]||'').toLowerCase().includes(f)); }
   updatePendingCount();
   if(!recs.length){ wrap.innerHTML = '<div class="empty">अजून कोणतीही नोंद जतन केलेली नाही.</div>'; return; }
   wrap.innerHTML = recs.map(r=>{
@@ -1175,47 +1079,25 @@ function renderRecords(filterText){
   }).join('');
 }
 function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-function deleteRecord(id){
-  if(!confirm('ही नोंद कायमची काढायची आहे का?')) return;
-  let recs = loadRecords();
-  recs = recs.filter(r=>r._id!==id);
-  saveRecords(recs);
-  renderRecords();
-  showToast('नोंद काढली.');
-}
-
+function deleteRecord(id){ if(confirm('ही नोंद कायमची काढायची आहे का?')){ saveRecords(loadRecords().filter(r=>r._id!==id)); renderRecords(); showToast('नोंद काढली.'); } }
 function editRecord(id){
-  const recs = loadRecords();
-  const rec = recs.find(r=>r._id===id);
-  if(!rec) return;
-  fillFormFromRecord(rec);
+  const rec = loadRecords().find(r=>r._id===id); if(!rec) return; fillFormFromRecord(rec);
   document.querySelector('.tab-btn[data-view="formView"]').click();
-  showToast('नोंद संपादनासाठी लोड केली — बदल करून पुन्हा "जतन करा" दाबा (नवीन नोंद तयार होईल).');
+  showToast('नोंद संपादनासाठी लोड केली — बदल करून पुन्हा "जतन करा" दाबा.');
 }
 
 /* ============================================================
-   PRINT / PDF
+   PRINT / PDF (UPDATED WITH SECTION 5)
    ============================================================ */
-function fieldRow(label, value){
-  return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`;
-}
+function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 function viewPrint(id){
-  const recs = loadRecords();
-  const r = recs.find(x=>x._id===id);
-  if(!r) return;
-
-  // Build the SMART dynamic classwise table
+  const r = loadRecords().find(x=>x._id===id); if(!r) return;
   let classHtml = '';
   if(r["वर्गनिहाय_विद्यार्थी"] && r["वर्गनिहाय_विद्यार्थी"].length) {
-    // 1. Gather ONLY the categories that are actually used in this specific record
     const usedCats = new Set();
     r["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
-       if(cls.data) {
-           cls.data.forEach(d => {
-               if ((parseInt(d.boys)>0 || parseInt(d.girls)>0) && d.category) usedCats.add(d.category);
-           });
-       } else if (cls.boys) { // Handle legacy format print gracefully
+       if(cls.data) cls.data.forEach(d => { if ((parseInt(d.boys)>0 || parseInt(d.girls)>0) && d.category) usedCats.add(d.category); });
+       else if (cls.boys) {
            const OLD_CATEGORIES = ["SC", "ST", "VJ(NT-A)", "NT(B)", "NT(C)/SBC", "OBC", "OPEN"];
            cls.boys.forEach((b, i) => { if(parseInt(b)>0 || parseInt(cls.girls[i])>0) usedCats.add(OLD_CATEGORIES[i]); });
        }
@@ -1238,59 +1120,38 @@ function viewPrint(id){
       </tr>` : ''}`;
       
     let grandBoys = 0, grandGirls = 0;
-    const catTotalsBoys = {};
-    const catTotalsGirls = {};
+    const catTotalsBoys = {}; const catTotalsGirls = {};
     catsArray.forEach(c => { catTotalsBoys[c]=0; catTotalsGirls[c]=0; });
 
     r["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
-      let classBoys = 0, classGirls = 0;
-      let clsDataMap = {};
-      
+      let classBoys = 0, classGirls = 0; let clsDataMap = {};
       if (cls.data) {
           cls.data.forEach(d => {
               clsDataMap[d.category] = { b: parseInt(d.boys)||0, g: parseInt(d.girls)||0 };
-              classBoys += parseInt(d.boys)||0;
-              classGirls += parseInt(d.girls)||0;
+              classBoys += parseInt(d.boys)||0; classGirls += parseInt(d.girls)||0;
           });
       } else if (cls.boys) {
           const OLD_CATEGORIES = ["SC", "ST", "VJ(NT-A)", "NT(B)", "NT(C)/SBC", "OBC", "OPEN"];
           cls.boys.forEach((b, i) => {
-             const bVal = parseInt(b)||0;
-             const gVal = parseInt(cls.girls[i])||0;
+             const bVal = parseInt(b)||0; const gVal = parseInt(cls.girls[i])||0;
              if(bVal>0 || gVal>0) clsDataMap[OLD_CATEGORIES[i]] = { b: bVal, g: gVal };
-             classBoys += bVal;
-             classGirls += gVal;
+             classBoys += bVal; classGirls += gVal;
           });
       }
-
-      grandBoys += classBoys; 
-      grandGirls += classGirls;
-
+      grandBoys += classBoys; grandGirls += classGirls;
       classHtml += `<tr>
         <td style="text-align:left;"><b>${escapeHtml(cls.name)}</b></td>
-        ${catsArray.map(c => {
-           const b = clsDataMap[c] ? clsDataMap[c].b : 0;
-           catTotalsBoys[c] += b;
-           return `<td>${b||'-'}</td>`;
-        }).join('')}
+        ${catsArray.map(c => { const b = clsDataMap[c] ? clsDataMap[c].b : 0; catTotalsBoys[c] += b; return `<td>${b||'-'}</td>`; }).join('')}
         <td style="background:#f0f4fc;"><b>${classBoys}</b></td>
-        ${catsArray.map(c => {
-           const g = clsDataMap[c] ? clsDataMap[c].g : 0;
-           catTotalsGirls[c] += g;
-           return `<td>${g||'-'}</td>`;
-        }).join('')}
+        ${catsArray.map(c => { const g = clsDataMap[c] ? clsDataMap[c].g : 0; catTotalsGirls[c] += g; return `<td>${g||'-'}</td>`; }).join('')}
         <td style="background:#fcf0f0;"><b>${classGirls}</b></td>
         <td style="background:#f4f6fb;"><b>${classBoys+classGirls}</b></td>
       </tr>`;
     });
-    
     classHtml += `<tr style="background:#fae8c8; font-weight:bold;">
       <td style="text-align:left;">एकूण (सर्व वर्ग)</td>
-      ${catsArray.map(c => `<td>${catTotalsBoys[c]||'-'}</td>`).join('')}
-      <td>${grandBoys}</td>
-      ${catsArray.map(c => `<td>${catTotalsGirls[c]||'-'}</td>`).join('')}
-      <td>${grandGirls}</td>
-      <td>${grandBoys+grandGirls}</td>
+      ${catsArray.map(c => `<td>${catTotalsBoys[c]||'-'}</td>`).join('')}<td>${grandBoys}</td>
+      ${catsArray.map(c => `<td>${catTotalsGirls[c]||'-'}</td>`).join('')}<td>${grandGirls}</td><td>${grandBoys+grandGirls}</td>
     </tr></table>`;
   }
 
@@ -1301,7 +1162,8 @@ function viewPrint(id){
     h2{font-size:12px; text-align:center; color:#333; font-weight:normal; margin-top:0;}
     .sec-title{background:#1c2b4a; color:#fff; padding:6px 10px; font-weight:bold; font-size:12.5px; margin-top:16px;}
     table{width:100%; border-collapse:collapse; margin-top:4px;}
-    td, th{border:1px solid #999; padding:5px 8px; font-size:11.5px; vertical-align:middle;}
+    td, th{border:1px solid #999; padding:5px 8px; font-size:11.5px; vertical-align:middle; text-align:left;}
+    th{background:#f2f4f9;}
     .pf-lbl{width:38%; background:#f2f4f9; font-weight:600;}
     @media print{ .no-print{display:none;} }
   </style></head><body>
@@ -1343,11 +1205,38 @@ function viewPrint(id){
   ${NIPUN_IYATTA.map(iy=>`<tr><td>${iy}</td><td>${escapeHtml(r["निपुण_"+iy+"_पट"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_निपुण_संख्या"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_प्रयत्न"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">५. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</div>
+  <!-- NEW REPLACED SECTION 5 PRINT -->
+  <div class="sec-title">५. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी (किमान १ वर्ग)</div>
   <table>
-    ${fieldRow('प्रथम भाषा', r["प्रथम_भाषा_अभिप्राय"])}
-    ${fieldRow('द्वितीय भाषा', r["द्वितीय_भाषा_अभिप्राय"])}
-    ${fieldRow('गणित', r["गणित_अभिप्राय"])}
+    ${fieldRow('इयत्ता / तुकडी', (r["संवाद_इयत्ता"]||'-')+' / '+(r["संवाद_तुकडी"]||'-'))}
+    ${fieldRow('शिक्षकाचे नाव', r["संवाद_शिक्षक"])}
+  </table>
+  
+  <p style="font-weight:bold; font-size:12px; margin:12px 0 4px;">I) प्रथम भाषा</p>
+  <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
+  <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["प्रथम_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_वाचन_अभिप्राय"])}</td></tr>
+  <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["प्रथम_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_लेखन_अभिप्राय"])}</td></tr>
+  <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_अभिप्राय"])}</td></tr>
+  </table>
+
+  <p style="font-weight:bold; font-size:12px; margin:12px 0 4px;">II) द्वितीय भाषा</p>
+  <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
+  <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["द्वितीय_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_वाचन_अभिप्राय"])}</td></tr>
+  <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["द्वितीय_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_लेखन_अभिप्राय"])}</td></tr>
+  <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_अभिप्राय"])}</td></tr>
+  </table>
+
+  <p style="font-weight:bold; font-size:12px; margin:12px 0 4px;">III) गणित</p>
+  <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
+  <tr><td class="pf-lbl">संख्याज्ञान</td><td>${escapeHtml(r["गणित_संख्याज्ञान_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_संख्याज्ञान_अभिप्राय"])}</td></tr>
+  <tr><td class="pf-lbl">संख्यावरील क्रिया</td><td>${escapeHtml(r["गणित_क्रिया_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_क्रिया_अभिप्राय"])}</td></tr>
+  <tr><td class="pf-lbl">शाब्दिक उदाहरणे</td><td>${escapeHtml(r["गणित_शाब्दिक_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_शाब्दिक_अभिप्राय"])}</td></tr>
+  </table>
+
+  <table style="margin-top:12px;">
+    ${fieldRow('IV) विज्ञान (संकल्पना, तत्त्व)', r["विज्ञान_अभिप्राय"])}
+    ${fieldRow('V) सामाजिक शास्त्रे', r["सामाजिक_शास्त्रे_अभिप्राय"])}
+    ${fieldRow('VI) उपरोक्त I ते V मध्ये कमी क्षमता प्राप्त विद्यार्थ्यांसाठी उपाययोजना', r["संवाद_उपाययोजना"])}
   </table>
 
   <div class="sec-title">६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
@@ -1430,54 +1319,39 @@ function viewPrint(id){
 }
 
 /* ============================================================
-   EXPORT / IMPORT
+   EXPORT / IMPORT & UTILS
    ============================================================ */
 function downloadBlob(content, filename, type){
   const blob = new Blob([content], {type});
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = filename;
   document.body.appendChild(a); a.click(); document.body.removeChild(a);
 }
-
 document.getElementById('exportJsonBtn').addEventListener('click', ()=>{
-  const recs = loadRecords();
-  if(!recs.length){ showToast('कोणताही डेटा नाही.'); return; }
+  const recs = loadRecords(); if(!recs.length){ showToast('कोणताही डेटा नाही.'); return; }
   downloadBlob(JSON.stringify(recs, null, 2), 'shala_bhet_backup_' + Date.now() + '.json', 'application/json');
 });
-
 document.getElementById('importJsonBtn').addEventListener('click', ()=> document.getElementById('importFile').click());
 document.getElementById('importFile').addEventListener('change', function(){
-  const file = this.files[0];
-  if(!file) return;
+  const file = this.files[0]; if(!file) return;
   const reader = new FileReader();
   reader.onload = function(e){
     try{
-      const imported = JSON.parse(e.target.result);
-      if(!Array.isArray(imported)) throw new Error('invalid');
-      const existing = loadRecords();
-      const existingIds = new Set(existing.map(r=>r._id));
-      const merged = existing.concat(imported.filter(r=>!existingIds.has(r._id)));
-      saveRecords(merged);
-      renderRecords();
+      const imported = JSON.parse(e.target.result); if(!Array.isArray(imported)) throw new Error('invalid');
+      const existing = loadRecords(); const existingIds = new Set(existing.map(r=>r._id));
+      saveRecords(existing.concat(imported.filter(r=>!existingIds.has(r._id)))); renderRecords();
       showToast('बॅकअप आयात केला — ' + imported.length + ' नोंदी तपासल्या.');
     }catch(err){ showToast('फाईल वाचता आली नाही — योग्य JSON बॅकअप निवडा.'); }
   };
   reader.readAsText(file);
 });
-
 document.getElementById('exportCsvBtn').addEventListener('click', ()=>{
-  const recs = loadRecords();
-  if(!recs.length){ showToast('कोणताही डेटा नाही.'); return; }
+  const recs = loadRecords(); if(!recs.length){ showToast('कोणताही डेटा नाही.'); return; }
   const keys = Array.from(recs.reduce((set,r)=>{ Object.keys(r).forEach(k=>set.add(k)); return set; }, new Set()));
   const esc = v => '"' + (v===undefined||v===null?'':(typeof v==='object'?JSON.stringify(v):String(v))).replace(/"/g,'""') + '"';
   const rows = [keys.map(esc).join(',')].concat(recs.map(r=> keys.map(k=>esc(r[k])).join(',')));
   downloadBlob('\uFEFF' + rows.join('\r\n'), 'shala_bhet_data_' + Date.now() + '.csv', 'text/csv;charset=utf-8');
 });
 
-/* ============================================================
-   SETTINGS
-   ============================================================ */
 const APPS_SCRIPT_CODE = `function doPost(e) {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var data = JSON.parse(e.postData.contents);
@@ -1503,139 +1377,69 @@ const APPS_SCRIPT_CODE = `function doPost(e) {
   return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
 }
 
-function doGet(e) {
-  return ContentService.createTextOutput('Shala Bhet Form Web App is running.');
-}`;
+function doGet(e) { return ContentService.createTextOutput('Shala Bhet Form Web App is running.'); }`;
 document.getElementById('scriptCode').value = APPS_SCRIPT_CODE;
 document.getElementById('copyScriptBtn').addEventListener('click', ()=>{
   document.getElementById('scriptCode').select();
   try{ document.execCommand('copy'); showToast('कोड कॉपी झाला.'); }
   catch(e){ navigator.clipboard && navigator.clipboard.writeText(APPS_SCRIPT_CODE).then(()=>showToast('कोड कॉपी झाला.')); }
 });
-
 document.getElementById('saveSettingsBtn').addEventListener('click', ()=>{
-  const cfg = {
-    gsUrl: document.getElementById('gsUrl').value.trim(),
-    defaultParyavekshak: document.getElementById('defaultParyavekshak').value.trim()
-  };
-  saveConfig(cfg);
+  saveConfig({ gsUrl: document.getElementById('gsUrl').value.trim(), defaultParyavekshak: document.getElementById('defaultParyavekshak').value.trim() });
   showToast('सेटिंग्ज जतन झाल्या.');
 });
-
 function loadSettingsIntoForm(){
-  const cfg = loadConfig();
-  document.getElementById('gsUrl').value = cfg.gsUrl || '';
-  document.getElementById('defaultParyavekshak').value = cfg.defaultParyavekshak || '';
+  const cfg = loadConfig(); document.getElementById('gsUrl').value = cfg.gsUrl || ''; document.getElementById('defaultParyavekshak').value = cfg.defaultParyavekshak || '';
 }
-
-document.getElementById('closePrintModal').addEventListener('click', ()=>{
-  document.getElementById('printModalBg').classList.remove('show');
-});
+document.getElementById('closePrintModal').addEventListener('click', ()=>document.getElementById('printModalBg').classList.remove('show'));
 
 /* ============================================================
-   ADMIN (केंद्रप्रमुख) PIN GATE
+   ADMIN PIN GATE
    ============================================================ */
-const LS_PIN = "shalaBhet_admin_pin_v1";
-const SS_AUTH = "shalaBhet_admin_authed_v1";
-
+const LS_PIN = "shalaBhet_admin_pin_v1"; const SS_AUTH = "shalaBhet_admin_authed_v1";
 function hasPin(){ return !!localStorage.getItem(LS_PIN); }
 function getPin(){ return localStorage.getItem(LS_PIN) || ''; }
 function setPin(p){ localStorage.setItem(LS_PIN, p); }
 function isAdminAuthed(){ return sessionStorage.getItem(SS_AUTH) === '1'; }
-function setAdminAuthed(){ sessionStorage.setItem(SS_AUTH, '1'); }
-function clearAdminAuthed(){ sessionStorage.removeItem(SS_AUTH); }
-
 function validPinFormat(p){ return /^[0-9]{4,6}$/.test(p); }
 
 function refreshAdminGate(){
-  const lock = document.getElementById('adminLock');
-  const content = document.getElementById('adminContent');
-  const setupCard = document.getElementById('pinSetupCard');
-  const loginCard = document.getElementById('pinLoginCard');
-
-  if(isAdminAuthed()){
-    lock.style.display = 'none';
-    content.style.display = 'block';
-    renderRecords();
-    return;
-  }
-  content.style.display = 'none';
-  lock.style.display = 'block';
-  if(!hasPin()){
-    setupCard.style.display = 'block';
-    loginCard.style.display = 'none';
-  } else {
-    setupCard.style.display = 'none';
-    loginCard.style.display = 'block';
-    document.getElementById('loginPinInput').value = '';
-    document.getElementById('pinError').style.display = 'none';
-  }
+  const lock = document.getElementById('adminLock'); const content = document.getElementById('adminContent');
+  if(isAdminAuthed()){ lock.style.display = 'none'; content.style.display = 'block'; renderRecords(); return; }
+  content.style.display = 'none'; lock.style.display = 'block';
+  if(!hasPin()){ document.getElementById('pinSetupCard').style.display = 'block'; document.getElementById('pinLoginCard').style.display = 'none'; }
+  else { document.getElementById('pinSetupCard').style.display = 'none'; document.getElementById('pinLoginCard').style.display = 'block'; document.getElementById('loginPinInput').value = ''; document.getElementById('pinError').style.display = 'none'; }
 }
-
 document.getElementById('setupPinBtn').addEventListener('click', ()=>{
-  const p1 = document.getElementById('setupPin1').value.trim();
-  const p2 = document.getElementById('setupPin2').value.trim();
+  const p1 = document.getElementById('setupPin1').value.trim(); const p2 = document.getElementById('setupPin2').value.trim();
   if(!validPinFormat(p1)){ showToast('PIN फक्त ४ ते ६ अंकी असावा.'); return; }
   if(p1 !== p2){ showToast('दोन्ही PIN जुळत नाहीत.'); return; }
-  setPin(p1);
-  setAdminAuthed();
-  document.getElementById('setupPin1').value = '';
-  document.getElementById('setupPin2').value = '';
-  showToast('✅ PIN सेट झाला. केंद्रप्रमुख पॅनल उघडले.');
-  refreshAdminGate();
+  setPin(p1); sessionStorage.setItem(SS_AUTH, '1');
+  document.getElementById('setupPin1').value = ''; document.getElementById('setupPin2').value = ''; showToast('✅ PIN सेट झाला.'); refreshAdminGate();
 });
-
 document.getElementById('loginPinBtn').addEventListener('click', attemptLogin);
 document.getElementById('loginPinInput').addEventListener('keydown', e=>{ if(e.key==='Enter') attemptLogin(); });
 function attemptLogin(){
   const p = document.getElementById('loginPinInput').value.trim();
-  if(p && p === getPin()){
-    setAdminAuthed();
-    document.getElementById('pinError').style.display = 'none';
-    showToast('🔓 केंद्रप्रमुख पॅनल उघडले.');
-    refreshAdminGate();
-  } else {
-    document.getElementById('pinError').style.display = 'block';
-    document.getElementById('loginPinInput').value = '';
-  }
+  if(p && p === getPin()){ sessionStorage.setItem(SS_AUTH, '1'); document.getElementById('pinError').style.display = 'none'; showToast('🔓 केंद्रप्रमुख पॅनल उघडले.'); refreshAdminGate(); }
+  else { document.getElementById('pinError').style.display = 'block'; document.getElementById('loginPinInput').value = ''; }
 }
-
-document.getElementById('adminLogoutBtn').addEventListener('click', ()=>{
-  clearAdminAuthed();
-  showToast('लॉगआऊट झाले.');
-  refreshAdminGate();
-  document.querySelector('.tab-btn[data-view="formView"]').click();
-});
-
+document.getElementById('adminLogoutBtn').addEventListener('click', ()=>{ sessionStorage.removeItem(SS_AUTH); showToast('लॉगआऊट झाले.'); refreshAdminGate(); document.querySelector('.tab-btn[data-view="formView"]').click(); });
 document.getElementById('changePinBtn').addEventListener('click', ()=>{
-  const old = document.getElementById('oldPinInput').value.trim();
-  const n1 = document.getElementById('newPinInput1').value.trim();
-  const n2 = document.getElementById('newPinInput2').value.trim();
+  const old = document.getElementById('oldPinInput').value.trim(); const n1 = document.getElementById('newPinInput1').value.trim(); const n2 = document.getElementById('newPinInput2').value.trim();
   if(old !== getPin()){ showToast('सध्याचा PIN चुकीचा आहे.'); return; }
   if(!validPinFormat(n1)){ showToast('नवीन PIN फक्त ४ ते ६ अंकी असावा.'); return; }
   if(n1 !== n2){ showToast('नवीन PIN जुळत नाहीत.'); return; }
-  setPin(n1);
-  document.getElementById('oldPinInput').value = '';
-  document.getElementById('newPinInput1').value = '';
-  document.getElementById('newPinInput2').value = '';
-  showToast('✅ PIN यशस्वीरित्या बदलला.');
+  setPin(n1); document.getElementById('oldPinInput').value = ''; document.getElementById('newPinInput1').value = ''; document.getElementById('newPinInput2').value = ''; showToast('✅ PIN यशस्वीरित्या बदलला.');
 });
 
 /* ============================================================
    INIT
    ============================================================ */
 function init(){
-  buildSchoolSelect();
-  buildNipunTable();
-  buildVniTable();
-  buildSpardhaTable();
-  buildSahityaTable();
-  bindPct('vidPat','vidUpasthit','vidPercent');
-  bindPct('shikPat','shikUpasthit','shikPercent');
-  loadSettingsIntoForm();
-  resetForm(false);
-  updateNetStatus();
-  updatePendingCount();
+  buildSchoolSelect(); buildNipunTable(); buildVniTable(); buildSpardhaTable(); buildSahityaTable();
+  bindPct('vidPat','vidUpasthit','vidPercent'); bindPct('shikPat','shikUpasthit','shikPercent');
+  loadSettingsIntoForm(); resetForm(false); updateNetStatus(); updatePendingCount();
 }
 init();
 </script>
