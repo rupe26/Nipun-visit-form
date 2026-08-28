@@ -24,7 +24,6 @@
     --fs-scale:1;
   }
   html{
-    /* 20px Base Font Size with dynamic scale */
     font-size: calc(20px * var(--fs-scale));
     -webkit-text-size-adjust:100%;
   }
@@ -198,6 +197,7 @@
 <!-- ===================== FORM VIEW ===================== -->
 <div class="view active" id="formView">
 
+  <!-- SECTION 1: शाळा व उपस्थिती माहिती -->
   <details class="section" open>
     <summary>१. शाळा व उपस्थिती माहिती</summary>
     <div class="section-body">
@@ -288,16 +288,21 @@
     </div>
   </details>
 
+  <!-- SECTION 4: स्वच्छता निरीक्षण -->
   <details class="section">
-    <summary>४. स्वच्छता व वर्ग अध्यापन निरीक्षण</summary>
+    <summary>४. स्वच्छता निरीक्षण</summary>
     <div class="section-body">
-      <div class="subhead">स्वच्छता</div>
       <label>आ. शालेय परिसर (स्वच्छ / अस्वच्छ / सुशोभनाची आवश्यकता)</label>
-      <textarea id="suchchhataParisar"></textarea>
+      <textarea id="suchchhataParisar" placeholder="शालेय परिसर स्वच्छतेबाबत सविस्तर नोंद..."></textarea>
       <label>ब. विद्यार्थी वैयक्तिक स्वच्छता (गणवेश व शारीरिक स्वच्छता)</label>
-      <textarea id="suchchhataVaiyaktik"></textarea>
+      <textarea id="suchchhataVaiyaktik" placeholder="विद्यार्थी वैयक्तिक स्वच्छता, गणवेश व नखे/केस इ. बाबत नोंद..."></textarea>
+    </div>
+  </details>
 
-      <div class="subhead" style="margin-top:14px;">वर्ग अध्यापन निरीक्षण (किमान १ वर्ग १ तासिका)</div>
+  <!-- SECTION 5: वर्ग अध्यापन निरीक्षण -->
+  <details class="section">
+    <summary>५. वर्ग अध्यापन निरीक्षण (किमान १ वर्ग १ तासिका)</summary>
+    <div class="section-body">
       <div class="row3">
         <div><label>इयत्ता</label><input type="text" id="vniIyatta"></div>
         <div><label>तुकडी</label><input type="text" id="vniTukadi"></div>
@@ -315,8 +320,9 @@
     </div>
   </details>
 
+  <!-- SECTION 6: निपुण महाराष्ट्र अभियान -->
   <details class="section">
-    <summary>५. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक (इयत्ता २ ते ५)</summary>
+    <summary>६. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक (इयत्ता २ ते ५)</summary>
     <div class="section-body">
       <table class="mini" id="nipunTable">
         <thead><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी संख्या</th><th>१००% निपुण होण्यासाठी प्रयत्न / उपक्रम</th></tr></thead>
@@ -325,8 +331,9 @@
     </div>
   </details>
 
+  <!-- SECTION 7: विद्यार्थ्यांशी संवाद -->
   <details class="section">
-    <summary>६. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</summary>
+    <summary>७. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</summary>
     <div class="section-body">
       <div class="row3">
         <div><label>इयत्ता</label><input type="text" id="samvadIyatta"></div>
@@ -375,8 +382,9 @@
     </div>
   </details>
 
+  <!-- SECTION 8: डॉ. जयंत नारळीकर अध्ययन समृद्धी -->
   <details class="section">
-    <summary>७. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
+    <summary>८. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
     <div class="section-body">
       <label>विद्या विद्यार्थी नोंदणी प्रमाण</label><input type="text" id="narlikarNondani">
       <label>वापराचे प्रमाण</label><input type="text" id="narlikarVapar">
@@ -384,8 +392,9 @@
     </div>
   </details>
 
+  <!-- SECTION 9: विविध स्पर्धा परीक्षा -->
   <details class="section">
-    <summary>८. विविध स्पर्धा परीक्षा</summary>
+    <summary>९. विविध स्पर्धा परीक्षा</summary>
     <div class="section-body">
       <table class="mini" id="spardhaTable">
         <thead><tr><th>परीक्षेचे नाव</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक संख्या</th></tr></thead>
@@ -394,8 +403,9 @@
     </div>
   </details>
 
+  <!-- SECTION 10: शिष्यवृत्ती साप्ताहिक सराव परीक्षा -->
   <details class="section">
-    <summary>९. शिष्यवृत्ती साप्ताहिक सराव परीक्षा (इ. ४ थी व ७ वी)</summary>
+    <summary>१०. शिष्यवृत्ती साप्ताहिक सराव परीक्षा (इ. ४ थी व ७ वी)</summary>
     <div class="section-body">
       <p class="small-note" style="margin-top:0;">महिन्यातील जास्तीत जास्त ४ सराव परीक्षांची नोंद करा.</p>
       <div id="scholTestContainer"></div>
@@ -403,8 +413,9 @@
     </div>
   </details>
 
+  <!-- SECTION 11: मूल्यवर्धन उपक्रम -->
   <details class="section">
-    <summary>१०. मूल्यवर्धन उपक्रम</summary>
+    <summary>११. मूल्यवर्धन उपक्रम</summary>
     <div class="section-body">
       <label>उपक्रमाचे आयोजन</label>
       <select id="mulyaAyojan"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -413,8 +424,9 @@
     </div>
   </details>
 
+  <!-- SECTION 12: मराठी भाषेचे अध्यापन सक्ती -->
   <details class="section">
-    <summary>११. मराठी भाषेचे अध्यापन सक्ती</summary>
+    <summary>१२. मराठी भाषेचे अध्यापन सक्ती</summary>
     <div class="section-body">
       <label>अंमलबजावणी</label>
       <select id="marathiAmal"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -427,8 +439,9 @@
     </div>
   </details>
 
+  <!-- SECTION 13: विद्यार्थी सुरक्षेसंदर्भात उपाययोजना -->
   <details class="section">
-    <summary>१२. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
+    <summary>१३. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
     <div class="section-body">
       <label>सखी सावित्री समिती</label><input type="text" id="surakshaSakhi">
       <label>तक्रार पेटी</label><input type="text" id="surakshaTakrar">
@@ -437,8 +450,9 @@
     </div>
   </details>
 
+  <!-- SECTION 14: शैक्षणिक साहित्य -->
   <details class="section">
-    <summary>१३. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</summary>
+    <summary>१४. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</summary>
     <div class="section-body">
       <div class="subhead">आ. शैक्षणिक साहित्य</div>
       <label>i) शिक्षक निर्मित</label>
@@ -456,16 +470,18 @@
     </div>
   </details>
 
+  <!-- SECTION 15: आनंददायी शनिवार -->
   <details class="section">
-    <summary>१४. आनंददायी शनिवार अंमलबजावणी</summary>
+    <summary>१५. आनंददायी शनिवार अंमलबजावणी</summary>
     <div class="section-body">
       <label>भेटीच्या आधीच्या शनिवारी घेतलेले उपक्रम</label>
       <textarea id="shanivarUpakram"></textarea>
     </div>
   </details>
 
+  <!-- SECTION 16: PM POSHAN -->
   <details class="section">
-    <summary>१५. PM POSHAN (MDM)</summary>
+    <summary>१६. PM POSHAN (MDM)</summary>
     <div class="section-body">
       <label>स्वयंपाकी / मदतनीस नाव</label><input type="text" id="pmWorker" placeholder="स्वयंपाकी / मदतनीस नाव">
       <label>On-Line उपस्थिती</label>
@@ -478,8 +494,9 @@
     </div>
   </details>
 
+  <!-- SECTION 17: माजी विद्यार्थी संघ -->
   <details class="section">
-    <summary>१६. माजी विद्यार्थी संघ</summary>
+    <summary>१७. माजी विद्यार्थी संघ</summary>
     <div class="section-body">
       <label>स्थापना</label>
       <select id="majiSthapna"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -488,8 +505,9 @@
     </div>
   </details>
 
+  <!-- SECTION 18: SMC मासिक सभा -->
   <details class="section">
-    <summary>१७. SMC मासिक सभा</summary>
+    <summary>१८. SMC मासिक सभा</summary>
     <div class="section-body">
       <label>SMC अध्यक्ष नाव</label><input type="text" id="smcAdhyaksha" placeholder="SMC अध्यक्षांचे नाव">
       <label>सभा झाली का?</label>
@@ -499,24 +517,27 @@
     </div>
   </details>
 
+  <!-- SECTION 19: खेळ व तयारी -->
   <details class="section">
-    <summary>१८. खेळ व तयारी</summary>
+    <summary>१९. खेळ व तयारी</summary>
     <div class="section-body">
       <label>मैदानाची उपलब्धता</label><input type="text" id="khelMaidan">
       <label>सहभाग व यश</label><input type="text" id="khelYash">
     </div>
   </details>
 
+  <!-- SECTION 20: सर्वसाधारण अभिप्राय -->
   <details class="section">
-    <summary>१९. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
+    <summary>२०. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
     <div class="section-body">
       <label>उल्लेखनीय बाबी, आढळलेल्या त्रुटी, सूचना</label>
       <textarea id="sarvaAbhipray" style="min-height:85px;"></textarea>
     </div>
   </details>
 
+  <!-- स्वाक्षरी -->
   <details class="section">
-    <summary>स्वाक्षरी</summary>
+    <summary>स्वाक्षरी व पडताळणी</summary>
     <div class="section-body">
       <label>मुख्याध्यापकाचे नाव (स्वाक्षरी व शिक्का ऐवजी)</label>
       <input type="text" id="signMukhyadhyapak">
@@ -1276,6 +1297,11 @@ function collectForm(){
     "विद्यार्थी_एकूण_पट": val('vidPat'), "विद्यार्थी_उपस्थित": val('vidUpasthit'), "विद्यार्थी_टक्केवारी": val('vidPercent'), "विद्यार्थी_गैरहजर_तपशील": val('vidGairhajar'),
     "शिक्षक_एकूण": val('shikPat'), "शिक्षक_उपस्थित": val('shikUpasthit'), "शिक्षक_टक्केवारी": val('shikPercent'), "शिक्षक_अनुपस्थिती_तपशील": val('shikAnupasthit'),
     
+    "स्वच्छता_परिसर": val('suchchhataParisar'), "स्वच्छता_वैयक्तिक": val('suchchhataVaiyaktik'),
+
+    "वर्गनिरीक्षण_इयत्ता": val('vniIyatta'), "वर्गनिरीक्षण_तुकडी": val('vniTukadi'),
+    "वर्गनिरीक्षण_शिक्षक": val('vniShikshak'), "वर्गनिरीक्षण_विषय": val('vniVishay'), "वर्गनिरीक्षण_घटक": val('vniGhatak'),
+
     "संवाद_इयत्ता": val('samvadIyatta'), "संवाद_तुकडी": val('samvadTukadi'), "संवाद_शिक्षक": val('samvadShikshak'),
     "प्रथम_वाचन_टक्केवारी": val('prathamVachanPct'), "प्रथम_वाचन_अभिप्राय": val('prathamVachanAbhipray'),
     "प्रथम_लेखन_टक्केवारी": val('prathamLekhanPct'), "प्रथम_लेखन_अभिप्राय": val('prathamLekhanAbhipray'),
@@ -1290,8 +1316,6 @@ function collectForm(){
     "सामाजिक_शास्त्रे_अभिप्राय": val('samajikAbhipray'),
     "संवाद_उपाययोजना": val('upayYojna'),
 
-    "वर्गनिरीक्षण_शिक्षक": val('vniShikshak'), "वर्गनिरीक्षण_इयत्ता": val('vniIyatta'), "वर्गनिरीक्षण_विषय": val('vniVishay'), "वर्गनिरीक्षण_घटक": val('vniGhatak'),
-    "स्वच्छता_परिसर": val('suchchhataParisar'), "स्वच्छता_वैयक्तिक": val('suchchhataVaiyaktik'), "वर्गनिरीक्षण_तुकडी": val('vniTukadi'),
     "नारळीकर_नोंदणी": val('narlikarNondani'), "नारळीकर_वापर": val('narlikarVapar'), "नारळीकर_प्राविण्य": val('narlikarPraviny'),
     "मूल्यवर्धन_आयोजन": val('mulyaAyojan'), "मूल्यवर्धन_अभिप्राय": val('mulyaAbhipray'),
     "मराठी_अंमलबजावणी": val('marathiAmal'), "मराठी_प्रशिक्षण_आवश्यक": val('marathiPrashAvashyak'), "मराठी_प्रशिक्षण_झाले": val('marathiPrashZale'), "मराठी_अभिप्राय": val('marathiAbhipray'),
@@ -1390,6 +1414,8 @@ function fillFormFromRecord(rec){
     visitDate:"भेट_दिनांक", visitTime:"भेट_वेळ", talukaKendra:"तालुका_केंद्र", mukhyadhyapak:"मुख्याध्यापक", paryavekshak:"पर्यवेक्षक",
     vidPat:"विद्यार्थी_एकूण_पट", vidUpasthit:"विद्यार्थी_उपस्थित", vidPercent:"विद्यार्थी_टक्केवारी", vidGairhajar:"विद्यार्थी_गैरहजर_तपशील",
     shikPat:"शिक्षक_एकूण", shikUpasthit:"शिक्षक_उपस्थित", shikPercent:"शिक्षक_टक्केवारी", shikAnupasthit:"शिक्षक_अनुपस्थिती_तपशील",
+    suchchhataParisar:"स्वच्छता_परिसर", suchchhataVaiyaktik:"स्वच्छता_वैयक्तिक",
+    vniIyatta:"वर्गनिरीक्षण_इयत्ता", vniTukadi:"वर्गनिरीक्षण_तुकडी", vniShikshak:"वर्गनिरीक्षण_शिक्षक", vniVishay:"वर्गनिरीक्षण_विषय", vniGhatak:"वर्गनिरीक्षण_घटक",
     samvadIyatta:"संवाद_इयत्ता", samvadTukadi:"संवाद_तुकडी", samvadShikshak:"संवाद_शिक्षक",
     prathamVachanPct:"प्रथम_वाचन_टक्केवारी", prathamVachanAbhipray:"प्रथम_वाचन_अभिप्राय",
     prathamLekhanPct:"प्रथम_लेखन_टक्केवारी", prathamLekhanAbhipray:"प्रथम_लेखन_अभिप्राय",
@@ -1403,8 +1429,6 @@ function fillFormFromRecord(rec){
     vidnyanAbhipray:"विज्ञान_अभिप्राय",
     samajikAbhipray:"सामाजिक_शास्त्रे_अभिप्राय",
     upayYojna:"संवाद_उपाययोजना",
-    vniShikshak:"वर्गनिरीक्षण_शिक्षक", vniIyatta:"वर्गनिरीक्षण_इयत्ता", vniVishay:"वर्गनिरीक्षण_विषय", vniGhatak:"वर्गनिरीक्षण_घटक",
-    vniTukadi:"वर्गनिरीक्षण_तुकडी", suchchhataParisar:"स्वच्छता_परिसर", suchchhataVaiyaktik:"स्वच्छता_वैयक्तिक",
     narlikarNondani:"नारळीकर_नोंदणी", narlikarVapar:"नारळीकर_वापर", narlikarPraviny:"नारळीकर_प्राविण्य",
     mulyaAyojan:"मूल्यवर्धन_आयोजन", mulyaAbhipray:"मूल्यवर्धन_अभिप्राय",
     marathiAmal:"मराठी_अंमलबजावणी", marathiPrashAvashyak:"मराठी_प्रशिक्षण_आवश्यक", marathiPrashZale:"मराठी_प्रशिक्षण_झाले", marathiAbhipray:"मराठी_अभिप्राय",
@@ -1661,7 +1685,7 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF (COMPACT A4 WITH MUKTA FONT - ZERO HEADING CUTS)
+   PRINT / PDF (COMPACT & SEPARATED WITH STANDARD MARGINS)
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 
@@ -1739,7 +1763,7 @@ function viewPrint(id){
       });
     }
 
-    classHtml += `<tr style="background:#fae8c8; font-weight:bold; font-size:13.5px;">
+    classHtml += `<tr style="background:#fae8c8; font-weight:bold; font-size:13px;">
       <td colspan="2">सर्व वर्गांची एकूण पटसंख्या</td>
       <td>${grandBoys}</td><td>${grandGirls}</td><td>${grandBoys + grandGirls}</td>
     </tr></tbody></table>`;
@@ -1764,7 +1788,7 @@ function viewPrint(id){
   
   let scholTestsHtml = '';
   if (r["शिष्यवृत्ती_सराव_परीक्षा"] && r["शिष्यवृत्ती_सराव_परीक्षा"].length > 0) {
-      scholTestsHtml = `<div class="sec-title">९. शिष्यवृत्ती साप्ताहिक सराव परीक्षा</div>
+      scholTestsHtml = `<div class="sec-title">१०. शिष्यवृत्ती साप्ताहिक सराव परीक्षा</div>
       <table>
         <thead><tr><th>दिनांक</th><th>इयत्ता</th><th>एकूण</th><th>उपस्थित</th><th>गैरहजर</th></tr></thead>
         <tbody>
@@ -1788,7 +1812,7 @@ function viewPrint(id){
   <style>
     @page {
       size: A4 portrait;
-      margin: 8mm 10mm 8mm 10mm;
+      margin: 12mm 15mm 12mm 15mm;
     }
     *, *:before, *:after {
       box-sizing: border-box;
@@ -1800,22 +1824,21 @@ function viewPrint(id){
       padding:0; margin:0; 
       color:#000; 
       font-size:12.5px; 
-      line-height:1.28;
+      line-height:1.3;
       width: 100%;
     }
     .header-box {
       text-align: center;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
       page-break-after: avoid;
     }
     h1{
       font-size:16px; 
       line-height:1.3;
-      margin:0 0 2px; 
+      margin:0 0 3px; 
       color:#1c2b4a; 
       font-weight:800;
       word-break: break-word;
-      overflow-wrap: break-word;
     }
     h2{
       font-size:12px; 
@@ -1828,24 +1851,22 @@ function viewPrint(id){
     .sec-title{
       background:#1c2b4a; 
       color:#fff; 
-      padding:3px 7px; 
+      padding:4px 8px; 
       font-weight:700; 
       font-size:12.5px; 
-      margin-top:6px; 
-      margin-bottom:2px;
+      margin-top:10px; 
+      margin-bottom:3px;
       page-break-after:avoid; 
       break-after:avoid;
       border: 1.5px solid #1c2b4a;
       line-height:1.25;
       word-break: break-word;
     }
-    
-    /* Ultra-Compact High-Contrast Tables */
     table{
       width:100%; 
       border-collapse:collapse; 
       margin-top:2px; 
-      margin-bottom:3px;
+      margin-bottom:6px;
       page-break-inside:auto; 
       border: 1.5px solid #1c2b4a;
       table-layout: fixed;
@@ -1856,17 +1877,17 @@ function viewPrint(id){
     }
     td, th{
       border: 1.5px solid #1c2b4a; 
-      padding:3px 4px; 
+      padding:4px 6px; 
       font-size:12px; 
       vertical-align:middle; 
       text-align:center;
       word-wrap:break-word;
       overflow-wrap:break-word;
-      line-height:1.2;
+      line-height:1.25;
     }
     th{background:#eef2f9; font-weight:700; color:#1c2b4a;}
-    .pf-lbl{width:38%; background:#f8faff; font-weight:700; text-align:left; padding-left:6px;}
-    .pf-val{text-align:center;}
+    .pf-lbl{width:38%; background:#f8faff; font-weight:700; text-align:left; padding-left:8px;}
+    .pf-val{text-align:left; padding-left:8px;}
     
     @media print{
       .no-print{display:none;}
@@ -1896,7 +1917,7 @@ function viewPrint(id){
           <table style="width:100%; margin:0; border:none;">
             <tbody>
             <tr><th style="width:65%;">शिक्षकाचे नाव</th><th>स्थिती</th></tr>
-            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="text-align:center; border: 1.5px solid #1c2b4a;">${escapeHtml(t.name)}</td><td style="text-align:center; border: 1.5px solid #1c2b4a;">${escapeHtml(t.status)}</td></tr>`).join('')}
+            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="text-align:left; padding-left:8px; border: 1.5px solid #1c2b4a;">${escapeHtml(t.name)}</td><td style="text-align:center; border: 1.5px solid #1c2b4a;">${escapeHtml(t.status)}</td></tr>`).join('')}
             </tbody>
           </table>
         </td></tr>` 
@@ -1909,11 +1930,17 @@ function viewPrint(id){
   ${classHtml}
   ${cwsnHtml}
 
-  <div class="sec-title">४. स्वच्छता व वर्ग अध्यापन निरीक्षण</div>
+  <div class="sec-title">४. स्वच्छता निरीक्षण</div>
   <table>
     <tbody>
-    ${fieldRow('आ. शालेय परिसर', r["स्वच्छता_परिसर"])}
+    ${fieldRow('आ. शालेय परिसर स्वच्छता', r["स्वच्छता_परिसर"])}
     ${fieldRow('ब. विद्यार्थी वैयक्तिक स्वच्छता', r["स्वच्छता_वैयक्तिक"])}
+    </tbody>
+  </table>
+
+  <div class="sec-title">५. वर्ग अध्यापन निरीक्षण (किमान १ वर्ग १ तासिका)</div>
+  <table>
+    <tbody>
     ${fieldRow('इयत्ता / तुकडी', (r["वर्गनिरीक्षण_इयत्ता"]||'-')+' / '+(r["वर्गनिरीक्षण_तुकडी"]||'-'))}
     ${fieldRow('शिक्षकाचे नाव', r["वर्गनिरीक्षण_शिक्षक"])}
     ${fieldRow('विषय / घटक', (r["वर्गनिरीक्षण_विषय"]||'-')+' / '+(r["वर्गनिरीक्षण_घटक"]||'-'))}
@@ -1922,12 +1949,12 @@ function viewPrint(id){
   <table>
     <thead><tr><th style="width:40%;">तपशील</th><th>अभिप्राय</th></tr></thead>
     <tbody>
-    ${VNI_ITEMS.map(name=>`<tr><td class="pf-lbl">${name}</td><td>${escapeHtml(r["वर्गनिरीक्षण_"+name])}</td></tr>`).join('')}
-    ${(r["वर्गनिरीक्षण_इतर_तपशील"]||r["वर्गनिरीक्षण_इतर_अभिप्राय"]) ? `<tr><td class="pf-lbl">${escapeHtml(r["वर्गनिरीक्षण_इतर_तपशील"])}</td><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_अभिप्राय"])}</td></tr>` : ''}
+    ${VNI_ITEMS.map(name=>`<tr><td class="pf-lbl">${name}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["वर्गनिरीक्षण_"+name])}</td></tr>`).join('')}
+    ${(r["वर्गनिरीक्षण_इतर_तपशील"]||r["वर्गनिरीक्षण_इतर_अभिप्राय"]) ? `<tr><td class="pf-lbl">${escapeHtml(r["वर्गनिरीक्षण_इतर_तपशील"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["वर्गनिरीक्षण_इतर_अभिप्राय"])}</td></tr>` : ''}
     </tbody>
   </table>
 
-  <div class="sec-title">५. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक</div>
+  <div class="sec-title">६. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक</div>
   <table>
     <thead><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण संख्या</th><th>प्रयत्न / उपक्रम</th></tr></thead>
     <tbody>
@@ -1935,40 +1962,40 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <div class="sec-title">६. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</div>
+  <div class="sec-title">७. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</div>
   <table>
     <tbody>
     ${fieldRow('इयत्ता / तुकडी / शिक्षक', (r["संवाद_इयत्ता"]||'-')+' / '+(r["संवाद_तुकडी"]||'-')+' / '+(r["संवाद_शिक्षक"]||'-'))}
     </tbody>
   </table>
   
-  <div style="font-weight:700; font-size:12px; margin:4px 0 2px;">I) प्रथम भाषा</div>
+  <div style="font-weight:700; font-size:12px; margin:6px 0 2px;">I) प्रथम भाषा</div>
   <table>
-    <thead><tr><th style="width:25%;">तपशील</th><th style="width:30%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:25%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
     <tbody>
-    <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["प्रथम_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_वाचन_अभिप्राय"])}</td></tr>
-    <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["प्रथम_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_लेखन_अभिप्राय"])}</td></tr>
-    <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["प्रथम_वाचन_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["प्रथम_वाचन_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["प्रथम_लेखन_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["प्रथम_लेखन_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["प्रथम_अभिव्यक्ती_अभिप्राय"])}</td></tr>
     </tbody>
   </table>
 
-  <div style="font-weight:700; font-size:12px; margin:4px 0 2px;">II) द्वितीय भाषा</div>
+  <div style="font-weight:700; font-size:12px; margin:6px 0 2px;">II) द्वितीय भाषा</div>
   <table>
-    <thead><tr><th style="width:25%;">तपशील</th><th style="width:30%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:25%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
     <tbody>
-    <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["द्वितीय_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_वाचन_अभिप्राय"])}</td></tr>
-    <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["द्वितीय_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_लेखन_अभिप्राय"])}</td></tr>
-    <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["द्वितीय_वाचन_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["द्वितीय_वाचन_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["द्वितीय_लेखन_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["द्वितीय_लेखन_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["द्वितीय_अभिव्यक्ती_अभिप्राय"])}</td></tr>
     </tbody>
   </table>
 
-  <div style="font-weight:700; font-size:12px; margin:4px 0 2px;">III) गणित</div>
+  <div style="font-weight:700; font-size:12px; margin:6px 0 2px;">III) गणित</div>
   <table>
-    <thead><tr><th style="width:25%;">तपशील</th><th style="width:30%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:25%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
     <tbody>
-    <tr><td class="pf-lbl">संख्याज्ञान</td><td>${escapeHtml(r["गणित_संख्याज्ञान_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_संख्याज्ञान_अभिप्राय"])}</td></tr>
-    <tr><td class="pf-lbl">संख्यावरील क्रिया</td><td>${escapeHtml(r["गणित_क्रिया_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_क्रिया_अभिप्राय"])}</td></tr>
-    <tr><td class="pf-lbl">शाब्दिक उदाहरणे</td><td>${escapeHtml(r["गणित_शाब्दिक_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_शाब्दिक_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">संख्याज्ञान</td><td>${escapeHtml(r["गणित_संख्याज्ञान_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["गणित_संख्याज्ञान_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">संख्यावरील क्रिया</td><td>${escapeHtml(r["गणित_क्रिया_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["गणित_क्रिया_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">शाब्दिक उदाहरणे</td><td>${escapeHtml(r["गणित_शाब्दिक_टक्केवारी"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["गणित_शाब्दिक_अभिप्राय"])}</td></tr>
     </tbody>
   </table>
 
@@ -1980,14 +2007,16 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <div class="sec-title">७. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
+  <div class="sec-title">८. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
   <table>
     <tbody>
-    ${fieldRow('नोंदणी / वापर / प्राविण्य प्रमाण', (r["नारळीकर_नोंदणी"]||'-')+' / '+(r["नारळीकर_वापर"]||'-')+' / '+(r["नारळीकर_प्राविण्य"]||'-'))}
+    ${fieldRow('नोंदणी प्रमाण', r["नारळीकर_नोंदणी"])}
+    ${fieldRow('वापराचे प्रमाण', r["नारळीकर_वापर"])}
+    ${fieldRow('प्राविण्य विद्यार्थी प्रमाण', r["नारळीकर_प्राविण्य"])}
     </tbody>
   </table>
 
-  <div class="sec-title">८. विविध स्पर्धा परीक्षा</div>
+  <div class="sec-title">९. विविध स्पर्धा परीक्षा</div>
   <table>
     <thead><tr><th>परीक्षा</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक</th></tr></thead>
     <tbody>
@@ -1997,65 +2026,103 @@ function viewPrint(id){
 
   ${scholTestsHtml}
 
-  <div class="sec-title">१०. मूल्यवर्धन / ११. मराठी भाषा सक्ती</div>
+  <div class="sec-title">११. मूल्यवर्धन उपक्रम</div>
   <table>
     <tbody>
-    ${fieldRow('मूल्यवर्धन (आयोजन / अभिप्राय)', (r["मूल्यवर्धन_आयोजन"]||'-')+' / '+(r["मूल्यवर्धन_अभिप्राय"]||'-'))}
-    ${fieldRow('मराठी अध्यापन सक्ती अंमलबजावणी', r["मराठी_अंमलबजावणी"])}
-    ${fieldRow('प्रशिक्षण (आवश्यक / झाले)', (r["मराठी_प्रशिक्षण_आवश्यक"]||'-')+' / '+(r["मराठी_प्रशिक्षण_झाले"]||'-'))}
-    ${fieldRow('मराठी अध्यापन अभिप्राय', r["मराठी_अभिप्राय"])}
+    ${fieldRow('उपक्रमाचे आयोजन', r["मूल्यवर्धन_आयोजन"])}
+    ${fieldRow('अंमलबजावणी अभिप्राय', r["मूल्यवर्धन_अभिप्राय"])}
     </tbody>
   </table>
 
-  <div class="sec-title">१२. विद्यार्थी सुरक्षा उपाययोजना</div>
+  <div class="sec-title">१२. मराठी भाषेचे अध्यापन सक्ती</div>
   <table>
     <tbody>
-    ${fieldRow('सखी सावित्री समिती / तक्रार पेटी', (r["सुरक्षा_सखी_समिती"]||'-')+' / '+(r["सुरक्षा_तक्रार_पेटी"]||'-'))}
-    ${fieldRow('हेल्पलाइन / CCTV / अन्य', (r["सुरक्षा_हेल्पलाइन"]||'-')+' / '+(r["सुरक्षा_CCTV"]||'-'))}
+    ${fieldRow('अंमलबजावणी', r["मराठी_अंमलबजावणी"])}
+    ${fieldRow('प्रशिक्षण आवश्यक आहे का?', r["मराठी_प्रशिक्षण_आवश्यक"])}
+    ${fieldRow('प्रशिक्षण झाले आहे का?', r["मराठी_प्रशिक्षण_झाले"])}
+    ${fieldRow('अभिप्राय', r["मराठी_अभिप्राय"])}
     </tbody>
   </table>
 
-  <div class="sec-title">१३. शैक्षणिक साहित्य, लॅब व किट वापर</div>
+  <div class="sec-title">१३. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</div>
   <table>
     <tbody>
-    ${fieldRow('शिक्षक निर्मित / तयार साहित्य', (r["साहित्य_शिक्षक_निर्मित"]||'-')+' / '+(r["साहित्य_तयार_साहित्य"]||'-'))}
-    ${fieldRow('साहित्य वापर अभिप्राय', r["साहित्य_वापर"])}
-    </tbody>
-  </table>
-  <table>
-    <thead><tr><th style="width:40%;">सुविधा</th><th style="width:20%;">उपलब्धता</th><th>अभिप्राय</th></tr></thead>
-    <tbody>
-    ${SAHITYA_ITEMS.map((n,i)=>`<tr><td class="pf-lbl">${n}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_उपलब्धता"])}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_अभिप्राय"])}</td></tr>`).join('')}
+    ${fieldRow('सखी सावित्री समिती', r["सुरक्षा_सखी_समिती"])}
+    ${fieldRow('तक्रार पेटी', r["सुरक्षा_तक्रार_पेटी"])}
+    ${fieldRow('हेल्प लाइन नंबर', r["सुरक्षा_हेल्पलाइन"])}
+    ${fieldRow('CCTV / अन्य उपाययोजना', r["सुरक्षा_CCTV"])}
     </tbody>
   </table>
 
-  <div class="sec-title">१४. आनंददायी शनिवार / १५. PM POSHAN</div>
+  <div class="sec-title">१४. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
   <table>
     <tbody>
-    ${fieldRow('शनिवार उपक्रम', r["शनिवार_उपक्रम"])}
-    ${fieldRow('PM POSHAN मदतनीस / Online उपस्थिती', (r["PM_POSHAN_मदतनीस_नाव"]||'-')+' / '+(r["PM_POSHAN_online"]||'-'))}
-    ${fieldRow('मेनू / चव रजिस्टर / साठवणूक', (r["PM_POSHAN_मेनू"]||'-')+' / '+(r["PM_POSHAN_चव_रजिस्टर"]||'-')+' / '+(r["PM_POSHAN_साठवणूक"]||'-'))}
-    ${fieldRow('किचन शेड / स्वच्छता अभिप्राय', r["PM_POSHAN_किचन_अभिप्राय"])}
+    ${fieldRow('i) शिक्षक निर्मित साहित्य', r["साहित्य_शिक्षक_निर्मित"])}
+    ${fieldRow('ii) तयार शैक्षणिक साहित्य', r["साहित्य_तयार_साहित्य"])}
+    ${fieldRow('iii) शैक्षणिक साहित्याचा वापर अभिप्राय', r["साहित्य_वापर"])}
+    </tbody>
+  </table>
+  <table>
+    <thead><tr><th style="width:40%;">सुविधा</th><th style="width:20%;">उपलब्धता</th><th>अभिप्राय (संख्या/स्थिती/वापर)</th></tr></thead>
+    <tbody>
+    ${SAHITYA_ITEMS.map((n,i)=>`<tr><td class="pf-lbl">${n}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_उपलब्धता"])}</td><td style="text-align:left; padding-left:8px;">${escapeHtml(r["साहित्य"+(i+1)+"_अभिप्राय"])}</td></tr>`).join('')}
     </tbody>
   </table>
 
-  <div class="sec-title">१६. माजी विद्यार्थी / १७. SMC / १८. खेळ</div>
+  <div class="sec-title">१५. आनंददायी शनिवार अंमलबजावणी</div>
   <table>
     <tbody>
-    ${fieldRow('माजी विद्यार्थी (स्थापना/मेळावा/उपलब्धी)', (r["माजी_विद्यार्थी_स्थापना"]||'-')+' / '+(r["माजी_विद्यार्थी_मेळावा"]||'-')+' / '+(r["माजी_विद्यार्थी_उपलब्धी"]||'-'))}
-    ${fieldRow('SMC अध्यक्ष / सभा / दिनांक / उपस्थित', (r["SMC_अध्यक्ष_नाव"]||'-')+' / '+(r["SMC_सभा_झाली"]||'-')+' / '+(r["SMC_सभेचा_दिनांक"]||'-')+' / '+(r["SMC_उपस्थित_सदस्य"]||'-'))}
-    ${fieldRow('खेळ मैदान / सहभाग व यश', (r["खेळ_मैदान"]||'-')+' / '+(r["खेळ_सहभाग_यश"]||'-'))}
+    ${fieldRow('भेटीच्या आधीच्या शनिवारी घेतलेले उपक्रम', r["शनिवार_उपक्रम"])}
     </tbody>
   </table>
 
-  <div class="sec-title">१९. सर्वसाधारण अभिप्राय</div>
-  <table><tbody>${fieldRow('अभिप्राय', r["सर्वसाधारण_अभिप्राय"])}</tbody></table>
-
-  <div class="sec-title">स्वाक्षरी</div>
+  <div class="sec-title">१६. PM POSHAN (MDM)</div>
   <table>
     <tbody>
-    ${fieldRow('मुख्याध्यापक (नाव)', r["स्वाक्षरी_मुख्याध्यापक"])}
-    ${fieldRow('पर्यवेक्षक / अधिकारी (नाव व पदनाम)', r["स्वाक्षरी_अधिकारी"])}
+    ${fieldRow('स्वयंपाकी / मदतनीस नाव', r["PM_POSHAN_मदतनीस_नाव"])}
+    ${fieldRow('On-Line उपस्थिती नोंद', r["PM_POSHAN_online"])}
+    ${fieldRow('मेनू', r["PM_POSHAN_मेनू"])}
+    ${fieldRow('चव रजिस्टर स्थिती', r["PM_POSHAN_चव_रजिस्टर"])}
+    ${fieldRow('धान्यादी माल साठवणूक स्थिती', r["PM_POSHAN_साठवणूक"])}
+    ${fieldRow('किचन शेड, स्वच्छता, मदतनीस अभिप्राय', r["PM_POSHAN_किचन_अभिप्राय"])}
+    </tbody>
+  </table>
+
+  <div class="sec-title">१७. माजी विद्यार्थी संघ</div>
+  <table>
+    <tbody>
+    ${fieldRow('स्थापना (झाली/नाही)', r["माजी_विद्यार्थी_स्थापना"])}
+    ${fieldRow('मेळावा / बैठक (दिनांक)', r["माजी_विद्यार्थी_मेळावा"])}
+    ${fieldRow('उपलब्धी', r["माजी_विद्यार्थी_उपलब्धी"])}
+    </tbody>
+  </table>
+
+  <div class="sec-title">१८. SMC मासिक सभा</div>
+  <table>
+    <tbody>
+    ${fieldRow('SMC अध्यक्ष नाव', r["SMC_अध्यक्ष_नाव"])}
+    ${fieldRow('सभा झाली का?', r["SMC_सभा_झाली"])}
+    ${fieldRow('सभेचा दिनांक', r["SMC_सभेचा_दिनांक"])}
+    ${fieldRow('उपस्थित सदस्य', r["SMC_उपस्थित_सदस्य"])}
+    </tbody>
+  </table>
+
+  <div class="sec-title">१९. खेळ व तयारी</div>
+  <table>
+    <tbody>
+    ${fieldRow('मैदानाची उपलब्धता', r["खेळ_मैदान"])}
+    ${fieldRow('सहभाग व यश', r["खेळ_सहभाग_यश"])}
+    </tbody>
+  </table>
+
+  <div class="sec-title">२०. शाळेबाबत सर्वसाधारण अभिप्राय</div>
+  <table><tbody>${fieldRow('उल्लेखनीय बाबी, आढळलेल्या त्रुटी, सूचना', r["सर्वसाधारण_अभिप्राय"])}</tbody></table>
+
+  <div class="sec-title">स्वाक्षरी व पडताळणी</div>
+  <table>
+    <tbody>
+    ${fieldRow('मुख्याध्यापकाचे नाव (स्वाक्षरी व शिक्का)', r["स्वाक्षरी_मुख्याध्यापक"])}
+    ${fieldRow('भेट देणाऱ्या अधिकाऱ्याचे नाव व पदनाम', r["स्वाक्षरी_अधिकारी"])}
     </tbody>
   </table>
 
