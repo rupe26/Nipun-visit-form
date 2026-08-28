@@ -198,7 +198,6 @@
           <input type="text" id="udise" placeholder="U-DISE कोड">
         </div>
         <div>
-          <!-- UPDATED: Date separated from time -->
           <label>दिनांक</label>
           <input type="date" id="visitDate">
         </div>
@@ -206,7 +205,6 @@
 
       <div class="row2">
         <div>
-          <!-- UPDATED: Time separated -->
           <label>वेळ</label>
           <input type="time" id="visitTime">
         </div>
@@ -230,7 +228,7 @@
       <div class="row3">
         <div><label>एकूण पट</label><input type="number" min="0" id="vidPat"></div>
         <div><label>उपस्थित</label><input type="number" min="0" id="vidUpasthit"></div>
-        <div><label>टक्केवारी</label><input type="text" id="vidPercent" readonly></div>
+        <div><label>टक्केवारी</label><input type="text" id="vidPercent" readonly style="background:#eef1f8;"></div>
       </div>
       <label>एक महिन्यापेक्षा जास्त काळ गैरहजर विद्यार्थी</label>
       <textarea id="vidGairhajar" placeholder="नाव / तपशील"></textarea>
@@ -306,9 +304,7 @@
     <div class="section-body">
       <table class="mini" id="nipunTable">
         <thead><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी संख्या</th><th>१००% निपुण होण्यासाठी प्रयत्न / उपक्रम</th></tr></thead>
-        <tbody>
-          <!-- rows injected by JS -->
-        </tbody>
+        <tbody></tbody>
       </table>
     </div>
   </details>
@@ -382,7 +378,6 @@
     </div>
   </details>
 
-  <!-- NEW SECTION: Scholarship Weekly Test -->
   <details class="section">
     <summary>९. शिष्यवृत्ती साप्ताहिक सराव परीक्षा (इ. ४ थी व ७ वी)</summary>
     <div class="section-body">
@@ -456,7 +451,6 @@
   <details class="section">
     <summary>१५. PM POSHAN (MDM)</summary>
     <div class="section-body">
-      <!-- UPDATED: Added MDM worker name -->
       <label>स्वयंपाकी / मदतनीस नाव</label><input type="text" id="pmWorker" placeholder="स्वयंपाकी / मदतनीस नाव">
       <label>On-Line उपस्थिती</label>
       <select id="pmOnline"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -481,7 +475,6 @@
   <details class="section">
     <summary>१७. SMC मासिक सभा</summary>
     <div class="section-body">
-      <!-- UPDATED: Added SMC Adhyaksha name -->
       <label>SMC अध्यक्ष नाव</label><input type="text" id="smcAdhyaksha" placeholder="SMC अध्यक्षांचे नाव">
       <label>सभा झाली का?</label>
       <select id="smcZali"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -568,8 +561,6 @@
     </div>
 
     <div class="subview" id="settingsView">
-      
-      <!-- TEACHER MANAGEMENT IN ADMIN -->
       <details class="section" open>
         <summary>शिक्षक यादी व्यवस्थापन (Teacher Management)</summary>
         <div class="section-body">
@@ -707,13 +698,11 @@ const TEACHERS_DATA = {
   "जि.प.प्रा.शा. गिरवली आपेट": [ "अर्जुन सूर्यकांत चव्हाण", "सुनिल आनंदराव फुलेवार" ]
 };
 
-// UPDATED: Removed '१ ली' from NIPUN_IYATTA
 const NIPUN_IYATTA = ["२ री","३ री","४ थी","५ वी"];
 const SPARDHA_ITEMS = ["शिष्यवृत्ती परीक्षा इ. ४ थी","शिष्यवृत्ती परीक्षा इ. ७ वी","NMMS","जवाहर नवोदय प्रवेश परीक्षा","सैनिकी शाळा / इतर"];
 const SAHITYA_ITEMS = ["ग्रंथालय","संगणक कक्ष","विज्ञान प्रयोगशाळा","भाषा पेटी","गणित पेटी","FLN किट","अटल टिंकरिंग लॅब","नाविन्यपूर्ण विज्ञान केंद्र","अन्य"];
 const VNI_ITEMS = ["विषयाची मांडणी","साहित्य वापर","उदाहरणे/दाखले वापर","प्रश्नोत्तरे / विद्यार्थी प्रतिसाद","सर्वसाधारण अभिप्राय"];
 
-// UPDATED: Added BPL
 const STUDENT_CATEGORIES = ["अनुसूचित जाती", "अनुसूचित जमाती", "भ ज अ", "भ ज ब", "भ ज क", "भ ज ड", "VJNT", "SBC", "SEBC", "OBC", "General", "अल्पसंख्याक", "CWSN", "BPL"];
 const STD_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी"];
 const ALL_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी", "इ 6 वी", "इ 7 वी", "इ 8 वी"];
@@ -853,7 +842,6 @@ function addCwsnRow(student = {}) {
 }
 document.getElementById('addCwsnBtn').addEventListener('click', () => addCwsnRow());
 
-
 /* ============================================================
    TEACHER MANAGEMENT & DYNAMIC FUNCTIONS
    ============================================================ */
@@ -870,7 +858,6 @@ function getTeachersForSchool(schoolName) {
     return TEACHERS_DATA[schoolName] || [];
 }
 
-// Populate main form
 function populateTeachers(schoolName) {
   const container = document.getElementById('teacherListContainer');
   container.innerHTML = '';
@@ -882,7 +869,6 @@ function populateTeachers(schoolName) {
   calcTeacherTotals();
 }
 
-// Add row in main form (READONLY, no delete button)
 function addTeacherRow(name = "", status = "उपस्थित") {
   const container = document.getElementById('teacherListContainer');
   const row = document.createElement('div');
@@ -916,7 +902,6 @@ function calcTeacherTotals() {
   document.getElementById('shikUpasthit').value = present;
   document.getElementById('shikPercent').value = pct(present, total);
 }
-
 
 /* ============================================================
    ADMIN TEACHER MANAGEMENT FUNCTIONS
@@ -975,7 +960,6 @@ document.getElementById('adminSaveTeachersBtn').addEventListener('click', () => 
     saveCustomTeachers(custom);
     showToast('शिक्षक यादी यशस्वीरित्या जतन झाली.');
     
-    // Refresh main form if same school is selected
     const mainSel = document.getElementById('schoolSelect').value;
     let mainSn = '';
     if(mainSel === 'other') mainSn = document.getElementById('otherSchoolName').value.trim();
@@ -985,7 +969,6 @@ document.getElementById('adminSaveTeachersBtn').addEventListener('click', () => 
         populateTeachers(sn);
     }
 });
-
 
 /* ============================================================
    BUILD DYNAMIC FORM PARTS
@@ -1022,13 +1005,11 @@ document.getElementById('schoolSelect').addEventListener('change', function(){
     schoolName = SCHOOLS[v].name;
   }
   
-  // Auto-populate Headmaster
   let hmName = '';
   if (schoolName && HEADMASTERS[schoolName]) {
       hmName = HEADMASTERS[schoolName];
   }
   document.getElementById('mukhyadhyapak').value = hmName;
-  
   populateTeachers(schoolName);
 });
 
@@ -1117,7 +1098,6 @@ function calcClassTotals() {
         const b = parseInt(entry.querySelector('.boy-input').value) || 0;
         const g = parseInt(entry.querySelector('.girl-input').value) || 0;
         
-        // UPDATED: CWSN, अल्पसंख्याक आणि BPL वगळून बेरीज
         if(cat !== 'CWSN' && cat !== 'अल्पसंख्याक' && cat !== 'BPL') {
             boys += b;
             girls += g;
@@ -1171,9 +1151,18 @@ function buildSahityaTable(){
   });
 }
 
-function pct(a,b){ a=parseFloat(a); b=parseFloat(b); if(!b) return ''; return Math.round((a/b)*1000)/10 + '%'; }
+function pct(a,b){ 
+  a=parseFloat(a); b=parseFloat(b); 
+  if(!b || isNaN(a) || isNaN(b)) return ''; 
+  return Math.round((a/b)*1000)/10 + '%'; 
+}
+
 function bindPct(patId,upId,outId){
-  const recalc = ()=>{ document.getElementById(outId).value = pct(document.getElementById(upId).value, document.getElementById(patId).value); };
+  const recalc = ()=>{ 
+    const p = document.getElementById(patId).value;
+    const u = document.getElementById(upId).value;
+    document.getElementById(outId).value = pct(u, p); 
+  };
   document.getElementById(patId).addEventListener('input', recalc);
   document.getElementById(upId).addEventListener('input', recalc);
 }
@@ -1292,7 +1281,6 @@ function collectForm(){
     "सुरक्षा_सखी_समिती": val('surakshaSakhi'), "सुरक्षा_तक्रार_पेटी": val('surakshaTakrar'), "सुरक्षा_हेल्पलाइन": val('surakshaHelpline'), "सुरक्षा_CCTV": val('surakshaCctv'),
     "शनिवार_उपक्रम": val('shanivarUpakram'),
     
-    // UPDATED: MDM worker and SMC Adhyaksha added
     "PM_POSHAN_मदतनीस_नाव": val('pmWorker'),
     "PM_POSHAN_online": val('pmOnline'), "PM_POSHAN_मेनू": val('pmMenu'), "PM_POSHAN_चव_रजिस्टर": val('pmChav'), "PM_POSHAN_साठवणूक": val('pmSathvanuk'), "PM_POSHAN_किचन_अभिप्राय": val('pmKitchen'),
     "माजी_विद्यार्थी_स्थापना": val('majiSthapna'), "माजी_विद्यार्थी_मेळावा": val('majiMelava'), "माजी_विद्यार्थी_उपलब्धी": val('majiUpalabdhi'),
@@ -1313,7 +1301,6 @@ function collectForm(){
   });
   rec["शिक्षक_यादी"] = teacherData;
   
-  // CWSN DATA COLLECTION
   const cwsnData = [];
   document.querySelectorAll('.cwsn-row').forEach(row => {
       const n = row.querySelector('.cwsn-name').value.trim();
@@ -1329,7 +1316,6 @@ function collectForm(){
   });
   rec["CWSN_विद्यार्थी"] = cwsnData;
 
-  // SCHOLARSHIP WEEKLY TESTS
   const scholTests = [];
   document.querySelectorAll('.schol-test-row').forEach(row => {
       const d = row.querySelector('.st-date').value;
@@ -1426,13 +1412,11 @@ function fillFormFromRecord(rec){
       populateTeachers(rec["शाळेचे_नाव"]);
   }
   
-  // RESTORE CWSN DATA
   document.getElementById('cwsnListContainer').innerHTML = '';
   if (rec["CWSN_विद्यार्थी"] && Array.isArray(rec["CWSN_विद्यार्थी"])) {
       rec["CWSN_विद्यार्थी"].forEach(s => addCwsnRow(s));
   }
   
-  // RESTORE SCHOLARSHIP TESTS
   document.getElementById('scholTestContainer').innerHTML = '';
   if (rec["शिष्यवृत्ती_सराव_परीक्षा"] && Array.isArray(rec["शिष्यवृत्ती_सराव_परीक्षा"])) {
       rec["शिष्यवृत्ती_सराव_परीक्षा"].forEach(s => addScholTestRow(s));
@@ -1504,7 +1488,6 @@ function resetForm(showMsg, skipClasses){
   const cfg = loadConfig();
   if(cfg.defaultParyavekshak) document.getElementById('paryavekshak').value = cfg.defaultParyavekshak;
   
-  // Set Current Date and Time
   const now = new Date();
   const offset = now.getTimezoneOffset() * 60000;
   const localISOTime = (new Date(now - offset)).toISOString();
@@ -1628,7 +1611,7 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF
+   PRINT / PDF (Font Size Adjusted to 16px)
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 
@@ -1667,7 +1650,7 @@ function viewPrint(id){
               }
           });
       }
-      if (clsRows.length === 0) return; // Skip empty class
+      if (clsRows.length === 0) return;
       
       grandBoys += clsBoys; grandGirls += clsGirls;
       
@@ -1721,17 +1704,15 @@ function viewPrint(id){
   let html = `<html lang="mr"><head><meta charset="UTF-8"><title>शाळा भेट प्रपत्र - ${escapeHtml(r["शाळेचे_नाव"])}</title>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body{font-family:'Mukta', sans-serif; padding:24px; color:#111; font-size:21px; line-height:1.4;}
-    h1{font-size:28px; text-align:center; margin-bottom:4px;}
-    h2{font-size:24px; text-align:center; color:#333; font-weight:normal; margin-top:0;}
-    .sec-title{background:#1c2b4a; color:#fff; padding:8px 12px; font-weight:bold; font-size:22px; margin-top:20px;}
+    body{font-family:'Mukta', sans-serif; padding:20px; color:#111; font-size:16px; line-height:1.4;}
+    h1{font-size:20px; text-align:center; margin-bottom:4px;}
+    h2{font-size:16px; text-align:center; color:#333; font-weight:normal; margin-top:0;}
+    .sec-title{background:#1c2b4a; color:#fff; padding:6px 10px; font-weight:bold; font-size:17px; margin-top:16px;}
     table{width:100%; border-collapse:collapse; margin-top:6px;}
-    td, th{border:1px solid #999; padding:8px 10px; font-size:21px; vertical-align:middle; text-align:left;}
+    td, th{border:1px solid #999; padding:6px 8px; font-size:16px; vertical-align:middle; text-align:left;}
     th{background:#f2f4f9;}
     .pf-lbl{width:38%; background:#f2f4f9; font-weight:600;}
-    
     table.enrollment-table td, table.enrollment-table th { text-align: center; }
-    
     @media print{ .no-print{display:none;} }
   </style></head><body>
   <h1>मिशन निपुण बीड — सर्वंकष शाळा भेट व पर्यवेक्षण प्रपत्र</h1>
@@ -1790,21 +1771,21 @@ function viewPrint(id){
     ${fieldRow('शिक्षकाचे नाव', r["संवाद_शिक्षक"])}
   </table>
   
-  <p style="font-weight:bold; font-size:22px; margin:16px 0 6px;">I) प्रथम भाषा</p>
+  <p style="font-weight:bold; font-size:16px; margin:14px 0 6px;">I) प्रथम भाषा</p>
   <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
   <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["प्रथम_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_वाचन_अभिप्राय"])}</td></tr>
   <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["प्रथम_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_लेखन_अभिप्राय"])}</td></tr>
   <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_अभिप्राय"])}</td></tr>
   </table>
 
-  <p style="font-weight:bold; font-size:22px; margin:16px 0 6px;">II) द्वितीय भाषा</p>
+  <p style="font-weight:bold; font-size:16px; margin:14px 0 6px;">II) द्वितीय भाषा</p>
   <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
   <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["द्वितीय_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_वाचन_अभिप्राय"])}</td></tr>
   <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["द्वितीय_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_लेखन_अभिप्राय"])}</td></tr>
   <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_अभिप्राय"])}</td></tr>
   </table>
 
-  <p style="font-weight:bold; font-size:22px; margin:16px 0 6px;">III) गणित</p>
+  <p style="font-weight:bold; font-size:16px; margin:14px 0 6px;">III) गणित</p>
   <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
   <tr><td class="pf-lbl">संख्याज्ञान</td><td>${escapeHtml(r["गणित_संख्याज्ञान_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_संख्याज्ञान_अभिप्राय"])}</td></tr>
   <tr><td class="pf-lbl">संख्यावरील क्रिया</td><td>${escapeHtml(r["गणित_क्रिया_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_क्रिया_अभिप्राय"])}</td></tr>
@@ -1988,8 +1969,16 @@ document.getElementById('changePinBtn').addEventListener('click', ()=>{
 function init(){
   loadFontScale();
   buildAdminSchoolSelect();
-  buildSchoolSelect(); buildNipunTable(); buildVniTable(); buildSpardhaTable(); buildSahityaTable();
-  loadSettingsIntoForm(); resetForm(false); updateNetStatus(); updatePendingCount();
+  buildSchoolSelect(); 
+  buildNipunTable(); 
+  buildVniTable(); 
+  buildSpardhaTable(); 
+  buildSahityaTable();
+  bindPct('vidPat', 'vidUpasthit', 'vidPercent');
+  loadSettingsIntoForm(); 
+  resetForm(false); 
+  updateNetStatus(); 
+  updatePendingCount();
 }
 init();
 </script>
