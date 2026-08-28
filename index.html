@@ -299,17 +299,35 @@
     </div>
   </details>
 
-  <!-- SECTION 5: वर्ग अध्यापन निरीक्षण -->
+  <!-- SECTION 5: वर्ग अध्यापन निरीक्षण (UPDATED WITH DROPDOWNS) -->
   <details class="section">
     <summary>५. वर्ग अध्यापन निरीक्षण (किमान १ वर्ग १ तासिका)</summary>
     <div class="section-body">
       <div class="row3">
-        <div><label>इयत्ता</label><input type="text" id="vniIyatta"></div>
-        <div><label>तुकडी</label><input type="text" id="vniTukadi"></div>
-        <div><label>शिक्षकाचे नाव</label><input type="text" id="vniShikshak"></div>
+        <div>
+          <label>इयत्ता</label>
+          <select id="vniIyatta">
+            <option value="">-- इयत्ता निवडा --</option>
+            <option value="इ 1 ली">इ 1 ली</option>
+            <option value="इ 2 री">इ 2 री</option>
+            <option value="इ 3 री">इ 3 री</option>
+            <option value="इ 4 थी">इ 4 थी</option>
+            <option value="इ 5 वी">इ 5 वी</option>
+            <option value="इ 6 वी">इ 6 वी</option>
+            <option value="इ 7 वी">इ 7 वी</option>
+            <option value="इ 8 वी">इ 8 वी</option>
+          </select>
+        </div>
+        <div><label>तुकडी</label><input type="text" id="vniTukadi" placeholder="उदा. अ / ब"></div>
+        <div>
+          <label>शिक्षकाचे नाव</label>
+          <select id="vniShikshak">
+            <option value="">-- शिक्षक निवडा --</option>
+          </select>
+        </div>
       </div>
       <div class="row2">
-        <div><label>विषय</label><input type="text" id="vniVishay"></div>
+        <div><label>विषय</label><input type="text" id="vniVishay" placeholder="उदा. भाषा / गणित"></div>
         <div><label>घटक / उपघटक</label><input type="text" id="vniGhatak"></div>
       </div>
       <p class="hint">अभिप्राय (विषयाची मांडणी, साहित्य वापर, उदाहरणे/दाखले वापर, प्रश्नोत्तरे/विद्यार्थी प्रतिसाद इ.)</p>
@@ -439,14 +457,51 @@
     </div>
   </details>
 
-  <!-- SECTION 13: विद्यार्थी सुरक्षेसंदर्भात उपाययोजना -->
+  <!-- SECTION 13: विद्यार्थी सुरक्षेसंदर्भात उपाययोजना (UPDATED AS PER IMAGE) -->
   <details class="section">
     <summary>१३. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
     <div class="section-body">
-      <label>सखी सावित्री समिती</label><input type="text" id="surakshaSakhi">
-      <label>तक्रार पेटी</label><input type="text" id="surakshaTakrar">
-      <label>हेल्प लाइन नंबर</label><input type="text" id="surakshaHelpline">
-      <label>CCTV / अन्य</label><input type="text" id="surakshaCctv">
+      <table class="mini" id="surakshaTable">
+        <thead>
+          <tr>
+            <th style="width:40%;">सुविधा</th>
+            <th style="width:25%;">स्थापना/दर्शनी भागात — आहे/नाही</th>
+            <th>अभिप्राय</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lbl">विद्यार्थी सुरक्षा समिती</td>
+            <td><select id="suraksha_samiti_sthit"><option value="">-- निवडा --</option><option>आहे</option><option>नाही</option></select></td>
+            <td><input type="text" id="suraksha_samiti_abhipray" placeholder="अभिप्राय"></td>
+          </tr>
+          <tr>
+            <td class="lbl">सखी सावित्री समिती स्थापना</td>
+            <td><select id="suraksha_sakhi_sthit"><option value="">-- निवडा --</option><option>आहे</option><option>नाही</option></select></td>
+            <td><input type="text" id="suraksha_sakhi_abhipray" placeholder="अभिप्राय"></td>
+          </tr>
+          <tr>
+            <td class="lbl">तक्रार पेटी</td>
+            <td><select id="suraksha_takrar_sthit"><option value="">-- निवडा --</option><option>आहे</option><option>नाही</option></select></td>
+            <td><input type="text" id="suraksha_takrar_abhipray" placeholder="अभिप्राय"></td>
+          </tr>
+          <tr>
+            <td class="lbl">चाइल्ड हेल्प लाईन नंबर</td>
+            <td><select id="suraksha_helpline_sthit"><option value="">-- निवडा --</option><option>आहे</option><option>नाही</option></select></td>
+            <td><input type="text" id="suraksha_helpline_abhipray" placeholder="अभिप्राय"></td>
+          </tr>
+          <tr>
+            <td class="lbl">CCTV कॅमेरा</td>
+            <td><select id="suraksha_cctv_sthit"><option value="">-- निवडा --</option><option>आहे</option><option>नाही</option></select></td>
+            <td><input type="text" id="suraksha_cctv_abhipray" placeholder="अभिप्राय"></td>
+          </tr>
+          <tr>
+            <td class="lbl">अन्य</td>
+            <td><select id="suraksha_anya_sthit"><option value="">-- निवडा --</option><option>आहे</option><option>नाही</option></select></td>
+            <td><input type="text" id="suraksha_anya_abhipray" placeholder="अभिप्राय"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </details>
 
@@ -896,6 +951,30 @@ function getTeachersForSchool(schoolName) {
     return TEACHERS_DATA[schoolName] || [];
 }
 
+function updateVniTeacherDropdown(schoolName, selectedTeacher = "") {
+  const vniTeacherSelect = document.getElementById('vniShikshak');
+  if(!vniTeacherSelect) return;
+  
+  vniTeacherSelect.innerHTML = '<option value="">-- शिक्षक निवडा --</option>';
+  const teachers = getTeachersForSchool(schoolName);
+  
+  teachers.forEach(t => {
+    const opt = document.createElement('option');
+    opt.value = t;
+    opt.textContent = t;
+    if(t === selectedTeacher) opt.selected = true;
+    vniTeacherSelect.appendChild(opt);
+  });
+  
+  if(selectedTeacher && !teachers.includes(selectedTeacher)) {
+    const opt = document.createElement('option');
+    opt.value = selectedTeacher;
+    opt.textContent = selectedTeacher;
+    opt.selected = true;
+    vniTeacherSelect.appendChild(opt);
+  }
+}
+
 function populateTeachers(schoolName) {
   const container = document.getElementById('teacherListContainer');
   container.innerHTML = '';
@@ -905,6 +984,7 @@ function populateTeachers(schoolName) {
       addTeacherRow(tName);
   });
   calcTeacherTotals();
+  updateVniTeacherDropdown(schoolName);
 }
 
 function addTeacherRow(name = "", status = "उपस्थित") {
@@ -1319,7 +1399,15 @@ function collectForm(){
     "नारळीकर_नोंदणी": val('narlikarNondani'), "नारळीकर_वापर": val('narlikarVapar'), "नारळीकर_प्राविण्य": val('narlikarPraviny'),
     "मूल्यवर्धन_आयोजन": val('mulyaAyojan'), "मूल्यवर्धन_अभिप्राय": val('mulyaAbhipray'),
     "मराठी_अंमलबजावणी": val('marathiAmal'), "मराठी_प्रशिक्षण_आवश्यक": val('marathiPrashAvashyak'), "मराठी_प्रशिक्षण_झाले": val('marathiPrashZale'), "मराठी_अभिप्राय": val('marathiAbhipray'),
-    "सुरक्षा_सखी_समिती": val('surakshaSakhi'), "सुरक्षा_तक्रार_पेटी": val('surakshaTakrar'), "सुरक्षा_हेल्पलाइन": val('surakshaHelpline'), "सुरक्षा_CCTV": val('surakshaCctv'),
+    
+    // Updated Security Fields
+    "सुरक्षा_समिती_स्थिती": val('suraksha_samiti_sthit'), "सुरक्षा_समिती_अभिप्राय": val('suraksha_samiti_abhipray'),
+    "सुरक्षा_सखी_स्थिती": val('suraksha_sakhi_sthit'), "सुरक्षा_सखी_अभिप्राय": val('suraksha_sakhi_abhipray'),
+    "सुरक्षा_तक्रार_स्थिती": val('suraksha_takrar_sthit'), "सुरक्षा_तक्रार_अभिप्राय": val('suraksha_takrar_abhipray'),
+    "सुरक्षा_हेल्पलाइन_स्थिती": val('suraksha_helpline_sthit'), "सुरक्षा_हेल्पलाइन_अभिप्राय": val('suraksha_helpline_abhipray'),
+    "सुरक्षा_CCTV_स्थिती": val('suraksha_cctv_sthit'), "सुरक्षा_CCTV_अभिप्राय": val('suraksha_cctv_abhipray'),
+    "सुरक्षा_अन्य_स्थिती": val('suraksha_anya_sthit'), "सुरक्षा_अन्य_अभिप्राय": val('suraksha_anya_abhipray'),
+
     "शनिवार_उपक्रम": val('shanivarUpakram'),
     
     "PM_POSHAN_मदतनीस_नाव": val('pmWorker'),
@@ -1415,7 +1503,7 @@ function fillFormFromRecord(rec){
     vidPat:"विद्यार्थी_एकूण_पट", vidUpasthit:"विद्यार्थी_उपस्थित", vidPercent:"विद्यार्थी_टक्केवारी", vidGairhajar:"विद्यार्थी_गैरहजर_तपशील",
     shikPat:"शिक्षक_एकूण", shikUpasthit:"शिक्षक_उपस्थित", shikPercent:"शिक्षक_टक्केवारी", shikAnupasthit:"शिक्षक_अनुपस्थिती_तपशील",
     suchchhataParisar:"स्वच्छता_परिसर", suchchhataVaiyaktik:"स्वच्छता_वैयक्तिक",
-    vniIyatta:"वर्गनिरीक्षण_इयत्ता", vniTukadi:"वर्गनिरीक्षण_तुकडी", vniShikshak:"वर्गनिरीक्षण_शिक्षक", vniVishay:"वर्गनिरीक्षण_विषय", vniGhatak:"वर्गनिरीक्षण_घटक",
+    vniIyatta:"वर्गनिरीक्षण_इयत्ता", vniTukadi:"वर्गनिरीक्षण_तुकडी", vniVishay:"वर्गनिरीक्षण_विषय", vniGhatak:"वर्गनिरीक्षण_घटक",
     samvadIyatta:"संवाद_इयत्ता", samvadTukadi:"संवाद_तुकडी", samvadShikshak:"संवाद_शिक्षक",
     prathamVachanPct:"प्रथम_वाचन_टक्केवारी", prathamVachanAbhipray:"प्रथम_वाचन_अभिप्राय",
     prathamLekhanPct:"प्रथम_लेखन_टक्केवारी", prathamLekhanAbhipray:"प्रथम_लेखन_अभिप्राय",
@@ -1432,7 +1520,14 @@ function fillFormFromRecord(rec){
     narlikarNondani:"नारळीकर_नोंदणी", narlikarVapar:"नारळीकर_वापर", narlikarPraviny:"नारळीकर_प्राविण्य",
     mulyaAyojan:"मूल्यवर्धन_आयोजन", mulyaAbhipray:"मूल्यवर्धन_अभिप्राय",
     marathiAmal:"मराठी_अंमलबजावणी", marathiPrashAvashyak:"मराठी_प्रशिक्षण_आवश्यक", marathiPrashZale:"मराठी_प्रशिक्षण_झाले", marathiAbhipray:"मराठी_अभिप्राय",
-    surakshaSakhi:"सुरक्षा_सखी_समिती", surakshaTakrar:"सुरक्षा_तक्रार_पेटी", surakshaHelpline:"सुरक्षा_हेल्पलाइन", surakshaCctv:"सुरक्षा_CCTV",
+    
+    suraksha_samiti_sthit:"सुरक्षा_समिती_स्थिती", suraksha_samiti_abhipray:"सुरक्षा_समिती_अभिप्राय",
+    suraksha_sakhi_sthit:"सुरक्षा_सखी_स्थिती", suraksha_sakhi_abhipray:"सुरक्षा_सखी_अभिप्राय",
+    suraksha_takrar_sthit:"सुरक्षा_तक्रार_स्थिती", suraksha_takrar_abhipray:"सुरक्षा_तक्रार_अभिप्राय",
+    suraksha_helpline_sthit:"सुरक्षा_हेल्पलाइन_स्थिती", suraksha_helpline_abhipray:"सुरक्षा_हेल्पलाइन_अभिप्राय",
+    suraksha_cctv_sthit:"सुरक्षा_CCTV_स्थिती", suraksha_cctv_abhipray:"सुरक्षा_CCTV_अभिप्राय",
+    suraksha_anya_sthit:"सुरक्षा_अन्य_स्थिती", suraksha_anya_abhipray:"सुरक्षा_अन्य_अभिप्राय",
+
     shanivarUpakram:"शनिवार_उपक्रम",
     pmWorker:"PM_POSHAN_मदतनीस_नाव", pmOnline:"PM_POSHAN_online", pmMenu:"PM_POSHAN_मेनू", pmChav:"PM_POSHAN_चव_रजिस्टर", pmSathvanuk:"PM_POSHAN_साठवणूक", pmKitchen:"PM_POSHAN_किचन_अभिप्राय",
     majiSthapna:"माजी_विद्यार्थी_स्थापना", majiMelava:"माजी_विद्यार्थी_मेळावा", majiUpalabdhi:"माजी_विद्यार्थी_उपलब्धी",
@@ -1452,6 +1547,8 @@ function fillFormFromRecord(rec){
   } else {
       populateTeachers(rec["शाळेचे_नाव"]);
   }
+  
+  updateVniTeacherDropdown(rec["शाळेचे_नाव"], rec["वर्गनिरीक्षण_शिक्षक"] || '');
   
   document.getElementById('cwsnListContainer').innerHTML = '';
   if (rec["CWSN_विद्यार्थी"] && Array.isArray(rec["CWSN_विद्यार्थी"])) {
@@ -1516,6 +1613,7 @@ function resetForm(showMsg, skipClasses){
   
   document.getElementById('teacherListContainer').innerHTML = '';
   calcTeacherTotals();
+  updateVniTeacherDropdown('');
   
   document.getElementById('cwsnListContainer').innerHTML = '';
   document.getElementById('scholTestContainer').innerHTML = '';
@@ -1685,7 +1783,7 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF (COMPACT & SEPARATED WITH STANDARD MARGINS)
+   PRINT / PDF (STANDARD MARGINS, SEPARATE SECTIONS)
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 
@@ -2046,11 +2144,16 @@ function viewPrint(id){
 
   <div class="sec-title">१३. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</div>
   <table>
+    <thead>
+      <tr><th style="width:40%;">सुविधा</th><th style="width:25%;">स्थापना/दर्शनी भागात</th><th>अभिप्राय</th></tr>
+    </thead>
     <tbody>
-    ${fieldRow('सखी सावित्री समिती', r["सुरक्षा_सखी_समिती"])}
-    ${fieldRow('तक्रार पेटी', r["सुरक्षा_तक्रार_पेटी"])}
-    ${fieldRow('हेल्प लाइन नंबर', r["सुरक्षा_हेल्पलाइन"])}
-    ${fieldRow('CCTV / अन्य उपाययोजना', r["सुरक्षा_CCTV"])}
+      <tr><td class="pf-lbl">विद्यार्थी सुरक्षा समिती</td><td>${escapeHtml(r["सुरक्षा_समिती_स्थिती"])}</td><td>${escapeHtml(r["सुरक्षा_समिती_अभिप्राय"])}</td></tr>
+      <tr><td class="pf-lbl">सखी सावित्री समिती स्थापना</td><td>${escapeHtml(r["सुरक्षा_सखी_स्थिती"])}</td><td>${escapeHtml(r["सुरक्षा_सखी_अभिप्राय"])}</td></tr>
+      <tr><td class="pf-lbl">तक्रार पेटी</td><td>${escapeHtml(r["सुरक्षा_तक्रार_स्थिती"])}</td><td>${escapeHtml(r["सुरक्षा_तक्रार_अभिप्राय"])}</td></tr>
+      <tr><td class="pf-lbl">चाइल्ड हेल्प लाईन नंबर</td><td>${escapeHtml(r["सुरक्षा_हेल्पलाइन_स्थिती"])}</td><td>${escapeHtml(r["सुरक्षा_हेल्पलाइन_अभिप्राय"])}</td></tr>
+      <tr><td class="pf-lbl">CCTV कॅमेरा</td><td>${escapeHtml(r["सुरक्षा_CCTV_स्थिती"])}</td><td>${escapeHtml(r["सुरक्षा_CCTV_अभिप्राय"])}</td></tr>
+      <tr><td class="pf-lbl">अन्य</td><td>${escapeHtml(r["सुरक्षा_अन्य_स्थिती"])}</td><td>${escapeHtml(r["सुरक्षा_अन्य_अभिप्राय"])}</td></tr>
     </tbody>
   </table>
 
