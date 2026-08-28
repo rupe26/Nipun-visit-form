@@ -4,13 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>मिशन निपुण बीड - सर्वंकष शाळा भेट व पर्यवेक्षण प्रपत्र</title>
+<!-- Google Font: Noto Serif Devanagari -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1c2b4a;
     --navy2:#24365c;
     --accent:#2f5aa8;
     --accent-light:#eaf0fb;
-    --border:#d3d9e6;
+    --border:#24365c; /* Bolder structural border */
+    --tbl-border: 1.8px solid #1c2b4a; /* Thick Table Border Variable */
     --bg:#f4f6fb;
     --ok:#1e8e5a;
     --pending:#c67c00;
@@ -25,7 +30,7 @@
   *{box-sizing:border-box;}
   body{
     margin:0; padding:0; font-size:1rem;
-    font-family:'Noto Sans Devanagari','Nirmala UI','Mangal',sans-serif, system-ui;
+    font-family:'Noto Serif Devanagari', serif, system-ui;
     background:var(--bg);
     color:var(--text);
     padding-bottom:100px;
@@ -38,7 +43,7 @@
     position:sticky; top:0; z-index:50;
     box-shadow:0 2px 8px rgba(0,0,0,.15);
   }
-  header.topbar h1{ margin:0; font-size:1.05rem; line-height:1.4; letter-spacing:.2px;}
+  header.topbar h1{ margin:0; font-size:1.05rem; line-height:1.4; letter-spacing:.2px; font-weight:700;}
   header.topbar p{ margin:2px 0 0; font-size:0.78rem; opacity:.85;}
   .status-strip{
     display:flex; align-items:center; gap:8px; margin-top:8px; font-size:0.78rem; flex-wrap:wrap;
@@ -50,18 +55,19 @@
   .fontctl{
     appearance:none; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08);
     color:#fff; border-radius:6px; padding:3px 8px; font-size:0.72rem; font-weight:700;
-    line-height:1.4; cursor:pointer;
+    line-height:1.4; cursor:pointer; font-family:inherit;
   }
   .fontctl:active{ background:rgba(255,255,255,.22); }
   #pendingCountWrap{ order:3; width:100%; }
   @media (min-width:420px){ #pendingCountWrap{ order:0; width:auto; margin-left:8px; } .fontctl-group{ margin-left:auto; } }
   .tabbar{
-    display:flex; background:#fff; border-bottom:1px solid var(--border);
+    display:flex; background:#fff; border-bottom:2px solid var(--border);
     position:sticky; top:64px; z-index:40; overflow-x:auto;
   }
   .tabbar button{
     flex:1; padding:12px 8px; border:none; background:none; font-size:0.85rem;
     color:#555; border-bottom:3px solid transparent; white-space:nowrap; cursor:pointer;
+    font-family:inherit;
   }
   .tabbar button.active{ color:var(--navy); border-color:var(--accent); font-weight:700;}
   main{padding:12px;max-width:760px;margin:0 auto;}
@@ -71,7 +77,7 @@
   .subview.active{display:block;}
 
   details.section{
-    background:#fff; border:1px solid var(--border); border-radius:10px;
+    background:#fff; border:1.5px solid #bdc7d8; border-radius:10px;
     margin-bottom:12px; overflow:hidden;
   }
   details.section > summary{
@@ -84,37 +90,45 @@
   .section-body{padding:12px 14px;}
   .subhead{
     background:var(--accent-light); color:var(--navy2); font-weight:700; font-size:0.85rem;
-    padding:8px 10px; border-radius:6px; margin:10px 0 8px;
+    padding:8px 10px; border-radius:6px; margin:10px 0 8px; border:1px solid #c3d2eb;
   }
-  label{display:block; font-size:0.8rem; font-weight:600; color:#3a4256; margin:10px 0 4px;}
+  label{display:block; font-size:0.8rem; font-weight:700; color:#1c2230; margin:10px 0 4px;}
   input[type=text], input[type=number], input[type=date], input[type=time], input[type=datetime-local], select, textarea{
-    width:100%; padding:9px 10px; border:1px solid var(--border); border-radius:7px; font-size:0.95rem;
+    width:100%; padding:9px 10px; border:1.5px solid #bdc7d8; border-radius:7px; font-size:0.95rem;
     font-family:inherit; background:#fcfcff;
   }
   textarea{min-height:56px; resize:vertical;}
   .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
   .row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
   @media (max-width:480px){ .row3{grid-template-columns:1fr 1fr;} }
-  table.mini{width:100%; border-collapse:collapse; margin-top:6px; font-size:0.8rem;}
-  table.mini th, table.mini td{border:1px solid var(--border); padding:6px; text-align:center; vertical-align:middle;}
-  table.mini th{background:var(--accent-light); color:var(--navy2); font-size:0.72rem;}
-  table.mini td input, table.mini td select{padding:6px; font-size:0.8rem; min-width:56px;}
-  table.mini td.lbl{text-align:right; font-weight:600; background:#fafbff; min-width:120px;}
-  .hint{font-size:0.7rem; color:#7a8296; margin-top:4px;}
+  
+  /* Thick Table Borders in UI */
+  table.mini{
+    width:100%; border-collapse:collapse; margin-top:6px; font-size:0.8rem;
+    border: var(--tbl-border);
+  }
+  table.mini th, table.mini td{
+    border: var(--tbl-border); 
+    padding:6px; text-align:center; vertical-align:middle;
+  }
+  table.mini th{background:var(--accent-light); color:var(--navy2); font-size:0.75rem; font-weight:700;}
+  table.mini td input, table.mini td select{padding:6px; font-size:0.8rem; min-width:56px; border:1px solid #a8b4c9;}
+  table.mini td.lbl{text-align:right; font-weight:700; background:#fafbff; min-width:120px;}
+  .hint{font-size:0.7rem; color:#5c6479; margin-top:4px;}
 
-  details.class-row { background:#fdfdfd; border:1px solid #e1e5f0; border-radius:8px; margin-bottom:8px; overflow:hidden; }
+  details.class-row { background:#fdfdfd; border:1.5px solid #c2c9db; border-radius:8px; margin-bottom:8px; overflow:hidden; }
   details.class-row > summary { list-style:none; padding:10px 12px; background:#f4f6fb; display:flex; align-items:center; cursor:pointer; }
   details.class-row > summary::-webkit-details-marker { display:none; }
-  details.class-row[open] > summary { border-bottom:1px solid #e1e5f0; background:#eef1f8; }
+  details.class-row[open] > summary { border-bottom:1.5px solid #c2c9db; background:#eef1f8; }
   
-  .class-name-input { width:110px; padding:6px; font-size:0.92rem; font-family:inherit; font-weight:600; color:var(--navy); border:1px solid #dcdfe6; border-radius:6px; background:#fff; text-align:center; text-align-last:center; }
-  .cat-entry select, .cat-entry input { border:1px solid #dcdfe6; border-radius:5px; font-size:0.92rem; font-family:inherit; text-align:center; text-align-last:center; }
+  .class-name-input { width:110px; padding:6px; font-size:0.92rem; font-family:inherit; font-weight:700; color:var(--navy); border:1.5px solid #b2bace; border-radius:6px; background:#fff; text-align:center; text-align-last:center; }
+  .cat-entry select, .cat-entry input { border:1px solid #b2bace; border-radius:5px; font-size:0.92rem; font-family:inherit; text-align:center; text-align-last:center; }
   
-  .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:0.8rem; color:#444; }
-  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:1px solid #e8c78c; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#684a12; font-size:0.92rem; }
+  .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:0.8rem; color:#222; font-weight:600; }
+  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:2px solid #d8b26e; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#533a0b; font-size:0.92rem; }
 
   .toolbar{
-    position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--border);
+    position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:2px solid #bdc7d8;
     display:flex; gap:8px; padding:10px 12px; z-index:60; box-shadow:0 -3px 10px rgba(0,0,0,.08);
   }
   .toolbar button{flex:1;}
@@ -123,35 +137,27 @@
     font-family:inherit;
   }
   .btn-primary{background:var(--accent); color:#fff;}
-  .btn-secondary{background:#eef1f8; color:var(--navy2);}
-  .btn-danger{background:#fdeceb; color:var(--danger);}
-  .btn-ok{background:#e7f6ee; color:var(--ok);}
+  .btn-secondary{background:#eef1f8; color:var(--navy2); border:1px solid #c2cde2;}
+  .btn-danger{background:#fdeceb; color:var(--danger); border:1px solid #f7c3c0;}
+  .btn-ok{background:#e7f6ee; color:var(--ok); border:1px solid #bce6cf;}
   .btn-sm{padding:7px 10px; font-size:0.78rem; border-radius:6px;}
   .btn-block{width:100%;}
 
-  .rec-card{background:#fff; border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:10px;}
+  .rec-card{background:#fff; border:1.5px solid #bdc7d8; border-radius:10px; padding:12px; margin-bottom:10px;}
   .rec-card h3{margin:0 0 4px; font-size:0.95rem; color:var(--navy);}
-  .rec-card .meta{font-size:0.78rem; color:#666; margin-bottom:8px;}
+  .rec-card .meta{font-size:0.78rem; color:#555; margin-bottom:8px;}
   .badge{display:inline-block; padding:2px 8px; border-radius:12px; font-size:0.7rem; font-weight:700;}
-  .badge.synced{background:#e7f6ee; color:var(--ok);}
-  .badge.pending{background:#fff4e2; color:var(--pending);}
+  .badge.synced{background:#e7f6ee; color:var(--ok); border:1px solid #bce6cf;}
+  .badge.pending{background:#fff4e2; color:var(--pending); border:1px solid #fedfa7;}
   .rec-actions{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
 
-  .modal-bg{position:fixed; inset:0; background:rgba(0,0,0,.4); display:none; align-items:center; justify-content:center; z-index:100; padding:16px;}
-  .modal-bg.show{display:flex;}
-  .modal{background:#fff; border-radius:12px; padding:18px; width:100%; max-width:460px; max-height:85vh; overflow:auto;}
-  .modal h2{margin-top:0; font-size:1.05rem; color:var(--navy);}
-  .search-wrap{position:relative;}
-  .empty{text-align:center; color:#888; padding:30px 10px; font-size:0.85rem;}
   .toast{
-    position:fixed; bottom:78px; left:50%; transform:translateX(-50%); background:#222; color:#fff;
+    position:fixed; bottom:78px; left:50%; transform:translateX(-50%); background:#1c2b4a; color:#fff;
     padding:10px 16px; border-radius:20px; font-size:0.85rem; z-index:200; opacity:0; transition:opacity .25s;
-    pointer-events:none; max-width:90%; text-align:center;
+    pointer-events:none; max-width:90%; text-align:center; font-family:inherit;
   }
   .toast.show{opacity:1;}
-  .small-note{font-size:0.75rem; color:#8a90a3; line-height:1.6;}
-  code{background:#eef1f8; padding:1px 5px; border-radius:4px; font-size:0.7rem;}
-  a.link{color:var(--accent);}
+  .small-note{font-size:0.75rem; color:#596279; line-height:1.6;}
 </style>
 </head>
 <body>
@@ -228,7 +234,7 @@
       <div class="row3">
         <div><label>एकूण पट</label><input type="number" min="0" id="vidPat"></div>
         <div><label>उपस्थित</label><input type="number" min="0" id="vidUpasthit"></div>
-        <div><label>टक्केवारी</label><input type="text" id="vidPercent" readonly style="background:#eef1f8;"></div>
+        <div><label>टक्केवारी</label><input type="text" id="vidPercent" readonly style="background:#eef1f8; font-weight:700;"></div>
       </div>
       <label>एक महिन्यापेक्षा जास्त काळ गैरहजर विद्यार्थी</label>
       <textarea id="vidGairhajar" placeholder="नाव / तपशील"></textarea>
@@ -237,9 +243,9 @@
       <div id="teacherListContainer"></div>
       
       <div class="row3" style="margin-top:12px;">
-        <div><label>एकूण शिक्षक</label><input type="number" min="0" id="shikPat" readonly style="background:#eef1f8;"></div>
-        <div><label>उपस्थित</label><input type="number" min="0" id="shikUpasthit" readonly style="background:#eef1f8;"></div>
-        <div><label>टक्केवारी</label><input type="text" id="shikPercent" readonly style="background:#eef1f8;"></div>
+        <div><label>एकूण शिक्षक</label><input type="number" min="0" id="shikPat" readonly style="background:#eef1f8; font-weight:700;"></div>
+        <div><label>उपस्थित</label><input type="number" min="0" id="shikUpasthit" readonly style="background:#eef1f8; font-weight:700;"></div>
+        <div><label>टक्केवारी</label><input type="text" id="shikPercent" readonly style="background:#eef1f8; font-weight:700;"></div>
       </div>
       <label>अतिरिक्त माहिती / अभिप्राय (अनुपस्थिती / रजा / प्रशिक्षण)</label>
       <textarea id="shikAnupasthit"></textarea>
@@ -537,9 +543,9 @@
 
   <div id="adminContent" style="display:none;">
     <div style="display:flex; gap:6px; margin-bottom:10px; flex-wrap:wrap;">
-      <button class="tab-btn active" data-subview="listView" style="border:1px solid var(--border); border-radius:8px; flex:1;">📋 नोंदी</button>
-      <button class="tab-btn" data-subview="settingsView" style="border:1px solid var(--border); border-radius:8px; flex:1;">⚙️ सेटिंग्ज</button>
-      <button class="tab-btn" data-subview="pinView" style="border:1px solid var(--border); border-radius:8px; flex:1;">🔑 PIN बदला</button>
+      <button class="tab-btn active" data-subview="listView" style="border:1.5px solid var(--border); border-radius:8px; flex:1;">📋 नोंदी</button>
+      <button class="tab-btn" data-subview="settingsView" style="border:1.5px solid var(--border); border-radius:8px; flex:1;">⚙️ सेटिंग्ज</button>
+      <button class="tab-btn" data-subview="pinView" style="border:1.5px solid var(--border); border-radius:8px; flex:1;">🔑 PIN बदला</button>
       <button class="btn-secondary btn-sm" id="adminLogoutBtn">🔓 लॉगआऊट</button>
     </div>
 
@@ -725,7 +731,7 @@ function addScholTestRow(test = {}) {
   
   const row = document.createElement('div');
   row.className = 'schol-test-row';
-  row.style.cssText = 'background:#fafbff; padding:10px; border:1px solid #e1e5f0; border-radius:6px; margin-bottom:8px; position:relative;';
+  row.style.cssText = 'background:#fafbff; padding:10px; border:1.5px solid #bdc7d8; border-radius:6px; margin-bottom:8px; position:relative;';
 
   const stdOptions = ["४ थी", "७ वी", "४ थी व ७ वी दोन्ही"].map(o => `<option value="${o}" ${test.std === o ? 'selected' : ''}>${o}</option>`).join('');
 
@@ -752,7 +758,7 @@ function addScholTestRow(test = {}) {
       </div>
       <div>
         <label style="margin-top:0; font-size:0.75rem;">गैरहजर</label>
-        <input type="number" min="0" class="st-absent" value="${test.absent || ''}" readonly style="background:#eef1f8;">
+        <input type="number" min="0" class="st-absent" value="${test.absent || ''}" readonly style="background:#eef1f8; font-weight:700;">
       </div>
     </div>
   `;
@@ -798,7 +804,7 @@ function addCwsnRow(student = {}) {
   const container = document.getElementById('cwsnListContainer');
   const row = document.createElement('div');
   row.className = 'cwsn-row';
-  row.style.cssText = 'background:#fafbff; padding:12px; border:1px solid #e1e5f0; border-radius:6px; margin-bottom:10px; position:relative;';
+  row.style.cssText = 'background:#fafbff; padding:12px; border:1.5px solid #bdc7d8; border-radius:6px; margin-bottom:10px; position:relative;';
 
   let typeOptions = '<option value="">-- अपंगत्वाचा प्रकार निवडा --</option>';
   DISABILITY_TYPES.forEach(t => {
@@ -873,11 +879,11 @@ function addTeacherRow(name = "", status = "उपस्थित") {
   const container = document.getElementById('teacherListContainer');
   const row = document.createElement('div');
   row.className = 'teacher-row';
-  row.style.cssText = 'display:flex; gap:8px; margin-bottom:8px; align-items:center; flex-wrap:wrap; background:#fafbff; padding:8px; border:1px solid #e1e5f0; border-radius:6px;';
+  row.style.cssText = 'display:flex; gap:8px; margin-bottom:8px; align-items:center; flex-wrap:wrap; background:#fafbff; padding:8px; border:1.5px solid #bdc7d8; border-radius:6px;';
   
   row.innerHTML = `
-      <input type="text" class="teacher-name-input" value="${name}" readonly style="flex:2; min-width:140px; padding:6px; font-weight:600; color:var(--navy); border:1px solid transparent; background:transparent;">
-      <select class="teacher-status-select" style="flex:1; min-width:110px; padding:6px; border:1px solid var(--border); border-radius:6px;" onchange="calcTeacherTotals()">
+      <input type="text" class="teacher-name-input" value="${name}" readonly style="flex:2; min-width:140px; padding:6px; font-weight:700; color:var(--navy); border:1px solid transparent; background:transparent;">
+      <select class="teacher-status-select" style="flex:1; min-width:110px; padding:6px; border:1.5px solid var(--border); border-radius:6px;" onchange="calcTeacherTotals()">
           <option value="उपस्थित" ${status==='उपस्थित'?'selected':''}>उपस्थित</option>
           <option value="गैरहजर" ${status==='गैरहजर'?'selected':''}>गैरहजर</option>
           <option value="रजेवर" ${status==='रजेवर'?'selected':''}>रजेवर</option>
@@ -937,7 +943,7 @@ function addAdminTeacherRow(name = '') {
     const row = document.createElement('div');
     row.style.cssText = 'display:flex; gap:6px; margin-bottom:8px; align-items:center;';
     row.innerHTML = `
-        <input type="text" class="admin-teacher-input" value="${name}" placeholder="शिक्षकाचे नाव" style="flex:1; padding:8px; border:1px solid var(--border); border-radius:6px; font-size:0.9rem;">
+        <input type="text" class="admin-teacher-input" value="${name}" placeholder="शिक्षकाचे नाव" style="flex:1; padding:8px; border:1.5px solid var(--border); border-radius:6px; font-size:0.9rem;">
         <button type="button" class="btn-danger btn-sm" style="padding:8px 12px;" onclick="this.parentElement.remove()">✕</button>
     `;
     container.appendChild(row);
@@ -1048,9 +1054,9 @@ function addClassRow(className = "") {
       <span class="class-totals-text" id="class_total_text_${id}">मुले 0 · मुली 0 · एकूण 0</span>
       <button type="button" class="btn-danger btn-sm" style="padding:5px 8px; font-size:0.7rem;" onclick="event.stopPropagation(); removeClassRow(this)">🗑️ काढा</button>
     </summary>
-    <div class="section-body" style="background:#fff; border-top:1px solid #e1e5f0; padding:12px;">
+    <div class="section-body" style="background:#fff; border-top:1.5px solid #c2c9db; padding:12px;">
       <div class="cat-list-container" id="cat_list_${id}"></div>
-      <button type="button" class="btn-secondary btn-sm" style="margin-top:8px; font-size:0.75rem; width:100%; border:1px dashed #a5b4d4;" onclick="addCategoryEntry(${id})">➕ नवीन प्रवर्ग जोडा</button>
+      <button type="button" class="btn-secondary btn-sm" style="margin-top:8px; font-size:0.75rem; width:100%; border:1px dashed #7586ab;" onclick="addCategoryEntry(${id})">➕ नवीन प्रवर्ग जोडा</button>
     </div>
   `;
   document.getElementById('classListContainer').appendChild(details);
@@ -1061,7 +1067,7 @@ function addCategoryEntry(classId, catVal = "", bVal = "", gVal = "") {
   const container = document.getElementById(`cat_list_${classId}`);
   const entryDiv = document.createElement('div');
   entryDiv.className = 'cat-entry';
-  entryDiv.style.cssText = 'display:flex; gap:6px; margin-bottom:8px; align-items:center; flex-wrap:wrap; background:#fafbff; padding:8px; border:1px solid #e1e5f0; border-radius:6px;';
+  entryDiv.style.cssText = 'display:flex; gap:6px; margin-bottom:8px; align-items:center; flex-wrap:wrap; background:#fafbff; padding:8px; border:1.5px solid #bdc7d8; border-radius:6px;';
   
   let catOptions = '<option value="">-- प्रवर्ग --</option>';
   STUDENT_CATEGORIES.forEach(c => {
@@ -1073,11 +1079,11 @@ function addCategoryEntry(classId, catVal = "", bVal = "", gVal = "") {
   entryDiv.innerHTML = `
     <select class="cat-select" style="flex:2; min-width:110px; padding:6px;" onchange="calcClassTotals()">${catOptions}</select>
     <div style="display:flex; flex:1; gap:4px; align-items:center; min-width:80px;">
-      <label style="margin:0; font-size:0.75rem; color:#555;">मुले</label>
+      <label style="margin:0; font-size:0.75rem; color:#333;">मुले</label>
       <input type="number" min="0" class="boy-input" style="flex:1; padding:6px;" value="${bVal}" oninput="calcClassTotals()">
     </div>
     <div style="display:flex; flex:1; gap:4px; align-items:center; min-width:80px;">
-      <label style="margin:0; font-size:0.75rem; color:#555;">मुली</label>
+      <label style="margin:0; font-size:0.75rem; color:#333;">मुली</label>
       <input type="number" min="0" class="girl-input" style="flex:1; padding:6px;" value="${gVal}" oninput="calcClassTotals()">
     </div>
     <button type="button" class="btn-danger btn-sm" style="padding:6px 10px; font-size:0.85rem; flex:none;" onclick="this.parentElement.remove(); calcClassTotals();">✕</button>
@@ -1613,7 +1619,6 @@ function deleteRecord(id) {
       const recs = loadRecords();
       const rec = recs.find(r => r._id === id);
       
-      // If record exists, was synced, and we have internet -> Send delete request to Sheet
       if (rec && rec.synced && navigator.onLine) {
           const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
           fetch(APP_SCRIPT_URL + sep + 'mode=delete&id=' + id, { method: 'GET', mode: 'no-cors' })
@@ -1649,7 +1654,7 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF (Standard A4 Portrait, Structured Margin, Centered Data)
+   PRINT / PDF (Noto Serif Devanagari + Thick Solid Borders)
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 
@@ -1770,28 +1775,32 @@ function viewPrint(id){
   let timeDisplay = formatTimeInMarathi(r["भेट_वेळ"]);
 
   let html = `<html lang="mr"><head><meta charset="UTF-8"><title>शाळा भेट प्रपत्र - ${escapeHtml(r["शाळेचे_नाव"])}</title>
-  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     @page {
       size: A4 portrait;
       margin: 12mm 15mm 12mm 15mm;
     }
     body{
-      font-family:'Mukta', sans-serif; 
+      font-family:'Noto Serif Devanagari', serif; 
       padding:0; margin:0 auto; 
       color:#111; 
-      font-size:14px; 
-      line-height:1.35;
+      font-size:13.5px; 
+      line-height:1.4;
       max-width: 100%;
     }
-    h1{font-size:18px; text-align:center; margin:0 0 2px; color:#1c2b4a;}
-    h2{font-size:13px; text-align:center; color:#444; font-weight:normal; margin:0 0 10px;}
-    .sec-title{background:#1c2b4a; color:#fff; padding:5px 10px; font-weight:bold; font-size:14.5px; margin-top:12px; page-break-after:avoid;}
-    table{width:100%; border-collapse:collapse; margin-top:4px; page-break-inside:auto;}
+    h1{font-size:18px; text-align:center; margin:0 0 2px; color:#1c2b4a; font-weight:700;}
+    h2{font-size:13px; text-align:center; color:#333; font-weight:600; margin:0 0 10px;}
+    .sec-title{background:#1c2b4a; color:#fff; padding:5px 10px; font-weight:700; font-size:14px; margin-top:12px; page-break-after:avoid; border: 1.8px solid #1c2b4a;}
+    
+    /* Thick High-Contrast Borders for Print & PDF */
+    table{width:100%; border-collapse:collapse; margin-top:4px; page-break-inside:auto; border: 1.8px solid #1c2b4a;}
     tr{page-break-inside:avoid; page-break-after:auto;}
-    td, th{border:1px solid #777; padding:5px 8px; font-size:13.5px; vertical-align:middle; text-align:center;}
-    th{background:#f0f3f8; font-weight:700;}
-    .pf-lbl{width:40%; background:#f5f7fb; font-weight:600; text-align:left; padding-left:8px;}
+    td, th{border: 1.8px solid #1c2b4a; padding:5px 8px; font-size:13px; vertical-align:middle; text-align:center;}
+    th{background:#eef2f9; font-weight:700; color:#1c2b4a;}
+    .pf-lbl{width:40%; background:#f8faff; font-weight:700; text-align:left; padding-left:8px;}
     .pf-val{text-align:center;}
     @media print{
       .no-print{display:none;}
@@ -1819,7 +1828,7 @@ function viewPrint(id){
           <table style="width:100%; margin:0; border:none;">
             <tbody>
             <tr><th style="width:60%;">शिक्षकाचे नाव</th><th>स्थिती</th></tr>
-            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="text-align:center;">${escapeHtml(t.name)}</td><td style="text-align:center;">${escapeHtml(t.status)}</td></tr>`).join('')}
+            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="text-align:center; border: 1.8px solid #1c2b4a;">${escapeHtml(t.name)}</td><td style="text-align:center; border: 1.8px solid #1c2b4a;">${escapeHtml(t.status)}</td></tr>`).join('')}
             </tbody>
           </table>
         </td></tr>` 
@@ -1867,7 +1876,7 @@ function viewPrint(id){
     </tbody>
   </table>
   
-  <p style="font-weight:bold; font-size:13.5px; margin:8px 0 3px;">I) प्रथम भाषा</p>
+  <p style="font-weight:700; font-size:13.5px; margin:8px 0 3px;">I) प्रथम भाषा</p>
   <table>
     <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
     <tbody>
@@ -1877,7 +1886,7 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <p style="font-weight:bold; font-size:13.5px; margin:8px 0 3px;">II) द्वितीय भाषा</p>
+  <p style="font-weight:700; font-size:13.5px; margin:8px 0 3px;">II) द्वितीय भाषा</p>
   <table>
     <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
     <tbody>
@@ -1887,7 +1896,7 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <p style="font-weight:bold; font-size:13.5px; margin:8px 0 3px;">III) गणित</p>
+  <p style="font-weight:700; font-size:13.5px; margin:8px 0 3px;">III) गणित</p>
   <table>
     <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
     <tbody>
@@ -2057,7 +2066,6 @@ const LS_PIN = "shalaBhet_admin_pin_v1"; const SS_AUTH = "shalaBhet_admin_authed
 function hasPin(){ return !!localStorage.getItem(LS_PIN); }
 function getPin(){ return localStorage.getItem(LS_PIN) || ''; }
 
-// PIN लोकल आणि ऑनलाइन दोन्हीकडे सेव्ह करण्यासाठी
 function setPin(p, skipSync = false){ 
   localStorage.setItem(LS_PIN, p); 
   
@@ -2072,7 +2080,6 @@ function setPin(p, skipSync = false){
 function isAdminAuthed(){ return sessionStorage.getItem(SS_AUTH) === '1'; }
 function validPinFormat(p){ return /^[0-9]{4,6}$/.test(p); }
 
-// सर्व्हरवरून PIN चेक करण्यासाठी (नवीन मोबाईलवर ॲप उघडल्यास)
 function fetchPinOnline() {
   if(navigator.onLine) {
     const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
@@ -2080,8 +2087,8 @@ function fetchPinOnline() {
       .then(res => res.json())
       .then(data => {
         if(data && data.pin) {
-          setPin(data.pin, true); // लोकल मेमरीमध्ये सेव्ह करा (परत सर्व्हरला न पाठवता)
-          refreshAdminGate(); // UI रिफ्रेश करा
+          setPin(data.pin, true);
+          refreshAdminGate();
         }
       })
       .catch(e => console.error('Error fetching PIN:', e));
@@ -2094,7 +2101,7 @@ function refreshAdminGate(){
   content.style.display = 'none'; lock.style.display = 'block';
   if(!hasPin()){ 
      document.getElementById('pinSetupCard').style.display = 'block'; document.getElementById('pinLoginCard').style.display = 'none'; 
-     fetchPinOnline(); // PIN सेट केलेला नसल्यास ऑनलाइन चेक करा
+     fetchPinOnline();
   }
   else { 
      document.getElementById('pinSetupCard').style.display = 'none'; document.getElementById('pinLoginCard').style.display = 'block'; document.getElementById('loginPinInput').value = ''; document.getElementById('pinError').style.display = 'none'; 
@@ -2141,7 +2148,6 @@ function init(){
   updateNetStatus(); 
   updatePendingCount();
   
-  // ॲप चालू झाल्यावर एकदा PIN ऑनलाइन चेक करा
   if(!hasPin()) fetchPinOnline();
 }
 init();
