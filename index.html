@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>मिशन निपुण बीड - सर्वंकष शाळा भेट व पर्यवेक्षण प्रपत्र</title>
-<!-- Google Font: Noto Serif Devanagari -->
+<!-- Google Font: Noto Sans Devanagari -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1c2b4a;
     --navy2:#24365c;
     --accent:#2f5aa8;
     --accent-light:#eaf0fb;
-    --border:#24365c; /* Bolder structural border */
-    --tbl-border: 1.8px solid #1c2b4a; /* Thick Table Border Variable */
+    --border:#24365c;
+    --tbl-border: 1.8px solid #1c2b4a;
     --bg:#f4f6fb;
     --ok:#1e8e5a;
     --pending:#c67c00;
@@ -24,53 +24,67 @@
     --fs-scale:1;
   }
   html{
-    font-size: calc(clamp(14.5px, 3.6vw + 10px, 18px) * var(--fs-scale));
+    /* 18px Base Font Size with dynamic scale */
+    font-size: calc(18px * var(--fs-scale));
     -webkit-text-size-adjust:100%;
   }
   *{box-sizing:border-box;}
   body{
-    margin:0; padding:0; font-size:1rem;
-    font-family:'Noto Serif Devanagari', serif, system-ui;
+    margin:0; 
+    /* Adaptive Margin / Padding using clamp */
+    padding: 0 clamp(8px, 2.5vw, 24px) 100px clamp(8px, 2.5vw, 24px); 
+    font-size:1rem;
+    font-family:'Noto Sans Devanagari', sans-serif, system-ui;
     background:var(--bg);
     color:var(--text);
-    padding-bottom:100px;
     -webkit-font-smoothing:antialiased;
   }
   header.topbar{
     background:linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
     color:#fff;
-    padding:0.9rem 1rem;
+    padding: clamp(0.7rem, 2vw, 1.2rem) clamp(0.8rem, 2.5vw, 1.5rem);
+    margin: 0 calc(-1 * clamp(8px, 2.5vw, 24px)); /* Bleed to edges */
     position:sticky; top:0; z-index:50;
     box-shadow:0 2px 8px rgba(0,0,0,.15);
   }
-  header.topbar h1{ margin:0; font-size:1.05rem; line-height:1.4; letter-spacing:.2px; font-weight:700;}
-  header.topbar p{ margin:2px 0 0; font-size:0.78rem; opacity:.85;}
+  header.topbar h1{ margin:0; font-size:1.15rem; line-height:1.4; letter-spacing:.2px; font-weight:700;}
+  header.topbar p{ margin:3px 0 0; font-size:0.82rem; opacity:.9;}
   .status-strip{
-    display:flex; align-items:center; gap:8px; margin-top:8px; font-size:0.78rem; flex-wrap:wrap;
+    display:flex; align-items:center; gap:10px; margin-top:10px; font-size:0.82rem; flex-wrap:wrap;
   }
-  .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
   .dot.on{background:#4CD46C;}
   .dot.off{background:#e05555;}
-  .fontctl-group{ display:flex; align-items:center; gap:4px; margin-left:auto; }
+  .fontctl-group{ display:flex; align-items:center; gap:5px; margin-left:auto; }
   .fontctl{
-    appearance:none; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08);
-    color:#fff; border-radius:6px; padding:3px 8px; font-size:0.72rem; font-weight:700;
+    appearance:none; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.12);
+    color:#fff; border-radius:6px; padding:4px 10px; font-size:0.75rem; font-weight:700;
     line-height:1.4; cursor:pointer; font-family:inherit;
   }
-  .fontctl:active{ background:rgba(255,255,255,.22); }
+  .fontctl:active{ background:rgba(255,255,255,.25); }
   #pendingCountWrap{ order:3; width:100%; }
-  @media (min-width:420px){ #pendingCountWrap{ order:0; width:auto; margin-left:8px; } .fontctl-group{ margin-left:auto; } }
+  @media (min-width:480px){ #pendingCountWrap{ order:0; width:auto; margin-left:8px; } .fontctl-group{ margin-left:auto; } }
+  
   .tabbar{
     display:flex; background:#fff; border-bottom:2px solid var(--border);
-    position:sticky; top:64px; z-index:40; overflow-x:auto;
+    position:sticky; top:68px; z-index:40; overflow-x:auto;
+    margin: 0 calc(-1 * clamp(8px, 2.5vw, 24px));
+    padding: 0 clamp(8px, 2vw, 16px);
   }
   .tabbar button{
-    flex:1; padding:12px 8px; border:none; background:none; font-size:0.85rem;
+    flex:1; padding:12px 10px; border:none; background:none; font-size:0.9rem;
     color:#555; border-bottom:3px solid transparent; white-space:nowrap; cursor:pointer;
-    font-family:inherit;
+    font-family:inherit; font-weight:600;
   }
   .tabbar button.active{ color:var(--navy); border-color:var(--accent); font-weight:700;}
-  main{padding:12px;max-width:760px;margin:0 auto;}
+  
+  /* Adaptive Main Layout Container */
+  main{
+    padding: clamp(10px, 2.5vw, 20px) 0;
+    max-width: 860px;
+    margin: 0 auto;
+    width: 100%;
+  }
   .view{display:none;}
   .view.active{display:block;}
   .subview{display:none;}
@@ -78,86 +92,86 @@
 
   details.section{
     background:#fff; border:1.5px solid #bdc7d8; border-radius:10px;
-    margin-bottom:12px; overflow:hidden;
+    margin-bottom: clamp(10px, 2vw, 16px); overflow:hidden;
   }
   details.section > summary{
-    list-style:none; cursor:pointer; padding:12px 14px; background:var(--navy);
-    color:#fff; font-weight:700; font-size:0.9rem; display:flex; align-items:center; justify-content:space-between;
+    list-style:none; cursor:pointer; padding: clamp(10px, 2vw, 14px); background:var(--navy);
+    color:#fff; font-weight:700; font-size:0.95rem; display:flex; align-items:center; justify-content:space-between;
   }
   details.section > summary::-webkit-details-marker{display:none;}
   details.section > summary:after{content:'▾'; transition:transform .2s;}
   details.section[open] > summary:after{transform:rotate(180deg);}
-  .section-body{padding:12px 14px;}
+  .section-body{padding: clamp(10px, 2.5vw, 16px);}
   .subhead{
-    background:var(--accent-light); color:var(--navy2); font-weight:700; font-size:0.85rem;
-    padding:8px 10px; border-radius:6px; margin:10px 0 8px; border:1px solid #c3d2eb;
+    background:var(--accent-light); color:var(--navy2); font-weight:700; font-size:0.9rem;
+    padding:8px 12px; border-radius:6px; margin:12px 0 8px; border:1px solid #c3d2eb;
   }
-  label{display:block; font-size:0.8rem; font-weight:700; color:#1c2230; margin:10px 0 4px;}
+  label{display:block; font-size:0.85rem; font-weight:700; color:#1c2230; margin:12px 0 5px;}
   input[type=text], input[type=number], input[type=date], input[type=time], input[type=datetime-local], select, textarea{
-    width:100%; padding:9px 10px; border:1.5px solid #bdc7d8; border-radius:7px; font-size:0.95rem;
+    width:100%; padding:10px 12px; border:1.5px solid #bdc7d8; border-radius:7px; font-size:0.95rem;
     font-family:inherit; background:#fcfcff;
   }
-  textarea{min-height:56px; resize:vertical;}
-  .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
-  .row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
-  @media (max-width:480px){ .row3{grid-template-columns:1fr 1fr;} }
+  textarea{min-height:60px; resize:vertical;}
+  .row2{display:grid; grid-template-columns:1fr 1fr; gap: clamp(8px, 2vw, 12px);}
+  .row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap: clamp(8px, 2vw, 12px);}
+  @media (max-width:520px){ .row3{grid-template-columns:1fr 1fr;} }
   
   /* Thick Table Borders in UI */
   table.mini{
-    width:100%; border-collapse:collapse; margin-top:6px; font-size:0.8rem;
+    width:100%; border-collapse:collapse; margin-top:8px; font-size:0.85rem;
     border: var(--tbl-border);
   }
   table.mini th, table.mini td{
     border: var(--tbl-border); 
-    padding:6px; text-align:center; vertical-align:middle;
+    padding:8px 6px; text-align:center; vertical-align:middle;
   }
-  table.mini th{background:var(--accent-light); color:var(--navy2); font-size:0.75rem; font-weight:700;}
-  table.mini td input, table.mini td select{padding:6px; font-size:0.8rem; min-width:56px; border:1px solid #a8b4c9;}
+  table.mini th{background:var(--accent-light); color:var(--navy2); font-size:0.8rem; font-weight:700;}
+  table.mini td input, table.mini td select{padding:6px; font-size:0.85rem; min-width:56px; border:1px solid #a8b4c9;}
   table.mini td.lbl{text-align:right; font-weight:700; background:#fafbff; min-width:120px;}
-  .hint{font-size:0.7rem; color:#5c6479; margin-top:4px;}
+  .hint{font-size:0.75rem; color:#5c6479; margin-top:4px;}
 
   details.class-row { background:#fdfdfd; border:1.5px solid #c2c9db; border-radius:8px; margin-bottom:8px; overflow:hidden; }
   details.class-row > summary { list-style:none; padding:10px 12px; background:#f4f6fb; display:flex; align-items:center; cursor:pointer; }
   details.class-row > summary::-webkit-details-marker { display:none; }
   details.class-row[open] > summary { border-bottom:1.5px solid #c2c9db; background:#eef1f8; }
   
-  .class-name-input { width:110px; padding:6px; font-size:0.92rem; font-family:inherit; font-weight:700; color:var(--navy); border:1.5px solid #b2bace; border-radius:6px; background:#fff; text-align:center; text-align-last:center; }
+  .class-name-input { width:120px; padding:6px; font-size:0.92rem; font-family:inherit; font-weight:700; color:var(--navy); border:1.5px solid #b2bace; border-radius:6px; background:#fff; text-align:center; text-align-last:center; }
   .cat-entry select, .cat-entry input { border:1px solid #b2bace; border-radius:5px; font-size:0.92rem; font-family:inherit; text-align:center; text-align-last:center; }
   
-  .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:0.8rem; color:#222; font-weight:600; }
-  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:2px solid #d8b26e; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#533a0b; font-size:0.92rem; }
+  .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:0.82rem; color:#222; font-weight:600; }
+  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:2px solid #d8b26e; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#533a0b; font-size:0.95rem; }
 
   .toolbar{
     position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:2px solid #bdc7d8;
-    display:flex; gap:8px; padding:10px 12px; z-index:60; box-shadow:0 -3px 10px rgba(0,0,0,.08);
+    display:flex; gap:10px; padding:10px clamp(10px, 3vw, 24px); z-index:60; box-shadow:0 -3px 10px rgba(0,0,0,.08);
   }
   .toolbar button{flex:1;}
   button{
-    cursor:pointer; border:none; border-radius:8px; padding:11px 10px; font-size:0.88rem; font-weight:700;
+    cursor:pointer; border:none; border-radius:8px; padding:11px 12px; font-size:0.9rem; font-weight:700;
     font-family:inherit;
   }
   .btn-primary{background:var(--accent); color:#fff;}
   .btn-secondary{background:#eef1f8; color:var(--navy2); border:1px solid #c2cde2;}
   .btn-danger{background:#fdeceb; color:var(--danger); border:1px solid #f7c3c0;}
   .btn-ok{background:#e7f6ee; color:var(--ok); border:1px solid #bce6cf;}
-  .btn-sm{padding:7px 10px; font-size:0.78rem; border-radius:6px;}
+  .btn-sm{padding:8px 12px; font-size:0.8rem; border-radius:6px;}
   .btn-block{width:100%;}
 
-  .rec-card{background:#fff; border:1.5px solid #bdc7d8; border-radius:10px; padding:12px; margin-bottom:10px;}
-  .rec-card h3{margin:0 0 4px; font-size:0.95rem; color:var(--navy);}
-  .rec-card .meta{font-size:0.78rem; color:#555; margin-bottom:8px;}
-  .badge{display:inline-block; padding:2px 8px; border-radius:12px; font-size:0.7rem; font-weight:700;}
+  .rec-card{background:#fff; border:1.5px solid #bdc7d8; border-radius:10px; padding:14px; margin-bottom:12px;}
+  .rec-card h3{margin:0 0 4px; font-size:1rem; color:var(--navy);}
+  .rec-card .meta{font-size:0.8rem; color:#555; margin-bottom:8px;}
+  .badge{display:inline-block; padding:3px 8px; border-radius:12px; font-size:0.72rem; font-weight:700;}
   .badge.synced{background:#e7f6ee; color:var(--ok); border:1px solid #bce6cf;}
   .badge.pending{background:#fff4e2; color:var(--pending); border:1px solid #fedfa7;}
   .rec-actions{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
 
   .toast{
     position:fixed; bottom:78px; left:50%; transform:translateX(-50%); background:#1c2b4a; color:#fff;
-    padding:10px 16px; border-radius:20px; font-size:0.85rem; z-index:200; opacity:0; transition:opacity .25s;
+    padding:10px 18px; border-radius:24px; font-size:0.88rem; z-index:200; opacity:0; transition:opacity .25s;
     pointer-events:none; max-width:90%; text-align:center; font-family:inherit;
   }
   .toast.show{opacity:1;}
-  .small-note{font-size:0.75rem; color:#596279; line-height:1.6;}
+  .small-note{font-size:0.78rem; color:#596279; line-height:1.6;}
 </style>
 </head>
 <body>
@@ -736,28 +750,28 @@ function addScholTestRow(test = {}) {
   const stdOptions = ["४ थी", "७ वी", "४ थी व ७ वी दोन्ही"].map(o => `<option value="${o}" ${test.std === o ? 'selected' : ''}>${o}</option>`).join('');
 
   row.innerHTML = `
-    <button type="button" class="btn-danger btn-sm" style="position:absolute; top:8px; right:8px; padding:4px 8px; font-size:0.7rem;" onclick="this.parentElement.remove();">✕</button>
+    <button type="button" class="btn-danger btn-sm" style="position:absolute; top:8px; right:8px; padding:4px 8px; font-size:0.75rem;" onclick="this.parentElement.remove();">✕</button>
     <div class="row2" style="margin-bottom:8px; padding-right:30px;">
       <div>
-        <label style="margin-top:0; font-size:0.75rem;">दिनांक</label>
+        <label style="margin-top:0; font-size:0.8rem;">दिनांक</label>
         <input type="date" class="st-date" value="${test.date || ''}">
       </div>
       <div>
-        <label style="margin-top:0; font-size:0.75rem;">इयत्ता</label>
+        <label style="margin-top:0; font-size:0.8rem;">इयत्ता</label>
         <select class="st-std">${stdOptions}</select>
       </div>
     </div>
     <div class="row3">
       <div>
-        <label style="margin-top:0; font-size:0.75rem;">एकूण विद्यार्थी</label>
+        <label style="margin-top:0; font-size:0.8rem;">एकूण विद्यार्थी</label>
         <input type="number" min="0" class="st-total" value="${test.total || ''}" oninput="calcScholAbsent(this)">
       </div>
       <div>
-        <label style="margin-top:0; font-size:0.75rem;">उपस्थित</label>
+        <label style="margin-top:0; font-size:0.8rem;">उपस्थित</label>
         <input type="number" min="0" class="st-present" value="${test.present || ''}" oninput="calcScholAbsent(this)">
       </div>
       <div>
-        <label style="margin-top:0; font-size:0.75rem;">गैरहजर</label>
+        <label style="margin-top:0; font-size:0.8rem;">गैरहजर</label>
         <input type="number" min="0" class="st-absent" value="${test.absent || ''}" readonly style="background:#eef1f8; font-weight:700;">
       </div>
     </div>
@@ -812,15 +826,15 @@ function addCwsnRow(student = {}) {
   });
 
   row.innerHTML = `
-    <button type="button" class="btn-danger btn-sm" style="position:absolute; top:12px; right:12px; padding:4px 8px; font-size:0.7rem;" onclick="this.parentElement.remove()">✕ काढा</button>
+    <button type="button" class="btn-danger btn-sm" style="position:absolute; top:12px; right:12px; padding:4px 8px; font-size:0.75rem;" onclick="this.parentElement.remove()">✕ काढा</button>
     
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; padding-right:50px;">
        <div>
-         <label style="margin-top:0; font-size:0.75rem;">विद्यार्थ्याचे नाव (इंग्रजीत / मराठीत)</label>
+         <label style="margin-top:0; font-size:0.8rem;">विद्यार्थ्याचे नाव (इंग्रजीत / मराठीत)</label>
          <input type="text" class="cwsn-name" value="${student.name || ''}" placeholder="विद्यार्थ्याचे नाव">
        </div>
        <div>
-         <label style="margin-top:0; font-size:0.75rem;">इयत्ता</label>
+         <label style="margin-top:0; font-size:0.8rem;">इयत्ता</label>
          <select class="cwsn-class">
             <option value="">-- निवडा --</option>
             ${ALL_CLASSES.map(c => `<option value="${c}" ${student.std===c?'selected':''}>${c}</option>`).join('')}
@@ -829,17 +843,17 @@ function addCwsnRow(student = {}) {
     </div>
     
     <div style="margin-bottom:10px;">
-       <label style="margin-top:0; font-size:0.75rem;">अपंगत्वाचा प्रकार (२१ प्रकार)</label>
+       <label style="margin-top:0; font-size:0.8rem;">अपंगत्वाचा प्रकार (२१ प्रकार)</label>
        <select class="cwsn-type">${typeOptions}</select>
     </div>
     
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
        <div>
-         <label style="margin-top:0; font-size:0.75rem;">UDID कार्ड क्र. / आधार क्र.</label>
+         <label style="margin-top:0; font-size:0.8rem;">UDID कार्ड क्र. / आधार क्र.</label>
          <input type="text" class="cwsn-id" value="${student.id || ''}" placeholder="UDID किंवा आधार">
        </div>
        <div>
-         <label style="margin-top:0; font-size:0.75rem;">विशेष शेरा / आवश्यक गरजा</label>
+         <label style="margin-top:0; font-size:0.8rem;">विशेष शेरा / आवश्यक गरजा</label>
          <input type="text" class="cwsn-remarks" value="${student.remarks || ''}" placeholder="उदा. Need Hearing Aid">
        </div>
     </div>
@@ -943,7 +957,7 @@ function addAdminTeacherRow(name = '') {
     const row = document.createElement('div');
     row.style.cssText = 'display:flex; gap:6px; margin-bottom:8px; align-items:center;';
     row.innerHTML = `
-        <input type="text" class="admin-teacher-input" value="${name}" placeholder="शिक्षकाचे नाव" style="flex:1; padding:8px; border:1.5px solid var(--border); border-radius:6px; font-size:0.9rem;">
+        <input type="text" class="admin-teacher-input" value="${name}" placeholder="शिक्षकाचे नाव" style="flex:1; padding:8px; border:1.5px solid var(--border); border-radius:6px; font-size:0.95rem;">
         <button type="button" class="btn-danger btn-sm" style="padding:8px 12px;" onclick="this.parentElement.remove()">✕</button>
     `;
     container.appendChild(row);
@@ -1052,11 +1066,11 @@ function addClassRow(className = "") {
         ${optionsHtml}
       </select>
       <span class="class-totals-text" id="class_total_text_${id}">मुले 0 · मुली 0 · एकूण 0</span>
-      <button type="button" class="btn-danger btn-sm" style="padding:5px 8px; font-size:0.7rem;" onclick="event.stopPropagation(); removeClassRow(this)">🗑️ काढा</button>
+      <button type="button" class="btn-danger btn-sm" style="padding:5px 8px; font-size:0.75rem;" onclick="event.stopPropagation(); removeClassRow(this)">🗑️ काढा</button>
     </summary>
     <div class="section-body" style="background:#fff; border-top:1.5px solid #c2c9db; padding:12px;">
       <div class="cat-list-container" id="cat_list_${id}"></div>
-      <button type="button" class="btn-secondary btn-sm" style="margin-top:8px; font-size:0.75rem; width:100%; border:1px dashed #7586ab;" onclick="addCategoryEntry(${id})">➕ नवीन प्रवर्ग जोडा</button>
+      <button type="button" class="btn-secondary btn-sm" style="margin-top:8px; font-size:0.8rem; width:100%; border:1px dashed #7586ab;" onclick="addCategoryEntry(${id})">➕ नवीन प्रवर्ग जोडा</button>
     </div>
   `;
   document.getElementById('classListContainer').appendChild(details);
@@ -1079,11 +1093,11 @@ function addCategoryEntry(classId, catVal = "", bVal = "", gVal = "") {
   entryDiv.innerHTML = `
     <select class="cat-select" style="flex:2; min-width:110px; padding:6px;" onchange="calcClassTotals()">${catOptions}</select>
     <div style="display:flex; flex:1; gap:4px; align-items:center; min-width:80px;">
-      <label style="margin:0; font-size:0.75rem; color:#333;">मुले</label>
+      <label style="margin:0; font-size:0.8rem; color:#333;">मुले</label>
       <input type="number" min="0" class="boy-input" style="flex:1; padding:6px;" value="${bVal}" oninput="calcClassTotals()">
     </div>
     <div style="display:flex; flex:1; gap:4px; align-items:center; min-width:80px;">
-      <label style="margin:0; font-size:0.75rem; color:#333;">मुली</label>
+      <label style="margin:0; font-size:0.8rem; color:#333;">मुली</label>
       <input type="number" min="0" class="girl-input" style="flex:1; padding:6px;" value="${gVal}" oninput="calcClassTotals()">
     </div>
     <button type="button" class="btn-danger btn-sm" style="padding:6px 10px; font-size:0.85rem; flex:none;" onclick="this.parentElement.remove(); calcClassTotals();">✕</button>
@@ -1654,7 +1668,7 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF (Noto Serif Devanagari + Thick Solid Borders)
+   PRINT / PDF (Noto Sans Devanagari + Adaptive Margins + Thick Borders)
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 
@@ -1777,28 +1791,29 @@ function viewPrint(id){
   let html = `<html lang="mr"><head><meta charset="UTF-8"><title>शाळा भेट प्रपत्र - ${escapeHtml(r["शाळेचे_नाव"])}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     @page {
       size: A4 portrait;
-      margin: 12mm 15mm 12mm 15mm;
+      margin: clamp(10mm, 3vw, 15mm);
     }
     body{
-      font-family:'Noto Serif Devanagari', serif; 
-      padding:0; margin:0 auto; 
+      font-family:'Noto Sans Devanagari', sans-serif; 
+      padding: clamp(8px, 2vw, 16px); 
+      margin:0 auto; 
       color:#111; 
-      font-size:13.5px; 
-      line-height:1.4;
+      font-size:14px; 
+      line-height:1.45;
       max-width: 100%;
     }
-    h1{font-size:18px; text-align:center; margin:0 0 2px; color:#1c2b4a; font-weight:700;}
-    h2{font-size:13px; text-align:center; color:#333; font-weight:600; margin:0 0 10px;}
-    .sec-title{background:#1c2b4a; color:#fff; padding:5px 10px; font-weight:700; font-size:14px; margin-top:12px; page-break-after:avoid; border: 1.8px solid #1c2b4a;}
+    h1{font-size:18px; text-align:center; margin:0 0 4px; color:#1c2b4a; font-weight:700;}
+    h2{font-size:13.5px; text-align:center; color:#333; font-weight:600; margin:0 0 12px;}
+    .sec-title{background:#1c2b4a; color:#fff; padding:6px 10px; font-weight:700; font-size:14.5px; margin-top:14px; page-break-after:avoid; border: 1.8px solid #1c2b4a;}
     
     /* Thick High-Contrast Borders for Print & PDF */
     table{width:100%; border-collapse:collapse; margin-top:4px; page-break-inside:auto; border: 1.8px solid #1c2b4a;}
     tr{page-break-inside:avoid; page-break-after:auto;}
-    td, th{border: 1.8px solid #1c2b4a; padding:5px 8px; font-size:13px; vertical-align:middle; text-align:center;}
+    td, th{border: 1.8px solid #1c2b4a; padding:6px 8px; font-size:13.5px; vertical-align:middle; text-align:center;}
     th{background:#eef2f9; font-weight:700; color:#1c2b4a;}
     .pf-lbl{width:40%; background:#f8faff; font-weight:700; text-align:left; padding-left:8px;}
     .pf-val{text-align:center;}
@@ -1876,7 +1891,7 @@ function viewPrint(id){
     </tbody>
   </table>
   
-  <p style="font-weight:700; font-size:13.5px; margin:8px 0 3px;">I) प्रथम भाषा</p>
+  <p style="font-weight:700; font-size:14px; margin:10px 0 4px;">I) प्रथम भाषा</p>
   <table>
     <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
     <tbody>
@@ -1886,7 +1901,7 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <p style="font-weight:700; font-size:13.5px; margin:8px 0 3px;">II) द्वितीय भाषा</p>
+  <p style="font-weight:700; font-size:14px; margin:10px 0 4px;">II) द्वितीय भाषा</p>
   <table>
     <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
     <tbody>
@@ -1896,7 +1911,7 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <p style="font-weight:700; font-size:13.5px; margin:8px 0 3px;">III) गणित</p>
+  <p style="font-weight:700; font-size:14px; margin:10px 0 4px;">III) गणित</p>
   <table>
     <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
     <tbody>
