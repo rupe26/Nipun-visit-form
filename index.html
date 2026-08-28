@@ -16,36 +16,54 @@
     --pending:#c67c00;
     --danger:#c0392b;
     --text:#1c2230;
+    --fs-scale:1;
+  }
+  /* Fluid + user-adjustable type scale: base grows gently with viewport width,
+     then --fs-scale (set by the अ-/अ/अ+ control) multiplies everything at once
+     because every element below is sized in rem/em relative to this root. */
+  html{
+    font-size: calc(clamp(14.5px, 3.6vw + 10px, 18px) * var(--fs-scale));
+    -webkit-text-size-adjust:100%;
   }
   *{box-sizing:border-box;}
   body{
-    margin:0; padding:0;
+    margin:0; padding:0; font-size:1rem;
     font-family:'Noto Sans Devanagari','Nirmala UI','Mangal',sans-serif, system-ui;
     background:var(--bg);
     color:var(--text);
     padding-bottom:100px;
+    -webkit-font-smoothing:antialiased;
   }
   header.topbar{
-    background:var(--navy);
+    background:linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
     color:#fff;
-    padding:14px 16px;
+    padding:0.9rem 1rem;
     position:sticky; top:0; z-index:50;
     box-shadow:0 2px 8px rgba(0,0,0,.15);
   }
-  header.topbar h1{ margin:0; font-size:16px; line-height:1.4;}
-  header.topbar p{ margin:2px 0 0; font-size:12px; opacity:.85;}
+  header.topbar h1{ margin:0; font-size:1.05rem; line-height:1.4; letter-spacing:.2px;}
+  header.topbar p{ margin:2px 0 0; font-size:0.78rem; opacity:.85;}
   .status-strip{
-    display:flex; align-items:center; gap:8px; margin-top:8px; font-size:12px;
+    display:flex; align-items:center; gap:8px; margin-top:8px; font-size:0.78rem; flex-wrap:wrap;
   }
   .dot{width:9px;height:9px;border-radius:50%;display:inline-block;}
   .dot.on{background:#4CD46C;}
   .dot.off{background:#e05555;}
+  .fontctl-group{ display:flex; align-items:center; gap:4px; margin-left:auto; }
+  .fontctl{
+    appearance:none; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.08);
+    color:#fff; border-radius:6px; padding:3px 8px; font-size:0.72rem; font-weight:700;
+    line-height:1.4; cursor:pointer;
+  }
+  .fontctl:active{ background:rgba(255,255,255,.22); }
+  #pendingCountWrap{ order:3; width:100%; }
+  @media (min-width:420px){ #pendingCountWrap{ order:0; width:auto; margin-left:8px; } .fontctl-group{ margin-left:auto; } }
   .tabbar{
     display:flex; background:#fff; border-bottom:1px solid var(--border);
     position:sticky; top:64px; z-index:40; overflow-x:auto;
   }
   .tabbar button{
-    flex:1; padding:12px 8px; border:none; background:none; font-size:13px;
+    flex:1; padding:12px 8px; border:none; background:none; font-size:0.85rem;
     color:#555; border-bottom:3px solid transparent; white-space:nowrap; cursor:pointer;
   }
   .tabbar button.active{ color:var(--navy); border-color:var(--accent); font-weight:700;}
@@ -61,41 +79,44 @@
   }
   details.section > summary{
     list-style:none; cursor:pointer; padding:12px 14px; background:var(--navy);
-    color:#fff; font-weight:700; font-size:14px; display:flex; align-items:center; justify-content:space-between;
+    color:#fff; font-weight:700; font-size:0.9rem; display:flex; align-items:center; justify-content:space-between;
   }
   details.section > summary::-webkit-details-marker{display:none;}
   details.section > summary:after{content:'▾'; transition:transform .2s;}
   details.section[open] > summary:after{transform:rotate(180deg);}
   .section-body{padding:12px 14px;}
   .subhead{
-    background:var(--accent-light); color:var(--navy2); font-weight:700; font-size:13px;
+    background:var(--accent-light); color:var(--navy2); font-weight:700; font-size:0.85rem;
     padding:8px 10px; border-radius:6px; margin:10px 0 8px;
   }
-  label{display:block; font-size:12.5px; font-weight:600; color:#3a4256; margin:10px 0 4px;}
+  label{display:block; font-size:0.8rem; font-weight:600; color:#3a4256; margin:10px 0 4px;}
   input[type=text], input[type=number], input[type=date], input[type=time], input[type=datetime-local], select, textarea{
-    width:100%; padding:9px 10px; border:1px solid var(--border); border-radius:7px; font-size:14.5px;
+    width:100%; padding:9px 10px; border:1px solid var(--border); border-radius:7px; font-size:0.95rem;
     font-family:inherit; background:#fcfcff;
   }
   textarea{min-height:56px; resize:vertical;}
   .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
   .row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px;}
   @media (max-width:480px){ .row3{grid-template-columns:1fr 1fr;} }
-  table.mini{width:100%; border-collapse:collapse; margin-top:6px; font-size:12.5px;}
+  table.mini{width:100%; border-collapse:collapse; margin-top:6px; font-size:0.8rem;}
   table.mini th, table.mini td{border:1px solid var(--border); padding:6px; text-align:center; vertical-align:middle;}
-  table.mini th{background:var(--accent-light); color:var(--navy2); font-size:11.5px;}
-  table.mini td input, table.mini td select{padding:6px; font-size:12.5px; min-width:56px;}
+  table.mini th{background:var(--accent-light); color:var(--navy2); font-size:0.72rem;}
+  table.mini td input, table.mini td select{padding:6px; font-size:0.8rem; min-width:56px;}
   table.mini td.lbl{text-align:right; font-weight:600; background:#fafbff; min-width:120px;}
-  .hint{font-size:11px; color:#7a8296; margin-top:4px;}
+  .hint{font-size:0.7rem; color:#7a8296; margin-top:4px;}
 
   /* Classwise Custom Styles */
   details.class-row { background:#fdfdfd; border:1px solid #e1e5f0; border-radius:8px; margin-bottom:8px; overflow:hidden; }
   details.class-row > summary { list-style:none; padding:10px 12px; background:#f4f6fb; display:flex; align-items:center; cursor:pointer; }
   details.class-row > summary::-webkit-details-marker { display:none; }
   details.class-row[open] > summary { border-bottom:1px solid #e1e5f0; background:#eef1f8; }
-  .class-name-input { width:110px; padding:6px; font-size:13.5px; font-weight:bold; color:var(--navy); border:1px solid #dcdfe6; border-radius:6px; background:#fff; }
-  .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:12.5px; color:#444; }
-  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:1px solid #e8c78c; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#684a12; font-size:14px; }
-  .cat-entry select, .cat-entry input { border:1px solid #dcdfe6; border-radius:5px; }
+  
+  /* UPDATED: Enrollment table specific inputs to be center aligned and uniform font */
+  .class-name-input { width:110px; padding:6px; font-size:0.92rem; font-family:inherit; font-weight:600; color:var(--navy); border:1px solid #dcdfe6; border-radius:6px; background:#fff; text-align:center; text-align-last:center; }
+  .cat-entry select, .cat-entry input { border:1px solid #dcdfe6; border-radius:5px; font-size:0.92rem; font-family:inherit; text-align:center; text-align-last:center; }
+  
+  .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:0.8rem; color:#444; }
+  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:1px solid #e8c78c; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#684a12; font-size:0.92rem; }
 
   .toolbar{
     position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:1px solid var(--border);
@@ -103,20 +124,20 @@
   }
   .toolbar button{flex:1;}
   button{
-    cursor:pointer; border:none; border-radius:8px; padding:11px 10px; font-size:13.5px; font-weight:700;
+    cursor:pointer; border:none; border-radius:8px; padding:11px 10px; font-size:0.88rem; font-weight:700;
     font-family:inherit;
   }
   .btn-primary{background:var(--accent); color:#fff;}
   .btn-secondary{background:#eef1f8; color:var(--navy2);}
   .btn-danger{background:#fdeceb; color:var(--danger);}
   .btn-ok{background:#e7f6ee; color:var(--ok);}
-  .btn-sm{padding:7px 10px; font-size:12px; border-radius:6px;}
+  .btn-sm{padding:7px 10px; font-size:0.78rem; border-radius:6px;}
   .btn-block{width:100%;}
 
   .rec-card{background:#fff; border:1px solid var(--border); border-radius:10px; padding:12px; margin-bottom:10px;}
-  .rec-card h3{margin:0 0 4px; font-size:14.5px; color:var(--navy);}
-  .rec-card .meta{font-size:12px; color:#666; margin-bottom:8px;}
-  .badge{display:inline-block; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:700;}
+  .rec-card h3{margin:0 0 4px; font-size:0.95rem; color:var(--navy);}
+  .rec-card .meta{font-size:0.78rem; color:#666; margin-bottom:8px;}
+  .badge{display:inline-block; padding:2px 8px; border-radius:12px; font-size:0.7rem; font-weight:700;}
   .badge.synced{background:#e7f6ee; color:var(--ok);}
   .badge.pending{background:#fff4e2; color:var(--pending);}
   .rec-actions{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
@@ -124,17 +145,17 @@
   .modal-bg{position:fixed; inset:0; background:rgba(0,0,0,.4); display:none; align-items:center; justify-content:center; z-index:100; padding:16px;}
   .modal-bg.show{display:flex;}
   .modal{background:#fff; border-radius:12px; padding:18px; width:100%; max-width:460px; max-height:85vh; overflow:auto;}
-  .modal h2{margin-top:0; font-size:16px; color:var(--navy);}
+  .modal h2{margin-top:0; font-size:1.05rem; color:var(--navy);}
   .search-wrap{position:relative;}
-  .empty{text-align:center; color:#888; padding:30px 10px; font-size:13px;}
+  .empty{text-align:center; color:#888; padding:30px 10px; font-size:0.85rem;}
   .toast{
     position:fixed; bottom:78px; left:50%; transform:translateX(-50%); background:#222; color:#fff;
-    padding:10px 16px; border-radius:20px; font-size:13px; z-index:200; opacity:0; transition:opacity .25s;
+    padding:10px 16px; border-radius:20px; font-size:0.85rem; z-index:200; opacity:0; transition:opacity .25s;
     pointer-events:none; max-width:90%; text-align:center;
   }
   .toast.show{opacity:1;}
-  .small-note{font-size:11.5px; color:#8a90a3; line-height:1.5;}
-  code{background:#eef1f8; padding:1px 5px; border-radius:4px; font-size:11px;}
+  .small-note{font-size:0.75rem; color:#8a90a3; line-height:1.6;}
+  code{background:#eef1f8; padding:1px 5px; border-radius:4px; font-size:0.7rem;}
   a.link{color:var(--accent);}
 </style>
 </head>
@@ -146,7 +167,12 @@
   <div class="status-strip">
     <span class="dot off" id="netDot"></span>
     <span id="netText">ऑफलाइन</span>
-    <span style="margin-left:auto;" id="pendingCountWrap">प्रलंबित सिंक: <b id="pendingCount">0</b></span>
+    <span id="pendingCountWrap">प्रलंबित सिंक: <b id="pendingCount">0</b></span>
+    <span class="fontctl-group" role="group" aria-label="अक्षर आकार">
+      <button type="button" class="fontctl" id="fontDecBtn" title="अक्षर लहान करा">अ-</button>
+      <button type="button" class="fontctl" id="fontResetBtn" title="मध्यम अक्षर">अ</button>
+      <button type="button" class="fontctl" id="fontIncBtn" title="अक्षर मोठे करा">अ+</button>
+    </span>
   </div>
 </header>
 
@@ -220,7 +246,7 @@
     </div>
   </details>
 
-  <!-- SECTION: वर्गनिहाय व प्रवर्गनिहाय विद्यार्थी संख्या -->
+  <!-- SECTION 2: वर्गनिहाय विद्यार्थी संख्या -->
   <details class="section" open>
     <summary>२. वर्गनिहाय विद्यार्थी संख्या (कॅटेगरीनुसार)</summary>
     <div class="section-body">
@@ -235,8 +261,18 @@
     </div>
   </details>
 
+  <!-- SECTION 3 (MOVED): CWSN SECTION -->
   <details class="section">
-    <summary>३. स्वच्छता व वर्ग अध्यापन निरीक्षण</summary>
+    <summary>३. दिव्यांग (CWSN) विद्यार्थी माहिती</summary>
+    <div class="section-body">
+      <p class="small-note" style="margin-top:0;">दिव्यांग हक्क कायदा (RPWD Act २०१६) नुसार २१ प्रकारच्या अपंगत्वाची माहिती</p>
+      <div id="cwsnListContainer"></div>
+      <button type="button" class="btn-secondary btn-sm" id="addCwsnBtn" style="margin-top:8px;">➕ नवीन CWSN विद्यार्थी जोडा</button>
+    </div>
+  </details>
+
+  <details class="section">
+    <summary>४. स्वच्छता व वर्ग अध्यापन निरीक्षण</summary>
     <div class="section-body">
       <div class="subhead">स्वच्छता</div>
       <label>आ. शालेय परिसर (स्वच्छ / अस्वच्छ / सुशोभनाची आवश्यकता)</label>
@@ -263,7 +299,7 @@
   </details>
 
   <details class="section">
-    <summary>४. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक (इयत्ता १ ते ५)</summary>
+    <summary>५. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक (इयत्ता १ ते ५)</summary>
     <div class="section-body">
       <table class="mini" id="nipunTable">
         <thead><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी संख्या</th><th>१००% निपुण होण्यासाठी प्रयत्न / उपक्रम</th></tr></thead>
@@ -274,9 +310,8 @@
     </div>
   </details>
 
-  <!-- SECTION 5 -->
   <details class="section">
-    <summary>५. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</summary>
+    <summary>६. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</summary>
     <div class="section-body">
       <div class="row3">
         <div><label>इयत्ता</label><input type="text" id="samvadIyatta"></div>
@@ -326,7 +361,7 @@
   </details>
 
   <details class="section">
-    <summary>६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
+    <summary>७. डॉ. जयंत नारळीकर अध्ययन समृद्धी</summary>
     <div class="section-body">
       <label>विद्या विद्यार्थी नोंदणी प्रमाण</label><input type="text" id="narlikarNondani">
       <label>वापराचे प्रमाण</label><input type="text" id="narlikarVapar">
@@ -335,7 +370,7 @@
   </details>
 
   <details class="section">
-    <summary>७. विविध स्पर्धा परीक्षा</summary>
+    <summary>८. विविध स्पर्धा परीक्षा</summary>
     <div class="section-body">
       <table class="mini" id="spardhaTable">
         <thead><tr><th>परीक्षेचे नाव</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक संख्या</th></tr></thead>
@@ -345,7 +380,7 @@
   </details>
 
   <details class="section">
-    <summary>८. मूल्यवर्धन उपक्रम</summary>
+    <summary>९. मूल्यवर्धन उपक्रम</summary>
     <div class="section-body">
       <label>उपक्रमाचे आयोजन</label>
       <select id="mulyaAyojan"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -355,7 +390,7 @@
   </details>
 
   <details class="section">
-    <summary>९. मराठी भाषेचे अध्यापन सक्ती</summary>
+    <summary>१०. मराठी भाषेचे अध्यापन सक्ती</summary>
     <div class="section-body">
       <label>अंमलबजावणी</label>
       <select id="marathiAmal"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -369,7 +404,7 @@
   </details>
 
   <details class="section">
-    <summary>१०. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
+    <summary>११. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
     <div class="section-body">
       <label>सखी सावित्री समिती</label><input type="text" id="surakshaSakhi">
       <label>तक्रार पेटी</label><input type="text" id="surakshaTakrar">
@@ -379,7 +414,7 @@
   </details>
 
   <details class="section">
-    <summary>११. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</summary>
+    <summary>१२. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</summary>
     <div class="section-body">
       <div class="subhead">आ. शैक्षणिक साहित्य</div>
       <label>i) शिक्षक निर्मित</label>
@@ -398,7 +433,7 @@
   </details>
 
   <details class="section">
-    <summary>१२. आनंददायी शनिवार अंमलबजावणी</summary>
+    <summary>१३. आनंददायी शनिवार अंमलबजावणी</summary>
     <div class="section-body">
       <label>भेटीच्या आधीच्या शनिवारी घेतलेले उपक्रम</label>
       <textarea id="shanivarUpakram"></textarea>
@@ -406,7 +441,7 @@
   </details>
 
   <details class="section">
-    <summary>१३. PM POSHAN</summary>
+    <summary>१४. PM POSHAN</summary>
     <div class="section-body">
       <label>On-Line उपस्थिती</label>
       <select id="pmOnline"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -419,7 +454,7 @@
   </details>
 
   <details class="section">
-    <summary>१४. माजी विद्यार्थी संघ</summary>
+    <summary>१५. माजी विद्यार्थी संघ</summary>
     <div class="section-body">
       <label>स्थापना</label>
       <select id="majiSthapna"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -429,7 +464,7 @@
   </details>
 
   <details class="section">
-    <summary>१५. SMC मासिक सभा</summary>
+    <summary>१६. SMC मासिक सभा</summary>
     <div class="section-body">
       <label>सभा झाली का?</label>
       <select id="smcZali"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -439,20 +474,10 @@
   </details>
 
   <details class="section">
-    <summary>१६. खेळ व तयारी</summary>
+    <summary>१७. खेळ व तयारी</summary>
     <div class="section-body">
       <label>मैदानाची उपलब्धता</label><input type="text" id="khelMaidan">
       <label>सहभाग व यश</label><input type="text" id="khelYash">
-    </div>
-  </details>
-
-  <!-- NEW CWSN SECTION 17 -->
-  <details class="section">
-    <summary>१७. दिव्यांग (CWSN) विद्यार्थी माहिती</summary>
-    <div class="section-body">
-      <p class="small-note" style="margin-top:0;">दिव्यांग हक्क कायदा (RPWD Act २०१६) नुसार २१ प्रकारच्या अपंगत्वाची माहिती</p>
-      <div id="cwsnListContainer"></div>
-      <button type="button" class="btn-secondary btn-sm" id="addCwsnBtn" style="margin-top:8px;">➕ नवीन CWSN विद्यार्थी जोडा</button>
     </div>
   </details>
 
@@ -515,11 +540,13 @@
       </div>
       <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
         <button class="btn-secondary btn-sm" id="syncAllBtn">☁️ सर्व प्रलंबित सिंक करा</button>
+        <button class="btn-secondary btn-sm" id="fetchFromSheetBtn">⬇️ शीटवरून आणा</button>
         <button class="btn-secondary btn-sm" id="exportCsvBtn">⬇️ CSV एक्सपोर्ट</button>
         <button class="btn-secondary btn-sm" id="exportJsonBtn">⬇️ बॅकअप (JSON)</button>
         <button class="btn-secondary btn-sm" id="importJsonBtn">⬆️ बॅकअप आयात</button>
         <input type="file" id="importFile" accept="application/json" style="display:none;">
       </div>
+      <p class="small-note" id="lastFetchNote" style="display:none;"></p>
       <div id="recordsWrap"></div>
     </div>
 
@@ -528,7 +555,7 @@
         <summary>Google Sheet सिंक सेटअप</summary>
         <div class="section-body">
           <p class="small-note">
-            प्रत्येक नोंद आपोआप / मॅन्युअली Google Sheet मध्ये पाठवण्यासाठी, खाली दिलेल्या सूचनांनुसार एक <b>Google Apps Script वेब अ‍ॅप</b> तयार करून त्याची URL इथे टाका.
+            प्रत्येक नोंद आपोआप / मॅन्युअली Google Sheet मध्ये पाठवण्यासाठी, तसेच शीटवरील नोंदी या डिव्हाइसवर आणण्यासाठी, खाली दिलेल्या सूचनांनुसार एक <b>Google Apps Script वेब अ‍ॅप</b> तयार करून त्याची URL इथे टाका.
           </p>
           <label>Apps Script वेब अ‍ॅप URL</label>
           <input type="text" id="gsUrl" placeholder="https://script.google.com/macros/s/XXXXX/exec">
@@ -543,6 +570,7 @@
             <li>वरती <b>Deploy → New deployment</b> → Type: <b>Web app</b>.
               Execute as: <b>Me</b>, Who has access: <b>Anyone</b>.</li>
             <li><b>Deploy</b> दाबा, दिलेली URL कॉपी करून वर पेस्ट करा व "सेटिंग्ज जतन करा" दाबा.</li>
+            <li>कोड बदलल्यास प्रत्येक वेळी <b>Deploy → Manage deployments → ✏️ → New version</b> करून पुन्हा Deploy करावे.</li>
           </ol>
           <button class="btn-secondary btn-sm" id="copyScriptBtn">📋 Apps Script कोड कॉपी करा</button>
           <textarea id="scriptCode" readonly style="min-height:160px; font-family:monospace; font-size:11px; margin-top:8px;"></textarea>
@@ -648,6 +676,7 @@ let classCounterId = 0;
 
 const LS_RECORDS = "shalaBhet_records_v1";
 const LS_CONFIG = "shalaBhet_config_v1";
+const LS_FONTSCALE = "shalaBhet_fontscale_v1";
 
 /* ============================================================
    CWSN SECTION DYNAMIC FUNCTIONS
@@ -688,15 +717,15 @@ function addCwsnRow(student = {}) {
   });
 
   row.innerHTML = `
-    <button type="button" class="btn-danger btn-sm" style="position:absolute; top:12px; right:12px; padding:4px 8px; font-size:11px;" onclick="this.parentElement.remove()">✕ काढा</button>
+    <button type="button" class="btn-danger btn-sm" style="position:absolute; top:12px; right:12px; padding:4px 8px; font-size:0.7rem;" onclick="this.parentElement.remove()">✕ काढा</button>
     
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; padding-right:50px;">
        <div>
-         <label style="margin-top:0; font-size:11.5px;">विद्यार्थ्याचे नाव (इंग्रजीत / मराठीत)</label>
+         <label style="margin-top:0; font-size:0.75rem;">विद्यार्थ्याचे नाव (इंग्रजीत / मराठीत)</label>
          <input type="text" class="cwsn-name" value="${student.name || ''}" placeholder="विद्यार्थ्याचे नाव">
        </div>
        <div>
-         <label style="margin-top:0; font-size:11.5px;">इयत्ता</label>
+         <label style="margin-top:0; font-size:0.75rem;">इयत्ता</label>
          <select class="cwsn-class">
             <option value="">-- निवडा --</option>
             ${ALL_CLASSES.map(c => `<option value="${c}" ${student.std===c?'selected':''}>${c}</option>`).join('')}
@@ -705,17 +734,17 @@ function addCwsnRow(student = {}) {
     </div>
     
     <div style="margin-bottom:10px;">
-       <label style="margin-top:0; font-size:11.5px;">अपंगत्वाचा प्रकार (२१ प्रकार)</label>
+       <label style="margin-top:0; font-size:0.75rem;">अपंगत्वाचा प्रकार (२१ प्रकार)</label>
        <select class="cwsn-type">${typeOptions}</select>
     </div>
     
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
        <div>
-         <label style="margin-top:0; font-size:11.5px;">UDID कार्ड क्र. / आधार क्र.</label>
+         <label style="margin-top:0; font-size:0.75rem;">UDID कार्ड क्र. / आधार क्र.</label>
          <input type="text" class="cwsn-id" value="${student.id || ''}" placeholder="UDID किंवा आधार">
        </div>
        <div>
-         <label style="margin-top:0; font-size:11.5px;">विशेष शेरा / आवश्यक गरजा</label>
+         <label style="margin-top:0; font-size:0.75rem;">विशेष शेरा / आवश्यक गरजा</label>
          <input type="text" class="cwsn-remarks" value="${student.remarks || ''}" placeholder="उदा. Need Hearing Aid">
        </div>
     </div>
@@ -845,11 +874,11 @@ function addClassRow(className = "") {
         ${optionsHtml}
       </select>
       <span class="class-totals-text" id="class_total_text_${id}">मुले 0 · मुली 0 · एकूण 0</span>
-      <button type="button" class="btn-danger btn-sm" style="padding:5px 8px; font-size:11px;" onclick="event.stopPropagation(); removeClassRow(this)">🗑️ काढा</button>
+      <button type="button" class="btn-danger btn-sm" style="padding:5px 8px; font-size:0.7rem;" onclick="event.stopPropagation(); removeClassRow(this)">🗑️ काढा</button>
     </summary>
     <div class="section-body" style="background:#fff; border-top:1px solid #e1e5f0; padding:12px;">
       <div class="cat-list-container" id="cat_list_${id}"></div>
-      <button type="button" class="btn-secondary btn-sm" style="margin-top:8px; font-size:11.5px; width:100%; border:1px dashed #a5b4d4;" onclick="addCategoryEntry(${id})">➕ नवीन प्रवर्ग जोडा</button>
+      <button type="button" class="btn-secondary btn-sm" style="margin-top:8px; font-size:0.75rem; width:100%; border:1px dashed #a5b4d4;" onclick="addCategoryEntry(${id})">➕ नवीन प्रवर्ग जोडा</button>
     </div>
   `;
   document.getElementById('classListContainer').appendChild(details);
@@ -872,14 +901,14 @@ function addCategoryEntry(classId, catVal = "", bVal = "", gVal = "") {
   entryDiv.innerHTML = `
     <select class="cat-select" style="flex:2; min-width:110px; padding:6px;" onchange="calcClassTotals()">${catOptions}</select>
     <div style="display:flex; flex:1; gap:4px; align-items:center; min-width:80px;">
-      <label style="margin:0; font-size:11.5px; color:#555;">मुले</label>
-      <input type="number" min="0" class="boy-input" style="flex:1; padding:6px; text-align:center;" value="${bVal}" oninput="calcClassTotals()">
+      <label style="margin:0; font-size:0.75rem; color:#555;">मुले</label>
+      <input type="number" min="0" class="boy-input" style="flex:1; padding:6px;" value="${bVal}" oninput="calcClassTotals()">
     </div>
     <div style="display:flex; flex:1; gap:4px; align-items:center; min-width:80px;">
-      <label style="margin:0; font-size:11.5px; color:#555;">मुली</label>
-      <input type="number" min="0" class="girl-input" style="flex:1; padding:6px; text-align:center;" value="${gVal}" oninput="calcClassTotals()">
+      <label style="margin:0; font-size:0.75rem; color:#555;">मुली</label>
+      <input type="number" min="0" class="girl-input" style="flex:1; padding:6px;" value="${gVal}" oninput="calcClassTotals()">
     </div>
-    <button type="button" class="btn-danger btn-sm" style="padding:6px 10px; font-size:13px; flex:none;" onclick="this.parentElement.remove(); calcClassTotals();">✕</button>
+    <button type="button" class="btn-danger btn-sm" style="padding:6px 10px; font-size:0.85rem; flex:none;" onclick="this.parentElement.remove(); calcClassTotals();">✕</button>
   `;
   container.appendChild(entryDiv);
 }
@@ -998,6 +1027,31 @@ function updateNetStatus(){
 window.addEventListener('online', ()=>{ updateNetStatus(); showToast('इंटरनेट उपलब्ध — प्रलंबित नोंदी सिंक करत आहे...'); syncAllPending(); });
 window.addEventListener('offline', updateNetStatus);
 
+/* ============================================================
+   ADAPTIVE / USER-CONTROLLED FONT SIZE
+   ============================================================ */
+const FONT_SCALES = [0.88, 1, 1.15, 1.32];       // लहान · मध्यम · मोठे · खूप मोठे
+const FONT_SCALE_LABELS = ['लहान', 'मध्यम', 'मोठे', 'खूप मोठे'];
+let fontScaleIdx = 1;
+function applyFontScale(){
+  document.documentElement.style.setProperty('--fs-scale', FONT_SCALES[fontScaleIdx]);
+  localStorage.setItem(LS_FONTSCALE, String(fontScaleIdx));
+}
+function loadFontScale(){
+  const saved = parseInt(localStorage.getItem(LS_FONTSCALE), 10);
+  fontScaleIdx = (!isNaN(saved) && saved >= 0 && saved < FONT_SCALES.length) ? saved : 1;
+  applyFontScale();
+}
+document.getElementById('fontDecBtn').addEventListener('click', ()=>{
+  if(fontScaleIdx > 0){ fontScaleIdx--; applyFontScale(); showToast('अक्षर आकार: ' + FONT_SCALE_LABELS[fontScaleIdx]); }
+});
+document.getElementById('fontIncBtn').addEventListener('click', ()=>{
+  if(fontScaleIdx < FONT_SCALES.length - 1){ fontScaleIdx++; applyFontScale(); showToast('अक्षर आकार: ' + FONT_SCALE_LABELS[fontScaleIdx]); }
+});
+document.getElementById('fontResetBtn').addEventListener('click', ()=>{
+  fontScaleIdx = 1; applyFontScale(); showToast('अक्षर आकार: ' + FONT_SCALE_LABELS[fontScaleIdx]);
+});
+
 function loadRecords(){ try{ return JSON.parse(localStorage.getItem(LS_RECORDS)) || []; }catch(e){ return []; } }
 function saveRecords(recs){ localStorage.setItem(LS_RECORDS, JSON.stringify(recs)); updatePendingCount(); }
 function loadConfig(){ try{ return JSON.parse(localStorage.getItem(LS_CONFIG)) || {}; }catch(e){ return {}; } }
@@ -1024,7 +1078,6 @@ function collectForm(){
     "विद्यार्थी_एकूण_पट": val('vidPat'), "विद्यार्थी_उपस्थित": val('vidUpasthit'), "विद्यार्थी_टक्केवारी": val('vidPercent'), "विद्यार्थी_गैरहजर_तपशील": val('vidGairhajar'),
     "शिक्षक_एकूण": val('shikPat'), "शिक्षक_उपस्थित": val('shikUpasthit'), "शिक्षक_टक्केवारी": val('shikPercent'), "शिक्षक_अनुपस्थिती_तपशील": val('shikAnupasthit'),
     
-    // SECTION 5 FIELDS
     "संवाद_इयत्ता": val('samvadIyatta'), "संवाद_तुकडी": val('samvadTukadi'), "संवाद_शिक्षक": val('samvadShikshak'),
     "प्रथम_वाचन_टक्केवारी": val('prathamVachanPct'), "प्रथम_वाचन_अभिप्राय": val('prathamVachanAbhipray'),
     "प्रथम_लेखन_टक्केवारी": val('prathamLekhanPct'), "प्रथम_लेखन_अभिप्राय": val('prathamLekhanAbhipray'),
@@ -1291,6 +1344,54 @@ function syncAllPending(){
 }
 document.getElementById('syncAllBtn').addEventListener('click', syncAllPending);
 
+/* ============================================================
+   FETCH (PULL) RECORDS BACK FROM THE GOOGLE SHEET
+   Needs the updated Apps Script (doGet with ?mode=fetch) below,
+   redeployed as a new version.
+   ============================================================ */
+const JSON_RECORD_FIELDS = ["शिक्षक_यादी", "CWSN_विद्यार्थी", "वर्गनिहाय_विद्यार्थी"];
+
+function fetchFromSheet(){
+  const cfg = loadConfig();
+  if(!cfg.gsUrl){ showToast('आधी सेटिंग्जमध्ये Google Sheet URL टाका.'); return; }
+  if(!navigator.onLine){ showToast('⚠️ इंटरनेट कनेक्शन नाही — ऑनलाइन झाल्यावर पुन्हा प्रयत्न करा.'); return; }
+  showToast('⬇️ शीटवरून नोंदी आणत आहे...');
+  const sep = cfg.gsUrl.indexOf('?') > -1 ? '&' : '?';
+  fetch(cfg.gsUrl + sep + 'mode=fetch')
+    .then(res => res.json())
+    .then(rows => {
+      if(!Array.isArray(rows)){ throw new Error('invalid'); }
+      const existing = loadRecords();
+      const existingIds = new Set(existing.map(r => r._id));
+      let added = 0;
+      rows.forEach(row => {
+        const id = row._id;
+        if(!id || existingIds.has(id)) return;
+        const rec = Object.assign({}, row);
+        JSON_RECORD_FIELDS.forEach(f => {
+          if(typeof rec[f] === 'string' && rec[f].trim()){
+            try{ rec[f] = JSON.parse(rec[f]); }catch(e){ rec[f] = []; }
+          } else if(!Array.isArray(rec[f])){ rec[f] = []; }
+        });
+        rec.synced = true;
+        rec._syncAttemptedAt = new Date().toISOString();
+        existing.unshift(rec);
+        existingIds.add(id);
+        added++;
+      });
+      saveRecords(existing);
+      renderRecords();
+      const note = document.getElementById('lastFetchNote');
+      note.style.display = 'block';
+      note.textContent = '📥 शेवटची फेच: ' + new Date().toLocaleString('mr-IN') + ' · शीटवर एकूण ' + rows.length + ' नोंदी · ' + added + ' नवीन नोंदी या डिव्हाइसवर जोडल्या.';
+      showToast(added ? ('✅ ' + added + ' नवीन नोंदी शीटवरून आणल्या.') : 'ℹ️ नवीन नोंदी आढळल्या नाहीत — सर्व आधीच येथे उपलब्ध आहेत.');
+    })
+    .catch(()=>{
+      showToast('⚠️ शीटवरून आणता आले नाही — URL तपासा किंवा Apps Script नवीन आवृत्ती म्हणून पुन्हा Deploy करा.');
+    });
+}
+document.getElementById('fetchFromSheetBtn').addEventListener('click', fetchFromSheet);
+
 function renderRecords(filterText){
   const wrap = document.getElementById('recordsWrap');
   let recs = loadRecords();
@@ -1339,7 +1440,7 @@ function viewPrint(id){
     const catsArray = Array.from(usedCats);
 
     classHtml = `<div class="sec-title">२. वर्गनिहाय व प्रवर्गनिहाय विद्यार्थी संख्या</div>
-    <table style="text-align:center;">
+    <table class="enrollment-table" style="text-align:center;">
       <tr>
         <th rowspan="2" style="background:#eef1f8;">इयत्ता</th>
         ${catsArray.length ? `<th colspan="${catsArray.length}" style="background:#eef1f8;">मुले</th>` : ''}
@@ -1349,8 +1450,8 @@ function viewPrint(id){
         <th rowspan="2" style="background:#eef1f8;">एकूण</th>
       </tr>
       ${catsArray.length ? `<tr>
-        ${catsArray.map(c=>`<th style="font-size:18px;">${escapeHtml(c)}</th>`).join('')}
-        ${catsArray.map(c=>`<th style="font-size:18px;">${escapeHtml(c)}</th>`).join('')}
+        ${catsArray.map(c=>`<th>${escapeHtml(c)}</th>`).join('')}
+        ${catsArray.map(c=>`<th>${escapeHtml(c)}</th>`).join('')}
       </tr>` : ''}`;
       
     let grandBoys = 0, grandGirls = 0;
@@ -1378,7 +1479,7 @@ function viewPrint(id){
       }
       grandBoys += classBoys; grandGirls += classGirls;
       classHtml += `<tr>
-        <td style="text-align:left;"><b>${escapeHtml(cls.name)}</b></td>
+        <td><b>${escapeHtml(cls.name)}</b></td>
         ${catsArray.map(c => { const b = clsDataMap[c] ? clsDataMap[c].b : 0; catTotalsBoys[c] += b; return `<td>${b||'-'}</td>`; }).join('')}
         <td style="background:#f0f4fc;"><b>${classBoys}</b></td>
         ${catsArray.map(c => { const g = clsDataMap[c] ? clsDataMap[c].g : 0; catTotalsGirls[c] += g; return `<td>${g||'-'}</td>`; }).join('')}
@@ -1387,7 +1488,7 @@ function viewPrint(id){
       </tr>`;
     });
     classHtml += `<tr style="background:#fae8c8; font-weight:bold;">
-      <td style="text-align:left;">एकूण (सर्व वर्ग)</td>
+      <td>एकूण (सर्व वर्ग)</td>
       ${catsArray.map(c => `<td>${catTotalsBoys[c]||'-'}</td>`).join('')}<td>${grandBoys}</td>
       ${catsArray.map(c => `<td>${catTotalsGirls[c]||'-'}</td>`).join('')}<td>${grandGirls}</td><td>${grandBoys+grandGirls}</td>
     </tr></table>`;
@@ -1395,7 +1496,7 @@ function viewPrint(id){
   
   let cwsnHtml = '';
   if (r["CWSN_विद्यार्थी"] && r["CWSN_विद्यार्थी"].length > 0) {
-      cwsnHtml = `<div class="sec-title">१७. दिव्यांग (CWSN) विद्यार्थी माहिती</div>
+      cwsnHtml = `<div class="sec-title">३. दिव्यांग (CWSN) विद्यार्थी माहिती</div>
       <table>
         <tr><th>विद्यार्थ्याचे नाव</th><th>इयत्ता</th><th>अपंगत्वाचा प्रकार</th><th>UDID / आधार क्र.</th><th>विशेष शेरा</th></tr>
         ${r["CWSN_विद्यार्थी"].map(s => `<tr>
@@ -1419,6 +1520,10 @@ function viewPrint(id){
     td, th{border:1px solid #999; padding:8px 10px; font-size:21px; vertical-align:middle; text-align:left;}
     th{background:#f2f4f9;}
     .pf-lbl{width:38%; background:#f2f4f9; font-weight:600;}
+    
+    /* UPDATED: Enrollment Table Centered Content */
+    table.enrollment-table td, table.enrollment-table th { text-align: center; }
+    
     @media print{ .no-print{display:none;} }
   </style></head><body>
   <h1>मिशन निपुण बीड — सर्वंकष शाळा भेट व पर्यवेक्षण प्रपत्र</h1>
@@ -1450,8 +1555,9 @@ function viewPrint(id){
   </table>
 
   ${classHtml}
+  ${cwsnHtml}
 
-  <div class="sec-title">३. स्वच्छता व वर्ग अध्यापन निरीक्षण</div>
+  <div class="sec-title">४. स्वच्छता व वर्ग अध्यापन निरीक्षण</div>
   <table>
     ${fieldRow('आ. शालेय परिसर', r["स्वच्छता_परिसर"])}
     ${fieldRow('ब. विद्यार्थी वैयक्तिक स्वच्छता', r["स्वच्छता_वैयक्तिक"])}
@@ -1465,12 +1571,12 @@ function viewPrint(id){
   ${(r["वर्गनिरीक्षण_इतर_तपशील"]||r["वर्गनिरीक्षण_इतर_अभिप्राय"]) ? `<tr><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_तपशील"])}</td><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_अभिप्राय"])}</td></tr>` : ''}
   </table>
 
-  <div class="sec-title">४. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक</div>
+  <div class="sec-title">५. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक</div>
   <table><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी</th><th>प्रयत्न / उपक्रम</th></tr>
   ${NIPUN_IYATTA.map(iy=>`<tr><td>${iy}</td><td>${escapeHtml(r["निपुण_"+iy+"_पट"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_निपुण_संख्या"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_प्रयत्न"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">५. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</div>
+  <div class="sec-title">६. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</div>
   <table>
     ${fieldRow('इयत्ता / तुकडी', (r["संवाद_इयत्ता"]||'-')+' / '+(r["संवाद_तुकडी"]||'-'))}
     ${fieldRow('शिक्षकाचे नाव', r["संवाद_शिक्षक"])}
@@ -1503,19 +1609,19 @@ function viewPrint(id){
     ${fieldRow('VI) उपरोक्त I ते V मध्ये कमी क्षमता प्राप्त विद्यार्थ्यांसाठी उपाययोजना', r["संवाद_उपाययोजना"])}
   </table>
 
-  <div class="sec-title">६. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
+  <div class="sec-title">७. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
   <table>
     ${fieldRow('विद्यार्थी नोंदणी प्रमाण', r["नारळीकर_नोंदणी"])}
     ${fieldRow('वापराचे प्रमाण', r["नारळीकर_वापर"])}
     ${fieldRow('प्राविण्य विद्यार्थी प्रमाण', r["नारळीकर_प्राविण्य"])}
   </table>
 
-  <div class="sec-title">७. विविध स्पर्धा परीक्षा</div>
+  <div class="sec-title">८. विविध स्पर्धा परीक्षा</div>
   <table><tr><th>परीक्षा</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक</th></tr>
   ${SPARDHA_ITEMS.map((n,i)=>`<tr><td>${n}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_नियोजन"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_मागील_वर्ष"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_शिष्यवृत्ती"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">८. मूल्यवर्धन उपक्रम / ९. मराठी भाषा अध्यापन सक्ती</div>
+  <div class="sec-title">९. मूल्यवर्धन उपक्रम / १०. मराठी भाषा अध्यापन सक्ती</div>
   <table>
     ${fieldRow('मूल्यवर्धन आयोजन', r["मूल्यवर्धन_आयोजन"])}
     ${fieldRow('मूल्यवर्धन अभिप्राय', r["मूल्यवर्धन_अभिप्राय"])}
@@ -1524,7 +1630,7 @@ function viewPrint(id){
     ${fieldRow('अभिप्राय', r["मराठी_अभिप्राय"])}
   </table>
 
-  <div class="sec-title">१०. विद्यार्थी सुरक्षा उपाययोजना</div>
+  <div class="sec-title">११. विद्यार्थी सुरक्षा उपाययोजना</div>
   <table>
     ${fieldRow('सखी सावित्री समिती', r["सुरक्षा_सखी_समिती"])}
     ${fieldRow('तक्रार पेटी', r["सुरक्षा_तक्रार_पेटी"])}
@@ -1532,7 +1638,7 @@ function viewPrint(id){
     ${fieldRow('CCTV / अन्य', r["सुरक्षा_CCTV"])}
   </table>
 
-  <div class="sec-title">११. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
+  <div class="sec-title">१२. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
   <table>
     ${fieldRow('आ.i) शिक्षक निर्मित', r["साहित्य_शिक्षक_निर्मित"])}
     ${fieldRow('आ.ii) तयार शैक्षणिक साहित्य', r["साहित्य_तयार_साहित्य"])}
@@ -1542,7 +1648,7 @@ function viewPrint(id){
   ${SAHITYA_ITEMS.map((n,i)=>`<tr><td>${n}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_उपलब्धता"])}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_अभिप्राय"])}</td></tr>`).join('')}
   </table>
 
-  <div class="sec-title">१२. आनंददायी शनिवार / १३. PM POSHAN</div>
+  <div class="sec-title">१३. आनंददायी शनिवार / १४. PM POSHAN</div>
   <table>
     ${fieldRow('शनिवार उपक्रम', r["शनिवार_उपक्रम"])}
     ${fieldRow('PM POSHAN Online उपस्थिती', r["PM_POSHAN_online"])}
@@ -1552,7 +1658,7 @@ function viewPrint(id){
     ${fieldRow('किचन शेड / स्वच्छता अभिप्राय', r["PM_POSHAN_किचन_अभिप्राय"])}
   </table>
 
-  <div class="sec-title">१४. माजी विद्यार्थी संघ / १५. SMC सभा / १६. खेळ</div>
+  <div class="sec-title">१५. माजी विद्यार्थी संघ / १६. SMC सभा / १७. खेळ</div>
   <table>
     ${fieldRow('स्थापना', r["माजी_विद्यार्थी_स्थापना"])}
     ${fieldRow('मेळावा / बैठक', r["माजी_विद्यार्थी_मेळावा"])}
@@ -1563,8 +1669,6 @@ function viewPrint(id){
     ${fieldRow('मैदानाची उपलब्धता', r["खेळ_मैदान"])}
     ${fieldRow('सहभाग व यश', r["खेळ_सहभाग_यश"])}
   </table>
-
-  ${cwsnHtml}
 
   <div class="sec-title">१८. सर्वसाधारण अभिप्राय</div>
   <table>${fieldRow('अभिप्राय', r["सर्वसाधारण_अभिप्राय"])}</table>
@@ -1643,7 +1747,29 @@ const APPS_SCRIPT_CODE = `function doPost(e) {
   return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
 }
 
-function doGet(e) { return ContentService.createTextOutput('Shala Bhet Form Web App is running.'); }`;
+function doGet(e) {
+  var mode = e && e.parameter && e.parameter.mode;
+  if (mode === 'fetch') {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var lastRow = sheet.getLastRow();
+    var lastCol = sheet.getLastColumn();
+    if (lastRow < 2 || lastCol < 1) {
+      return ContentService.createTextOutput('[]').setMimeType(ContentService.MimeType.JSON);
+    }
+    var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
+    var values = sheet.getRange(2, 1, lastRow - 1, lastCol).getValues();
+    var out = values.map(function(row){
+      var obj = {};
+      headers.forEach(function(h, i){
+        var v = row[i];
+        obj[h] = (v instanceof Date) ? v.toISOString() : v;
+      });
+      return obj;
+    });
+    return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(ContentService.MimeType.JSON);
+  }
+  return ContentService.createTextOutput('Shala Bhet Form Web App is running.');
+}`;
 document.getElementById('scriptCode').value = APPS_SCRIPT_CODE;
 document.getElementById('copyScriptBtn').addEventListener('click', ()=>{
   document.getElementById('scriptCode').select();
@@ -1692,7 +1818,7 @@ function attemptLogin(){
 document.getElementById('adminLogoutBtn').addEventListener('click', ()=>{ sessionStorage.removeItem(SS_AUTH); showToast('लॉगआऊट झाले.'); refreshAdminGate(); document.querySelector('.tab-btn[data-view="formView"]').click(); });
 document.getElementById('changePinBtn').addEventListener('click', ()=>{
   const old = document.getElementById('oldPinInput').value.trim(); const n1 = document.getElementById('newPinInput1').value.trim(); const n2 = document.getElementById('newPinInput2').value.trim();
-  if(old !== getPin()){ showToast('सध्याचा PIN चुकीचा आहे.'); return; }
+  if(old !== getPin()){ showToast('सध्याचा PIN चुकीचा মাঠে.'); return; }
   if(!validPinFormat(n1)){ showToast('नवीन PIN फक्त ४ ते ६ अंकी असावा.'); return; }
   if(n1 !== n2){ showToast('नवीन PIN जुळत नाहीत.'); return; }
   setPin(n1); document.getElementById('oldPinInput').value = ''; document.getElementById('newPinInput1').value = ''; document.getElementById('newPinInput2').value = ''; showToast('✅ PIN यशस्वीरित्या बदलला.');
@@ -1702,6 +1828,7 @@ document.getElementById('changePinBtn').addEventListener('click', ()=>{
    INIT
    ============================================================ */
 function init(){
+  loadFontScale();
   buildSchoolSelect(); buildNipunTable(); buildVniTable(); buildSpardhaTable(); buildSahityaTable();
   loadSettingsIntoForm(); resetForm(false); updateNetStatus(); updatePendingCount();
 }
