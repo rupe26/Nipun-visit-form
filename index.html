@@ -705,7 +705,7 @@ const VNI_ITEMS = ["विषयाची मांडणी","साहित�
 
 const STUDENT_CATEGORIES = ["अनुसूचित जाती", "अनुसूचित जमाती", "भ ज अ", "भ ज ब", "भ ज क", "भ ज ड", "VJNT", "SBC", "SEBC", "OBC", "General", "अल्पसंख्याक", "CWSN", "BPL"];
 const STD_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी"];
-const ALL_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी", "इ 6্বা 6 वी", "इ 7 वी", "इ 8 वी"];
+const ALL_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी", "इ 6 वी", "इ 7 वी", "इ 8 वी"];
 let classCounterId = 0;
 
 const LS_RECORDS = "shalaBhet_records_v1";
@@ -1532,7 +1532,7 @@ function syncRecord(id){
 function syncAllPending(){
   const pending = loadRecords().filter(r=>!r.synced);
   if(!pending.length){ showToast('सिंक करण्यासाठी काही प्रलंबित नाही.'); return; }
-  showToast(pending.length + ' नोंदी सिंक करत आहे...');
+  showToast(pending.length + ' नोंदी सिंक करत implementation...');
   pending.forEach(r=> syncRecord(r._id));
 }
 document.getElementById('syncAllBtn').addEventListener('click', syncAllPending);
@@ -1711,7 +1711,6 @@ function viewPrint(id){
       classHtml += `<tr style="font-weight:bold; background:#eef1f8;"><td>एकूण</td><td>${clsBoys}</td><td>${clsGirls}</td><td>${clsBoys + clsGirls}</td></tr>`;
     });
     
-    // Category Wise Grand Totals Across All Classes
     const catKeys = Object.keys(catTotals);
     if(catKeys.length > 0) {
       classHtml += `<tr style="background:#e4e9f5; font-weight:bold;"><td colspan="5" style="padding:6px;">सर्व वर्गांचे प्रवर्गनिहाय एकूण संकलन (Category-wise Totals)</td></tr>`;
@@ -1804,6 +1803,7 @@ function viewPrint(id){
 
   <div class="sec-title">१. शाळा व उपस्थिती माहिती</div>
   <table>
+    <tbody>
     ${fieldRow('शाळेचे नाव', r["शाळेचे_नाव"])}
     ${fieldRow('U-DISE कोड', r["UDISE_कोड"])}
     ${fieldRow('तालुका व केंद्र', r["तालुका_केंद्र"])}
@@ -1816,14 +1816,17 @@ function viewPrint(id){
     
     ${r["शिक्षक_यादी"] && r["शिक्षक_यादी"].length ? 
         `<tr><td colspan="2" style="padding:0; background:#fff;">
-          <table style="width:100%; margin:0; border-style:hidden;">
+          <table style="width:100%; margin:0; border:none;">
+            <tbody>
             <tr><th style="width:60%;">शिक्षकाचे नाव</th><th>स्थिती</th></tr>
             ${r["शिक्षक_यादी"].map(t=>`<tr><td style="text-align:center;">${escapeHtml(t.name)}</td><td style="text-align:center;">${escapeHtml(t.status)}</td></tr>`).join('')}
+            </tbody>
           </table>
         </td></tr>` 
     : ''}
     
     ${fieldRow('अतिरिक्त माहिती (अनुपस्थिती / रजा / प्रशिक्षण)', r["शिक्षक_अनुपस्थिती_तपशील"])}
+    </tbody>
   </table>
 
   ${classHtml}
@@ -1831,12 +1834,14 @@ function viewPrint(id){
 
   <div class="sec-title">४. स्वच्छता व वर्ग अध्यापन निरीक्षण</div>
   <table>
+    <tbody>
     ${fieldRow('आ. शालेय परिसर', r["स्वच्छता_परिसर"])}
     ${fieldRow('ब. विद्यार्थी वैयक्तिक स्वच्छता', r["स्वच्छता_वैयक्तिक"])}
     ${fieldRow('इयत्ता / तुकडी', (r["वर्गनिरीक्षण_इयत्ता"]||'-')+' / '+(r["वर्गनिरीक्षण_तुकडी"]||'-'))}
     ${fieldRow('शिक्षकाचे नाव', r["वर्गनिरीक्षण_शिक्षक"])}
     ${fieldRow('विषय', r["वर्गनिरीक्षण_विषय"])}
     ${fieldRow('घटक / उपघटक', r["वर्गनिरीक्षण_घटक"])}
+    </tbody>
   </table>
   <table>
     <thead><tr><th style="width:40%;">तपशील</th><th>अभिप्राय</th></tr></thead>
@@ -1856,8 +1861,10 @@ function viewPrint(id){
 
   <div class="sec-title">६. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</div>
   <table>
+    <tbody>
     ${fieldRow('इयत्ता / तुकडी', (r["संवाद_इयत्ता"]||'-')+' / '+(r["संवाद_तुकडी"]||'-'))}
     ${fieldRow('शिक्षकाचे नाव', r["संवाद_शिक्षक"])}
+    </tbody>
   </table>
   
   <p style="font-weight:bold; font-size:13.5px; margin:8px 0 3px;">I) प्रथम भाषा</p>
@@ -1891,16 +1898,20 @@ function viewPrint(id){
   </table>
 
   <table style="margin-top:6px;">
+    <tbody>
     ${fieldRow('IV) विज्ञान (संकल्पना, तत्त्व)', r["विज्ञान_अभिप्राय"])}
     ${fieldRow('V) सामाजिक शास्त्रे', r["सामाजिक_शास्त्रे_अभिप्राय"])}
     ${fieldRow('VI) उपरोक्त I ते V मध्ये कमी क्षमता प्राप्त विद्यार्थ्यांसाठी उपाययोजना', r["संवाद_उपाययोजना"])}
+    </tbody>
   </table>
 
   <div class="sec-title">७. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
   <table>
+    <tbody>
     ${fieldRow('विद्यार्थी नोंदणी प्रमाण', r["नारळीकर_नोंदणी"])}
     ${fieldRow('वापराचे प्रमाण', r["नारळीकर_वापर"])}
     ${fieldRow('प्राविण्य विद्यार्थी प्रमाण', r["नारळीकर_प्राविण्य"])}
+    </tbody>
   </table>
 
   <div class="sec-title">८. विविध स्पर्धा परीक्षा</div>
@@ -1915,26 +1926,32 @@ function viewPrint(id){
 
   <div class="sec-title">१०. मूल्यवर्धन उपक्रम / ११. मराठी भाषा अध्यापन सक्ती</div>
   <table>
+    <tbody>
     ${fieldRow('मूल्यवर्धन आयोजन', r["मूल्यवर्धन_आयोजन"])}
     ${fieldRow('मूल्यवर्धन अभिप्राय', r["मूल्यवर्धन_अभिप्राय"])}
     ${fieldRow('मराठी अंमलबजावणी', r["मराठी_अंमलबजावणी"])}
     ${fieldRow('प्रशिक्षण आवश्यक / झाले', (r["मराठी_प्रशिक्षण_आवश्यक"]||'-')+' / '+(r["मराठी_प्रशिक्षण_झाले"]||'-'))}
     ${fieldRow('अभिप्राय', r["मराठी_अभिप्राय"])}
+    </tbody>
   </table>
 
   <div class="sec-title">१२. विद्यार्थी सुरक्षा उपाययोजना</div>
   <table>
+    <tbody>
     ${fieldRow('सखी सावित्री समिती', r["सुरक्षा_सखी_समिती"])}
     ${fieldRow('तक्रार पेटी', r["सुरक्षा_तक्रार_पेटी"])}
     ${fieldRow('हेल्प लाइन नंबर', r["सुरक्षा_हेल्पलाइन"])}
     ${fieldRow('CCTV / अन्य', r["सुरक्षा_CCTV"])}
+    </tbody>
   </table>
 
   <div class="sec-title">१३. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
   <table>
+    <tbody>
     ${fieldRow('आ.i) शिक्षक निर्मित', r["साहित्य_शिक्षक_निर्मित"])}
     ${fieldRow('आ.ii) तयार शैक्षणिक साहित्य', r["साहित्य_तयार_साहित्य"])}
     ${fieldRow('आ.iii) शैक्षणिक साहित्याचा वापर', r["साहित्य_वापर"])}
+    </tbody>
   </table>
   <table>
     <thead><tr><th style="width:40%;">सुविधा</th><th style="width:20%;">उपलब्धता</th><th>अभिप्राय</th></tr></thead>
@@ -1945,6 +1962,7 @@ function viewPrint(id){
 
   <div class="sec-title">१४. आनंददायी शनिवार / १५. PM POSHAN</div>
   <table>
+    <tbody>
     ${fieldRow('शनिवार उपक्रम', r["शनिवार_उपक्रम"])}
     ${fieldRow('PM POSHAN मदतनीस / स्वयंपाकी', r["PM_POSHAN_मदतनीस_नाव"])}
     ${fieldRow('PM POSHAN Online उपस्थिती', r["PM_POSHAN_online"])}
@@ -1952,10 +1970,12 @@ function viewPrint(id){
     ${fieldRow('चव रजिस्टर', r["PM_POSHAN_चव_रजिस्टर"])}
     ${fieldRow('धान्यादी साठवणूक', r["PM_POSHAN_साठवणूक"])}
     ${fieldRow('किचन शेड / स्वच्छता अभिप्राय', r["PM_POSHAN_किचन_अभिप्राय"])}
+    </tbody>
   </table>
 
   <div class="sec-title">१६. माजी विद्यार्थी संघ / १७. SMC सभा / १८. खेळ</div>
   <table>
+    <tbody>
     ${fieldRow('SMC अध्यक्ष', r["SMC_अध्यक्ष_नाव"])}
     ${fieldRow('SMC सभा झाली का', r["SMC_सभा_झाली"])}
     ${fieldRow('सभेचा दिनांक', r["SMC_सभेचा_दिनांक"])}
@@ -1965,15 +1985,18 @@ function viewPrint(id){
     ${fieldRow('उपलब्धी', r["माजी_विद्यार्थी_उपलब्धी"])}
     ${fieldRow('मैदानाची उपलब्धता', r["खेळ_मैदान"])}
     ${fieldRow('सहभाग व यश', r["खेळ_सहभाग_यश"])}
+    </tbody>
   </table>
 
   <div class="sec-title">१९. सर्वसाधारण अभिप्राय</div>
-  <table>${fieldRow('अभिप्राय', r["सर्वसाधारण_अभिप्राय"])}</table>
+  <table><tbody>${fieldRow('अभिप्राय', r["सर्वसाधारण_अभिप्राय"])}</tbody></table>
 
   <div class="sec-title">स्वाक्षरी</div>
   <table>
+    <tbody>
     ${fieldRow('मुख्याध्यापकाचे नाव', r["स्वाक्षरी_मुख्याध्यापक"])}
     ${fieldRow('भेट देणाऱ्या अधिकाऱ्याचे नाव व पदनाम', r["स्वाक्षरी_अधिकारी"])}
+    </tbody>
   </table>
 
   <p class="no-print" style="text-align:center; margin-top:16px;"><button onclick="window.print()">🖨️ प्रिंट / PDF म्हणून जतन करा</button></p>
@@ -2028,22 +2051,56 @@ function loadSettingsIntoForm(){
 }
 
 /* ============================================================
-   ADMIN PIN GATE
+   ADMIN PIN GATE (ONLINE SYNC)
    ============================================================ */
 const LS_PIN = "shalaBhet_admin_pin_v1"; const SS_AUTH = "shalaBhet_admin_authed_v1";
 function hasPin(){ return !!localStorage.getItem(LS_PIN); }
 function getPin(){ return localStorage.getItem(LS_PIN) || ''; }
-function setPin(p){ localStorage.setItem(LS_PIN, p); }
+
+// PIN लोकल आणि ऑनलाइन दोन्हीकडे सेव्ह करण्यासाठी
+function setPin(p, skipSync = false){ 
+  localStorage.setItem(LS_PIN, p); 
+  
+  if(!skipSync && navigator.onLine) {
+    const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
+    fetch(APP_SCRIPT_URL + sep + 'mode=setPin&pin=' + encodeURIComponent(p))
+      .then(() => showToast('☁️ PIN ऑनलाइन सिंक झाला.'))
+      .catch(e => console.error('PIN Sync Error:', e));
+  }
+}
+
 function isAdminAuthed(){ return sessionStorage.getItem(SS_AUTH) === '1'; }
 function validPinFormat(p){ return /^[0-9]{4,6}$/.test(p); }
+
+// सर्व्हरवरून PIN चेक करण्यासाठी (नवीन मोबाईलवर ॲप उघडल्यास)
+function fetchPinOnline() {
+  if(navigator.onLine) {
+    const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
+    fetch(APP_SCRIPT_URL + sep + 'mode=getPin')
+      .then(res => res.json())
+      .then(data => {
+        if(data && data.pin) {
+          setPin(data.pin, true); // लोकल मेमरीमध्ये सेव्ह करा (परत सर्व्हरला न पाठवता)
+          refreshAdminGate(); // UI रिफ्रेश करा
+        }
+      })
+      .catch(e => console.error('Error fetching PIN:', e));
+  }
+}
 
 function refreshAdminGate(){
   const lock = document.getElementById('adminLock'); const content = document.getElementById('adminContent');
   if(isAdminAuthed()){ lock.style.display = 'none'; content.style.display = 'block'; renderRecords(); return; }
   content.style.display = 'none'; lock.style.display = 'block';
-  if(!hasPin()){ document.getElementById('pinSetupCard').style.display = 'block'; document.getElementById('pinLoginCard').style.display = 'none'; }
-  else { document.getElementById('pinSetupCard').style.display = 'none'; document.getElementById('pinLoginCard').style.display = 'block'; document.getElementById('loginPinInput').value = ''; document.getElementById('pinError').style.display = 'none'; }
+  if(!hasPin()){ 
+     document.getElementById('pinSetupCard').style.display = 'block'; document.getElementById('pinLoginCard').style.display = 'none'; 
+     fetchPinOnline(); // PIN सेट केलेला नसल्यास ऑनलाइन चेक करा
+  }
+  else { 
+     document.getElementById('pinSetupCard').style.display = 'none'; document.getElementById('pinLoginCard').style.display = 'block'; document.getElementById('loginPinInput').value = ''; document.getElementById('pinError').style.display = 'none'; 
+  }
 }
+
 document.getElementById('setupPinBtn').addEventListener('click', ()=>{
   const p1 = document.getElementById('setupPin1').value.trim(); const p2 = document.getElementById('setupPin2').value.trim();
   if(!validPinFormat(p1)){ showToast('PIN फक्त ४ ते ६ अंकी असावा.'); return; }
@@ -2083,6 +2140,9 @@ function init(){
   resetForm(false); 
   updateNetStatus(); 
   updatePendingCount();
+  
+  // ॲप चालू झाल्यावर एकदा PIN ऑनलाइन चेक करा
+  if(!hasPin()) fetchPinOnline();
 }
 init();
 </script>
