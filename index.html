@@ -565,28 +565,11 @@
       </details>
       
       <details class="section">
-        <summary>Google Sheet सिंक सेटअप</summary>
+        <summary>सेटिंग्ज (Settings)</summary>
         <div class="section-body">
-          <p class="small-note">
-            प्रत्येक नोंद आपोआप / मॅन्युअली Google Sheet मध्ये पाठवण्यासाठी, तसेच शीटवरील नोंदी या डिव्हाइसवर आणण्यासाठी, खाली दिलेल्या सूचनांनुसार एक <b>Google Apps Script वेब अ‍ॅप</b> तयार करून त्याची URL इथे टाका.
-          </p>
-          <label>Apps Script वेब अ‍ॅप URL</label>
-          <input type="text" id="gsUrl" placeholder="https://script.google.com/macros/s/XXXXX/exec">
           <label>पर्यवेक्षकाचे नाव (डीफॉल्ट — दरवेळी नवीन फॉर्ममध्ये आपोआप भरले जाईल)</label>
           <input type="text" id="defaultParyavekshak">
           <button class="btn-primary btn-block" id="saveSettingsBtn" style="margin-top:12px;">सेटिंग्ज जतन करा</button>
-
-          <div class="subhead" style="margin-top:18px;">सेटअप सूचना</div>
-          <ol class="small-note" style="padding-right:0;padding-left:18px;">
-            <li>नवीन Google Sheet उघडा → <b>Extensions → Apps Script</b>.</li>
-            <li>डीफॉल्ट कोड डिलीट करून खालील कोड पेस्ट करा (कॉपी बटण वापरा).</li>
-            <li>वरती <b>Deploy → New deployment</b> → Type: <b>Web app</b>.
-              Execute as: <b>Me</b>, Who has access: <b>Anyone</b>.</li>
-            <li><b>Deploy</b> दाबा, दिलेली URL कॉपी करून वर पेस्ट करा व "सेटिंग्ज जतन करा" दाबा.</li>
-            <li>कोड बदलल्यास प्रत्येक वेळी <b>Deploy → Manage deployments → ✏️ → New version</b> करून पुन्हा Deploy करावे.</li>
-          </ol>
-          <button class="btn-secondary btn-sm" id="copyScriptBtn">📋 Apps Script कोड कॉपी करा</button>
-          <textarea id="scriptCode" readonly style="min-height:160px; font-family:monospace; font-size:11px; margin-top:8px;"></textarea>
         </div>
       </details>
 
@@ -623,6 +606,11 @@
 <div class="toast" id="toast"></div>
 
 <script>
+/* ============================================================
+   GOOGLE APPS SCRIPT URL (HARDCODED)
+   ============================================================ */
+const APP_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz1WhJxS8uyw63FODuBTkN7noLRnTqHKy4hrJUrEBJWmFlHs5arg85-TtQmasDctC0Z/exec";
+
 /* ============================================================
    SCHOOL, HEADMASTER & TEACHERS LIST
    ============================================================ */
@@ -1438,9 +1426,8 @@ document.getElementById('saveBtn').addEventListener('click', ()=>{
    GOOGLE SHEET SYNC & LIST
    ============================================================ */
 function syncRecord(id){
-  const cfg = loadConfig(); if(!cfg.gsUrl) return;
   const recs = loadRecords(); const rec = recs.find(r=>r._id===id); if(!rec) return;
-  fetch(cfg.gsUrl, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(rec) })
+  fetch(APP_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain;charset=utf-8'}, body: JSON.stringify(rec) })
   .then(()=>{
     rec.synced = true; rec._syncAttemptedAt = new Date().toISOString();
     saveRecords(recs); renderRecords(); showToast('☁️ Google Sheet ला पाठवले: ' + (rec["शाळेचे_नाव"]||''));
@@ -1450,7 +1437,6 @@ function syncRecord(id){
 }
 
 function syncAllPending(){
-  const cfg = loadConfig(); if(!cfg.gsUrl){ showToast('आधी सेटिंग्जमध्ये Google Sheet URL टाका.'); return; }
   const pending = loadRecords().filter(r=>!r.synced);
   if(!pending.length){ showToast('सिंक करण्यासाठी काही प्रलंबित नाही.'); return; }
   showToast(pending.length + ' नोंदी सिंक करत आहे...');
@@ -1464,12 +1450,10 @@ document.getElementById('syncAllBtn').addEventListener('click', syncAllPending);
 const JSON_RECORD_FIELDS = ["शिक्षक_यादी", "CWSN_विद्यार्थी", "वर्गनिहाय_विद्यार्थी"];
 
 function fetchFromSheet(){
-  const cfg = loadConfig();
-  if(!cfg.gsUrl){ showToast('आधी सेटिंग्जमध्ये Google Sheet URL टाका.'); return; }
   if(!navigator.onLine){ showToast('⚠️ इंटरनेट कनेक्शन नाही — ऑनलाइन झाल्यावर पुन्हा प्रयत्न करा.'); return; }
   showToast('⬇️ शीटवरून नोंदी आणत आहे...');
-  const sep = cfg.gsUrl.indexOf('?') > -1 ? '&' : '?';
-  fetch(cfg.gsUrl + sep + 'mode=fetch')
+  const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
+  fetch(APP_SCRIPT_URL + sep + 'mode=fetch')
     .then(res => res.json())
     .then(rows => {
       if(!Array.isArray(rows)){ throw new Error('invalid'); }
@@ -1794,7 +1778,7 @@ function viewPrint(id){
   </body></html>`;
 
   const w = window.open('', '_blank');
-  if(!w){ showToast('पॉप-अप ব্লক झाला — कृपया पॉप-अप्सना परवानगी द्या.'); return; }
+  if(!w){ showToast('पॉप-अप ब्लॉक झाला — कृपया पॉप-अप्सना परवानगी द्या.'); return; }
   w.document.open(); w.document.write(html); w.document.close();
   setTimeout(()=>{ try{ w.focus(); w.print(); }catch(e){} }, 400);
 }
@@ -1833,66 +1817,12 @@ document.getElementById('exportCsvBtn').addEventListener('click', ()=>{
   downloadBlob('\uFEFF' + rows.join('\r\n'), 'shala_bhet_data_' + Date.now() + '.csv', 'text/csv;charset=utf-8');
 });
 
-const APPS_SCRIPT_CODE = `function doPost(e) {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  var data = JSON.parse(e.postData.contents);
-  var lastCol = sheet.getLastColumn();
-  var headers = lastCol > 0 ? sheet.getRange(1,1,1,lastCol).getValues()[0] : [];
-  if (!headers.length || !headers[0]) {
-    headers = Object.keys(data);
-    sheet.getRange(1,1,1,headers.length).setValues([headers]);
-  } else {
-    var newKeys = Object.keys(data).filter(function(k){ return headers.indexOf(k) === -1; });
-    if (newKeys.length) {
-      sheet.getRange(1, headers.length+1, 1, newKeys.length).setValues([newKeys]);
-      headers = headers.concat(newKeys);
-    }
-  }
-  var row = headers.map(function(h){
-    var v = data[h];
-    if (v === undefined || v === null) return '';
-    if (typeof v === 'object') return JSON.stringify(v);
-    return v;
-  });
-  sheet.appendRow(row);
-  return ContentService.createTextOutput(JSON.stringify({status:'ok'})).setMimeType(ContentService.MimeType.JSON);
-}
-
-function doGet(e) {
-  var mode = e && e.parameter && e.parameter.mode;
-  if (mode === 'fetch') {
-    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-    var lastRow = sheet.getLastRow();
-    var lastCol = sheet.getLastColumn();
-    if (lastRow < 2 || lastCol < 1) {
-      return ContentService.createTextOutput('[]').setMimeType(ContentService.MimeType.JSON);
-    }
-    var headers = sheet.getRange(1, 1, 1, lastCol).getValues()[0];
-    var values = sheet.getRange(2, 1, lastRow - 1, lastCol).getValues();
-    var out = values.map(function(row){
-      var obj = {};
-      headers.forEach(function(h, i){
-        var v = row[i];
-        obj[h] = (v instanceof Date) ? v.toISOString() : v;
-      });
-      return obj;
-    });
-    return ContentService.createTextOutput(JSON.stringify(out)).setMimeType(ContentService.MimeType.JSON);
-  }
-  return ContentService.createTextOutput('Shala Bhet Form Web App is running.');
-}`;
-document.getElementById('scriptCode').value = APPS_SCRIPT_CODE;
-document.getElementById('copyScriptBtn').addEventListener('click', ()=>{
-  document.getElementById('scriptCode').select();
-  try{ document.execCommand('copy'); showToast('कोड कॉपी झाला.'); }
-  catch(e){ navigator.clipboard && navigator.clipboard.writeText(APPS_SCRIPT_CODE).then(()=>showToast('कोड कॉपी झाला.')); }
-});
 document.getElementById('saveSettingsBtn').addEventListener('click', ()=>{
-  saveConfig({ gsUrl: document.getElementById('gsUrl').value.trim(), defaultParyavekshak: document.getElementById('defaultParyavekshak').value.trim() });
+  saveConfig({ defaultParyavekshak: document.getElementById('defaultParyavekshak').value.trim() });
   showToast('सेटिंग्ज जतन झाल्या.');
 });
 function loadSettingsIntoForm(){
-  const cfg = loadConfig(); document.getElementById('gsUrl').value = cfg.gsUrl || ''; document.getElementById('defaultParyavekshak').value = cfg.defaultParyavekshak || '';
+  const cfg = loadConfig(); document.getElementById('defaultParyavekshak').value = cfg.defaultParyavekshak || '';
 }
 
 /* ============================================================
