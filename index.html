@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>मिशन निपुण बीड - सर्वंकष शाळा भेट व पर्यवेक्षण प्रपत्र</title>
-<!-- Google Font: Noto Sans Devanagari -->
+<!-- Google Fonts: Mukta & Noto Sans Devanagari -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
     --navy:#1c2b4a;
@@ -24,17 +24,16 @@
     --fs-scale:1;
   }
   html{
-    /* 18px Base Font Size with dynamic scale */
-    font-size: calc(18px * var(--fs-scale));
+    /* 20px Base Font Size with dynamic scale */
+    font-size: calc(20px * var(--fs-scale));
     -webkit-text-size-adjust:100%;
   }
   *{box-sizing:border-box;}
   body{
     margin:0; 
-    /* Adaptive Margin / Padding using clamp */
-    padding: 0 clamp(8px, 2.5vw, 24px) 100px clamp(8px, 2.5vw, 24px); 
+    padding: 0 clamp(8px, 2.5vw, 24px) 110px clamp(8px, 2.5vw, 24px); 
     font-size:1rem;
-    font-family:'Noto Sans Devanagari', sans-serif, system-ui;
+    font-family:'Mukta', 'Noto Sans Devanagari', sans-serif, system-ui;
     background:var(--bg);
     color:var(--text);
     -webkit-font-smoothing:antialiased;
@@ -43,14 +42,14 @@
     background:linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
     color:#fff;
     padding: clamp(0.7rem, 2vw, 1.2rem) clamp(0.8rem, 2.5vw, 1.5rem);
-    margin: 0 calc(-1 * clamp(8px, 2.5vw, 24px)); /* Bleed to edges */
+    margin: 0 calc(-1 * clamp(8px, 2.5vw, 24px));
     position:sticky; top:0; z-index:50;
     box-shadow:0 2px 8px rgba(0,0,0,.15);
   }
-  header.topbar h1{ margin:0; font-size:1.15rem; line-height:1.4; letter-spacing:.2px; font-weight:700;}
-  header.topbar p{ margin:3px 0 0; font-size:0.82rem; opacity:.9;}
+  header.topbar h1{ margin:0; font-size:1.15rem; line-height:1.35; letter-spacing:.2px; font-weight:700;}
+  header.topbar p{ margin:3px 0 0; font-size:0.8rem; opacity:.9;}
   .status-strip{
-    display:flex; align-items:center; gap:10px; margin-top:10px; font-size:0.82rem; flex-wrap:wrap;
+    display:flex; align-items:center; gap:10px; margin-top:8px; font-size:0.8rem; flex-wrap:wrap;
   }
   .dot{width:10px;height:10px;border-radius:50%;display:inline-block;}
   .dot.on{background:#4CD46C;}
@@ -58,7 +57,7 @@
   .fontctl-group{ display:flex; align-items:center; gap:5px; margin-left:auto; }
   .fontctl{
     appearance:none; border:1px solid rgba(255,255,255,.35); background:rgba(255,255,255,.12);
-    color:#fff; border-radius:6px; padding:4px 10px; font-size:0.75rem; font-weight:700;
+    color:#fff; border-radius:6px; padding:3px 9px; font-size:0.75rem; font-weight:700;
     line-height:1.4; cursor:pointer; font-family:inherit;
   }
   .fontctl:active{ background:rgba(255,255,255,.25); }
@@ -67,21 +66,20 @@
   
   .tabbar{
     display:flex; background:#fff; border-bottom:2px solid var(--border);
-    position:sticky; top:68px; z-index:40; overflow-x:auto;
+    position:sticky; top:72px; z-index:40; overflow-x:auto;
     margin: 0 calc(-1 * clamp(8px, 2.5vw, 24px));
     padding: 0 clamp(8px, 2vw, 16px);
   }
   .tabbar button{
-    flex:1; padding:12px 10px; border:none; background:none; font-size:0.9rem;
+    flex:1; padding:11px 10px; border:none; background:none; font-size:0.9rem;
     color:#555; border-bottom:3px solid transparent; white-space:nowrap; cursor:pointer;
     font-family:inherit; font-weight:600;
   }
   .tabbar button.active{ color:var(--navy); border-color:var(--accent); font-weight:700;}
   
-  /* Adaptive Main Layout Container */
   main{
     padding: clamp(10px, 2.5vw, 20px) 0;
-    max-width: 860px;
+    max-width: 880px;
     margin: 0 auto;
     width: 100%;
   }
@@ -103,43 +101,42 @@
   details.section[open] > summary:after{transform:rotate(180deg);}
   .section-body{padding: clamp(10px, 2.5vw, 16px);}
   .subhead{
-    background:var(--accent-light); color:var(--navy2); font-weight:700; font-size:0.9rem;
-    padding:8px 12px; border-radius:6px; margin:12px 0 8px; border:1px solid #c3d2eb;
+    background:var(--accent-light); color:var(--navy2); font-weight:700; font-size:0.88rem;
+    padding:7px 12px; border-radius:6px; margin:10px 0 6px; border:1px solid #c3d2eb;
   }
-  label{display:block; font-size:0.85rem; font-weight:700; color:#1c2230; margin:12px 0 5px;}
+  label{display:block; font-size:0.82rem; font-weight:700; color:#1c2230; margin:10px 0 4px;}
   input[type=text], input[type=number], input[type=date], input[type=time], input[type=datetime-local], select, textarea{
-    width:100%; padding:10px 12px; border:1.5px solid #bdc7d8; border-radius:7px; font-size:0.95rem;
+    width:100%; padding:9px 11px; border:1.5px solid #bdc7d8; border-radius:7px; font-size:0.92rem;
     font-family:inherit; background:#fcfcff;
   }
-  textarea{min-height:60px; resize:vertical;}
+  textarea{min-height:56px; resize:vertical;}
   .row2{display:grid; grid-template-columns:1fr 1fr; gap: clamp(8px, 2vw, 12px);}
   .row3{display:grid; grid-template-columns:1fr 1fr 1fr; gap: clamp(8px, 2vw, 12px);}
   @media (max-width:520px){ .row3{grid-template-columns:1fr 1fr;} }
   
-  /* Thick Table Borders in UI */
   table.mini{
-    width:100%; border-collapse:collapse; margin-top:8px; font-size:0.85rem;
+    width:100%; border-collapse:collapse; margin-top:8px; font-size:0.82rem;
     border: var(--tbl-border);
   }
   table.mini th, table.mini td{
     border: var(--tbl-border); 
-    padding:8px 6px; text-align:center; vertical-align:middle;
+    padding:6px 5px; text-align:center; vertical-align:middle;
   }
-  table.mini th{background:var(--accent-light); color:var(--navy2); font-size:0.8rem; font-weight:700;}
-  table.mini td input, table.mini td select{padding:6px; font-size:0.85rem; min-width:56px; border:1px solid #a8b4c9;}
-  table.mini td.lbl{text-align:right; font-weight:700; background:#fafbff; min-width:120px;}
+  table.mini th{background:var(--accent-light); color:var(--navy2); font-size:0.78rem; font-weight:700;}
+  table.mini td input, table.mini td select{padding:5px; font-size:0.82rem; min-width:52px; border:1px solid #a8b4c9;}
+  table.mini td.lbl{text-align:right; font-weight:700; background:#fafbff; min-width:115px;}
   .hint{font-size:0.75rem; color:#5c6479; margin-top:4px;}
 
   details.class-row { background:#fdfdfd; border:1.5px solid #c2c9db; border-radius:8px; margin-bottom:8px; overflow:hidden; }
-  details.class-row > summary { list-style:none; padding:10px 12px; background:#f4f6fb; display:flex; align-items:center; cursor:pointer; }
+  details.class-row > summary { list-style:none; padding:9px 11px; background:#f4f6fb; display:flex; align-items:center; cursor:pointer; }
   details.class-row > summary::-webkit-details-marker { display:none; }
   details.class-row[open] > summary { border-bottom:1.5px solid #c2c9db; background:#eef1f8; }
   
-  .class-name-input { width:120px; padding:6px; font-size:0.92rem; font-family:inherit; font-weight:700; color:var(--navy); border:1.5px solid #b2bace; border-radius:6px; background:#fff; text-align:center; text-align-last:center; }
-  .cat-entry select, .cat-entry input { border:1px solid #b2bace; border-radius:5px; font-size:0.92rem; font-family:inherit; text-align:center; text-align-last:center; }
+  .class-name-input { width:115px; padding:5px; font-size:0.88rem; font-family:inherit; font-weight:700; color:var(--navy); border:1.5px solid #b2bace; border-radius:6px; background:#fff; text-align:center; text-align-last:center; }
+  .cat-entry select, .cat-entry input { border:1px solid #b2bace; border-radius:5px; font-size:0.88rem; font-family:inherit; text-align:center; text-align-last:center; }
   
-  .class-totals-text { flex:1; text-align:right; margin-right:12px; font-size:0.82rem; color:#222; font-weight:600; }
-  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:2px solid #d8b26e; padding:10px 14px; border-radius:8px; font-weight:700; margin-top:12px; color:#533a0b; font-size:0.95rem; }
+  .class-totals-text { flex:1; text-align:right; margin-right:10px; font-size:0.8rem; color:#222; font-weight:600; }
+  .grand-total-box { display:flex; justify-content:space-between; background:#fae8c8; border:2px solid #d8b26e; padding:9px 12px; border-radius:8px; font-weight:700; margin-top:10px; color:#533a0b; font-size:0.9rem; }
 
   .toolbar{
     position:fixed; bottom:0; left:0; right:0; background:#fff; border-top:2px solid #bdc7d8;
@@ -147,31 +144,31 @@
   }
   .toolbar button{flex:1;}
   button{
-    cursor:pointer; border:none; border-radius:8px; padding:11px 12px; font-size:0.9rem; font-weight:700;
+    cursor:pointer; border:none; border-radius:8px; padding:10px 12px; font-size:0.88rem; font-weight:700;
     font-family:inherit;
   }
   .btn-primary{background:var(--accent); color:#fff;}
   .btn-secondary{background:#eef1f8; color:var(--navy2); border:1px solid #c2cde2;}
   .btn-danger{background:#fdeceb; color:var(--danger); border:1px solid #f7c3c0;}
   .btn-ok{background:#e7f6ee; color:var(--ok); border:1px solid #bce6cf;}
-  .btn-sm{padding:8px 12px; font-size:0.8rem; border-radius:6px;}
+  .btn-sm{padding:7px 10px; font-size:0.78rem; border-radius:6px;}
   .btn-block{width:100%;}
 
-  .rec-card{background:#fff; border:1.5px solid #bdc7d8; border-radius:10px; padding:14px; margin-bottom:12px;}
-  .rec-card h3{margin:0 0 4px; font-size:1rem; color:var(--navy);}
-  .rec-card .meta{font-size:0.8rem; color:#555; margin-bottom:8px;}
-  .badge{display:inline-block; padding:3px 8px; border-radius:12px; font-size:0.72rem; font-weight:700;}
+  .rec-card{background:#fff; border:1.5px solid #bdc7d8; border-radius:10px; padding:12px; margin-bottom:10px;}
+  .rec-card h3{margin:0 0 4px; font-size:0.95rem; color:var(--navy);}
+  .rec-card .meta{font-size:0.78rem; color:#555; margin-bottom:6px;}
+  .badge{display:inline-block; padding:2px 7px; border-radius:12px; font-size:0.7rem; font-weight:700;}
   .badge.synced{background:#e7f6ee; color:var(--ok); border:1px solid #bce6cf;}
   .badge.pending{background:#fff4e2; color:var(--pending); border:1px solid #fedfa7;}
   .rec-actions{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px;}
 
   .toast{
     position:fixed; bottom:78px; left:50%; transform:translateX(-50%); background:#1c2b4a; color:#fff;
-    padding:10px 18px; border-radius:24px; font-size:0.88rem; z-index:200; opacity:0; transition:opacity .25s;
+    padding:9px 16px; border-radius:22px; font-size:0.85rem; z-index:200; opacity:0; transition:opacity .25s;
     pointer-events:none; max-width:90%; text-align:center; font-family:inherit;
   }
   .toast.show{opacity:1;}
-  .small-note{font-size:0.78rem; color:#596279; line-height:1.6;}
+  .small-note{font-size:0.75rem; color:#596279; line-height:1.5;}
 </style>
 </head>
 <body>
@@ -256,7 +253,7 @@
       <div class="subhead">शिक्षक उपस्थिती (नोंद व स्थिती)</div>
       <div id="teacherListContainer"></div>
       
-      <div class="row3" style="margin-top:12px;">
+      <div class="row3" style="margin-top:10px;">
         <div><label>एकूण शिक्षक</label><input type="number" min="0" id="shikPat" readonly style="background:#eef1f8; font-weight:700;"></div>
         <div><label>उपस्थित</label><input type="number" min="0" id="shikUpasthit" readonly style="background:#eef1f8; font-weight:700;"></div>
         <div><label>टक्केवारी</label><input type="text" id="shikPercent" readonly style="background:#eef1f8; font-weight:700;"></div>
@@ -300,7 +297,7 @@
       <label>ब. विद्यार्थी वैयक्तिक स्वच्छता (गणवेश व शारीरिक स्वच्छता)</label>
       <textarea id="suchchhataVaiyaktik"></textarea>
 
-      <div class="subhead" style="margin-top:16px;">वर्ग अध्यापन निरीक्षण (किमान १ वर्ग १ तासिका)</div>
+      <div class="subhead" style="margin-top:14px;">वर्ग अध्यापन निरीक्षण (किमान १ वर्ग १ तासिका)</div>
       <div class="row3">
         <div><label>इयत्ता</label><input type="text" id="vniIyatta"></div>
         <div><label>तुकडी</label><input type="text" id="vniTukadi"></div>
@@ -337,7 +334,7 @@
         <div><label>शिक्षकाचे नाव</label><input type="text" id="samvadShikshak"></div>
       </div>
 
-      <div class="subhead" style="margin-top:16px;">I) प्रथम भाषा (वाचन, लेखन, अभिव्यक्ती याबाबत संपादणूक विद्यार्थी टक्केवारी)</div>
+      <div class="subhead" style="margin-top:14px;">I) प्रथम भाषा (वाचन, लेखन, अभिव्यक्ती याबाबत संपादणूक विद्यार्थी टक्केवारी)</div>
       <table class="mini">
         <thead><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
         <tbody>
@@ -451,7 +448,7 @@
       <label>iii) शैक्षणिक साहित्याचा वापर</label>
       <textarea id="sahityaVapar"></textarea>
 
-      <div class="subhead" style="margin-top:16px;">ब. लॅब व किट वापर (स्थिती, वापर, साहित्य स्थिती, इत्यादी बाबत अभिप्राय)</div>
+      <div class="subhead" style="margin-top:14px;">ब. लॅब व किट वापर (स्थिती, वापर, साहित्य स्थिती, इत्यादी बाबत अभिप्राय)</div>
       <table class="mini" id="sahityaTable">
         <thead><tr><th>सुविधा</th><th>उपलब्धता (आहे/नाही)</th><th>अभिप्राय (संख्या, वापरायोग्य स्थिती, वापर)</th></tr></thead>
         <tbody></tbody>
@@ -514,7 +511,7 @@
     <summary>१९. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
     <div class="section-body">
       <label>उल्लेखनीय बाबी, आढळलेल्या त्रुटी, सूचना</label>
-      <textarea id="sarvaAbhipray" style="min-height:90px;"></textarea>
+      <textarea id="sarvaAbhipray" style="min-height:85px;"></textarea>
     </div>
   </details>
 
@@ -849,8 +846,8 @@ function addCwsnRow(student = {}) {
     
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
        <div>
-         <label style="margin-top:0; font-size:0.8rem;">UDID कार्ड क्र. / आधार क्र.</label>
-         <input type="text" class="cwsn-id" value="${student.id || ''}" placeholder="UDID किंवा आधार">
+         <label style="margin-top:0; font-size:0.8rem;">UDID कार्ड क्र. / ओळख क्र.</label>
+         <input type="text" class="cwsn-id" value="${student.id || ''}" placeholder="UDID किंवा ID क्र.">
        </div>
        <div>
          <label style="margin-top:0; font-size:0.8rem;">विशेष शेरा / आवश्यक गरजा</label>
@@ -1536,7 +1533,7 @@ document.getElementById('saveBtn').addEventListener('click', ()=>{
 });
 
 /* ============================================================
-   GOOGLE SHEET SYNC & LIST (WITH DELETE FEATURES)
+   GOOGLE SHEET SYNC & LIST
    ============================================================ */
 function syncRecord(id){
   const recs = loadRecords(); const rec = recs.find(r=>r._id===id); if(!rec) return;
@@ -1552,13 +1549,13 @@ function syncRecord(id){
 function syncAllPending(){
   const pending = loadRecords().filter(r=>!r.synced);
   if(!pending.length){ showToast('सिंक करण्यासाठी काही प्रलंबित नाही.'); return; }
-  showToast(pending.length + ' नोंदी सिंक करत implementation...');
+  showToast(pending.length + ' नोंदी सिंक करत आहोत...');
   pending.forEach(r=> syncRecord(r._id));
 }
 document.getElementById('syncAllBtn').addEventListener('click', syncAllPending);
 
 /* ============================================================
-   FETCH (PULL) RECORDS BACK FROM THE GOOGLE SHEET
+   FETCH RECORDS FROM GOOGLE SHEET
    ============================================================ */
 const JSON_RECORD_FIELDS = ["शिक्षक_यादी", "CWSN_विद्यार्थी", "वर्गनिहाय_विद्यार्थी", "शिष्यवृत्ती_सराव_परीक्षा"];
 
@@ -1592,11 +1589,11 @@ function fetchFromSheet(){
       renderRecords();
       const note = document.getElementById('lastFetchNote');
       note.style.display = 'block';
-      note.textContent = '📥 शेवटची फेच: ' + new Date().toLocaleString('mr-IN') + ' · शीटवर एकूण ' + rows.length + ' नोंदी · ' + added + ' नवीन नोंदी या डिव्हाइसवर जोडल्या.';
-      showToast(added ? ('✅ ' + added + ' नवीन नोंदी शीटवरून आणल्या.') : 'ℹ️ नवीन नोंदी आढळल्या नाहीत — सर्व आधीच येथे उपलब्ध आहेत.');
+      note.textContent = '📥 शेवटची फेच: ' + new Date().toLocaleString('mr-IN') + ' · शीटवर एकूण ' + rows.length + ' नोंदी · ' + added + ' नवीन नोंदी जोडल्या.';
+      showToast(added ? ('✅ ' + added + ' नवीन नोंदी आणल्या.') : 'ℹ️ नवीन नोंदी नाहीत.');
     })
     .catch(()=>{
-      showToast('⚠️ शीटवरून आणता आले नाही — URL तपासा किंवा Apps Script नवीन आवृत्ती म्हणून पुन्हा Deploy करा.');
+      showToast('⚠️ शीटवरून आणता आले नाही — URL तपासा.');
     });
 }
 document.getElementById('fetchFromSheetBtn').addEventListener('click', fetchFromSheet);
@@ -1611,7 +1608,7 @@ function renderRecords(filterText){
     const dt = r._savedAt ? new Date(r._savedAt).toLocaleString('mr-IN') : '';
     return `<div class="rec-card">
       <h3>${escapeHtml(r["शाळेचे_नाव"]||'(नाव नाही)')}</h3>
-      <div class="meta">UDISE: ${escapeHtml(r["UDISE_कोड"]||'-')} &nbsp;|&nbsp; भेट दिनांक: ${escapeHtml(r["भेट_दिनांक"]||'-')} &nbsp;|&nbsp; जतन: ${dt}</div>
+      <div class="meta">UDISE: ${escapeHtml(r["UDISE_कोड"]||'-')} &nbsp;|&nbsp; भेट: ${escapeHtml(r["भेट_दिनांक"]||'-')} &nbsp;|&nbsp; जतन: ${dt}</div>
       <span class="badge ${r.synced?'synced':'pending'}">${r.synced?'☁️ सिंक झाले':'⏳ प्रलंबित'}</span>
       <div class="rec-actions">
         <button class="btn-secondary btn-sm" onclick="viewPrint('${r._id}')">🖨️ PDF / प्रिंट</button>
@@ -1626,22 +1623,18 @@ function renderRecords(filterText){
 function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 /* ============================================================
-   DELETE FUNCTIONALITY (Local + Google Sheet)
+   DELETE FUNCTIONALITY
    ============================================================ */
 function deleteRecord(id) { 
-  if (confirm('ही नोंद कायमची काढायची आहे का?\n(जर ही नोंद शीटवर सिंक झाली असेल, तर ती ऑनलाइन शीटवरून पण डिलीट केली जाईल.)')) { 
+  if (confirm('ही नोंद कायमची काढायची आहे का?')) { 
       const recs = loadRecords();
       const rec = recs.find(r => r._id === id);
       
       if (rec && rec.synced && navigator.onLine) {
           const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
           fetch(APP_SCRIPT_URL + sep + 'mode=delete&id=' + id, { method: 'GET', mode: 'no-cors' })
-          .then(() => console.log('Sheet delete request sent for: ' + id))
           .catch(e => console.error('Sheet delete error:', e));
-      } else if (rec && rec.synced && !navigator.onLine) {
-          showToast('⚠️ ऑफलाइन असल्यामुळे डेटा फक्त मोबाईलमधून डिलीट झाला. शीटमधून डेटा डिलीट झालेला नाही.');
       }
-      
       saveRecords(recs.filter(r => r._id !== id)); 
       renderRecords(); 
       showToast('नोंद काढली.'); 
@@ -1650,14 +1643,14 @@ function deleteRecord(id) {
 
 document.getElementById('deleteAllSheetBtn').addEventListener('click', () => {
     if (!navigator.onLine) {
-        showToast('⚠️ इंटरनेट कनेक्शन नाही. कृपया ऑनलाइन आल्यावर प्रयत्न करा.');
+        showToast('⚠️ इंटरनेट कनेक्शन नाही.');
         return;
     }
     if (confirm('चेतावणी: शीटवरील सर्व सिंक केलेला डेटा कायमचा डिलीट होईल. तुम्हाला खात्री आहे का?')) {
         const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
         fetch(APP_SCRIPT_URL + sep + 'mode=deleteAll', { method: 'GET', mode: 'no-cors' })
-        .then(() => showToast('☁️ शीटवरील सर्व डेटा डिलीट करण्याची विनंती पाठवली.'))
-        .catch(() => showToast('⚠️ काहीतरी अडचण आली.'));
+        .then(() => showToast('☁️ शीटवरील डेटा डिलीट करण्याची विनंती पाठवली.'))
+        .catch(() => showToast('⚠️ अडचण आली.'));
     }
 });
 
@@ -1668,7 +1661,7 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF (Noto Sans Devanagari + Adaptive Margins + Thick Borders)
+   PRINT / PDF (COMPACT A4 WITH MUKTA FONT - ZERO HEADING CUTS)
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 
@@ -1676,7 +1669,7 @@ function formatTimeInMarathi(timeStr) {
     if(!timeStr) return '-';
     let [h, m] = timeStr.split(':');
     let hh = parseInt(h, 10);
-    let ampm = hh >= 12 ? 'दुपार / संध्याकाळ' : 'सकाळ';
+    let ampm = hh >= 12 ? 'दुपार' : 'सकाळ';
     let hr12 = hh % 12 || 12;
     return `${hr12}:${m} (${ampm})`;
 }
@@ -1732,13 +1725,13 @@ function viewPrint(id){
     
     const catKeys = Object.keys(catTotals);
     if(catKeys.length > 0) {
-      classHtml += `<tr style="background:#e4e9f5; font-weight:bold;"><td colspan="5" style="padding:6px;">सर्व वर्गांचे प्रवर्गनिहाय एकूण संकलन (Category-wise Totals)</td></tr>`;
+      classHtml += `<tr style="background:#e4e9f5; font-weight:bold;"><td colspan="5" style="padding:4px 6px;">सर्व वर्गांचे प्रवर्गनिहाय एकूण संकलन (Category-wise Totals)</td></tr>`;
       catKeys.forEach(cat => {
         const cb = catTotals[cat].b;
         const cg = catTotals[cat].g;
         const isExcluded = (cat === 'CWSN' || cat === 'अल्पसंख्याक' || cat === 'BPL');
         classHtml += `<tr style="background:#fafbff;">
-          <td colspan="2" style="font-weight:600;">${escapeHtml(cat)} ${isExcluded ? '<span style="font-size:11px; color:#c0392b;">(पायभूत संख्येत वगळले)</span>' : ''}</td>
+          <td colspan="2" style="font-weight:600;">${escapeHtml(cat)} ${isExcluded ? '<span style="font-size:10px; color:#c0392b;">(वगळले)</span>' : ''}</td>
           <td>${cb}</td>
           <td>${cg}</td>
           <td>${cb + cg}</td>
@@ -1746,7 +1739,7 @@ function viewPrint(id){
       });
     }
 
-    classHtml += `<tr style="background:#fae8c8; font-weight:bold; font-size:15px;">
+    classHtml += `<tr style="background:#fae8c8; font-weight:bold; font-size:13.5px;">
       <td colspan="2">सर्व वर्गांची एकूण पटसंख्या</td>
       <td>${grandBoys}</td><td>${grandGirls}</td><td>${grandBoys + grandGirls}</td>
     </tr></tbody></table>`;
@@ -1756,7 +1749,7 @@ function viewPrint(id){
   if (r["CWSN_विद्यार्थी"] && r["CWSN_विद्यार्थी"].length > 0) {
       cwsnHtml = `<div class="sec-title">३. दिव्यांग (CWSN) विद्यार्थी माहिती</div>
       <table>
-        <thead><tr><th>विद्यार्थ्याचे नाव</th><th>इयत्ता</th><th>अपंगत्वाचा प्रकार</th><th>UDID / आधार क्र.</th><th>विशेष शेरा</th></tr></thead>
+        <thead><tr><th>विद्यार्थ्याचे नाव</th><th>इयत्ता</th><th>अपंगत्वाचा प्रकार</th><th>UDID / नोंद क्र.</th><th>विशेष शेरा</th></tr></thead>
         <tbody>
         ${r["CWSN_विद्यार्थी"].map(s => `<tr>
           <td>${escapeHtml(s.name)}</td>
@@ -1773,7 +1766,7 @@ function viewPrint(id){
   if (r["शिष्यवृत्ती_सराव_परीक्षा"] && r["शिष्यवृत्ती_सराव_परीक्षा"].length > 0) {
       scholTestsHtml = `<div class="sec-title">९. शिष्यवृत्ती साप्ताहिक सराव परीक्षा</div>
       <table>
-        <thead><tr><th>दिनांक</th><th>इयत्ता</th><th>एकूण विद्यार्थी</th><th>उपस्थित</th><th>गैरहजर</th></tr></thead>
+        <thead><tr><th>दिनांक</th><th>इयत्ता</th><th>एकूण</th><th>उपस्थित</th><th>गैरहजर</th></tr></thead>
         <tbody>
         ${r["शिष्यवृत्ती_सराव_परीक्षा"].map(s => `<tr>
           <td>${escapeHtml(s.date)}</td>
@@ -1791,39 +1784,99 @@ function viewPrint(id){
   let html = `<html lang="mr"><head><meta charset="UTF-8"><title>शाळा भेट प्रपत्र - ${escapeHtml(r["शाळेचे_नाव"])}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     @page {
       size: A4 portrait;
-      margin: clamp(10mm, 3vw, 15mm);
+      margin: 8mm 10mm 8mm 10mm;
+    }
+    *, *:before, *:after {
+      box-sizing: border-box;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
     }
     body{
-      font-family:'Noto Sans Devanagari', sans-serif; 
-      padding: clamp(8px, 2vw, 16px); 
-      margin:0 auto; 
-      color:#111; 
-      font-size:14px; 
-      line-height:1.45;
-      max-width: 100%;
+      font-family:'Mukta', sans-serif; 
+      padding:0; margin:0; 
+      color:#000; 
+      font-size:12.5px; 
+      line-height:1.28;
+      width: 100%;
     }
-    h1{font-size:18px; text-align:center; margin:0 0 4px; color:#1c2b4a; font-weight:700;}
-    h2{font-size:13.5px; text-align:center; color:#333; font-weight:600; margin:0 0 12px;}
-    .sec-title{background:#1c2b4a; color:#fff; padding:6px 10px; font-weight:700; font-size:14.5px; margin-top:14px; page-break-after:avoid; border: 1.8px solid #1c2b4a;}
+    .header-box {
+      text-align: center;
+      margin-bottom: 6px;
+      page-break-after: avoid;
+    }
+    h1{
+      font-size:16px; 
+      line-height:1.3;
+      margin:0 0 2px; 
+      color:#1c2b4a; 
+      font-weight:800;
+      word-break: break-word;
+      overflow-wrap: break-word;
+    }
+    h2{
+      font-size:12px; 
+      line-height:1.3;
+      color:#333; 
+      font-weight:600; 
+      margin:0;
+      word-break: break-word;
+    }
+    .sec-title{
+      background:#1c2b4a; 
+      color:#fff; 
+      padding:3px 7px; 
+      font-weight:700; 
+      font-size:12.5px; 
+      margin-top:6px; 
+      margin-bottom:2px;
+      page-break-after:avoid; 
+      break-after:avoid;
+      border: 1.5px solid #1c2b4a;
+      line-height:1.25;
+      word-break: break-word;
+    }
     
-    /* Thick High-Contrast Borders for Print & PDF */
-    table{width:100%; border-collapse:collapse; margin-top:4px; page-break-inside:auto; border: 1.8px solid #1c2b4a;}
-    tr{page-break-inside:avoid; page-break-after:auto;}
-    td, th{border: 1.8px solid #1c2b4a; padding:6px 8px; font-size:13.5px; vertical-align:middle; text-align:center;}
+    /* Ultra-Compact High-Contrast Tables */
+    table{
+      width:100%; 
+      border-collapse:collapse; 
+      margin-top:2px; 
+      margin-bottom:3px;
+      page-break-inside:auto; 
+      border: 1.5px solid #1c2b4a;
+      table-layout: fixed;
+    }
+    tr{
+      page-break-inside:avoid; 
+      break-inside:avoid;
+    }
+    td, th{
+      border: 1.5px solid #1c2b4a; 
+      padding:3px 4px; 
+      font-size:12px; 
+      vertical-align:middle; 
+      text-align:center;
+      word-wrap:break-word;
+      overflow-wrap:break-word;
+      line-height:1.2;
+    }
     th{background:#eef2f9; font-weight:700; color:#1c2b4a;}
-    .pf-lbl{width:40%; background:#f8faff; font-weight:700; text-align:left; padding-left:8px;}
+    .pf-lbl{width:38%; background:#f8faff; font-weight:700; text-align:left; padding-left:6px;}
     .pf-val{text-align:center;}
+    
     @media print{
       .no-print{display:none;}
       body{padding:0;}
     }
   </style></head><body>
-  <h1>मिशन निपुण बीड — सर्वंकष शाळा भेट व पर्यवेक्षण प्रपत्र</h1>
-  <h2>निपुण, गुणवत्तापूर्ण, संस्कारक्षम, कौशल्यपूर्ण व तंत्रस्नेही विद्यार्थी घडविण्यासाठी</h2>
+  <div class="header-box">
+    <h1>मिशन निपुण बीड — सर्वंकष शाळा भेट व पर्यवेक्षण प्रपत्र</h1>
+    <h2>निपुण, गुणवत्तापूर्ण, संस्कारक्षम, कौशल्यपूर्ण व तंत्रस्नेही विद्यार्थी घडविण्यासाठी</h2>
+  </div>
 
   <div class="sec-title">१. शाळा व उपस्थिती माहिती</div>
   <table>
@@ -1842,14 +1895,14 @@ function viewPrint(id){
         `<tr><td colspan="2" style="padding:0; background:#fff;">
           <table style="width:100%; margin:0; border:none;">
             <tbody>
-            <tr><th style="width:60%;">शिक्षकाचे नाव</th><th>स्थिती</th></tr>
-            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="text-align:center; border: 1.8px solid #1c2b4a;">${escapeHtml(t.name)}</td><td style="text-align:center; border: 1.8px solid #1c2b4a;">${escapeHtml(t.status)}</td></tr>`).join('')}
+            <tr><th style="width:65%;">शिक्षकाचे नाव</th><th>स्थिती</th></tr>
+            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="text-align:center; border: 1.5px solid #1c2b4a;">${escapeHtml(t.name)}</td><td style="text-align:center; border: 1.5px solid #1c2b4a;">${escapeHtml(t.status)}</td></tr>`).join('')}
             </tbody>
           </table>
         </td></tr>` 
     : ''}
     
-    ${fieldRow('अतिरिक्त माहिती (अनुपस्थिती / रजा / प्रशिक्षण)', r["शिक्षक_अनुपस्थिती_तपशील"])}
+    ${fieldRow('अतिरिक्त माहिती (अनुपस्थिती/रजा/प्रशिक्षण)', r["शिक्षक_अनुपस्थिती_तपशील"])}
     </tbody>
   </table>
 
@@ -1863,8 +1916,7 @@ function viewPrint(id){
     ${fieldRow('ब. विद्यार्थी वैयक्तिक स्वच्छता', r["स्वच्छता_वैयक्तिक"])}
     ${fieldRow('इयत्ता / तुकडी', (r["वर्गनिरीक्षण_इयत्ता"]||'-')+' / '+(r["वर्गनिरीक्षण_तुकडी"]||'-'))}
     ${fieldRow('शिक्षकाचे नाव', r["वर्गनिरीक्षण_शिक्षक"])}
-    ${fieldRow('विषय', r["वर्गनिरीक्षण_विषय"])}
-    ${fieldRow('घटक / उपघटक', r["वर्गनिरीक्षण_घटक"])}
+    ${fieldRow('विषय / घटक', (r["वर्गनिरीक्षण_विषय"]||'-')+' / '+(r["वर्गनिरीक्षण_घटक"]||'-'))}
     </tbody>
   </table>
   <table>
@@ -1877,23 +1929,22 @@ function viewPrint(id){
 
   <div class="sec-title">५. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक</div>
   <table>
-    <thead><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी</th><th>प्रयत्न / उपक्रम</th></tr></thead>
+    <thead><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण संख्या</th><th>प्रयत्न / उपक्रम</th></tr></thead>
     <tbody>
     ${NIPUN_IYATTA.map(iy=>`<tr><td>${iy}</td><td>${escapeHtml(r["निपुण_"+iy+"_पट"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_निपुण_संख्या"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_प्रयत्न"])}</td></tr>`).join('')}
     </tbody>
   </table>
 
-  <div class="sec-title">६. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</div>
+  <div class="sec-title">६. विद्यार्थ्यांशी संवाद / संपादणूक पडताळणी</div>
   <table>
     <tbody>
-    ${fieldRow('इयत्ता / तुकडी', (r["संवाद_इयत्ता"]||'-')+' / '+(r["संवाद_तुकडी"]||'-'))}
-    ${fieldRow('शिक्षकाचे नाव', r["संवाद_शिक्षक"])}
+    ${fieldRow('इयत्ता / तुकडी / शिक्षक', (r["संवाद_इयत्ता"]||'-')+' / '+(r["संवाद_तुकडी"]||'-')+' / '+(r["संवाद_शिक्षक"]||'-'))}
     </tbody>
   </table>
   
-  <p style="font-weight:700; font-size:14px; margin:10px 0 4px;">I) प्रथम भाषा</p>
+  <div style="font-weight:700; font-size:12px; margin:4px 0 2px;">I) प्रथम भाषा</div>
   <table>
-    <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:30%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
     <tbody>
     <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["प्रथम_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_वाचन_अभिप्राय"])}</td></tr>
     <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["प्रथम_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_लेखन_अभिप्राय"])}</td></tr>
@@ -1901,9 +1952,9 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <p style="font-weight:700; font-size:14px; margin:10px 0 4px;">II) द्वितीय भाषा</p>
+  <div style="font-weight:700; font-size:12px; margin:4px 0 2px;">II) द्वितीय भाषा</div>
   <table>
-    <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:30%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
     <tbody>
     <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["द्वितीय_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_वाचन_अभिप्राय"])}</td></tr>
     <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["द्वितीय_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_लेखन_अभिप्राय"])}</td></tr>
@@ -1911,9 +1962,9 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <p style="font-weight:700; font-size:14px; margin:10px 0 4px;">III) गणित</p>
+  <div style="font-weight:700; font-size:12px; margin:4px 0 2px;">III) गणित</div>
   <table>
-    <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:30%;">संपादणूक %</th><th>अभिप्राय</th></tr></thead>
     <tbody>
     <tr><td class="pf-lbl">संख्याज्ञान</td><td>${escapeHtml(r["गणित_संख्याज्ञान_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_संख्याज्ञान_अभिप्राय"])}</td></tr>
     <tr><td class="pf-lbl">संख्यावरील क्रिया</td><td>${escapeHtml(r["गणित_क्रिया_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_क्रिया_अभिप्राय"])}</td></tr>
@@ -1921,20 +1972,18 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <table style="margin-top:6px;">
+  <table>
     <tbody>
-    ${fieldRow('IV) विज्ञान (संकल्पना, तत्त्व)', r["विज्ञान_अभिप्राय"])}
+    ${fieldRow('IV) विज्ञान (संकल्पना/तत्त्व)', r["विज्ञान_अभिप्राय"])}
     ${fieldRow('V) सामाजिक शास्त्रे', r["सामाजिक_शास्त्रे_अभिप्राय"])}
-    ${fieldRow('VI) उपरोक्त I ते V मध्ये कमी क्षमता प्राप्त विद्यार्थ्यांसाठी उपाययोजना', r["संवाद_उपाययोजना"])}
+    ${fieldRow('VI) कमी क्षमता प्राप्त विद्यार्थ्यांसाठी उपाययोजना', r["संवाद_उपाययोजना"])}
     </tbody>
   </table>
 
   <div class="sec-title">७. डॉ. जयंत नारळीकर अध्ययन समृद्धी</div>
   <table>
     <tbody>
-    ${fieldRow('विद्यार्थी नोंदणी प्रमाण', r["नारळीकर_नोंदणी"])}
-    ${fieldRow('वापराचे प्रमाण', r["नारळीकर_वापर"])}
-    ${fieldRow('प्राविण्य विद्यार्थी प्रमाण', r["नारळीकर_प्राविण्य"])}
+    ${fieldRow('नोंदणी / वापर / प्राविण्य प्रमाण', (r["नारळीकर_नोंदणी"]||'-')+' / '+(r["नारळीकर_वापर"]||'-')+' / '+(r["नारळीकर_प्राविण्य"]||'-'))}
     </tbody>
   </table>
 
@@ -1948,33 +1997,29 @@ function viewPrint(id){
 
   ${scholTestsHtml}
 
-  <div class="sec-title">१०. मूल्यवर्धन उपक्रम / ११. मराठी भाषा अध्यापन सक्ती</div>
+  <div class="sec-title">१०. मूल्यवर्धन / ११. मराठी भाषा सक्ती</div>
   <table>
     <tbody>
-    ${fieldRow('मूल्यवर्धन आयोजन', r["मूल्यवर्धन_आयोजन"])}
-    ${fieldRow('मूल्यवर्धन अभिप्राय', r["मूल्यवर्धन_अभिप्राय"])}
-    ${fieldRow('मराठी अंमलबजावणी', r["मराठी_अंमलबजावणी"])}
-    ${fieldRow('प्रशिक्षण आवश्यक / झाले', (r["मराठी_प्रशिक्षण_आवश्यक"]||'-')+' / '+(r["मराठी_प्रशिक्षण_झाले"]||'-'))}
-    ${fieldRow('अभिप्राय', r["मराठी_अभिप्राय"])}
+    ${fieldRow('मूल्यवर्धन (आयोजन / अभिप्राय)', (r["मूल्यवर्धन_आयोजन"]||'-')+' / '+(r["मूल्यवर्धन_अभिप्राय"]||'-'))}
+    ${fieldRow('मराठी अध्यापन सक्ती अंमलबजावणी', r["मराठी_अंमलबजावणी"])}
+    ${fieldRow('प्रशिक्षण (आवश्यक / झाले)', (r["मराठी_प्रशिक्षण_आवश्यक"]||'-')+' / '+(r["मराठी_प्रशिक्षण_झाले"]||'-'))}
+    ${fieldRow('मराठी अध्यापन अभिप्राय', r["मराठी_अभिप्राय"])}
     </tbody>
   </table>
 
   <div class="sec-title">१२. विद्यार्थी सुरक्षा उपाययोजना</div>
   <table>
     <tbody>
-    ${fieldRow('सखी सावित्री समिती', r["सुरक्षा_सखी_समिती"])}
-    ${fieldRow('तक्रार पेटी', r["सुरक्षा_तक्रार_पेटी"])}
-    ${fieldRow('हेल्प लाइन नंबर', r["सुरक्षा_हेल्पलाइन"])}
-    ${fieldRow('CCTV / अन्य', r["सुरक्षा_CCTV"])}
+    ${fieldRow('सखी सावित्री समिती / तक्रार पेटी', (r["सुरक्षा_सखी_समिती"]||'-')+' / '+(r["सुरक्षा_तक्रार_पेटी"]||'-'))}
+    ${fieldRow('हेल्पलाइन / CCTV / अन्य', (r["सुरक्षा_हेल्पलाइन"]||'-')+' / '+(r["सुरक्षा_CCTV"]||'-'))}
     </tbody>
   </table>
 
-  <div class="sec-title">१३. उपलब्ध विविध शैक्षणिक साहित्य : किट, लॅब व त्याचा वापर</div>
+  <div class="sec-title">१३. शैक्षणिक साहित्य, लॅब व किट वापर</div>
   <table>
     <tbody>
-    ${fieldRow('आ.i) शिक्षक निर्मित', r["साहित्य_शिक्षक_निर्मित"])}
-    ${fieldRow('आ.ii) तयार शैक्षणिक साहित्य', r["साहित्य_तयार_साहित्य"])}
-    ${fieldRow('आ.iii) शैक्षणिक साहित्याचा वापर', r["साहित्य_वापर"])}
+    ${fieldRow('शिक्षक निर्मित / तयार साहित्य', (r["साहित्य_शिक्षक_निर्मित"]||'-')+' / '+(r["साहित्य_तयार_साहित्य"]||'-'))}
+    ${fieldRow('साहित्य वापर अभिप्राय', r["साहित्य_वापर"])}
     </tbody>
   </table>
   <table>
@@ -1988,27 +2033,18 @@ function viewPrint(id){
   <table>
     <tbody>
     ${fieldRow('शनिवार उपक्रम', r["शनिवार_उपक्रम"])}
-    ${fieldRow('PM POSHAN मदतनीस / स्वयंपाकी', r["PM_POSHAN_मदतनीस_नाव"])}
-    ${fieldRow('PM POSHAN Online उपस्थिती', r["PM_POSHAN_online"])}
-    ${fieldRow('मेनू', r["PM_POSHAN_मेनू"])}
-    ${fieldRow('चव रजिस्टर', r["PM_POSHAN_चव_रजिस्टर"])}
-    ${fieldRow('धान्यादी साठवणूक', r["PM_POSHAN_साठवणूक"])}
+    ${fieldRow('PM POSHAN मदतनीस / Online उपस्थिती', (r["PM_POSHAN_मदतनीस_नाव"]||'-')+' / '+(r["PM_POSHAN_online"]||'-'))}
+    ${fieldRow('मेनू / चव रजिस्टर / साठवणूक', (r["PM_POSHAN_मेनू"]||'-')+' / '+(r["PM_POSHAN_चव_रजिस्टर"]||'-')+' / '+(r["PM_POSHAN_साठवणूक"]||'-'))}
     ${fieldRow('किचन शेड / स्वच्छता अभिप्राय', r["PM_POSHAN_किचन_अभिप्राय"])}
     </tbody>
   </table>
 
-  <div class="sec-title">१६. माजी विद्यार्थी संघ / १७. SMC सभा / १८. खेळ</div>
+  <div class="sec-title">१६. माजी विद्यार्थी / १७. SMC / १८. खेळ</div>
   <table>
     <tbody>
-    ${fieldRow('SMC अध्यक्ष', r["SMC_अध्यक्ष_नाव"])}
-    ${fieldRow('SMC सभा झाली का', r["SMC_सभा_झाली"])}
-    ${fieldRow('सभेचा दिनांक', r["SMC_सभेचा_दिनांक"])}
-    ${fieldRow('उपस्थित सदस्य', r["SMC_उपस्थित_सदस्य"])}
-    ${fieldRow('माजी विद्यार्थी संघ स्थापना', r["माजी_विद्यार्थी_स्थापना"])}
-    ${fieldRow('मेळावा / बैठक', r["माजी_विद्यार्थी_मेळावा"])}
-    ${fieldRow('उपलब्धी', r["माजी_विद्यार्थी_उपलब्धी"])}
-    ${fieldRow('मैदानाची उपलब्धता', r["खेळ_मैदान"])}
-    ${fieldRow('सहभाग व यश', r["खेळ_सहभाग_यश"])}
+    ${fieldRow('माजी विद्यार्थी (स्थापना/मेळावा/उपलब्धी)', (r["माजी_विद्यार्थी_स्थापना"]||'-')+' / '+(r["माजी_विद्यार्थी_मेळावा"]||'-')+' / '+(r["माजी_विद्यार्थी_उपलब्धी"]||'-'))}
+    ${fieldRow('SMC अध्यक्ष / सभा / दिनांक / उपस्थित', (r["SMC_अध्यक्ष_नाव"]||'-')+' / '+(r["SMC_सभा_झाली"]||'-')+' / '+(r["SMC_सभेचा_दिनांक"]||'-')+' / '+(r["SMC_उपस्थित_सदस्य"]||'-'))}
+    ${fieldRow('खेळ मैदान / सहभाग व यश', (r["खेळ_मैदान"]||'-')+' / '+(r["खेळ_सहभाग_यश"]||'-'))}
     </tbody>
   </table>
 
@@ -2018,16 +2054,16 @@ function viewPrint(id){
   <div class="sec-title">स्वाक्षरी</div>
   <table>
     <tbody>
-    ${fieldRow('मुख्याध्यापकाचे नाव', r["स्वाक्षरी_मुख्याध्यापक"])}
-    ${fieldRow('भेट देणाऱ्या अधिकाऱ्याचे नाव व पदनाम', r["स्वाक्षरी_अधिकारी"])}
+    ${fieldRow('मुख्याध्यापक (नाव)', r["स्वाक्षरी_मुख्याध्यापक"])}
+    ${fieldRow('पर्यवेक्षक / अधिकारी (नाव व पदनाम)', r["स्वाक्षरी_अधिकारी"])}
     </tbody>
   </table>
 
-  <p class="no-print" style="text-align:center; margin-top:16px;"><button onclick="window.print()">🖨️ प्रिंट / PDF म्हणून जतन करा</button></p>
+  <p class="no-print" style="text-align:center; margin-top:14px;"><button onclick="window.print()">🖨️ प्रिंट / PDF म्हणून जतन करा</button></p>
   </body></html>`;
 
   const w = window.open('', '_blank');
-  if(!w){ showToast('पॉप-अप ब्लॉक झाला — कृपया पॉप-अप्सना परवानगी द्या.'); return; }
+  if(!w){ showToast('पॉप-अप ब्लॉक झाला — कृपया परवानगी द्या.'); return; }
   w.document.open(); w.document.write(html); w.document.close();
   setTimeout(()=>{ try{ w.focus(); w.print(); }catch(e){} }, 400);
 }
@@ -2075,7 +2111,7 @@ function loadSettingsIntoForm(){
 }
 
 /* ============================================================
-   ADMIN PIN GATE (ONLINE SYNC)
+   ADMIN PIN GATE
    ============================================================ */
 const LS_PIN = "shalaBhet_admin_pin_v1"; const SS_AUTH = "shalaBhet_admin_authed_v1";
 function hasPin(){ return !!localStorage.getItem(LS_PIN); }
@@ -2083,7 +2119,6 @@ function getPin(){ return localStorage.getItem(LS_PIN) || ''; }
 
 function setPin(p, skipSync = false){ 
   localStorage.setItem(LS_PIN, p); 
-  
   if(!skipSync && navigator.onLine) {
     const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
     fetch(APP_SCRIPT_URL + sep + 'mode=setPin&pin=' + encodeURIComponent(p))
