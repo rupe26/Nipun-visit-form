@@ -550,6 +550,7 @@
       <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
         <button class="btn-secondary btn-sm" id="syncAllBtn">☁️ सर्व प्रलंबित सिंक करा</button>
         <button class="btn-secondary btn-sm" id="fetchFromSheetBtn">⬇️ शीटवरून आणा</button>
+        <button class="btn-danger btn-sm" id="deleteAllSheetBtn">🗑️ शीटवरील सर्व डेटा डिलीट करा</button>
         <button class="btn-secondary btn-sm" id="exportCsvBtn">⬇️ CSV एक्सपोर्ट</button>
         <button class="btn-secondary btn-sm" id="exportJsonBtn">⬇️ बॅकअप (JSON)</button>
         <button class="btn-secondary btn-sm" id="importJsonBtn">⬆️ बॅकअप आयात</button>
@@ -704,7 +705,7 @@ const VNI_ITEMS = ["विषयाची मांडणी","साहित�
 
 const STUDENT_CATEGORIES = ["अनुसूचित जाती", "अनुसूचित जमाती", "भ ज अ", "भ ज ब", "भ ज क", "भ ज ड", "VJNT", "SBC", "SEBC", "OBC", "General", "अल्पसंख्याक", "CWSN", "BPL"];
 const STD_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी"];
-const ALL_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी", "इ 6 वी", "इ 7 वी", "इ 8 वी"];
+const ALL_CLASSES = ["इ 1 ली", "इ 2 री", "इ 3 री", "इ 4 थी", "इ 5 वी", "इ 6্বা 6 वी", "इ 7 वी", "इ 8 वी"];
 let classCounterId = 0;
 
 const LS_RECORDS = "shalaBhet_records_v1";
@@ -1515,7 +1516,7 @@ document.getElementById('saveBtn').addEventListener('click', ()=>{
 });
 
 /* ============================================================
-   GOOGLE SHEET SYNC & LIST
+   GOOGLE SHEET SYNC & LIST (WITH DELETE FEATURES)
    ============================================================ */
 function syncRecord(id){
   const recs = loadRecords(); const rec = recs.find(r=>r._id===id); if(!rec) return;
@@ -1601,8 +1602,46 @@ function renderRecords(filterText){
     </div>`;
   }).join('');
 }
+
 function escapeHtml(s){ return (s+'').replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function deleteRecord(id){ if(confirm('ही नोंद कायमची काढायची आहे का?')){ saveRecords(loadRecords().filter(r=>r._id!==id)); renderRecords(); showToast('नोंद काढली.'); } }
+
+/* ============================================================
+   DELETE FUNCTIONALITY (Local + Google Sheet)
+   ============================================================ */
+function deleteRecord(id) { 
+  if (confirm('ही नोंद कायमची काढायची आहे का?\n(जर ही नोंद शीटवर सिंक झाली असेल, तर ती ऑनलाइन शीटवरून पण डिलीट केली जाईल.)')) { 
+      const recs = loadRecords();
+      const rec = recs.find(r => r._id === id);
+      
+      // If record exists, was synced, and we have internet -> Send delete request to Sheet
+      if (rec && rec.synced && navigator.onLine) {
+          const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
+          fetch(APP_SCRIPT_URL + sep + 'mode=delete&id=' + id, { method: 'GET', mode: 'no-cors' })
+          .then(() => console.log('Sheet delete request sent for: ' + id))
+          .catch(e => console.error('Sheet delete error:', e));
+      } else if (rec && rec.synced && !navigator.onLine) {
+          showToast('⚠️ ऑफलाइन असल्यामुळे डेटा फक्त मोबाईलमधून डिलीट झाला. शीटमधून डेटा डिलीट झालेला नाही.');
+      }
+      
+      saveRecords(recs.filter(r => r._id !== id)); 
+      renderRecords(); 
+      showToast('नोंद काढली.'); 
+  } 
+}
+
+document.getElementById('deleteAllSheetBtn').addEventListener('click', () => {
+    if (!navigator.onLine) {
+        showToast('⚠️ इंटरनेट कनेक्शन नाही. कृपया ऑनलाइन आल्यावर प्रयत्न करा.');
+        return;
+    }
+    if (confirm('चेतावणी: शीटवरील सर्व सिंक केलेला डेटा कायमचा डिलीट होईल. तुम्हाला खात्री आहे का?')) {
+        const sep = APP_SCRIPT_URL.indexOf('?') > -1 ? '&' : '?';
+        fetch(APP_SCRIPT_URL + sep + 'mode=deleteAll', { method: 'GET', mode: 'no-cors' })
+        .then(() => showToast('☁️ शीटवरील सर्व डेटा डिलीट करण्याची विनंती पाठवली.'))
+        .catch(() => showToast('⚠️ काहीतरी अडचण आली.'));
+    }
+});
+
 function editRecord(id){
   const rec = loadRecords().find(r=>r._id===id); if(!rec) return; fillFormFromRecord(rec);
   document.querySelector('.tab-btn[data-view="formView"]').click();
@@ -1777,9 +1816,9 @@ function viewPrint(id){
     
     ${r["शिक्षक_यादी"] && r["शिक्षक_यादी"].length ? 
         `<tr><td colspan="2" style="padding:0; background:#fff;">
-          <table style="width:100%; margin:0; border:none; border-top:1px solid #777;">
-            <tr><th style="width:60%; border-left:none; border-top:none;">शिक्षकाचे नाव</th><th style="border-right:none; border-top:none;">स्थिती</th></tr>
-            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="border-left:none; border-bottom:none; text-align:center;">${escapeHtml(t.name)}</td><td style="border-right:none; border-bottom:none; text-align:center;">${escapeHtml(t.status)}</td></tr>`).join('')}
+          <table style="width:100%; margin:0; border-style:hidden;">
+            <tr><th style="width:60%;">शिक्षकाचे नाव</th><th>स्थिती</th></tr>
+            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="text-align:center;">${escapeHtml(t.name)}</td><td style="text-align:center;">${escapeHtml(t.status)}</td></tr>`).join('')}
           </table>
         </td></tr>` 
     : ''}
