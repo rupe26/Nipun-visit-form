@@ -233,7 +233,6 @@
       <label>एक महिन्यापेक्षा जास्त काळ गैरहजर विद्यार्थी</label>
       <textarea id="vidGairhajar" placeholder="नाव / तपशील"></textarea>
 
-      <!-- शिक्षक उपस्थिती विभाग -->
       <div class="subhead">शिक्षक उपस्थिती (नोंद व स्थिती)</div>
       <div id="teacherListContainer"></div>
       
@@ -1611,7 +1610,7 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF (Optimized Layout, Compact Margins, Centered Data)
+   PRINT / PDF (Standard A4 Portrait, Structured Margin, Centered Data)
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 
@@ -1668,21 +1667,21 @@ function viewPrint(id){
       
       clsRows.forEach((row, i) => {
           if(i > 0) classHtml += `<tr>`;
-          classHtml += `<td style="text-align:center;">${escapeHtml(row.cat)}</td><td>${row.b}</td><td>${row.g}</td><td>${row.b + row.g}</td></tr>`;
+          classHtml += `<td>${escapeHtml(row.cat)}</td><td>${row.b}</td><td>${row.g}</td><td>${row.b + row.g}</td></tr>`;
       });
-      classHtml += `<tr style="font-weight:bold; background:#eef1f8;"><td style="text-align:center;">एकूण</td><td>${clsBoys}</td><td>${clsGirls}</td><td>${clsBoys + clsGirls}</td></tr>`;
+      classHtml += `<tr style="font-weight:bold; background:#eef1f8;"><td>एकूण</td><td>${clsBoys}</td><td>${clsGirls}</td><td>${clsBoys + clsGirls}</td></tr>`;
     });
     
     // Category Wise Grand Totals Across All Classes
     const catKeys = Object.keys(catTotals);
     if(catKeys.length > 0) {
-      classHtml += `<tr style="background:#e4e9f5; font-weight:bold;"><td colspan="5" style="text-align:center; padding:6px;">सर्व वर्गांचे प्रवर्गनिहाय एकूण संकलन (Category-wise Totals)</td></tr>`;
+      classHtml += `<tr style="background:#e4e9f5; font-weight:bold;"><td colspan="5" style="padding:6px;">सर्व वर्गांचे प्रवर्गनिहाय एकूण संकलन (Category-wise Totals)</td></tr>`;
       catKeys.forEach(cat => {
         const cb = catTotals[cat].b;
         const cg = catTotals[cat].g;
         const isExcluded = (cat === 'CWSN' || cat === 'अल्पसंख्याक' || cat === 'BPL');
         classHtml += `<tr style="background:#fafbff;">
-          <td colspan="2" style="font-weight:600; text-align:center;">${escapeHtml(cat)} ${isExcluded ? '<span style="font-size:11px; color:#c0392b;">(पायभूत संख्येत वगळले)</span>' : ''}</td>
+          <td colspan="2" style="font-weight:600;">${escapeHtml(cat)} ${isExcluded ? '<span style="font-size:11px; color:#c0392b;">(पायभूत संख्येत वगळले)</span>' : ''}</td>
           <td>${cb}</td>
           <td>${cg}</td>
           <td>${cb + cg}</td>
@@ -1691,7 +1690,7 @@ function viewPrint(id){
     }
 
     classHtml += `<tr style="background:#fae8c8; font-weight:bold; font-size:15px;">
-      <td colspan="2" style="text-align:center;">सर्व वर्गांची एकूण पटसंख्या</td>
+      <td colspan="2">सर्व वर्गांची एकूण पटसंख्या</td>
       <td>${grandBoys}</td><td>${grandGirls}</td><td>${grandBoys + grandGirls}</td>
     </tr></tbody></table>`;
   }
@@ -1737,26 +1736,25 @@ function viewPrint(id){
   <style>
     @page {
       size: A4 portrait;
-      margin: 8mm 10mm 8mm 10mm;
+      margin: 12mm 15mm 12mm 15mm;
     }
     body{
       font-family:'Mukta', sans-serif; 
       padding:0; margin:0 auto; 
       color:#111; 
       font-size:14px; 
-      line-height:1.3;
+      line-height:1.35;
       max-width: 100%;
     }
-    h1{font-size:17px; text-align:center; margin:2px 0; color:#1c2b4a;}
-    h2{font-size:12.5px; text-align:center; color:#444; font-weight:normal; margin:1px 0 8px;}
-    .sec-title{background:#1c2b4a; color:#fff; padding:4px 8px; font-weight:bold; font-size:14px; margin-top:10px; page-break-after:avoid;}
-    table{width:100%; border-collapse:collapse; margin-top:3px; page-break-inside:auto;}
+    h1{font-size:18px; text-align:center; margin:0 0 2px; color:#1c2b4a;}
+    h2{font-size:13px; text-align:center; color:#444; font-weight:normal; margin:0 0 10px;}
+    .sec-title{background:#1c2b4a; color:#fff; padding:5px 10px; font-weight:bold; font-size:14.5px; margin-top:12px; page-break-after:avoid;}
+    table{width:100%; border-collapse:collapse; margin-top:4px; page-break-inside:auto;}
     tr{page-break-inside:avoid; page-break-after:auto;}
-    td, th{border:1px solid #777; padding:4px 6px; font-size:13.5px; vertical-align:middle; text-align:center;}
+    td, th{border:1px solid #777; padding:5px 8px; font-size:13.5px; vertical-align:middle; text-align:center;}
     th{background:#f0f3f8; font-weight:700;}
     .pf-lbl{width:40%; background:#f5f7fb; font-weight:600; text-align:left; padding-left:8px;}
     .pf-val{text-align:center;}
-    .sub-head-row{background:#fafbff; font-weight:bold; text-align:left; padding:4px 6px;}
     @media print{
       .no-print{display:none;}
       body{padding:0;}
