@@ -1611,7 +1611,7 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF (Font Size Adjusted to 16px)
+   PRINT / PDF (Optimized Layout, Compact Margins, Centered Data)
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
 
@@ -1630,11 +1630,15 @@ function viewPrint(id){
   let classHtml = '';
   if(r["वर्गनिहाय_विद्यार्थी"] && r["वर्गनिहाय_विद्यार्थी"].length) {
     classHtml = `<div class="sec-title">२. वर्गनिहाय व प्रवर्गनिहाय विद्यार्थी संख्या</div>
-    <table class="enrollment-table" style="text-align:center;">
-      <tr><th>इयत्ता</th><th>प्रवर्ग</th><th>मुले</th><th>मुली</th><th>एकूण</th></tr>`;
+    <table class="enrollment-table">
+      <thead>
+        <tr><th>इयत्ता</th><th>प्रवर्ग</th><th>मुले</th><th>मुली</th><th>एकूण</th></tr>
+      </thead>
+      <tbody>`;
       
     let grandBoys = 0, grandGirls = 0;
-    
+    const catTotals = {};
+
     r["वर्गनिहाय_विद्यार्थी"].forEach(cls => {
       let clsRows = [];
       let clsBoys = 0, clsGirls = 0;
@@ -1642,9 +1646,15 @@ function viewPrint(id){
       if (cls.data && cls.data.length > 0) {
           cls.data.forEach(d => {
               const b = parseInt(d.boys)||0; const g = parseInt(d.girls)||0;
+              const cat = d.category || 'इतर';
               if (b>0 || g>0) {
-                  clsRows.push({cat: d.category, b: b, g: g});
-                  if (d.category !== 'CWSN' && d.category !== 'अल्पसंख्याक' && d.category !== 'BPL') {
+                  clsRows.push({cat: cat, b: b, g: g});
+                  
+                  if (!catTotals[cat]) catTotals[cat] = { b: 0, g: 0 };
+                  catTotals[cat].b += b;
+                  catTotals[cat].g += g;
+
+                  if (cat !== 'CWSN' && cat !== 'अल्पसंख्याक' && cat !== 'BPL') {
                       clsBoys += b; clsGirls += g;
                   }
               }
@@ -1654,26 +1664,44 @@ function viewPrint(id){
       
       grandBoys += clsBoys; grandGirls += clsGirls;
       
-      classHtml += `<tr><td rowspan="${clsRows.length + 1}" style="background:#f4f6fb;"><b>${escapeHtml(cls.name)}</b></td>`;
+      classHtml += `<tr><td rowspan="${clsRows.length + 1}" style="background:#f4f6fb; font-weight:700;">${escapeHtml(cls.name)}</td>`;
       
       clsRows.forEach((row, i) => {
           if(i > 0) classHtml += `<tr>`;
-          classHtml += `<td>${escapeHtml(row.cat)}</td><td>${row.b}</td><td>${row.g}</td><td>${row.b + row.g}</td></tr>`;
+          classHtml += `<td style="text-align:center;">${escapeHtml(row.cat)}</td><td>${row.b}</td><td>${row.g}</td><td>${row.b + row.g}</td></tr>`;
       });
-      classHtml += `<tr style="font-weight:bold; background:#eef1f8;"><td style="text-align:right;">एकूण</td><td>${clsBoys}</td><td>${clsGirls}</td><td>${clsBoys + clsGirls}</td></tr>`;
+      classHtml += `<tr style="font-weight:bold; background:#eef1f8;"><td style="text-align:center;">एकूण</td><td>${clsBoys}</td><td>${clsGirls}</td><td>${clsBoys + clsGirls}</td></tr>`;
     });
     
-    classHtml += `<tr style="background:#fae8c8; font-weight:bold;">
-      <td colspan="2" style="text-align:right;">सर्व वर्गांची एकूण पटसंख्या</td>
+    // Category Wise Grand Totals Across All Classes
+    const catKeys = Object.keys(catTotals);
+    if(catKeys.length > 0) {
+      classHtml += `<tr style="background:#e4e9f5; font-weight:bold;"><td colspan="5" style="text-align:center; padding:6px;">सर्व वर्गांचे प्रवर्गनिहाय एकूण संकलन (Category-wise Totals)</td></tr>`;
+      catKeys.forEach(cat => {
+        const cb = catTotals[cat].b;
+        const cg = catTotals[cat].g;
+        const isExcluded = (cat === 'CWSN' || cat === 'अल्पसंख्याक' || cat === 'BPL');
+        classHtml += `<tr style="background:#fafbff;">
+          <td colspan="2" style="font-weight:600; text-align:center;">${escapeHtml(cat)} ${isExcluded ? '<span style="font-size:11px; color:#c0392b;">(पायभूत संख्येत वगळले)</span>' : ''}</td>
+          <td>${cb}</td>
+          <td>${cg}</td>
+          <td>${cb + cg}</td>
+        </tr>`;
+      });
+    }
+
+    classHtml += `<tr style="background:#fae8c8; font-weight:bold; font-size:15px;">
+      <td colspan="2" style="text-align:center;">सर्व वर्गांची एकूण पटसंख्या</td>
       <td>${grandBoys}</td><td>${grandGirls}</td><td>${grandBoys + grandGirls}</td>
-    </tr></table>`;
+    </tr></tbody></table>`;
   }
   
   let cwsnHtml = '';
   if (r["CWSN_विद्यार्थी"] && r["CWSN_विद्यार्थी"].length > 0) {
       cwsnHtml = `<div class="sec-title">३. दिव्यांग (CWSN) विद्यार्थी माहिती</div>
       <table>
-        <tr><th>विद्यार्थ्याचे नाव</th><th>इयत्ता</th><th>अपंगत्वाचा प्रकार</th><th>UDID / आधार क्र.</th><th>विशेष शेरा</th></tr>
+        <thead><tr><th>विद्यार्थ्याचे नाव</th><th>इयत्ता</th><th>अपंगत्वाचा प्रकार</th><th>UDID / आधार क्र.</th><th>विशेष शेरा</th></tr></thead>
+        <tbody>
         ${r["CWSN_विद्यार्थी"].map(s => `<tr>
           <td>${escapeHtml(s.name)}</td>
           <td>${escapeHtml(s.std)}</td>
@@ -1681,6 +1709,7 @@ function viewPrint(id){
           <td>${escapeHtml(s.id)}</td>
           <td>${escapeHtml(s.remarks)}</td>
         </tr>`).join('')}
+        </tbody>
       </table>`;
   }
   
@@ -1688,7 +1717,8 @@ function viewPrint(id){
   if (r["शिष्यवृत्ती_सराव_परीक्षा"] && r["शिष्यवृत्ती_सराव_परीक्षा"].length > 0) {
       scholTestsHtml = `<div class="sec-title">९. शिष्यवृत्ती साप्ताहिक सराव परीक्षा</div>
       <table>
-        <tr><th>दिनांक</th><th>इयत्ता</th><th>एकूण विद्यार्थी</th><th>उपस्थित</th><th>गैरहजर</th></tr>
+        <thead><tr><th>दिनांक</th><th>इयत्ता</th><th>एकूण विद्यार्थी</th><th>उपस्थित</th><th>गैरहजर</th></tr></thead>
+        <tbody>
         ${r["शिष्यवृत्ती_सराव_परीक्षा"].map(s => `<tr>
           <td>${escapeHtml(s.date)}</td>
           <td>${escapeHtml(s.std)}</td>
@@ -1696,6 +1726,7 @@ function viewPrint(id){
           <td>${escapeHtml(s.present)}</td>
           <td>${escapeHtml(s.absent)}</td>
         </tr>`).join('')}
+        </tbody>
       </table>`;
   }
 
@@ -1704,16 +1735,32 @@ function viewPrint(id){
   let html = `<html lang="mr"><head><meta charset="UTF-8"><title>शाळा भेट प्रपत्र - ${escapeHtml(r["शाळेचे_नाव"])}</title>
   <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body{font-family:'Mukta', sans-serif; padding:20px; color:#111; font-size:16px; line-height:1.4;}
-    h1{font-size:20px; text-align:center; margin-bottom:4px;}
-    h2{font-size:16px; text-align:center; color:#333; font-weight:normal; margin-top:0;}
-    .sec-title{background:#1c2b4a; color:#fff; padding:6px 10px; font-weight:bold; font-size:17px; margin-top:16px;}
-    table{width:100%; border-collapse:collapse; margin-top:6px;}
-    td, th{border:1px solid #999; padding:6px 8px; font-size:16px; vertical-align:middle; text-align:left;}
-    th{background:#f2f4f9;}
-    .pf-lbl{width:38%; background:#f2f4f9; font-weight:600;}
-    table.enrollment-table td, table.enrollment-table th { text-align: center; }
-    @media print{ .no-print{display:none;} }
+    @page {
+      size: A4 portrait;
+      margin: 8mm 10mm 8mm 10mm;
+    }
+    body{
+      font-family:'Mukta', sans-serif; 
+      padding:0; margin:0 auto; 
+      color:#111; 
+      font-size:14px; 
+      line-height:1.3;
+      max-width: 100%;
+    }
+    h1{font-size:17px; text-align:center; margin:2px 0; color:#1c2b4a;}
+    h2{font-size:12.5px; text-align:center; color:#444; font-weight:normal; margin:1px 0 8px;}
+    .sec-title{background:#1c2b4a; color:#fff; padding:4px 8px; font-weight:bold; font-size:14px; margin-top:10px; page-break-after:avoid;}
+    table{width:100%; border-collapse:collapse; margin-top:3px; page-break-inside:auto;}
+    tr{page-break-inside:avoid; page-break-after:auto;}
+    td, th{border:1px solid #777; padding:4px 6px; font-size:13.5px; vertical-align:middle; text-align:center;}
+    th{background:#f0f3f8; font-weight:700;}
+    .pf-lbl{width:40%; background:#f5f7fb; font-weight:600; text-align:left; padding-left:8px;}
+    .pf-val{text-align:center;}
+    .sub-head-row{background:#fafbff; font-weight:bold; text-align:left; padding:4px 6px;}
+    @media print{
+      .no-print{display:none;}
+      body{padding:0;}
+    }
   </style></head><body>
   <h1>मिशन निपुण बीड — सर्वंकष शाळा भेट व पर्यवेक्षण प्रपत्र</h1>
   <h2>निपुण, गुणवत्तापूर्ण, संस्कारक्षम, कौशल्यपूर्ण व तंत्रस्नेही विद्यार्थी घडविण्यासाठी</h2>
@@ -1728,14 +1775,13 @@ function viewPrint(id){
     ${fieldRow('पर्यवेक्षक', r["पर्यवेक्षक"])}
     ${fieldRow('विद्यार्थी उपस्थिती', (r["विद्यार्थी_एकूण_पट"]||'-')+' पैकी '+(r["विद्यार्थी_उपस्थित"]||'-')+' ('+(r["विद्यार्थी_टक्केवारी"]||'-')+')')}
     ${fieldRow('गैरहजर विद्यार्थी तपशील', r["विद्यार्थी_गैरहजर_तपशील"])}
-    
     ${fieldRow('शिक्षक उपस्थिती (संख्या)', (r["शिक्षक_एकूण"]||'-')+' पैकी '+(r["शिक्षक_उपस्थित"]||'-')+' ('+(r["शिक्षक_टक्केवारी"]||'-')+')')}
     
     ${r["शिक्षक_यादी"] && r["शिक्षक_यादी"].length ? 
         `<tr><td colspan="2" style="padding:0; background:#fff;">
-          <table style="width:100%; margin:0; border:none; border-top:1px solid #999;">
+          <table style="width:100%; margin:0; border:none; border-top:1px solid #777;">
             <tr><th style="width:60%; border-left:none; border-top:none;">शिक्षकाचे नाव</th><th style="border-right:none; border-top:none;">स्थिती</th></tr>
-            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="border-left:none; border-bottom:none;">${escapeHtml(t.name)}</td><td style="border-right:none; border-bottom:none;">${escapeHtml(t.status)}</td></tr>`).join('')}
+            ${r["शिक्षक_यादी"].map(t=>`<tr><td style="border-left:none; border-bottom:none; text-align:center;">${escapeHtml(t.name)}</td><td style="border-right:none; border-bottom:none; text-align:center;">${escapeHtml(t.status)}</td></tr>`).join('')}
           </table>
         </td></tr>` 
     : ''}
@@ -1755,14 +1801,20 @@ function viewPrint(id){
     ${fieldRow('विषय', r["वर्गनिरीक्षण_विषय"])}
     ${fieldRow('घटक / उपघटक', r["वर्गनिरीक्षण_घटक"])}
   </table>
-  <table><tr><th>तपशील</th><th>अभिप्राय</th></tr>
-  ${VNI_ITEMS.map(name=>`<tr><td>${name}</td><td>${escapeHtml(r["वर्गनिरीक्षण_"+name])}</td></tr>`).join('')}
-  ${(r["वर्गनिरीक्षण_इतर_तपशील"]||r["वर्गनिरीक्षण_इतर_अभिप्राय"]) ? `<tr><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_तपशील"])}</td><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_अभिप्राय"])}</td></tr>` : ''}
+  <table>
+    <thead><tr><th style="width:40%;">तपशील</th><th>अभिप्राय</th></tr></thead>
+    <tbody>
+    ${VNI_ITEMS.map(name=>`<tr><td class="pf-lbl">${name}</td><td>${escapeHtml(r["वर्गनिरीक्षण_"+name])}</td></tr>`).join('')}
+    ${(r["वर्गनिरीक्षण_इतर_तपशील"]||r["वर्गनिरीक्षण_इतर_अभिप्राय"]) ? `<tr><td class="pf-lbl">${escapeHtml(r["वर्गनिरीक्षण_इतर_तपशील"])}</td><td>${escapeHtml(r["वर्गनिरीक्षण_इतर_अभिप्राय"])}</td></tr>` : ''}
+    </tbody>
   </table>
 
   <div class="sec-title">५. निपुण महाराष्ट्र अभियान — विद्यार्थी संपादणूक</div>
-  <table><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी</th><th>प्रयत्न / उपक्रम</th></tr>
-  ${NIPUN_IYATTA.map(iy=>`<tr><td>${iy}</td><td>${escapeHtml(r["निपुण_"+iy+"_पट"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_निपुण_संख्या"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_प्रयत्न"])}</td></tr>`).join('')}
+  <table>
+    <thead><tr><th>इयत्ता</th><th>एकूण पट</th><th>निपुण विद्यार्थी</th><th>प्रयत्न / उपक्रम</th></tr></thead>
+    <tbody>
+    ${NIPUN_IYATTA.map(iy=>`<tr><td>${iy}</td><td>${escapeHtml(r["निपुण_"+iy+"_पट"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_निपुण_संख्या"])}</td><td>${escapeHtml(r["निपुण_"+iy+"_प्रयत्न"])}</td></tr>`).join('')}
+    </tbody>
   </table>
 
   <div class="sec-title">६. विद्यार्थ्यांशी संवाद / प्रश्नोत्तरे याद्वारे संपादणूक पडताळणी</div>
@@ -1771,28 +1823,37 @@ function viewPrint(id){
     ${fieldRow('शिक्षकाचे नाव', r["संवाद_शिक्षक"])}
   </table>
   
-  <p style="font-weight:bold; font-size:16px; margin:14px 0 6px;">I) प्रथम भाषा</p>
-  <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
-  <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["प्रथम_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_वाचन_अभिप्राय"])}</td></tr>
-  <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["प्रथम_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_लेखन_अभिप्राय"])}</td></tr>
-  <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_अभिप्राय"])}</td></tr>
+  <p style="font-weight:bold; font-size:13.5px; margin:8px 0 3px;">I) प्रथम भाषा</p>
+  <table>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+    <tbody>
+    <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["प्रथम_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_वाचन_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["प्रथम_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_लेखन_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["प्रथम_अभिव्यक्ती_अभिप्राय"])}</td></tr>
+    </tbody>
   </table>
 
-  <p style="font-weight:bold; font-size:16px; margin:14px 0 6px;">II) द्वितीय भाषा</p>
-  <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
-  <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["द्वितीय_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_वाचन_अभिप्राय"])}</td></tr>
-  <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["द्वितीय_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_लेखन_अभिप्राय"])}</td></tr>
-  <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_अभिप्राय"])}</td></tr>
+  <p style="font-weight:bold; font-size:13.5px; margin:8px 0 3px;">II) द्वितीय भाषा</p>
+  <table>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+    <tbody>
+    <tr><td class="pf-lbl">वाचन</td><td>${escapeHtml(r["द्वितीय_वाचन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_वाचन_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">लेखन</td><td>${escapeHtml(r["द्वितीय_लेखन_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_लेखन_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">अभिव्यक्ती</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_टक्केवारी"])}</td><td>${escapeHtml(r["द्वितीय_अभिव्यक्ती_अभिप्राय"])}</td></tr>
+    </tbody>
   </table>
 
-  <p style="font-weight:bold; font-size:16px; margin:14px 0 6px;">III) गणित</p>
-  <table><tr><th>तपशील</th><th>संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr>
-  <tr><td class="pf-lbl">संख्याज्ञान</td><td>${escapeHtml(r["गणित_संख्याज्ञान_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_संख्याज्ञान_अभिप्राय"])}</td></tr>
-  <tr><td class="pf-lbl">संख्यावरील क्रिया</td><td>${escapeHtml(r["गणित_क्रिया_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_क्रिया_अभिप्राय"])}</td></tr>
-  <tr><td class="pf-lbl">शाब्दिक उदाहरणे</td><td>${escapeHtml(r["गणित_शाब्दिक_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_शाब्दिक_अभिप्राय"])}</td></tr>
+  <p style="font-weight:bold; font-size:13.5px; margin:8px 0 3px;">III) गणित</p>
+  <table>
+    <thead><tr><th style="width:25%;">तपशील</th><th style="width:35%;">संपादणूक विद्यार्थी टक्केवारी</th><th>अभिप्राय</th></tr></thead>
+    <tbody>
+    <tr><td class="pf-lbl">संख्याज्ञान</td><td>${escapeHtml(r["गणित_संख्याज्ञान_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_संख्याज्ञान_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">संख्यावरील क्रिया</td><td>${escapeHtml(r["गणित_क्रिया_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_क्रिया_अभिप्राय"])}</td></tr>
+    <tr><td class="pf-lbl">शाब्दिक उदाहरणे</td><td>${escapeHtml(r["गणित_शाब्दिक_टक्केवारी"])}</td><td>${escapeHtml(r["गणित_शाब्दिक_अभिप्राय"])}</td></tr>
+    </tbody>
   </table>
 
-  <table style="margin-top:12px;">
+  <table style="margin-top:6px;">
     ${fieldRow('IV) विज्ञान (संकल्पना, तत्त्व)', r["विज्ञान_अभिप्राय"])}
     ${fieldRow('V) सामाजिक शास्त्रे', r["सामाजिक_शास्त्रे_अभिप्राय"])}
     ${fieldRow('VI) उपरोक्त I ते V मध्ये कमी क्षमता प्राप्त विद्यार्थ्यांसाठी उपाययोजना', r["संवाद_उपाययोजना"])}
@@ -1806,8 +1867,11 @@ function viewPrint(id){
   </table>
 
   <div class="sec-title">८. विविध स्पर्धा परीक्षा</div>
-  <table><tr><th>परीक्षा</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक</th></tr>
-  ${SPARDHA_ITEMS.map((n,i)=>`<tr><td>${n}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_नियोजन"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_मागील_वर्ष"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_शिष्यवृत्ती"])}</td></tr>`).join('')}
+  <table>
+    <thead><tr><th>परीक्षा</th><th>नियोजन</th><th>मागील वर्ष %</th><th>शिष्यवृत्तीधारक</th></tr></thead>
+    <tbody>
+    ${SPARDHA_ITEMS.map((n,i)=>`<tr><td class="pf-lbl">${n}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_नियोजन"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_मागील_वर्ष"])}</td><td>${escapeHtml(r["स्पर्धा"+(i+1)+"_शिष्यवृत्ती"])}</td></tr>`).join('')}
+    </tbody>
   </table>
 
   ${scholTestsHtml}
@@ -1835,8 +1899,11 @@ function viewPrint(id){
     ${fieldRow('आ.ii) तयार शैक्षणिक साहित्य', r["साहित्य_तयार_साहित्य"])}
     ${fieldRow('आ.iii) शैक्षणिक साहित्याचा वापर', r["साहित्य_वापर"])}
   </table>
-  <table><tr><th>सुविधा</th><th>उपलब्धता</th><th>अभिप्राय</th></tr>
-  ${SAHITYA_ITEMS.map((n,i)=>`<tr><td>${n}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_उपलब्धता"])}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_अभिप्राय"])}</td></tr>`).join('')}
+  <table>
+    <thead><tr><th style="width:40%;">सुविधा</th><th style="width:20%;">उपलब्धता</th><th>अभिप्राय</th></tr></thead>
+    <tbody>
+    ${SAHITYA_ITEMS.map((n,i)=>`<tr><td class="pf-lbl">${n}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_उपलब्धता"])}</td><td>${escapeHtml(r["साहित्य"+(i+1)+"_अभिप्राय"])}</td></tr>`).join('')}
+    </tbody>
   </table>
 
   <div class="sec-title">१४. आनंददायी शनिवार / १५. PM POSHAN</div>
@@ -1872,7 +1939,7 @@ function viewPrint(id){
     ${fieldRow('भेट देणाऱ्या अधिकाऱ्याचे नाव व पदनाम', r["स्वाक्षरी_अधिकारी"])}
   </table>
 
-  <p class="no-print" style="text-align:center; margin-top:20px;"><button onclick="window.print()">🖨️ प्रिंट / PDF म्हणून जतन करा</button></p>
+  <p class="no-print" style="text-align:center; margin-top:16px;"><button onclick="window.print()">🖨️ प्रिंट / PDF म्हणून जतन करा</button></p>
   </body></html>`;
 
   const w = window.open('', '_blank');
