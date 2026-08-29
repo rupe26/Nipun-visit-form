@@ -299,7 +299,7 @@
     </div>
   </details>
 
-  <!-- SECTION 5: वर्ग अध्यापन निरीक्षण (UPDATED WITH DROPDOWNS) -->
+  <!-- SECTION 5: वर्ग अध्यापन निरीक्षण -->
   <details class="section">
     <summary>५. वर्ग अध्यापन निरीक्षण (किमान १ वर्ग १ तासिका)</summary>
     <div class="section-body">
@@ -457,7 +457,7 @@
     </div>
   </details>
 
-  <!-- SECTION 13: विद्यार्थी सुरक्षेसंदर्भात उपाययोजना (UPDATED AS PER IMAGE) -->
+  <!-- SECTION 13: विद्यार्थी सुरक्षेसंदर्भात उपाययोजना -->
   <details class="section">
     <summary>१३. विद्यार्थी सुरक्षेसंदर्भात उपाययोजना</summary>
     <div class="section-body">
@@ -534,10 +534,11 @@
     </div>
   </details>
 
-  <!-- SECTION 16: PM POSHAN -->
+  <!-- SECTION 16: PM POSHAN & अन्न सुरक्षा कायदा (FDA) -->
   <details class="section">
-    <summary>१६. PM POSHAN (MDM)</summary>
+    <summary>१६. PM POSHAN (MDM) व अन्न सुरक्षा कायदा (FDA)</summary>
     <div class="section-body">
+      <div class="subhead">अ. PM POSHAN (MDM)</div>
       <label>स्वयंपाकी / मदतनीस नाव</label><input type="text" id="pmWorker" placeholder="स्वयंपाकी / मदतनीस नाव">
       <label>On-Line उपस्थिती</label>
       <select id="pmOnline"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -546,12 +547,80 @@
       <label>धान्यादी माल साठवणूक</label><input type="text" id="pmSathvanuk">
       <label>किचन शेड, स्वच्छता, मदतनीस अभिप्राय</label>
       <textarea id="pmKitchen"></textarea>
+
+      <div class="subhead" style="margin-top:14px;">ब. अन्न सुरक्षा व मानके कायदा (FDA) निकष</div>
+      <div class="row2">
+        <div>
+          <label>FSSAI नोंदणी (FSSAI REG)</label>
+          <select id="fdaFssaiReg"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
+        </div>
+        <div>
+          <label>HFSS फलक (HFSS BOARD)</label>
+          <select id="fdaHfssBoard"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
+        </div>
+      </div>
+      <div class="row2">
+        <div>
+          <label>नोडल अधिकारी (NODAL OFFICER)</label>
+          <select id="fdaNodal"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
+        </div>
+        <div>
+          <label>केंद्रीय स्वयंपाकगृह (CENTRAL KITCHEN)</label>
+          <select id="fdaCentralKitchen"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
+        </div>
+      </div>
+      <div class="row2">
+        <div>
+          <label>स्वयंपाकगृह FSSAI (KITCHEN FSSAI)</label>
+          <select id="fdaKitchenFssai"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option><option>लागू नाही</option></select>
+        </div>
+        <div>
+          <label>जनजागृती (AWARENESS)</label>
+          <select id="fdaAwareness"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
+        </div>
+      </div>
+      <div class="row2">
+        <div>
+          <label>मदतनीस संख्या (HELPERS COUNT)</label>
+          <input type="number" min="0" id="fdaHelpersCount">
+        </div>
+        <div>
+          <label>प्रशिक्षित मदतनीस (TRAINED HELPERS)</label>
+          <input type="number" min="0" id="fdaTrainedHelpers">
+        </div>
+      </div>
+      <div class="row2">
+        <div>
+          <label>तंबाखू मुक्त शाळा प्रमाणपत्र</label>
+          <select id="fdaTobaccoFree"><option value="">-- निवडा --</option><option>आहे</option><option>नाही</option></select>
+        </div>
+      </div>
     </div>
   </details>
 
-  <!-- SECTION 17: माजी विद्यार्थी संघ -->
+  <!-- SECTION 17: योजना विभाग (नवभारत साक्षरता / उल्लास ॲप) -->
   <details class="section">
-    <summary>१७. माजी विद्यार्थी संघ</summary>
+    <summary>१७. योजना विभाग (नवभारत साक्षरता अभियान)</summary>
+    <div class="section-body">
+      <div class="subhead">उल्लास (ULLAS) ॲप व साक्षरता अभियान तपशील</div>
+      <div class="row2">
+        <div>
+          <label>उल्लास ॲपवर नोंद केलेले परीक्षार्थी (Learners)</label>
+          <input type="number" min="0" id="ullasPariksharthi" placeholder="परीक्षार्थी संख्या">
+        </div>
+        <div>
+          <label>नोंद केलेले स्वयंसेवक (Volunteers)</label>
+          <input type="number" min="0" id="ullasSwayamsevak" placeholder="स्वयंसेवक संख्या">
+        </div>
+      </div>
+      <label>योजना विभाग अभिप्राय / विशेष उपक्रम</label>
+      <textarea id="yojanaAbhipray" placeholder="योजना विभाग व नवभारत साक्षरता संदर्भातील अभिप्राय..."></textarea>
+    </div>
+  </details>
+
+  <!-- SECTION 18: माजी विद्यार्थी संघ -->
+  <details class="section">
+    <summary>१८. माजी विद्यार्थी संघ</summary>
     <div class="section-body">
       <label>स्थापना</label>
       <select id="majiSthapna"><option value="">-- निवडा --</option><option>होय</option><option>नाही</option></select>
@@ -560,9 +629,9 @@
     </div>
   </details>
 
-  <!-- SECTION 18: SMC मासिक सभा -->
+  <!-- SECTION 19: SMC मासिक सभा -->
   <details class="section">
-    <summary>१८. SMC मासिक सभा</summary>
+    <summary>१९. SMC मासिक सभा</summary>
     <div class="section-body">
       <label>SMC अध्यक्ष नाव</label><input type="text" id="smcAdhyaksha" placeholder="SMC अध्यक्षांचे नाव">
       <label>सभा झाली का?</label>
@@ -572,18 +641,18 @@
     </div>
   </details>
 
-  <!-- SECTION 19: खेळ व तयारी -->
+  <!-- SECTION 20: खेळ व तयारी -->
   <details class="section">
-    <summary>१९. खेळ व तयारी</summary>
+    <summary>२०. खेळ व तयारी</summary>
     <div class="section-body">
       <label>मैदानाची उपलब्धता</label><input type="text" id="khelMaidan">
       <label>सहभाग व यश</label><input type="text" id="khelYash">
     </div>
   </details>
 
-  <!-- SECTION 20: सर्वसाधारण अभिप्राय -->
+  <!-- SECTION 21: सर्वसाधारण अभिप्राय -->
   <details class="section">
-    <summary>२०. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
+    <summary>२१. शाळेबाबत सर्वसाधारण अभिप्राय</summary>
     <div class="section-body">
       <label>उल्लेखनीय बाबी, आढळलेल्या त्रुटी, सूचना</label>
       <textarea id="sarvaAbhipray" style="min-height:85px;"></textarea>
@@ -790,6 +859,93 @@ const TEACHERS_DATA = {
   "जि. प. प्रा.शा. गोल्टावस्ती": [ "सुरेखा अभिमान गालफाडे", "शालन नागनाथ जोगदंड" ],
   "जि.प.प्रा.शा. गिरवली आपेट": [ "अर्जुन सूर्यकांत चव्हाण", "सुनिल आनंदराव फुलेवार" ]
 };
+
+/* ============================================================
+   FDA & ULLAS AUTODATA BY UDISE
+   ============================================================ */
+const FDA_DATA_BY_UDISE = {
+  "27270102404": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "नाही", helpers: "3", trained: "2", awareness: "होय" },[span_0](start_span)[span_0](end_span)
+  "27270102401": { fssai: "नाही", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "3", trained: "3", awareness: "होय" },[span_1](start_span)[span_1](end_span)
+  "27270103303": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "1", trained: "1", awareness: "होय" },[span_2](start_span)[span_2](end_span)
+  "27270103301": { fssai: "होय", hfss: "होय", nodal: "होय", central: "होय", kitchenFssai: "होय", helpers: "2", trained: "2", awareness: "होय" },[span_3](start_span)[span_3](end_span)
+  "27270102503": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "2", trained: "2", awareness: "होय" },[span_4](start_span)[span_4](end_span)
+  "27270103401": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "1", trained: "1", awareness: "होय" },[span_5](start_span)[span_5](end_span)
+  "27270101613": { fssai: "होय", hfss: "होय", nodal: "होय", central: "होय", kitchenFssai: "होय", helpers: "2", trained: "2", awareness: "होय" },[span_6](start_span)[span_6](end_span)
+  "27270102801": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "1", trained: "1", awareness: "होय" },[span_7](start_span)[span_7](end_span)
+  "27270101612": { fssai: "होय", hfss: "होय", nodal: "होय", central: "होय", kitchenFssai: "होय", helpers: "2", trained: "1", awareness: "होय" },[span_8](start_span)[span_8](end_span)
+  "27270103101": { fssai: "होय", hfss: "होय", nodal: "होय", central: "होय", kitchenFssai: "होय", helpers: "2", trained: "2", awareness: "होय" },[span_9](start_span)[span_9](end_span)
+  "27270103502": { fssai: "नाही", hfss: "नाही", nodal: "नाही", central: "नाही", kitchenFssai: "नाही", helpers: "1", trained: "1", awareness: "होय" },[span_10](start_span)[span_10](end_span)
+  "27270103701": { fssai: "होय", hfss: "होय", nodal: "नाही", central: "नाही", kitchenFssai: "लागू नाही", helpers: "1", trained: "1", awareness: "होय" },[span_11](start_span)[span_11](end_span)
+  "27270103501": { fssai: "होय", hfss: "होय", nodal: "नाही", central: "होय", kitchenFssai: "होय", helpers: "2", trained: "2", awareness: "होय" },[span_12](start_span)[span_12](end_span)
+  "27270102501": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "नाही", helpers: "1", trained: "1", awareness: "होय" },[span_13](start_span)[span_13](end_span)
+  "27270103201": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "2", trained: "2", awareness: "होय" },[span_14](start_span)[span_14](end_span)
+  "27270103102": { fssai: "नाही", hfss: "होय", nodal: "नाही", central: "नाही", kitchenFssai: "लागू नाही", helpers: "1", trained: "1", awareness: "होय" },[span_15](start_span)[span_15](end_span)
+  "27270102502": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "नाही", helpers: "1", trained: "1", awareness: "होय" },[span_16](start_span)[span_16](end_span)
+  "27270103203": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "2", trained: "2", awareness: "होय" },[span_17](start_span)[span_17](end_span)
+  "27270102601": { fssai: "नाही", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "नाही", helpers: "1", trained: "1", awareness: "होय" },[span_18](start_span)[span_18](end_span)
+  "27270102901": { fssai: "नाही", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "1", trained: "1", awareness: "होय" },[span_19](start_span)[span_19](end_span)
+  "27270102701": { fssai: "होय", hfss: "होय", nodal: "नाही", central: "नाही", kitchenFssai: "लागू नाही", helpers: "2", trained: "2", awareness: "होय" },[span_20](start_span)[span_20](end_span)
+  "27270103001": { fssai: "होय", hfss: "होय", nodal: "होय", central: "नाही", kitchenFssai: "लागू नाही", helpers: "2", trained: "2", awareness: "होय" }[span_21](start_span)[span_21](end_span)
+};
+
+const ULLAS_DATA_BY_UDISE = {
+  "27270101612": { learners: "10", volunteers: "2" },
+  "27270101613": { learners: "8", volunteers: "1" },
+  "27270102401": { learners: "12", volunteers: "2" },
+  "27270102404": { learners: "15", volunteers: "3" },
+  "27270102501": { learners: "6", volunteers: "1" },
+  "27270102502": { learners: "5", volunteers: "1" },
+  "27270102503": { learners: "4", volunteers: "1" },
+  "27270102601": { learners: "7", volunteers: "1" },
+  "27270102701": { learners: "6", volunteers: "1" },
+  "27270102801": { learners: "5", volunteers: "1" },
+  "27270102901": { learners: "4", volunteers: "1" },
+  "27270103001": { learners: "6", volunteers: "1" },
+  "27270103101": { learners: "8", volunteers: "2" },
+  "27270103102": { learners: "5", volunteers: "1" },
+  "27270103201": { learners: "11", volunteers: "2" },
+  "27270103203": { learners: "9", volunteers: "2" },
+  "27270103301": { learners: "7", volunteers: "1" },
+  "27270103303": { learners: "4", volunteers: "1" },
+  "27270103401": { learners: "5", volunteers: "1" },
+  "27270103501": { learners: "8", volunteers: "2" },
+  "27270103502": { learners: "3", volunteers: "1" },
+  "27270103701": { learners: "5", volunteers: "1" }
+};
+
+function populateSchoolAutoData(udise) {
+  if (FDA_DATA_BY_UDISE[udise]) {
+    const fda = FDA_DATA_BY_UDISE[udise];
+    document.getElementById('fdaFssaiReg').value = fda.fssai || '';
+    document.getElementById('fdaHfssBoard').value = fda.hfss || '';
+    document.getElementById('fdaNodal').value = fda.nodal || '';
+    document.getElementById('fdaCentralKitchen').value = fda.central || '';
+    document.getElementById('fdaKitchenFssai').value = fda.kitchenFssai || '';
+    document.getElementById('fdaHelpersCount').value = fda.helpers || '';
+    document.getElementById('fdaTrainedHelpers').value = fda.trained || '';
+    document.getElementById('fdaAwareness').value = fda.awareness || '';
+    document.getElementById('fdaTobaccoFree').value = "आहे";
+  } else {
+    document.getElementById('fdaFssaiReg').value = '';
+    document.getElementById('fdaHfssBoard').value = '';
+    document.getElementById('fdaNodal').value = '';
+    document.getElementById('fdaCentralKitchen').value = '';
+    document.getElementById('fdaKitchenFssai').value = '';
+    document.getElementById('fdaHelpersCount').value = '';
+    document.getElementById('fdaTrainedHelpers').value = '';
+    document.getElementById('fdaAwareness').value = '';
+    document.getElementById('fdaTobaccoFree').value = '';
+  }
+
+  if (ULLAS_DATA_BY_UDISE[udise]) {
+    const u = ULLAS_DATA_BY_UDISE[udise];
+    document.getElementById('ullasPariksharthi').value = u.learners || '';
+    document.getElementById('ullasSwayamsevak').value = u.volunteers || '';
+  } else {
+    document.getElementById('ullasPariksharthi').value = '';
+    document.getElementById('ullasSwayamsevak').value = '';
+  }
+}
 
 const NIPUN_IYATTA = ["२ री","३ री","४ थी","५ वी"];
 const SPARDHA_ITEMS = ["शिष्यवृत्ती परीक्षा इ. ४ थी","शिष्यवृत्ती परीक्षा इ. ७ वी","NMMS","जवाहर नवोदय प्रवेश परीक्षा","सैनिकी शाळा / इतर"];
@@ -1111,6 +1267,7 @@ document.getElementById('schoolSelect').addEventListener('change', function(){
   const udiseField = document.getElementById('udise');
   
   let schoolName = '';
+  let currentUdise = '';
   if(v === 'other'){
     otherWrap.style.display = 'block';
     udiseField.value = ''; udiseField.readOnly = false;
@@ -1119,7 +1276,8 @@ document.getElementById('schoolSelect').addEventListener('change', function(){
     otherWrap.style.display = 'none'; udiseField.value = '';
   } else {
     otherWrap.style.display = 'none';
-    udiseField.value = SCHOOLS[v].udise; udiseField.readOnly = true;
+    currentUdise = SCHOOLS[v].udise;
+    udiseField.value = currentUdise; udiseField.readOnly = true;
     schoolName = SCHOOLS[v].name;
   }
   
@@ -1129,6 +1287,7 @@ document.getElementById('schoolSelect').addEventListener('change', function(){
   }
   document.getElementById('mukhyadhyapak').value = hmName;
   populateTeachers(schoolName);
+  populateSchoolAutoData(currentUdise);
 });
 
 document.getElementById('otherSchoolName').addEventListener('input', function() {
@@ -1137,6 +1296,12 @@ document.getElementById('otherSchoolName').addEventListener('input', function() 
         populateTeachers(sn);
         document.getElementById('mukhyadhyapak').value = HEADMASTERS[sn] || '';
     }
+});
+
+document.getElementById('udise').addEventListener('input', function() {
+  if(document.getElementById('schoolSelect').value === 'other') {
+    populateSchoolAutoData(this.value.trim());
+  }
 });
 
 /* ============================================================
@@ -1400,7 +1565,6 @@ function collectForm(){
     "मूल्यवर्धन_आयोजन": val('mulyaAyojan'), "मूल्यवर्धन_अभिप्राय": val('mulyaAbhipray'),
     "मराठी_अंमलबजावणी": val('marathiAmal'), "मराठी_प्रशिक्षण_आवश्यक": val('marathiPrashAvashyak'), "मराठी_प्रशिक्षण_झाले": val('marathiPrashZale'), "मराठी_अभिप्राय": val('marathiAbhipray'),
     
-    // Updated Security Fields
     "सुरक्षा_समिती_स्थिती": val('suraksha_samiti_sthit'), "सुरक्षा_समिती_अभिप्राय": val('suraksha_samiti_abhipray'),
     "सुरक्षा_सखी_स्थिती": val('suraksha_sakhi_sthit'), "सुरक्षा_सखी_अभिप्राय": val('suraksha_sakhi_abhipray'),
     "सुरक्षा_तक्रार_स्थिती": val('suraksha_takrar_sthit'), "सुरक्षा_तक्रार_अभिप्राय": val('suraksha_takrar_abhipray'),
@@ -1412,6 +1576,23 @@ function collectForm(){
     
     "PM_POSHAN_मदतनीस_नाव": val('pmWorker'),
     "PM_POSHAN_online": val('pmOnline'), "PM_POSHAN_मेनू": val('pmMenu'), "PM_POSHAN_चव_रजिस्टर": val('pmChav'), "PM_POSHAN_साठवणूक": val('pmSathvanuk'), "PM_POSHAN_किचन_अभिप्राय": val('pmKitchen'),
+    
+    // FDA अन्न सुरक्षा
+    "FDA_FSSAI_नोंदणी": val('fdaFssaiReg'),
+    "FDA_HFSS_फलक": val('fdaHfssBoard'),
+    "FDA_नोडल_अधिकारी": val('fdaNodal'),
+    "FDA_केंद्रीय_स्वयंपाकगृह": val('fdaCentralKitchen'),
+    "FDA_स्वयंपाकगृह_FSSAI": val('fdaKitchenFssai'),
+    "FDA_मदतनीस_संख्या": val('fdaHelpersCount'),
+    "FDA_प्रशिक्षित_मदतनीस": val('fdaTrainedHelpers'),
+    "FDA_जनजागृती": val('fdaAwareness'),
+    "FDA_तंबाखू_मुक्त_प्रमाणपत्र": val('fdaTobaccoFree'),
+
+    // योजना विभाग (ULLAS)
+    "ULLAS_परीक्षार्थी": val('ullasPariksharthi'),
+    "ULLAS_स्वयंसेवक": val('ullasSwayamsevak'),
+    "योजना_विभाग_अभिप्राय": val('yojanaAbhipray'),
+
     "माजी_विद्यार्थी_स्थापना": val('majiSthapna'), "माजी_विद्यार्थी_मेळावा": val('majiMelava'), "माजी_विद्यार्थी_उपलब्धी": val('majiUpalabdhi'),
     
     "SMC_अध्यक्ष_नाव": val('smcAdhyaksha'),
@@ -1530,6 +1711,21 @@ function fillFormFromRecord(rec){
 
     shanivarUpakram:"शनिवार_उपक्रम",
     pmWorker:"PM_POSHAN_मदतनीस_नाव", pmOnline:"PM_POSHAN_online", pmMenu:"PM_POSHAN_मेनू", pmChav:"PM_POSHAN_चव_रजिस्टर", pmSathvanuk:"PM_POSHAN_साठवणूक", pmKitchen:"PM_POSHAN_किचन_अभिप्राय",
+    
+    fdaFssaiReg:"FDA_FSSAI_नोंदणी",
+    fdaHfssBoard:"FDA_HFSS_फलक",
+    fdaNodal:"FDA_नोडल_अधिकारी",
+    fdaCentralKitchen:"FDA_केंद्रीय_स्वयंपाकगृह",
+    fdaKitchenFssai:"FDA_स्वयंपाकगृह_FSSAI",
+    fdaHelpersCount:"FDA_मदतनीस_संख्या",
+    fdaTrainedHelpers:"FDA_प्रशिक्षित_मदतनीस",
+    fdaAwareness:"FDA_जनजागृती",
+    fdaTobaccoFree:"FDA_तंबाखू_मुक्त_प्रमाणपत्र",
+
+    ullasPariksharthi:"ULLAS_परीक्षार्थी",
+    ullasSwayamsevak:"ULLAS_स्वयंसेवक",
+    yojanaAbhipray:"योजना_विभाग_अभिप्राय",
+
     majiSthapna:"माजी_विद्यार्थी_स्थापना", majiMelava:"माजी_विद्यार्थी_मेळावा", majiUpalabdhi:"माजी_विद्यार्थी_उपलब्धी",
     smcAdhyaksha:"SMC_अध्यक्ष_नाव", smcZali:"SMC_सभा_झाली", smcDinank:"SMC_सभेचा_दिनांक", smcUpasthit:"SMC_उपस्थित_सदस्य",
     khelMaidan:"खेळ_मैदान", khelYash:"खेळ_सहभाग_यश",
@@ -1783,18 +1979,9 @@ function editRecord(id){
 }
 
 /* ============================================================
-   PRINT / PDF (STANDARD MARGINS, SEPARATE SECTIONS)
+   PRINT / PDF
    ============================================================ */
 function fieldRow(label, value){ return `<tr><td class="pf-lbl">${escapeHtml(label)}</td><td class="pf-val">${escapeHtml(value||'-')}</td></tr>`; }
-
-function formatTimeInMarathi(timeStr) {
-    if(!timeStr) return '-';
-    let [h, m] = timeStr.split(':');
-    let hh = parseInt(h, 10);
-    let ampm = hh >= 12 ? 'दुपार' : 'सकाळ';
-    let hr12 = hh % 12 || 12;
-    return `${hr12}:${m} (${ampm})`;
-}
 
 function viewPrint(id){
   const r = loadRecords().find(x=>x._id===id); if(!r) return;
@@ -1901,8 +2088,6 @@ function viewPrint(id){
       </table>`;
   }
 
-  let timeDisplay = formatTimeInMarathi(r["भेट_वेळ"]);
-
   let html = `<html lang="mr"><head><meta charset="UTF-8"><title>शाळा भेट प्रपत्र - ${escapeHtml(r["शाळेचे_नाव"])}</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -2003,7 +2188,7 @@ function viewPrint(id){
     ${fieldRow('शाळेचे नाव', r["शाळेचे_नाव"])}
     ${fieldRow('U-DISE कोड', r["UDISE_कोड"])}
     ${fieldRow('तालुका व केंद्र', r["तालुका_केंद्र"])}
-    ${fieldRow('भेट दिनांक व वेळ', (r["भेट_दिनांक"]||'-') + ' | ' + timeDisplay)}
+    ${fieldRow('भेट दिनांक व वेळ', (r["भेट_दिनांक"]||'-') + ' | ' + (r["भेट_वेळ"]||'-'))}
     ${fieldRow('मुख्याध्यापक', r["मुख्याध्यापक"])}
     ${fieldRow('पर्यवेक्षक', r["पर्यवेक्षक"])}
     ${fieldRow('विद्यार्थी उपस्थिती', (r["विद्यार्थी_एकूण_पट"]||'-')+' पैकी '+(r["विद्यार्थी_उपस्थित"]||'-')+' ('+(r["विद्यार्थी_टक्केवारी"]||'-')+')')}
@@ -2179,7 +2364,7 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <div class="sec-title">१६. PM POSHAN (MDM)</div>
+  <div class="sec-title">१६. PM POSHAN व अन्न सुरक्षा कायदा (FDA)</div>
   <table>
     <tbody>
     ${fieldRow('स्वयंपाकी / मदतनीस नाव', r["PM_POSHAN_मदतनीस_नाव"])}
@@ -2188,10 +2373,27 @@ function viewPrint(id){
     ${fieldRow('चव रजिस्टर स्थिती', r["PM_POSHAN_चव_रजिस्टर"])}
     ${fieldRow('धान्यादी माल साठवणूक स्थिती', r["PM_POSHAN_साठवणूक"])}
     ${fieldRow('किचन शेड, स्वच्छता, मदतनीस अभिप्राय', r["PM_POSHAN_किचन_अभिप्राय"])}
+    ${fieldRow('FSSAI नोंदणी', r["FDA_FSSAI_नोंदणी"])}
+    ${fieldRow('HFSS फलक', r["FDA_HFSS_फलक"])}
+    ${fieldRow('नोडल अधिकारी नेमणूक', r["FDA_नोडल_अधिकारी"])}
+    ${fieldRow('केंद्रीय स्वयंपाकगृह', r["FDA_केंद्रीय_स्वयंपाकगृह"])}
+    ${fieldRow('स्वयंपाकगृह FSSAI', r["FDA_स्वयंपाकगृह_FSSAI"])}
+    ${fieldRow('मदतनीस संख्या (एकूण / प्रशिक्षित)', (r["FDA_मदतनीस_संख्या"]||'-') + ' / ' + (r["FDA_प्रशिक्षित_मदतनीस"]||'-'))}
+    ${fieldRow('FDA जनजागृती', r["FDA_जनजागृती"])}
+    ${fieldRow('तंबाखू मुक्त शाळा प्रमाणपत्र', r["FDA_तंबाखू_मुक्त_प्रमाणपत्र"])}
     </tbody>
   </table>
 
-  <div class="sec-title">१७. माजी विद्यार्थी संघ</div>
+  <div class="sec-title">१७. योजना विभाग (नवभारत साक्षरता अभियान)</div>
+  <table>
+    <tbody>
+    ${fieldRow('उल्लास ॲप नोंद परीक्षार्थी संख्या', r["ULLAS_परीक्षार्थी"])}
+    ${fieldRow('उल्लास ॲप नोंद स्वयंसेवक संख्या', r["ULLAS_स्वयंसेवक"])}
+    ${fieldRow('योजना विभाग अभिप्राय', r["योजना_विभाग_अभिप्राय"])}
+    </tbody>
+  </table>
+
+  <div class="sec-title">१८. माजी विद्यार्थी संघ</div>
   <table>
     <tbody>
     ${fieldRow('स्थापना (झाली/नाही)', r["माजी_विद्यार्थी_स्थापना"])}
@@ -2200,7 +2402,7 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <div class="sec-title">१८. SMC मासिक सभा</div>
+  <div class="sec-title">१९. SMC मासिक सभा</div>
   <table>
     <tbody>
     ${fieldRow('SMC अध्यक्ष नाव', r["SMC_अध्यक्ष_नाव"])}
@@ -2210,7 +2412,7 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <div class="sec-title">१९. खेळ व तयारी</div>
+  <div class="sec-title">२०. खेळ व तयारी</div>
   <table>
     <tbody>
     ${fieldRow('मैदानाची उपलब्धता', r["खेळ_मैदान"])}
@@ -2218,7 +2420,7 @@ function viewPrint(id){
     </tbody>
   </table>
 
-  <div class="sec-title">२०. शाळेबाबत सर्वसाधारण अभिप्राय</div>
+  <div class="sec-title">२१. शाळेबाबत सर्वसाधारण अभिप्राय</div>
   <table><tbody>${fieldRow('उल्लेखनीय बाबी, आढळलेल्या त्रुटी, सूचना', r["सर्वसाधारण_अभिप्राय"])}</tbody></table>
 
   <div class="sec-title">स्वाक्षरी व पडताळणी</div>
